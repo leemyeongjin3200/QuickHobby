@@ -10,5 +10,7 @@
 </head>
 <body>
 	<a href="${root}">test</a><br/> 
+	<a href="${root}/apply/applyWrite.do">모이자 게시물 작성</a>
+	<a href="${root}/apply/applyList.do">모이자 게시판</a>
 </body>
 </html>
