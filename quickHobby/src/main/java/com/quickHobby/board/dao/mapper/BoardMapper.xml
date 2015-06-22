@@ -3,5 +3,27 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board.dao.mapper">
-
+	<resultMap type="com.quickHobby.board.dto.BoardDto" id="boardDto">
+		<result property="boardNum" column="BOARD_NUM"/>
+		<result property="boardWriter" column="BOARD_WRITER"/>
+		<result property="boardSubject" column="BOARD_SUBJECT"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
+		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
+		<result property="boardVisible" column="BOARD_VISIBLE"/>
+		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
+		<result property="boardReadCount" column="BOARD_READCOUNT"/>
+	</resultMap>
+	
+	<select id="boardCount" resultType="int">
+			select count(*) from board 
+	</select>
+	
+	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
+			<![CDATA[select * from
+ 			(select rownum rnum, a.* from 
+			(select * from board)a) 
+ 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+	</select>
+	
 </mapper>
