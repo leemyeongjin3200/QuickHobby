@@ -9,6 +9,6 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-	<a href="${root}">test</a><br/>
+	<a href="${root}">test</a><br/> 
 </body>
 </html>
