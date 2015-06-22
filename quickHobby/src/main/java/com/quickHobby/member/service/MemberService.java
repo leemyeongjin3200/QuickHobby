@@ -1,5 +1,7 @@
 package com.quickHobby.member.service;
 
-public interface MemberService {
+import org.springframework.web.servlet.ModelAndView;
 
+public interface MemberService {
+	public void sendCode(ModelAndView mav);
 }
