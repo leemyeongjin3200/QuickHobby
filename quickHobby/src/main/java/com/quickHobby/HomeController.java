@@ -1,4 +1,4 @@
-package com.java.quickHobby;
+package com.quickHobby;
 
 import java.text.DateFormat;
 import java.util.Date;
