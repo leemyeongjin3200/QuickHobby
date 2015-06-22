@@ -96,5 +96,8 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		List<ApplyDto> applyDtoList=applyDao.getListByCreateDate();
 		logger.info("list size : " + applyDtoList.size());
+		
+		mav.addObject("applyDtoList", applyDtoList);
+		mav.setViewName("apply/applyList");
 	}
 }

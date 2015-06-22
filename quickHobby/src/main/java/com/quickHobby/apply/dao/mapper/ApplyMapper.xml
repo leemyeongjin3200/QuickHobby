@@ -11,7 +11,7 @@
 	
 	<select id="getListByCreateDate" resultType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE > SYSDATE ORDER BY APPLY_CREATEDATE DESC;
+			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE > SYSDATE ORDER BY APPLY_CREATEDATE DESC
 		]]>
 	</select>
 </mapper>
