@@ -1,5 +1,7 @@
 package com.quickHobby.apply.dao;
 
-public interface ApplyDao {
+import com.quickHobby.apply.dto.ApplyDto;
 
+public interface ApplyDao {
+	public int insert(ApplyDto applyDto);
 }

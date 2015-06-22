@@ -30,8 +30,10 @@
 </head>
 <body>
 	<form action="${root}/apply/applyWriteOk.do" method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">
+		<input type="hidden" value="1" name="apply_host"/>
+		
 		<label>작성자</label>
-		<input type="text" value="${name}" name="apply_host" disabled="disabled"/><br/>
+		<input type="text" value="seo" disabled="disabled"/><br/>
 		
 		<label>제목</label>
 		<input type="text" name="apply_subject"/><br/>

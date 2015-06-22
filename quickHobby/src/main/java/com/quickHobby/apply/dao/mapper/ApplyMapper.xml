@@ -3,5 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="apply.dao.mapper">
-
+	<insert id="applyInsert" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			INSERT INTO APPLY VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_filename}, #{apply_filepath}, #{apply_filesize}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount})
+		]]>
+	</insert>
 </mapper>
