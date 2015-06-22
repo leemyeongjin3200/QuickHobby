@@ -9,7 +9,6 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-	<a href="${root}">test</a><br/> 
-	<a href="${root}/apply/applyWrite.do">모이자 게시물 작성</a>
+	<h4>${name }</h4>
 </body>
 </html>

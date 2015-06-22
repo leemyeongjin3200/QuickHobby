@@ -1,5 +1,32 @@
 package com.quickHobby.apply.controller;
 
-public class ApplyController {
+import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.quickHobby.apply.service.ApplyService;
+
+@Controller
+public class ApplyController {
+	private Logger logger=Logger.getLogger(this.getClass().getName());
+	
+	@Autowired
+	private ApplyService applyService;
+	
+	@RequestMapping(value="/apply/applyWrite.do", method=RequestMethod.GET)
+	public ModelAndView applyWrite(HttpServletRequest request){
+		logger.info("applyWrite======");
+		
+		ModelAndView mav=new ModelAndView();
+		
+		applyService.applyWrite(mav);
+		
+		return mav;
+	}
 }

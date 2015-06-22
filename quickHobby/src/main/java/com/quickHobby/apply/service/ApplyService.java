@@ -1,5 +1,7 @@
 package com.quickHobby.apply.service;
 
-public interface ApplyService {
+import org.springframework.web.servlet.ModelAndView;
 
+public interface ApplyService {
+	public void applyWrite(ModelAndView mav);
 }
