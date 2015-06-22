@@ -8,4 +8,10 @@
 			INSERT INTO APPLY VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_filename}, #{apply_filepath}, #{apply_filesize}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount})
 		]]>
 	</insert>
+	
+	<select id="getListByCreateDate" resultType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE > SYSDATE ORDER BY APPLY_CREATEDATE DESC;
+		]]>
+	</select>
 </mapper>

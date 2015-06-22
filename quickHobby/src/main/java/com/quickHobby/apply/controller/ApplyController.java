@@ -21,7 +21,7 @@ public class ApplyController {
 	@Autowired
 	private ApplyService applyService;
 	
-	@RequestMapping(value="/apply/applyWrite.do", method=RequestMethod.GET)
+	@RequestMapping(value="/apply/applyWrite.do", method=RequestMethod.POST)
 	public ModelAndView applyWrite(HttpServletRequest request){
 		logger.info("applyWrite======");
 		
@@ -42,6 +42,17 @@ public class ApplyController {
 		
 		applyService.applyWriteOk(mav);
 		
-		return null;
+		return mav;
+	}
+	
+	@RequestMapping(value="/apply/applyList.do", method=RequestMethod.GET)
+	public ModelAndView applyList(HttpServletRequest request){
+		logger.info("applyList======");
+		
+		ModelAndView mav=new ModelAndView();
+		
+		applyService.applyList(mav);
+		
+		return mav;
 	}
 }

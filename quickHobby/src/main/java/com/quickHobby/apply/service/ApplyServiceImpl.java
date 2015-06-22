@@ -1,11 +1,10 @@
 package com.quickHobby.apply.service;
 
+import java.util.List;
 import java.io.File;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -18,6 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
 
+/*
+ * @name        : ApplyServiceImpl
+ * @date        : 2015. 6. 22.
+ * @author      : º≠¿Œ±∏
+ * @description : 
+ */
 @Component
 public class ApplyServiceImpl implements ApplyService {
 	private Logger logger=Logger.getLogger(this.getClass().getName());
@@ -84,5 +89,12 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		mav.addObject("check", check);
 		mav.setViewName("apply/applyWriteOk");
+	}
+	
+	public void applyList(ModelAndView mav){
+		logger.info("applyList======");
+		
+		List<ApplyDto> applyDtoList=applyDao.getListByCreateDate();
+		logger.info("list size : " + applyDtoList.size());
 	}
 }
