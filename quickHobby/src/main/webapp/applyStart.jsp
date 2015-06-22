@@ -10,5 +10,6 @@
 </head>
 <body>
 	<a href="${root}">test</a><br/> 
+	<a href="${root}/apply/applyWrite.do">모이자 게시물 작성</a>
 </body>
 </html>
