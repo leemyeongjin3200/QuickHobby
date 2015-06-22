@@ -4,20 +4,20 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
- 	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
- 	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
- 	 	<property name="username" value="quick"></property>
- 	 	<property name="password" value="quick"></property>
- 	 </bean>
+	<bean id="driverManagerDataSource" destroy-method="close" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="quick"/>
+		<property name="password" value="quick"/>
+		<property name="maxActive" value="50"/>
+		<property name="maxIdle" value="20"/>
+		<property name="maxWait" value="-1"/>
+		<property name="defaultAutoCommit" value="true"/>
+	</bean>
  	 
  	 <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
  	 	<property name="dataSource" ref="driverManagerDataSource"></property>
- 	 	<property name="mapperLocations">
- 	 		<list>
- 	 			<value>classpath:com/java/quickHobby/HomeMapper.xml</value>
- 	 		</list>
- 	 	</property>
+ 	 	<property name="mapperLocations" value="classpath*:com/quickHobby/**/**/**/*.xml"></property>
  	 </bean>
  	 
  	 <!-- SqlSession-SqlSessionFactory -->
