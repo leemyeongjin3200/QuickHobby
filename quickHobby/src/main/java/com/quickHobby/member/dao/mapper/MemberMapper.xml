@@ -3,5 +3,35 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="member.dao.mapper">
-
+	<resultMap type="com.quickHobby.member.dto.MemberDto" id="memberDto">
+		<result property="memberNum" column="member_num"/>
+		<result property="memberId" column="member_id"/>
+		<result property="memberPassword" column="member_password"/>
+		<result property="memberLevel" column="member_level"/>
+		<result property="memberSNS" column="member_sns"/>
+		<result property="memberReport" column="member_report"/>
+		<result property="memberFileName" column="member_filename"/>
+		<result property="memberFilePath" column="member_filepath"/>
+		<result property="memberFileSize" column="member_filesize"/>
+	</resultMap>
+	
+	<insert id="registerOkFile" parameterType="com.quickHobby.member.dto.MemberDto">
+		<![CDATA[
+			insert into member(member_num, member_id, member_password, member_level, member_sns, member_report, member_filename, member_filepath, member_filesize)
+			values(member_num_seq.nextval, #{memberId}, #{memberPassword}, #{memberLevel}, #{memberSNS}, #{memberReport}, #{memberFileName}, #{memberFilePath}, #{memberFileSize})
+		]]>
+	</insert>
+	
+	<insert id="registerOk" parameterType="com.quickHobby.member.dto.MemberDto">
+		<![CDATA[
+			insert into member(member_num, member_id, member_password, member_level, member_sns, member_report)
+			values(member_num_seq.nextval, #{memberId}, #{memberPassword}, #{memberLevel}, #{memberSNS}, #{memberReport})
+		]]>
+	</insert>
+	
+	<select id="loginOk" parameterType="java.util.HashMap" resultMap="memberDto">
+		<![CDATA[
+			select * from member where member_id=#{email} and member_password=#{password}
+		]]>
+	</select>
 </mapper>

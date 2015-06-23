@@ -1,6 +1,8 @@
 package com.quickHobby.member.service;
 
+import java.io.File;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -16,14 +18,52 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.member.dao.MemberDao;
+import com.quickHobby.member.dto.MemberDto;
 
 @Component
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDao memberDao;
+	
+	public void registerOk(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		
+		MultipartHttpServletRequest req=(MultipartHttpServletRequest)map.get("request");
+		MemberDto memberDto=(MemberDto)map.get("memberDto");
+		
+		memberDto.setMemberLevel("User");
+		memberDto.setMemberReport(0);
+		
+		MultipartFile userPhoto=req.getFile("memberFile");
+		String fileName=userPhoto.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=userPhoto.getSize();
+		
+		if(fileSize != 0){
+			try{
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				
+				File file=new File(dir, timeName);
+				userPhoto.transferTo(file);
+				
+				memberDto.setMemberFileName(fileName);
+				memberDto.setMemberFilePath(file.getAbsolutePath());
+				memberDto.setMemberFileSize(Long.toString(fileSize));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		int check=memberDao.registerOk(memberDto);
+		
+		mav.addObject("check", check);
+		mav.setViewName("member/registerOk");
+	} 
 	
 	public void sendCode(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
@@ -82,5 +122,25 @@ public class MemberServiceImpl implements MemberService{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	} 
+	}
+
+	public void loginOk(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		
+		String email=req.getParameter("memberEmail");
+		String password=req.getParameter("memberPassword");
+		
+		HashMap<String, String> hMap=new HashMap<String, String>();
+		hMap.put("email", email);
+		hMap.put("password", password);
+		
+		MemberDto member=memberDao.loginOk(hMap);
+		
+		if(member != null){
+			req.getSession().setAttribute("member", member);
+		}
+		
+		mav.setViewName("member/loginOk");
+	}
 }

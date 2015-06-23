@@ -1,7 +1,11 @@
 /**
  * 
  */
-
+function registerCheck(form){
+	if($("input[name='memberId']").val()==""){
+		
+	}
+}
 function sendCode(email, root){
 	var url=root+"/member/sendCode.do?email="+email.value;
 	
@@ -42,7 +46,7 @@ function previewImage(){
         }//readURL()--
 
         //file 양식으로 이미지를 선택(값이 변경) 되었을때 처리하는 코드
-        $("input[name='file']").change(function(){
+        $("input[name='memberFile']").change(function(){
             readURL(this);
         });
      });

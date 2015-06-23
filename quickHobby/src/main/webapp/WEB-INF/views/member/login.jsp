@@ -9,13 +9,14 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-	<a href="${root}/member/register.do">회원가입</a>
-	<c:if test="${member==null}">
-		<a href="${root}/member/login.do">로그인</a>
-	</c:if>
-	<c:if test="${member !=null}">
-		<a href="${root}/member/update.do">회원정보수정</a>
-		<a href="${root}/member/logout.do">로그아웃</a>
-	</c:if>
+<form name="loginForm" action="${root}/member/login.do" method="post">
+	<label>이메일</label>
+	<input type="text" name="memberEmail"><br/>
+	
+	<label>비밀번호</label>
+	<input type="password" name="memberPassword"/><br/>
+	
+	<input type="submit" value="login">
+</form>
 </body>
 </html>

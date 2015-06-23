@@ -7,15 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<script type="text/javascript" src="${root}/css/jquery.js"></script>
 </head>
 <body>
-	<a href="${root}/member/register.do">회원가입</a>
-	<c:if test="${member==null}">
-		<a href="${root}/member/login.do">로그인</a>
+	<c:if test="${member!=null}">
+		<script type="text/javascript">
+			alert("로그인 성공");
+			$(location).attr("href", "${root}/memberMain.do");
+		</script>
 	</c:if>
-	<c:if test="${member !=null}">
-		<a href="${root}/member/update.do">회원정보수정</a>
-		<a href="${root}/member/logout.do">로그아웃</a>
+	
+	<c:if test="${member==null}">
+		<script type="text/javascript">
+			alert("로그인 실패");
+			$(location).attr("href", "${root}/member/login.do");
+		</script>
 	</c:if>
 </body>
 </html>
