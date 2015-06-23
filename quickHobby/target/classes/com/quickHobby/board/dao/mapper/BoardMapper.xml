@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board.dao.mapper">
+	<resultMap type="com.quickHobby.board.dto.BoardDto" id="boardDto">
+		<result property="boardNum" column="BOARD_NUM"/>
+		<result property="boardWriter" column="BOARD_WRITER"/>
+		<result property="boardSubject" column="BOARD_SUBJECT"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
+		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
+		
+		<result property="boardVisible" column="BOARD_VISIBLE"/>
+		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
+		<result property="boardReadCount" column="BOARD_READCOUNT"/>
+	</resultMap>
+	
+	<select id="boardCount" resultType="int">
+			select count(*) from board where BOARD_VISIBLE=1
+	</select>
+	
+	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
+			<![CDATA[select * from
+ 			(select rownum rnum, a.* from 
+			(select * from board where BOARD_VISIBLE=1 
+			order by BOARD_CREATEDATE desc)a) 
+ 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+	</select>
+	
+	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
+		<![CDATA[insert into board(BOARD_NUM, BOARD_WRITER, BOARD_SUBJECT, 
+				BOARD_CONTENT,BOARD_CREATEDATE, BOARD_MODIFYDATE, 
+				BOARD_VISIBLE, BOARD_RECOMMAND,	BOARD_READCOUNT)
+ 				values(board_num_seq.nextval, #{boardWriter},
+ 				#{boardSubject}, #{boardContent},
+				sysdate, sysdate, 1, #{boardRecommand}, #{boardReadCount})]]>
+	</insert>
+	
+	<update id="readCount" parameterType="int">
+		update board set BOARD_READCOUNT=BOARD_READCOUNT+1
+		where board_num=#{boardNum}
+	</update>
+	
+	<select id="boardRead" resultMap="boardDto" parameterType="int">
+		select * from board where board_num=#{boardNum}
+	</select>
+	
+	<update id="boardDelete" parameterType="int">
+		update board set BOARD_VISIBLE=0 where board_num=#{boardNum}
+	</update>
+	
+	<update id="boardUpdate" parameterType="com.quickHobby.board.dto.BoardDto">
+		<![CDATA[update board set BOARD_SUBJECT=#{boardSubject},
+		BOARD_CONTENT=#{boardContent}, BOARD_MODIFYDATE=sysdate
+		where board_num=#{boardNum}]]>
+	</update>
+	
+</mapper>
