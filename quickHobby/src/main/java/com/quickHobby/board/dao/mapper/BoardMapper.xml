@@ -11,20 +11,20 @@
 		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
 		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
 		
-		
 		<result property="boardVisible" column="BOARD_VISIBLE"/>
 		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
 		<result property="boardReadCount" column="BOARD_READCOUNT"/>
 	</resultMap>
 	
 	<select id="boardCount" resultType="int">
-			select count(*) from board 
+			select count(*) from board where BOARD_VISIBLE=1
 	</select>
 	
 	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
 			<![CDATA[select * from
  			(select rownum rnum, a.* from 
-			(select * from board order by BOARD_CREATEDATE desc)a) 
+			(select * from board where BOARD_VISIBLE=1 
+			order by BOARD_CREATEDATE desc)a) 
  			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
 	</select>
 	
@@ -36,4 +36,24 @@
  				#{boardSubject}, #{boardContent},
 				sysdate, sysdate, 1, #{boardRecommand}, #{boardReadCount})]]>
 	</insert>
+	
+	<update id="readCount" parameterType="int">
+		update board set BOARD_READCOUNT=BOARD_READCOUNT+1
+		where board_num=#{boardNum}
+	</update>
+	
+	<select id="boardRead" resultMap="boardDto" parameterType="int">
+		select * from board where board_num=#{boardNum}
+	</select>
+	
+	<update id="boardDelete" parameterType="int">
+		update board set BOARD_VISIBLE=0 where board_num=#{boardNum}
+	</update>
+	
+	<update id="boardUpdate" parameterType="com.quickHobby.board.dto.BoardDto">
+		<![CDATA[update board set BOARD_SUBJECT=#{boardSubject},
+		BOARD_CONTENT=#{boardContent}, BOARD_MODIFYDATE=sysdate
+		where board_num=#{boardNum}]]>
+	</update>
+	
 </mapper>

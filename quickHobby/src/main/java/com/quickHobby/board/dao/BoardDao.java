@@ -9,7 +9,16 @@ public interface BoardDao {
 	int getBoardCount();
 
 	List<BoardDto> getBoardList(int startRow, int endRow);
+	
+	int boardWrite(BoardDto boardDto);
 
-	int insert(BoardDto boardDto);
+	BoardDto boardRead(int boardNum);
+
+	int boardDelete(int boardNum);
+
+	int boardUpdate(BoardDto boardDto);
+
+
+	
 
 }

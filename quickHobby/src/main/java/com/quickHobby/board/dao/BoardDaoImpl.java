@@ -28,8 +28,6 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne("board.dao.mapper.boardCount");
 	}
 
-	
-
 	@Override
 	public List<BoardDto> getBoardList(int startRow, int endRow) {
 		Map<String,Integer>map=new HashMap<String, Integer>();
@@ -39,7 +37,30 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public int insert(BoardDto boardDto) {
+	public int boardWrite(BoardDto boardDto) {
 		return sqlSession.insert("board.dao.mapper.boardInsert", boardDto);
+	}
+
+	@Override
+	public BoardDto boardRead(int boardNum) {
+		BoardDto board=null;
+		
+		try{
+			sqlSession.update("board.dao.mapper.readCount", boardNum);
+			board=sqlSession.selectOne("board.dao.mapper.boardRead",boardNum);
+		}catch(Exception e){
+			sqlSession.rollback();
+		}
+		return board;
+	}
+
+	@Override
+	public int boardDelete(int boardNum) {
+		return sqlSession.update("board.dao.mapper.boardDelete", boardNum);
+	}
+
+	@Override
+	public int boardUpdate(BoardDto boardDto) {
+		return sqlSession.update("board.dao.mapper.boardUpdate", boardDto);
 	}
 }

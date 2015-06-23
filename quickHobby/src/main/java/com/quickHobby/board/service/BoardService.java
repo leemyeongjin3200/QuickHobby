@@ -10,4 +10,12 @@ public interface BoardService {
 
 	void boardWrite(ModelAndView mav);
 
+	void boardRead(ModelAndView mav);
+
+	void boardDelete(ModelAndView mav);
+
+	void boardUpdateForm(ModelAndView mav);
+
+	void boardUpdate(ModelAndView mav);
+
 }

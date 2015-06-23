@@ -79,4 +79,74 @@ public class BoardController {
 		
 		return mav;
 	}
+	
+	/**
+	* @name : boardRead
+	* @date : 2015. 6. 23.
+	* @author : 차건강
+	* @description : Tip & Review Board 글 제목 눌렀을 때 글 내용 보기
+	 */
+	@RequestMapping(value="/board/read.do", method=RequestMethod.GET)
+	public ModelAndView boardRead(HttpServletRequest request, HttpServletResponse response, BoardDto boardDto){
+		logger.info("boardRead-----------------------------------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		mav.addObject("BoardDto", boardDto);
+		boardService.boardRead(mav);
+		
+		return mav;
+	}
+	
+	/**
+	* @name : boardDelete
+	* @date : 2015. 6. 23.
+	* @author : 차건강
+	* @description : Tip & Review Board 글의 visible 값 0으로 바꿔서 화면상에서 delete
+	 */
+	@RequestMapping(value="/board/delete.do", method=RequestMethod.POST)
+	public ModelAndView boardDelete(HttpServletRequest request, HttpServletResponse response){		
+		logger.info("boardDelete------------------------------------------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		boardService.boardDelete(mav);
+		
+		return mav;
+	}
+	
+	/**
+	* @name : boardDUpdateForm
+	* @date : 2015. 6. 23.
+	* @author : 차건강
+	* @description : Tip & Review Board updateForm 불러오기
+	 */
+	@RequestMapping(value="/board/updateForm.do", method=RequestMethod.POST)
+	public ModelAndView boardDUpdateForm(HttpServletRequest request, HttpServletResponse response){
+		logger.info("boardUpdateForm------------------------------------------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		boardService.boardUpdateForm(mav);
+		
+		return mav;
+	}
+	
+	/**
+	* @name : boardUpdate
+	* @date : 2015. 6. 23.
+	* @author : 차건강
+	* @description : Tip & Review Board 수정한 내용 db에 저장
+	 */
+	@RequestMapping(value="/board/update.do", method=RequestMethod.POST)
+	public ModelAndView boardUpdate(BoardDto boardDto, MultipartHttpServletRequest request){
+		logger.info("boardUpdate------------------------------------------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request",request);
+		mav.addObject("BoardDto", boardDto);
+		boardService.boardUpdate(mav); 
+		
+		return mav;
+	}
 }

@@ -11,14 +11,18 @@
 </head>
 <body>
 	<a href="${root}/board/writeForm.do">Write</a>
-	<div>
-		<c:forEach var="board" items="${boardList}">
-			<span>${board.boardWriter}</span>
-			<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a>
-			<small>${board.boardModifyDate}</small>
-			<span>${board.boardReadCount}</span><br/><br/>
-		</c:forEach>
-	</div>
+	<c:if test="${count>0}">
+		<div>
+			<c:forEach var="board" items="${boardList}">
+				<c:if test="${board.boardVisible==1}">
+					<span>${board.boardWriter}</span>
+					<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a>
+					<small>${board.boardModifyDate}</small>
+					<span>${board.boardReadCount}</span><br/><br/>
+				</c:if>
+			</c:forEach>
+		</div>
+	</c:if>
 	
 	<center>
 		<c:if test="${count>0}">
