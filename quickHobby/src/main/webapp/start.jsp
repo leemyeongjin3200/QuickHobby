@@ -10,6 +10,6 @@
 </head>
 <body>
 	<a href="${root}">test</a><br/> 
-	<a href="${root}/board/list.do">Tip/View</a>
+	<a href="${root}/board/list.do">Tip/Review</a>
 </body>
 </html>

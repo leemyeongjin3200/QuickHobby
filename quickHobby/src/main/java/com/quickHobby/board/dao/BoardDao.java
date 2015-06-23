@@ -10,4 +10,6 @@ public interface BoardDao {
 
 	List<BoardDto> getBoardList(int startRow, int endRow);
 
+	int insert(BoardDto boardDto);
+
 }

@@ -10,6 +10,8 @@
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
 		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
+		
+		
 		<result property="boardVisible" column="BOARD_VISIBLE"/>
 		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
 		<result property="boardReadCount" column="BOARD_READCOUNT"/>
@@ -22,8 +24,16 @@
 	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
 			<![CDATA[select * from
  			(select rownum rnum, a.* from 
-			(select * from board)a) 
+			(select * from board order by BOARD_CREATEDATE desc)a) 
  			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
 	</select>
 	
+	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
+		<![CDATA[insert into board(BOARD_NUM, BOARD_WRITER, BOARD_SUBJECT, 
+				BOARD_CONTENT,BOARD_CREATEDATE, BOARD_MODIFYDATE, 
+				BOARD_VISIBLE, BOARD_RECOMMAND,	BOARD_READCOUNT)
+ 				values(board_num_seq.nextval, #{boardWriter},
+ 				#{boardSubject}, #{boardContent},
+				sysdate, sysdate, 1, #{boardRecommand}, #{boardReadCount})]]>
+	</insert>
 </mapper>

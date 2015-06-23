@@ -11,7 +11,7 @@ public class BoardDto {
 	private Date boardModifyDate;
 	private String boardFileName;
 	private String boardFilePath;
-	private String boardFileSize;
+	private long boardFileSize;
 	
 	private int boardVisible;
 	private int boardRecommand;
@@ -65,10 +65,10 @@ public class BoardDto {
 	public void setBoardFilePath(String boardFilePath) {
 		this.boardFilePath = boardFilePath;
 	}
-	public String getBoardFileSize() {
+	public long getBoardFileSize() {
 		return boardFileSize;
 	}
-	public void setBoardFileSize(String boardFileSize) {
+	public void setBoardFileSize(long boardFileSize) {
 		this.boardFileSize = boardFileSize;
 	}
 	public int getBoardVisible() {

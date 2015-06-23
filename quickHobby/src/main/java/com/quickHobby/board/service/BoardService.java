@@ -8,4 +8,6 @@ public interface BoardService {
 
 	void boardWriteForm(ModelAndView mav);
 
+	void boardWrite(ModelAndView mav);
+
 }

@@ -17,6 +17,7 @@ import com.quickHobby.board.dto.BoardDto;
 * @author : 차건강
 * @description : Tip & Review Board Dao
  */
+
 @Component
 public class BoardDaoImpl implements BoardDao {
 	@Autowired
@@ -27,6 +28,8 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne("board.dao.mapper.boardCount");
 	}
 
+	
+
 	@Override
 	public List<BoardDto> getBoardList(int startRow, int endRow) {
 		Map<String,Integer>map=new HashMap<String, Integer>();
@@ -35,4 +38,8 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList("board.dao.mapper.boardList", map);
 	}
 
+	@Override
+	public int insert(BoardDto boardDto) {
+		return sqlSession.insert("board.dao.mapper.boardInsert", boardDto);
+	}
 }

@@ -1,60 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Tip / Review Board</title>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-	<form class="form_style"  action="${root}/board/write.do"  method="post" onsubmit="return checkForm(this)">	
-		<input type="hidden" name="boardNumber" value="${boardNumber}"/>
+	<form action="${root}/board/write.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
+		<input type="hidden" name="boardNum" value="${boardNum}"/>
 					
 		<div style="width:598px; height:15px; border-width:2px; text-align:right; padding:15px 0px 0px 0px; border-bottom-width:0px;">
 				<a href="${root}/board/list.do">List</a>
 		</div>
 			
-		<div class="line">
-			<label class="title">Writer</label>
-			<span class="content">
-				<input type="text" name="writer"/>
+		<div>
+			<label>Writer</label>
+			<span>
+				<input type="text" name="boardWriter"/>
 			</span>
 		</div>
 		
-		<div class="line">
-			<label class="title">Title</label>
-			<span class="content"><input type="text" size="50" name="subject"/></span>
+		<div>
+			<label>Title</label>
+			<span><input type="text" size="50" name="boardSubject"/></span>
 		</div>
 		
-		<div class="line" style="height:230px;">
+		<div style="height:230px;">
 			<label class="title" style="height:230px;">Content</label>
-			<span class="content" style="height:230px;">
-				<textarea rows="14" cols="58" name="content"></textarea>
+			<span style="height:230px;">
+				<textarea rows="14" cols="58" name="boardContent"></textarea>
 			</span>
 		</div>
 		
-		<div class="line">
-			<label class="title">ReadCount</label>
-			<span class="content">
-				<input type="text" name="writer"/>
+		<div >
+			<label >Recommand</label>
+			<span >
+				<input type="text" name="boardRecommand"/>
 			</span>
 		</div>
 		
-		<div class="line">
-			<label class="title">Visible</label>
-			<span class="content">
-				<input type="text" name="writer"/>
-			</span>
-		</div>
-		
-		<div class="line">
-			<label class="title">Recommand</label>
-			<span class="content">
-				<input type="text" name="writer"/>
-			</span>
-		</div>
-		
-		<div class="line" style="width:598px; border-width:2px; text-align:center;">
+		<div style="width:598px; border-width:2px; text-align:center;">
 			<input type="submit" value="Write"/>
 			<input type="reset" value="Reset"/>
 			<input type="button" value="List" onclick="location.href='${root}/board/list.do'"/>

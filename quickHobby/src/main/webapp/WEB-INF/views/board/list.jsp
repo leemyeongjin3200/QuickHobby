@@ -6,13 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Tip / Review Board</title>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 	<a href="${root}/board/writeForm.do">Write</a>
 	<div>
 		<c:forEach var="board" items="${boardList}">
-			<a href="">${board.boardWriter} ${board.boardSubject}</a>
+			<span>${board.boardWriter}</span>
+			<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a>
 			<small>${board.boardModifyDate}</small>
 			<span>${board.boardReadCount}</span><br/><br/>
 		</c:forEach>

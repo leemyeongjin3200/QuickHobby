@@ -20,6 +20,7 @@ import com.quickHobby.board.dto.BoardDto;
 * @author : 차건강
 * @description : Tip & Review Board 로직 부분
  */
+
 @Component
 public class BoardServiceImpl implements BoardService {
 	private final Logger logger=Logger.getLogger(this.getClass().getName());
@@ -56,16 +57,41 @@ public class BoardServiceImpl implements BoardService {
 		mav.setViewName("board/list");
 	}
 
+	/**
+	* @name : BoardServiceImpl
+	* @date : 2015. 6. 23.
+	* @author : 차건강
+	* @description : Tip & Review Board Write
+	 */
 	@Override
 	public void boardWriteForm(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
+		int boardNum=0;
+		
+		if(request.getParameter("boardNum")!=null){
+			boardNum=Integer.parseInt(request.getParameter("boardNum"));
+		}
+		
 		logger.info("boardNum:"+boardNum);
 		
 		mav.addObject("boardNum", boardNum);
 		
 		mav.setViewName("board/writeForm");
+	}
+
+	@Override
+	public void boardWrite(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		BoardDto BoardDto=(BoardDto)map.get("BoardDto");
+		
+		BoardDto.setBoardReadCount(0);
+		
+		int check=boardDao.insert(BoardDto);
+		logger.info("check:"+check);
+		
+		mav.addObject("check", check);
+		mav.setViewName("board/writeOk");
 	}
 }
