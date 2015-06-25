@@ -15,9 +15,8 @@ import com.quickHobby.board.dto.BoardDto;
 * @name : BoardDaoImpl
 * @date : 2015. 6. 22.
 * @author : 차건강
-* @description : Tip & Review Board Dao
+* @description : Tip & Review Board DB와 연결하는 부분
  */
-
 @Component
 public class BoardDaoImpl implements BoardDao {
 	@Autowired

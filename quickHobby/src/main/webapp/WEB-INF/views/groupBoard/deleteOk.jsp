@@ -14,7 +14,7 @@
 	<c:if test="${check>0}">
 		<script type="text/javascript">
 			alert("Completed.");
-			location.href="${root}/board/list.do?pageNumber=${pageNumber}";
+			location.href="${root}/groupBoard/list.do?pageNumber=${pageNumber}";
 		</script>
 	</c:if>
 	
@@ -22,7 +22,7 @@
 	<c:if test="${check==0}">
 		<script type="text/javascript">
 			alert("Failed.");
-			location.href="${root}/board/list.do?pageNumber=${pageNumber}";
+			location.href="${root}/groupBoard/list.do?pageNumber=${pageNumber}";
 		</script>
 	</c:if>
 </body>

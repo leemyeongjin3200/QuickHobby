@@ -17,5 +17,4 @@ public interface BoardService {
 	void boardUpdateForm(ModelAndView mav);
 
 	void boardUpdate(ModelAndView mav);
-
 }

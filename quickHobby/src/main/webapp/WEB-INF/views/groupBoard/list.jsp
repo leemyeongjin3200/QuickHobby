@@ -6,12 +6,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Tip / Review Board</title>
+<title>Group Board</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 <!-- 	글쓰기 페이지로 이동 -->
-	<a href="${root}/board/writeForm.do">Write</a>
+	<a href="${root}/groupBoard/writeForm.do">Write</a>
 	
 <!-- 	글 리스트가 없는 경우 안내메시지 출력 -->
 	<c:if test="${count==0}">
@@ -25,14 +25,14 @@
 <!-- 	글 리스트가 있는 경우 글들 리스트형으로 출력 -->
 	<c:if test="${count>0}">
 		<div>
-			<c:forEach var="board" items="${boardList}">
+			<c:forEach var="groupBoard" items="${groupBoardList}">
 			
 <!-- 			boardVisible 값이 1인 글들만 출력 -->
-				<c:if test="${board.boardVisible==1}">
-					<span>${board.boardWriter}</span>
-					<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a>
-					<small>${board.boardModifyDate}</small>
-					<span>${board.boardReadCount}</span><br/><br/>
+				<c:if test="${groupBoard.groupBoardVisible==1}">
+					<span>${groupBoard.groupBoardWriter}</span>
+					<a href="${root}/groupBoard/read.do?groupBoardNum=${groupBoard.groupBoardNum}&pageNumber=${currentPage}">${groupBoard.groupBoardSubject}</a>
+					<small>${groupBoard.groupBoardModifyDate}</small>
+					<span>${groupBoard.groupBoardReadCount}</span><br/><br/>
 				</c:if>
 				
 			</c:forEach>
@@ -55,15 +55,15 @@
 			</c:if>
 			
 			<c:if test="${startPage>pageBlock}">
-				<a href="${root}/board/list.do?pageNumber=${startPage-pageBlock}">[Previous]</a>
+				<a href="${root}/groupBoard/list.do?pageNumber=${startPage-pageBlock}">[Previous]</a>
 			</c:if>
 			
 			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root}/board/list.do?pageNumber=${i}">[${i}]</a>
+				<a href="${root}/groupBoard/list.do?pageNumber=${i}">[${i}]</a>
 			</c:forEach>
 			
 			<c:if test="${endPage<pageCount}">
-				<a href="${root}/board/list.do?pageNumber=${startPage+pageBlock}">[Next]</a>
+				<a href="${root}/groupBoard/list.do?pageNumber=${startPage+pageBlock}">[Next]</a>
 			</c:if>
 		</c:if>
 	</center>

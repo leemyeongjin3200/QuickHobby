@@ -8,6 +8,7 @@
 <title>Tip / Review Board</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <script type="text/javascript">
+//  	수정 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
 	function boardUpdate(boardNum) {
 		var boardUD = document.getElementById("boardUD");	
 		boardUD.action="${root}/board/updateForm.do";
@@ -19,6 +20,7 @@
 	}
 	
 	function boardDelete(boardNum) {
+// 		삭제 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
 		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
 			var boardUD = document.getElementById("boardUD");	
 			boardUD.action="${root}/board/delete.do";
@@ -64,6 +66,7 @@
 			</span>
 		</div>
 		
+<!-- 		수정, 삭제, 목록버기 버튼 부분 -->
 		<form id="boardUD" name="boardUD"> 
 			<input id="boardNum" type="hidden" name="boardNum" value="${board.boardNum}">
 			<input type="hidden" name="pageNumber" value="${pageNumber}"/>

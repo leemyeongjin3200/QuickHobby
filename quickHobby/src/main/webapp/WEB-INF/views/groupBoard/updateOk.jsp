@@ -8,21 +8,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:set var="root" value="${pageContext.request.contextPath}"/>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 	
-<!-- 	삭제 성공시 -->
+<!-- 	수정 성공시 -->
 	<c:if test="${check>0}">
 		<script type="text/javascript">
 			alert("Completed.");
-			location.href="${root}/board/list.do?pageNumber=${pageNumber}";
+			location.href="${root}/groupBoard/list.do";
 		</script>
 	</c:if>
 	
-<!-- 	삭제 실패시 -->
+<!-- 	수정 실패시  -->
 	<c:if test="${check==0}">
 		<script type="text/javascript">
 			alert("Failed.");
-			location.href="${root}/board/list.do?pageNumber=${pageNumber}";
+			location.href="${root}/groupBoard/updateForm.do";
 		</script>
 	</c:if>
 </body>

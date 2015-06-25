@@ -9,39 +9,45 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
-<!-- 	수정한 글 내용들을 form으로 묶어 controller로 보내기 -->
-	<form action="${root}/board/update.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
-		<input type="hidden" name="boardNum" value="${boardNum}"/>
-		<input type="hidden" name="pageNumber" value="${pageNumber}"/>
+<!-- 	입력한 글 내용들을 form으로 묶어 controller로 보내기 -->
+	<form action="${root}/groupBoard/write.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
+		<input type="hidden" name="groupBoardNum" value="${groupBoardNum}"/>
 					
 		<div style="width:598px; height:15px; border-width:2px; text-align:right; padding:15px 0px 0px 0px; border-bottom-width:0px;">
-				<a href="${root}/board/list.do">List</a>
+				<a href="${root}/groupBoard/list.do">List</a>
+		</div>
+		
+		<div>
+			<label>GroupNum</label>
+			<span>
+				<input type="text" name="groupBoardGroupNum"/>
+			</span>
 		</div>
 			
 		<div>
 			<label>Writer</label>
 			<span>
-				<input type="text" name="boardWriter" value="${board.boardWriter}" disabled="disabled"/>
+				<input type="text" name="groupBoardWriter"/>
 			</span>
 		</div>
 		
 		<div>
 			<label>Title</label>
-			<span><input type="text" size="50" value="${board.boardSubject}" name="boardSubject"/></span>
+			<span><input type="text" size="50" name="groupBoardSubject"/></span>
 		</div>
 		
 		<div style="height:230px;">
 			<label class="title" style="height:230px;">Content</label>
 			<span style="height:230px;">
-				<textarea rows="14" cols="58" name="boardContent">${board.boardContent}</textarea>
+				<textarea rows="14" cols="58" name="groupBoardContent"></textarea>
 			</span>
 		</div>
 		
 <!-- 		글쓰기, 취소, 목록보기 버튼 부분 -->
 		<div style="width:598px; border-width:2px; text-align:center;">
-			<input type="submit" value="Modify"/>
+			<input type="submit" value="Write"/>
 			<input type="reset" value="Reset"/>
-			<input type="button" value="List" onclick="location.href='${root}/board/list.do'"/>
+			<input type="button" value="List" onclick="location.href='${root}/groupBoard/list.do'"/>
 		</div>
 	</form>
 </body>

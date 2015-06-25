@@ -9,6 +9,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
+<!-- 	입력한 글 내용들을 form으로 묶어 controller로 보내기 -->
 	<form action="${root}/board/write.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 		<input type="hidden" name="boardNum" value="${boardNum}"/>
 					
@@ -42,6 +43,7 @@
 			</span>
 		</div>
 		
+<!-- 		글쓰기, 취소, 목록보기 버튼 부분 -->
 		<div style="width:598px; border-width:2px; text-align:center;">
 			<input type="submit" value="Write"/>
 			<input type="reset" value="Reset"/>

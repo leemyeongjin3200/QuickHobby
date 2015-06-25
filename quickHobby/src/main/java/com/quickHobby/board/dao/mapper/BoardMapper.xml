@@ -55,5 +55,4 @@
 		BOARD_CONTENT=#{boardContent}, BOARD_MODIFYDATE=sysdate
 		where board_num=#{boardNum}]]>
 	</update>
-	
 </mapper>
