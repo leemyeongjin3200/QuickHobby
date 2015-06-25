@@ -60,6 +60,16 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/member/update.do", method=RequestMethod.GET)
+	public ModelAndView update(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+	}
+	
+	@RequestMapping(value="/member/update.do", method=RequestMethod.POST)
+	public ModelAndView update(MultipartHttpServletRequest req, MemberDto member){
+		
+	}
+	
 	@RequestMapping(value="/member/logout.do", method=RequestMethod.GET)
 	public String logout(HttpServletRequest req){
 		req.getSession().removeAttribute("member");
