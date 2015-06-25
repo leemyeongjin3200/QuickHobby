@@ -15,10 +15,7 @@
 <script>
 //Navigation bar 필터설정
 
-//img -mouseover
-
 </script>
-
 <title>QuickHobby-Grid-3col</title>
 </head>
 <body>
@@ -33,25 +30,43 @@
       </button>
       <a class="navbar-brand" href="#">QuickHobby</a>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-       
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apply<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Create Group</a></li>
-            <li><a href="#">Apply Group</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Tip & Review</a></li>
-        <li><a href="#">My Group</a></li>
-        <li><a href="#">My Page</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li id="myLogin"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
+    <!-- Before Login -->
+	<!-- c:if문 설정  -->
+	<div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	      	<li><a href="#">Apply</a></li>
+	        <li><a href="#">Tip & Review</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	        <li id="myLogin"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	      </ul>
+	  </div>
+	<!-- c:if문 닫기 -->
+	
+	<!-- After Login
+	<c:if test="#">
+	<div class="collapse navbar-collapse" id="myNavbar">
+	      <ul class="nav navbar-nav">
+	        <li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apply<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="#">Apply Group</a></li>
+	            <li><a href="#">Create Group</a></li>
+	          </ul>
+	        </li>
+	        <li><a href="#">Tip & Review</a></li>
+	        <li><a href="#" >My Group</a></li>
+	        <li><a href="#">My Page</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	      	<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> 5</a></li>
+	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> NickName</a></li>
+	        <li id="myLogout"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+	      </ul>
+	  </div>
+	</c:if>
+	 -->
   </div>
 </nav>
 <!-- //Header -->
@@ -145,22 +160,112 @@
 
 <!-- Content 2// -->
 <div class="container">
-	<div class="row">
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive" ></a></div>
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive" ></a></div>
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive" ></a></div>
-	</div><br/>
+	<div class="row no-gutter">
+	  <div class="col-md-4" >
+	   	<a href="#" class="apply-box">
+              <img src="${root}/img/Lighthouse.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                                <p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+       </div>
+	  <div class="col-md-4" >
+	  	  <a href="#" class="apply-box">
+              <img src="${root}/img/Chrysanthemum.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                                <p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+	  </div>
+	  <div class="col-md-4" >
+	     <a href="#" class="apply-box">
+              <img src="${root}/img/Desert.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                                 <p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+	  </div>
+	</div>
 	
-	<div class="row">
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive"></a></div>
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive"></a></div>
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive"></a></div>
-	</div><br/>
+	<div class="row no-gutter">
+	  <div class="col-md-4" >  	   	
+	  	<a href="#" class="apply-box">
+              <img src="${root}/img/Hydrangeas.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                                <p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+         </a>
+	  </div>
+	  <div class="col-md-4" >  	   	
+	 	 <a href="#" class="apply-box">
+              <img src="${root}/img/Jellyfish.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                                <p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+      </div>
+	  <div class="col-md-4" >
+	  	<a href="#" class="apply-box">
+              <img src="${root}/img/Koala.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                              <p> DATE: </p>
+                              <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+	  </div>
+	</div>
 	 
-	<div class="row">
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive"></a></div>
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive"></a></div>
-	  <div class="col-md-4" ><a href="#"><img alt="" src="${root}/img/Lighthouse.jpg" class="img-responsive"></a></div>
+	<div class="row no-gutter">
+	  <div class="col-md-4" >  	   	
+	  	<a href="#" class="apply-box">
+              <img src="${root}/img/Penguins.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                          		<p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+      </div>  
+	  <div class="col-md-4" >  	   	
+	  	<a href="#" class="apply-box">
+              <img src="${root}/img/Tulips.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                       			<p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+       </div>
+	  <div class="col-md-4" >  	   	
+	 	 <a href="#" class="apply-box">
+              <img src="${root}/img/Lighthouse.jpg" class="img-responsive" alt="">
+               <div class="apply-box-caption">
+                         <div class="apply-box-caption-content">
+                          		<p> DATE: </p>
+                                <p> TITLE: </p>
+                        </div>
+                </div>
+          </a>
+        </div>
 	</div>
 </div>
 <!-- //Content2 -->
@@ -171,7 +276,6 @@
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
@@ -199,7 +303,6 @@
           <p>Forgot <a href="#">Password?</a></p>
         </div>
       </div>
-      
     </div>
   </div> 
 </div>

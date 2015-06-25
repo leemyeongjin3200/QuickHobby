@@ -2,7 +2,6 @@
  * 
  */
 
-
 //로그인 팝업창
 $(document).ready(function(){
     $("#myLogin").click(function(){
