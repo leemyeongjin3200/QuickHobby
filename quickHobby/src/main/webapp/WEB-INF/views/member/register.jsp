@@ -1,75 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="ko">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<head>
-<title>회원가입</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>
 <script type="text/javascript" src="${root}/css/jquery.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body onload="previewImage()">
-	<div class="container">
-		<form role="form" class="form-horizontal" name="registerForm" action="${root}/member/register.do">
-			<div class="col-md-6">
-				<div class="form-group">
-					<label class="control-label col-md-4" for="memberId">Email</label>
-					<div class="col-md-8">
-						<input type="email" class="form-control" name="memberId" placeholder="Email"/>
-					</div>
-				</div>
+	<form name="registerForm" action="${root}/member/register.do" method="post" enctype="multipart/form-data">
+			<label>Email</label>
+			<input type="text" name="memberId"/>
+			<input type="button" value="이메일 인증" onclick="sendCode(memberId, '${root}')"/><br/>
+
+			<label>Password</label>
+			<input type="password" name="memberPassword"/><br/>
 				
-				<div class="form-group">
-					<label class="control-label col-md-4"></label>
-					<div class="col-md-8">
-						<div class="alert alert-danger col-md-8" role="alert" style="padding:6px">
-							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-							이메일 인증을 해주세요.
-						</div>
-						<div class="col-md-4">
-							<input type="button" class="btn btn-info" value="이메일 인증" onclick="sendCode(memberId, '${root}')"/>
-						</div>
-					</div>			
-				</div>
+			<label>Confirm your password</label>
+			<input type="password" name="rePassword"/><br/>
 				
-				<div class="form-group">
-					<label class="control-label col-md-4" for="memberPassword">Password</label>
-					<div class="col-md-8">
-						<input type="password" class="form-control" name="memberPassword" placeholder="Password"/>
-					</div>
-				</div>
+			<label>NickName</label>
+			<input type="text" name="memberNickName"/>
+			<input type="button" value="중복확인"><br/>
 				
-				<div class="form-group">
-					<label class="control-label col-md-4" for="rePassword">Confirm your password</label>
-					<div class="col-md-8">
-						<input type="password" class="form-control" name="rePassword" placeholder="Confirm your password"/>
-					</div>
-				</div>
-				
-				<div class="form-group">
-					<label class="control-label col-md-4" for="memberSNS">SNS Address</label>
-					<div class="col-md-8">
-						<input type="text" class="form-control" name="memberSNS" placeholder="SNS Address">
-					</div>
-				</div>
-			</div>
+			<label>SNS Address</label>
+			<input type="text" name="memberSNS">
+
 			<div>
-			<img alt="이미지 없음" src="#" id="userImage" height="200" width="150"><br/>
-			<label>사진 선택</label>
-			<input type="file" name="memberFile"/>
-			<input type="submit" value="가입 완료"/>
-		</div>
+				<img alt="이미지 없음" src="#" id="userImage" height="200" width="150"><br/>
+				<label>사진 선택</label>
+				<input type="file" name="memberFile"/>
+				<input type="submit" value="가입 완료"/>
+			</div>
 		</form>
-	</div>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

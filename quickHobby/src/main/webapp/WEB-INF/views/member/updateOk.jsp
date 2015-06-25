@@ -12,17 +12,17 @@
 <body>
 	<c:if test="${check>0}">
 		<script type="text/javascript">
-			alert("회원 가입이 완료 되었습니다. 로그인 후 이용하세요.");
+			alert("수정이 완료 되었습니다.");
 			//location.href="${root}/member/register.do";
-			$(location).attr("href", "${root}/memberMain.do");
+			$(location).attr("href", "${root}/member/update.do");
 		</script>
 	</c:if>
 	
 	<c:if test="${check==0}">
 		<script type="text/javascript">
-			alert("회원 가입에 실패 했습니다. 다시 시도해 주세요.");
+			alert("수정에 실패 했습니다. 다시 시도해 주세요.");
 			//location.href="${root}/member/register.do";
-			$(location).attr("href", "${root}/memberMain.do");
+			$(location).attr("href", "${root}/member/update.do");
 		</script>
 	</c:if>
 </body>
