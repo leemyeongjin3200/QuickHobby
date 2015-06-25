@@ -11,6 +11,9 @@
 <body>
 	<a href="${root}">test</a><br/> 
 	<a href="${root}/apply/applyWrite.do">모이자 게시물 작성</a>
-	<a href="${root}/apply/applyList.do">모이자 게시판</a>
+	<a href="${root}/apply/applyList.do">모이자 게시판</a><br/>
+	<a href="${root}/message/messageWrite.do">쪽지 쓰기</a>
+	<a href="${root}/message/messageSendList.do">발송함</a>
+	<a href="${root}/message/messageReceiveList.do">수신함</a>
 </body>
 </html>

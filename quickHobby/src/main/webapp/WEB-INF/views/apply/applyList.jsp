@@ -10,6 +10,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
+	<!-- 신청게시물에 글이 하나도 없을 경우 -->
 	<c:if test="${applyDtoList.size() == 0}">
 		<table border="1" width="530" cellpadding="2" cellspacing="0" align="center">
 			<tr>
@@ -18,6 +19,7 @@
 		</table>
 	</c:if>
 	
+	<!-- 신청게시물이 있는 경우 -->
 	<c:if test="${applyDtoList.size() > 0 }">
 		<table border="1" width="1030" cellpadding="2" cellspacing="0" align="center">
 			<tr> 
@@ -39,7 +41,7 @@
 			<tr>
 				<td>${board.apply_num}</td>
 				<td>
-					<a href="">${board.apply_subject}</a>
+					<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}">${board.apply_subject}</a>
 				</td>
 				<td>${board.apply_subtitle}</td>
 				<td>${board.apply_host}</td>

@@ -3,15 +3,51 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="apply.dao.mapper">
-	<insert id="applyInsert" parameterType="com.quickHobby.apply.dto.ApplyDto">
+	<insert id="applyInsertFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
 			INSERT INTO APPLY VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_filename}, #{apply_filepath}, #{apply_filesize}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount})
 		]]>
 	</insert>
 	
+	<insert id="applyInsert" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			INSERT INTO APPLY(APPLY_NUM, APPLY_HOST, APPLY_SECTION, APPLY_CONTENT, APPLY_LOCATION, APPLY_SUBJECT, APPLY_SUBTITLE, APPLY_CREATEDATE, APPLY_MODIFYDATE, APPLY_CLOSEDATE, APPLY_RECOMMEND, APPLY_READCOUNT) VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount})
+		]]>
+	</insert>
+	
 	<select id="getListByCreateDate" resultType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE > SYSDATE ORDER BY APPLY_CREATEDATE DESC
+			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE >= SYSDATE ORDER BY APPLY_CREATEDATE DESC
 		]]>
 	</select>
+	
+	<select id="getApplyDto" parameterType="int" resultType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			SELECT * FROM APPLY WHERE APPLY_NUM=#{apply_num}
+		]]>
+	</select>
+	
+	<update id="incrementReadcount" parameterType="int">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_READCOUNT=APPLY_READCOUNT+1 WHERE APPLY_NUM=#{apply_num}
+		]]>
+	</update>
+	
+	<update id="applyDelete" parameterType="int">
+		<![CDATA[
+			DELETE APPLY WHERE APPLY_NUM=#{apply_num}
+		]]>
+	</update>
+	
+	<update id="applyUpdateFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=#{apply_filename}, APPLY_FILEPATH=#{apply_filepath}, APPLY_FILESIZE=#{apply_filesize}, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate} WHERE APPLY_NUM=#{apply_num}
+		]]>
+	</update>
+	
+	<update id="applyUpdate" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=NULL, APPLY_FILEPATH=NULL, APPLY_FILESIZE=NULL, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate} WHERE APPLY_NUM=#{apply_num}
+		]]>
+	</update>
 </mapper>

@@ -11,18 +11,18 @@
 <body>
 	<c:set var="root" value="${pageContext.request.contextPath}"/>
 	
-	<!-- 신청게시물 작성 결과 표시 후 페이지 이동 -->
+	<!-- 쪽지 발송 결과 표시 후 페이지 이동 -->
 	<c:if test="${check > 0}">
 		<script type="text/javascript">
-			alert("게시물 작성이 완료되었습니다.");
-			location.href="${root}/ingooStart.jsp";
+			alert("쪽지가 발송되었습니다.");
+			location.href="${root}/message/messageReceiveList.do";
 		</script>
 	</c:if>
 	
 	<c:if test="${check == 0}">
 		<script type="text/javascript">
-			alert("게시물 작성에 실패했습니다.");
-			location.href="${root}/ingooStart.jsp";
+			alert("쪽지 발송에 실패했습니다.");
+			location.href="${root}/message/messageReceiveList.do";
 		</script>
 	</c:if>
 </body>
