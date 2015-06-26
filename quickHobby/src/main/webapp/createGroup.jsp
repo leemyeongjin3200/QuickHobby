@@ -10,41 +10,76 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/css/apply/apply.js"></script>
 <script type="text/javascript">
-	$(function(){
-		$("#date").datepicker({
-			dateFormat: "yy-mm-dd",
-			monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-			dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
-			showOn: "button",
-			buttonImage: "",
-			buttonImageOnly: true
+// 	$(function(){
+// 		$("#date").datepicker({
+// 			dateFormat: "yy-mm-dd",
+// 			monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+// 			dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+// 			showOn: "button",
+// 			buttonImage: "",
+// 			buttonImageOnly: true
+// 		});
+		
+// 		$("#btn").click(function(){
+// 			$("#resultDate").text($("#date1").val());
+// 		});
+// 	});
+</script>
+ 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var latlng=new google.maps.LatLng(37.5640, 126.9751);
+		var mapOptions={
+				zoom:7,
+				center:latlng,
+				mapTypeId:google.maps.MapTypeId.ROADMAP
+		}
+		var map=new google.maps.Map(document.getElementById("map_canvas"),
+	            mapOptions);
+		var marker=new google.maps.Marker({
+			position:latlng,
+			map:map
 		});
 		
-		$("#btn").click(function(){
-			$("#resultDate").text($("#date1").val());
+		var geocoder=new google.maps.Geocoder();
+		
+		google.maps.event.addListener(map, 'click', function(event){
+			var location=event.latLng;
+			geocoder.geocode({
+				'latLng':location
+			},
+			function(results, status){
+				if(status==google.maps.GeocoderStatus.OK){
+					$('#address').html(results[0].formatted_address);
+					$('#lat').html(results[0].geometry.location.lat());
+					$('#lng').html(results[0].geometry.location.lng());
+				}
+				else{
+					alert("Geocoder failed due to:"+status);
+				}
+			});
+			if(!marker){
+				marker=new google.maps.Marker({
+					position:location,
+					map:map
+				});
+			}
+			else{
+				marker.setMap(null);
+				marker=new google.maps.Marker({
+					position:location,
+					map:map
+				});
+			}
+			map.setCenter(location);
 		});
 	});
 </script>
-<style type="text/css">
-	html { height: 100% }
-    body { height: 100%; margin: 0; padding: 0 }
-    #map_canvas { height: 100% }
-</style>
-<script type="text/javascript"
-	src="http://maps.googleapis.com/maps/api/js?sensor=true">
-</script>
-<script type="text/javascript">
-	function initialize() {
-	    var mapOptions = {
-	      center: new google.maps.LatLng(-34.397, 150.644),
-	      zoom: 5,
-	      mapTypeId: google.maps.MapTypeId.TERRAIN
-	    };
-	    var map = new google.maps.Map(document.getElementById("map_canvas"),
-	        mapOptions);
- 	}
-</script>
+ 
 </head>
 <body>
 	<form action=""  method="post" onsubmit="" enctype="multipart/form-data">	
@@ -82,11 +117,10 @@
 		
 		<div>
 			<label>Location</label>
-			<a href="http://maps.googleapis.com/maps/api/geocode/json?address='서울시강남구역삼1동'&sensor=true"> Yeoksam1dong Gangnam Seoul</a>
-			<br/><br/>
-			<input type="button" value="click" onclick="initialize()"/>
-		    <div id="map_canvas" style="width:50%; height:50%"></div>
-		</div>
+	 			<div id="map_canvas" style="width:460px; height:380px;"></div>
+	 			<input type="text" id="address" value="address"/>
+	 			<div id="address"></div>
+		</div><br/>
 		
 		<div>
 			<label >Title</label>
