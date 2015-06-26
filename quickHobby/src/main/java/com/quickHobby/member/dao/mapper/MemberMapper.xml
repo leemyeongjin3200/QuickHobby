@@ -7,6 +7,7 @@
 		<result property="memberNum" column="member_num"/>
 		<result property="memberId" column="member_id"/>
 		<result property="memberPassword" column="member_password"/>
+		<result property="memberNickName" column="member_nickname"/>
 		<result property="memberLevel" column="member_level"/>
 		<result property="memberSNS" column="member_sns"/>
 		<result property="memberReport" column="member_report"/>
@@ -17,15 +18,15 @@
 	
 	<insert id="registerOkFile" parameterType="com.quickHobby.member.dto.MemberDto">
 		<![CDATA[
-			insert into member(member_num, member_id, member_password, member_level, member_sns, member_report, member_filename, member_filepath, member_filesize)
-			values(member_num_seq.nextval, #{memberId}, #{memberPassword}, #{memberLevel}, #{memberSNS}, #{memberReport}, #{memberFileName}, #{memberFilePath}, #{memberFileSize})
+			insert into member(member_num, member_id, member_password, member_nickname, member_level, member_sns, member_report, member_filename, member_filepath, member_filesize)
+			values(member_num_seq.nextval, #{memberId}, #{memberPassword}, #{memberNickName}, #{memberLevel}, #{memberSNS}, #{memberReport}, #{memberFileName}, #{memberFilePath}, #{memberFileSize})
 		]]>
 	</insert>
 	
 	<insert id="registerOk" parameterType="com.quickHobby.member.dto.MemberDto">
 		<![CDATA[
-			insert into member(member_num, member_id, member_password, member_level, member_sns, member_report)
-			values(member_num_seq.nextval, #{memberId}, #{memberPassword}, #{memberLevel}, #{memberSNS}, #{memberReport})
+			insert into member(member_num, member_id, member_password, member_nickname, member_level, member_sns, member_report)
+			values(member_num_seq.nextval, #{memberId}, #{memberPassword}, #{memberNickName}, #{memberLevel}, #{memberSNS}, #{memberReport})
 		]]>
 	</insert>
 	
@@ -33,5 +34,29 @@
 		<![CDATA[
 			select * from member where member_id=#{email} and member_password=#{password}
 		]]>
+	</select>
+	
+	<select id="getFile" parameterType="int" resultType="String">
+		<![CDATA[
+			select member_filepath from member where member_num=#{memberNum}
+		]]>
+	</select>
+	
+	<update id="updateOkFile" parameterType="com.quickHobby.member.dto.MemberDto">
+		<![CDATA[
+			update member set member_password=#{memberPassword}, member_SNS=#{memberSNS}, member_filename=#{memberFileName}, member_filepath=#{memberFilePath}, member_filesize=#{memberFileSize} where member_num=#{memberNum}
+		]]>
+	</update>
+	
+	<update id="updateOk" parameterType="com.quickHobby.member.dto.MemberDto">
+		<![CDATA[
+			update member set member_password=#{memberPassword}, member_SNS=#{memberSNS} where member_num=#{memberNum}
+		]]>
+	</update>
+	
+	<select id="getMember" parameterType="int" resultMap="memberDto">
+		<![CDATA[
+			select * from member where member_num=#{memberNum}
+		]]>	
 	</select>
 </mapper>

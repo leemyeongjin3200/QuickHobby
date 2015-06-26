@@ -6,4 +6,6 @@ public interface MemberService {
 	public void registerOk(ModelAndView mav);
 	public void sendCode(ModelAndView mav);
 	public void loginOk(ModelAndView mav);
+	public void update(ModelAndView mav);
+	public void updateOk(ModelAndView mav);
 }

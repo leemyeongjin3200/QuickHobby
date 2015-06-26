@@ -11,5 +11,7 @@
 <body>
 	<a href="${root}">test</a><br/> 
 	<a href="${root}/board/list.do">Tip/Review</a>
+	<a href="${root}/groupBoard/list.do">Group board</a>
+	<a href="${root}/crateGroup/createGroup.do">Create Group</a>
 </body>
 </html>

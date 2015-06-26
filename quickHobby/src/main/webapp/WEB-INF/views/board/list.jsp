@@ -10,20 +10,36 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
+<!-- 	글쓰기 페이지로 이동 -->
 	<a href="${root}/board/writeForm.do">Write</a>
+	
+<!-- 	글 리스트가 없는 경우 안내메시지 출력 -->
+	<c:if test="${count==0}">
+		<div>
+			<div>
+				<span >There is nothing.</span>
+			</div>
+		</div>
+	</c:if>
+	
+<!-- 	글 리스트가 있는 경우 글들 리스트형으로 출력 -->
 	<c:if test="${count>0}">
 		<div>
 			<c:forEach var="board" items="${boardList}">
+			
+<!-- 			boardVisible 값이 1인 글들만 출력 -->
 				<c:if test="${board.boardVisible==1}">
 					<span>${board.boardWriter}</span>
 					<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a>
 					<small>${board.boardModifyDate}</small>
 					<span>${board.boardReadCount}</span><br/><br/>
 				</c:if>
+				
 			</c:forEach>
 		</div>
 	</c:if>
 	
+<!-- 	페이지 이동 부분 -->
 	<center>
 		<c:if test="${count>0}">
 			<c:set var="pageBlock" value="${5}"/>

@@ -4,6 +4,7 @@ public class MemberDto {
 	private int memberNum;
 	private String memberId;
 	private String memberPassword;
+	private String memberNickName;
 	private String memberLevel;
 	private String memberSNS;
 	private int memberReport;
@@ -35,6 +36,14 @@ public class MemberDto {
 		this.memberPassword = memberPassword;
 	}
 
+	public String getMemberNickName(){
+		return memberNickName;
+	}
+	
+	public void setMemberNickName(String memberNickName){
+		this.memberNickName=memberNickName;
+	}
+	
 	public String getMemberLevel() {
 		return memberLevel;
 	}

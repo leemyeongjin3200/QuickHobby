@@ -12,6 +12,7 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript" src="${root}/css/apply/apply.js"></script>
 <script type="text/javascript">
+//	달력을 통해 날짜릴 입력 받기
 	$(function(){
 		$("#date").datepicker({
 			dateFormat: "yy-mm-dd",
@@ -29,6 +30,7 @@
 </script>
 </head>
 <body>
+	<!-- 새로운 신청게시물에 대한 정보를 입력 받는 form -->
 	<form action="${root}/apply/applyWriteOk.do" method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">
 		<input type="hidden" value="1" name="apply_host"/>
 		
@@ -48,7 +50,7 @@
 		<input type="text" name="apply_location"/><br/>
 		
 		<label>내용</label>
-		<input type="text" name="apply_content"/><br/>
+		<textarea rows="4" cols="50" name="apply_content"></textarea><br/>
 		
 		<label>날짜</label>
 		<input type="text" name="apply_date" id="date"/><br/>
@@ -58,7 +60,7 @@
 		
 		<input type="submit" value="글쓰기"/>
 		<input type="reset" value="다시작성"/>
-		<input type="button" value="목록보기" onclick=""/>
+		<input type="button" value="목록보기" onclick="location.href='${root}/apply/applyList.do'"/>
 	</form>
 </body>
 </html>

@@ -10,6 +10,7 @@
 <body>
 	<c:set var="root" value="${pageContext.request.contextPath}"/>
 	
+<!-- 	삭제 성공시 -->
 	<c:if test="${check>0}">
 		<script type="text/javascript">
 			alert("Completed.");
@@ -17,6 +18,7 @@
 		</script>
 	</c:if>
 	
+<!-- 	삭제 실패시 -->
 	<c:if test="${check==0}">
 		<script type="text/javascript">
 			alert("Failed.");

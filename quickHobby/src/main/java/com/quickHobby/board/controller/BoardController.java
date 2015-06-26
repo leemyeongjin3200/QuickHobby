@@ -21,7 +21,7 @@ import com.quickHobby.board.service.BoardService;
 * @name : BoardController
 * @date : 2015. 6. 22.
 * @author : 차건강
-* @description : Tip & Review 게시판 컨트롤러
+* @description : Tip & Review Board Controller
  */
 @Controller
 public class BoardController {
@@ -34,7 +34,7 @@ public class BoardController {
 	* @name : boardList
 	* @date : 2015. 6. 23.
 	* @author : 차건강
-	* @description : Tip & Review Board 리스트 불러오는 method
+	* @description : Tip & Review Board 리스트를 불러오는 method
 	 */
 	@RequestMapping(value="/board/list.do", method=RequestMethod.GET)
 	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response){

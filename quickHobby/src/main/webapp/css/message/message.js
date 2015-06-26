@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 //tab넘기기
 $(document).ready(function(){
     $(".nav-tabs a").click(function(){
@@ -14,3 +15,9 @@ $(document).ready(function(){
         $("#myModal").modal();
     });
 });
+
+
+function checkForm(messageForm){
+	alert("Message Form check");
+}
+

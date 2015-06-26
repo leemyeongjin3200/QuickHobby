@@ -3,5 +3,58 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="groupBoard.dao.mapper">
+	<resultMap type="com.quickHobby.groupBoard.dto.GroupBoardDto" id="groupBoardDto">
+		<result property="groupBoardNum" column="GROUPBOARD_NUM"/>
+		<result property="groupBoardGroupNum" column="GROUPBOARD_GROUPNUM"/>
+		<result property="groupBoardWriter" column="GROUPBOARD_WRITER"/>
+		<result property="groupBoardSubject" column="GROUPBOARD_SUBJECT"/>
+		<result property="groupBoardContent" column="GROUPBOARD_CONTENT"/>
+		<result property="groupBoardCreateDate" column="GROUPBOARD_CREATEDATE"/>
+		<result property="groupBoardModifyDate" column="GROUPBOARD_MODIFYDATE"/>
+		
+		<result property="groupBoardVisible" column="GROUPBOARD_VISIBLE"/>
+		<result property="groupBoardReadCount" column="GROUPBOARD_READCOUNT"/>
+	</resultMap>
 
+	<select id="groupBoardCount" resultType="int">
+			<![CDATA[select count(*) from groupboard where GROUPBOARD_VISIBLE=1]]>
+	</select>
+	
+	<select id="groupBoardList" parameterType="java.util.Map" resultMap="groupBoardDto">
+			<![CDATA[select * from
+ 			(select rownum rnum, a.* from 
+			(select * from groupboard where GROUPBOARD_VISIBLE=1 
+			order by GROUPBOARD_CREATEDATE desc)a) 
+ 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+	</select>
+	
+	<insert id="groupBoardInsert" parameterType="com.quickHobby.groupBoard.dto.GroupBoardDto">
+		<![CDATA[insert into groupboard(GROUPBOARD_NUM, GROUPBOARD_GROUPNUM, 
+				GROUPBOARD_WRITER, GROUPBOARD_SUBJECT, 
+				GROUPBOARD_CONTENT,GROUPBOARD_CREATEDATE, GROUPBOARD_MODIFYDATE, 
+				GROUPBOARD_VISIBLE, GROUPBOARD_READCOUNT)
+ 				values(groupboard_num_seq.nextval, #{groupBoardGroupNum},
+ 				#{groupBoardWriter}, #{groupBoardSubject}, #{groupBoardContent},
+				sysdate, sysdate, 1, #{groupBoardReadCount})]]>
+	</insert>
+	
+	<update id="groupReadCount" parameterType="int">
+		<![CDATA[update groupboard set GROUPBOARD_READCOUNT=GROUPBOARD_READCOUNT+1
+		where groupboard_num=#{groupBoardNum}]]>
+	</update>
+	
+	<select id="groupBoardRead" resultMap="groupBoardDto" parameterType="int">
+		<![CDATA[select * from groupboard where groupboard_num=#{groupBoardNum}]]>
+	</select>
+	
+	<update id="groupBoardDelete" parameterType="int">
+		<![CDATA[update groupboard set GROUPBOARD_VISIBLE=0 
+		where groupboard_num=#{groupBoardNum}]]>
+	</update>
+	
+	<update id="groupBoardUpdate" parameterType="com.quickHobby.groupBoard.dto.GroupBoardDto">
+		<![CDATA[update groupboard set GROUPBOARD_SUBJECT=#{groupBoardSubject},
+		GROUPBOARD_CONTENT=#{groupBoardContent}, GROUPBOARD_MODIFYDATE=sysdate
+		where groupBoard_num=#{groupBoardNum}]]>
+	</update>
 </mapper>

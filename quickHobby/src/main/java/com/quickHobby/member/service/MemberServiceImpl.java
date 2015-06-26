@@ -25,11 +25,23 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.member.dao.MemberDao;
 import com.quickHobby.member.dto.MemberDto;
 
+/**
+* @name : MemberServiceImpl
+* @date : 2015. 6. 25.
+* @author : 이명진
+* @description : 클라이언트의 요청에 따른 실질적인 작업을 수행하는 클래스
+ */
 @Component
 public class MemberServiceImpl implements MemberService{
 	@Autowired
 	private MemberDao memberDao;
 	
+	/**
+	* @name : registerOk
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 회원가입 시 넘어온 데이터들을 처리하고 DAO로 넘겨주는 메소드
+	 */
 	public void registerOk(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		
@@ -47,7 +59,6 @@ public class MemberServiceImpl implements MemberService{
 		if(fileSize != 0){
 			try{
 				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
-				
 				File file=new File(dir, timeName);
 				userPhoto.transferTo(file);
 				
@@ -65,6 +76,12 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("member/registerOk");
 	} 
 	
+	/**
+	* @name : sendCode
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 회원가입 시 이메일 인증에 사용할 인증 코드를 생성하고 sendMail메소드로 넘겨주는 메소드
+	 */
 	public void sendCode(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		
@@ -84,8 +101,14 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("member/sendCode");
 	}
 	
+	
+	/**
+	* @name : sendMail
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 인증코드를 사용자의 이메일로 발송하는 메소드, Gmail을 이용해 메일 발송함.
+	 */
 	public void sendMail(String email, String code){
-		//property에 서버키, 값 입력
 		Properties pro=new Properties();
 		pro.put("mail.smtp.starttls.enable", "true");
 		pro.put("mail.smtp.host", "smtp.gmail.com");
@@ -101,22 +124,18 @@ public class MemberServiceImpl implements MemberService{
 		
 		//서버와 보낼 아이디 인증
 		Session session=Session.getDefaultInstance(pro, auth);
-		
 		//메세지
 		MimeMessage message=new MimeMessage(session);
 		
 		try{
 			//받는사람
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(email.trim()));
-			
 			//보내는 사람
 			message.setFrom(new InternetAddress("project.quickhobby@gmail.com"));
 			//제목
 			message.setSubject("QuickHobby 인증메일 입니다");
-			
 			//본문
 			message.setText("인증번호는 " + code + "입니다.");
-			
 			//발송
 			Transport.send(message);
 		}catch(Exception e){
@@ -124,6 +143,12 @@ public class MemberServiceImpl implements MemberService{
 		}
 	}
 
+	/**
+	* @name : loginOk
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 로그인 요청시 넘어오는 아이디, 비밀번호가 일치하는지 확인하기 위해 DAO로 데이터 전송하는 메소드
+	 */
 	public void loginOk(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest req=(HttpServletRequest)map.get("request");
@@ -142,5 +167,73 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		mav.setViewName("member/loginOk");
+	}
+
+	/**
+	* @name : update
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 회원정보수정 페이지 요청 시 프로필사진을 출력하기 위해 DAO로 부터 사진파일경로 받아 온 후 정보수정페이지 응답하는 메소드
+	 */
+	public void update(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		
+		MemberDto member=(MemberDto)req.getSession().getAttribute("member");
+		
+		String filePath=memberDao.getFile(member.getMemberNum());
+		
+		String fileName=filePath.split("\\\\")[10];
+		mav.addObject("fileName", fileName);
+		mav.setViewName("member/update");
+	}
+	
+	/**
+	* @name : updateOk
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 회원정보수정 완료 후 DAO로 넘어온 데이터들을 전송하는 메소드
+	 */
+	public void updateOk(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		MultipartHttpServletRequest req=(MultipartHttpServletRequest)map.get("request");
+		MemberDto member=(MemberDto)map.get("member");
+		
+		MultipartFile userPhoto=req.getFile("memberFile");
+		String fileName=userPhoto.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=userPhoto.getSize();
+
+		if(fileSize != 0){
+			String deleteFilePath=memberDao.getFile(member.getMemberNum());
+			
+			if(deleteFilePath != null){
+				File deleteFile=new File(deleteFilePath);
+				deleteFile.delete();
+			}
+			try{
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				File file=new File(dir, timeName);
+				userPhoto.transferTo(file);
+				
+				member.setMemberFileName(fileName);
+				member.setMemberFilePath(file.getAbsolutePath());
+				member.setMemberFileSize(Long.toString(fileSize));				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		int check=memberDao.updateOk(member);
+		if(check>0){
+			int memberNum=Integer.parseInt(req.getParameter("memberNum"));
+			MemberDto updatedMember=memberDao.getMember(memberNum);
+			System.out.println("변경된 파일명:" + updatedMember.getMemberFileName());
+			req.getSession().invalidate();
+			req.getSession().setAttribute("member", updatedMember);
+		}
+		mav.addObject("check", check);
+		
+		mav.setViewName("member/updateOk");
 	}
 }

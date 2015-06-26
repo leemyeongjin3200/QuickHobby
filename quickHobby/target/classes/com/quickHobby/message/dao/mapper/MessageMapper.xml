@@ -3,5 +3,33 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="message.dao.mapper">
-
+	<insert id="messageSend" parameterType="com.quickHobby.message.dto.MessageDto">
+		<![CDATA[
+			INSERT INTO MESSAGE VALUES(MESSAGE_NUM_SEQ.NEXTVAL, #{message_sender}, #{message_receiver}, #{message_subject}, #{message_content}, #{message_date})
+		]]>
+	</insert>
+	
+	<select id="messageReceiveList" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
+		<![CDATA[
+			SELECT * FROM MESSAGE WHERE MESSAGE_RECEIVER=#{message_receiver} ORDER BY MESSAGE_DATE DESC
+		]]>
+	</select>
+	
+	<select id="messageSendList" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
+		<![CDATA[
+			SELECT * FROM MESSAGE WHERE MESSAGE_SENDER=#{message_sender} ORDER BY MESSAGE_DATE DESC
+		]]>
+	</select>
+	
+	<select id="getMessageDto" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
+		<![CDATA[
+			SELECT * FROM MESSAGE WHERE MESSAGE_NUM=#{message_num}
+		]]>
+	</select>
+	
+	<delete id="messageDelete" parameterType="int">
+		<![CDATA[
+			DELETE MESSAGE WHERE MESSAGE_NUM=#{message_num}
+		]]>
+	</delete>
 </mapper>

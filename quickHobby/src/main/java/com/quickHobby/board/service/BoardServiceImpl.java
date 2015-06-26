@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
 	* @name : boardList
 	* @date : 2015. 6. 23.
 	* @author : 차건강
-	* @description : Tip & Review Board List
+	* @description : Tip & Review Board List 불러오기
 	 */
 	@Override
 	public void boardList(ModelAndView mav) {
@@ -175,7 +175,6 @@ public class BoardServiceImpl implements BoardService {
 		mav.addObject("board", boardDto);
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("board/updateForm");
-		
 	}
 
 	/**
@@ -200,6 +199,5 @@ public class BoardServiceImpl implements BoardService {
 		mav.addObject("check", check);
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("board/updateOk");
-		
 	}
 }

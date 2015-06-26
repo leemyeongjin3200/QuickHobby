@@ -2,6 +2,12 @@ package com.quickHobby.apply.dto;
 
 import java.util.Date;
 
+/*
+ * @name        : ApplyDto
+ * @date        : 2015. 6. 22.
+ * @author      : º≠¿Œ±∏
+ * @description : Apply Table DTO
+ */
 public class ApplyDto {
 	private int apply_num;
 	private int apply_host;
