@@ -9,7 +9,8 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler){
 		try{
 			if(req.getSession().getAttribute("member") == null){
-				res.sendRedirect("login.do");
+				res.sendRedirect("/quickHobby/member/login.do");
+				
 				return false;
 			}
 		}catch(Exception e){

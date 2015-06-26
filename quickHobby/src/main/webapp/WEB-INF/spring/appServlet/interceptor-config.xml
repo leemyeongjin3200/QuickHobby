@@ -9,8 +9,16 @@
 	<!-- mvc:exclude-mapping path="" 으로 인터셉터 거치지 않을 url등록 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/member/update.do"/>
+			<mvc:mapping path="/**/*"/>
+			<mvc:exclude-mapping path="/resources/**"/>
+			<mvc:exclude-mapping path="/css/**"/>
+			<mvc:exclude-mapping path="/img/**"/>
+			<mvc:exclude-mapping path="/pds/**"/>
 			<mvc:exclude-mapping path="/member/login.do"/>
+			<mvc:exclude-mapping path="/member/register.do"/>
+			<mvc:exclude-mapping path="/board/list.do"/>
+			<mvc:exclude-mapping path="/groupBoard/list.do"/>
+			<mvc:exclude-mapping path="/apply/applyList.do"/>
 			<bean class="com.quickHobby.interceptor.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>

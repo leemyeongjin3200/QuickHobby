@@ -12,23 +12,23 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript" src="${root}/css/apply/apply.js"></script>
 <script type="text/javascript">
-// 	$(function(){
-// 		$("#date").datepicker({
-// 			dateFormat: "yy-mm-dd",
-// 			monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-// 			dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
-// 			showOn: "button",
-// 			buttonImage: "",
-// 			buttonImageOnly: true
-// 		});
+	$(function(){
+		$("#date").datepicker({
+			dateFormat: "yy-mm-dd",
+			monthNames: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+			dayNamesMin: ["일", "월", "화", "수", "목", "금", "토"],
+			showOn: "button",
+			buttonImage: "",
+			buttonImageOnly: true
+		});
 		
-// 		$("#btn").click(function(){
-// 			$("#resultDate").text($("#date1").val());
-// 		});
-// 	});
-</script>
- 
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+		$("#btn").click(function(){
+			$("#resultDate").text($("#date1").val());
+		});
+	});
+</script> 
+<!-- 
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
