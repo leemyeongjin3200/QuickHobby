@@ -51,3 +51,9 @@ function previewImage(){
         });
      });
 }
+
+function loginPopUp(){
+	$(document).ready(function(){
+		$("#myModal").modal();
+	});
+}

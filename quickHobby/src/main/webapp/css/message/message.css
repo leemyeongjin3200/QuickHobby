@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+body {
+    padding-top: 70px;
+}
+
+/**footer==============================================
+==================================================== */
+footer {
+	margin-top: 45px;
+ 	padding: 35px 0 36px;
+  	border-top: 1px solid #E5E5E5;
+  	background-color:#E5E5E5;
+}
+
+#copyRight {
+	color: #777;
+	font-size: 12px;
+	text-align: center;
+}
+
+/**Message Content1==========================================
+======================================================= */
+ul.messagesList {
+	list-style: none;
+	margin-left: -35px;
+	font-size: 13px;
+}
+
+ul.messagesList li {
+	background: #F6F6F6;
+	border-radius: 4px;
+	padding: 5px 10px;
+}
+
+ul.messagesList li:nth-child(odd) {
+	background: #fff !important;
+}
+
+ul.messagesList li.odd {
+	background: #fff !important;
+}
+
+ul.messagesList li span.from {
+	display: inline-block;
+	width: 15%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+
+ul.messagesList li span.title {
+	display: inline-block;
+	width: 55%;
+	font-weight: 300;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+
+ul.messagesList li span.date {
+	display: inline-block;
+	width: 15%;
+	font-weight: 300;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+
+/**Message Pop-up============================================
+======================================================= */
+.modal-header, h4, .close {
+      background-color: #BDBDBD;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  
+  /** 
+.modal-footer {
+      background-color: #f9f9f9;
+      text-align: center;
+  }
+  */
+  
+  .form-group {
+	padding:15px 15px;
+}
+
