@@ -12,6 +12,7 @@
 	<a href="${root}/member/register.do">회원가입</a>
 	<c:if test="${member==null}">
 		<a href="${root}/member/login.do">로그인</a>
+		<a href="${root}/member/update.do">회원정보수정</a>
 	</c:if>
 	<c:if test="${member !=null}">
 		<a href="${root}/member/update.do">회원정보수정</a>
