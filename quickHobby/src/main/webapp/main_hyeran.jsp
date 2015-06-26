@@ -13,13 +13,13 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script>
-//Navigation bar 필터설정
-
+//
 </script>
-<title>QuickHobby-Grid-3col</title>
+<title>HYERAN</title>
 </head>
 <body>
 <!-- Header -->
+<header>
 <nav class="navbar navbar-default navbar-fixed-top">
  <div class="container-fluid">
     <div class="navbar-header">
@@ -69,6 +69,7 @@
 	 -->
   </div>
 </nav>
+</header>
 <!-- //Header -->
 
 <!-- Content 1//-->
