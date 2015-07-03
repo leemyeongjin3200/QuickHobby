@@ -1,4 +1,4 @@
-package com.quickHobby;
+package com.quickHobby.weather;
 
 import java.io.BufferedReader;
 import java.io.IOException;

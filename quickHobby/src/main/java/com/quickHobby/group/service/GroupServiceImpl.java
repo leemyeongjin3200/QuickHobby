@@ -46,6 +46,9 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		GroupDto groupDto=(GroupDto)map.get("GroupDto");
 		
+		int cost=Integer.parseInt(request.getParameter("groupCost"));
+		logger.info("cost:"+cost);
+		
 		try {
 			String textDate=request.getParameter("groupDate1");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");

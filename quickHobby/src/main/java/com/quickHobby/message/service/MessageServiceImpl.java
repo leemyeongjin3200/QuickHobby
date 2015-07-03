@@ -11,14 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.quickHobby.board.dto.BoardDto;
 import com.quickHobby.message.dao.MessageDao;
 import com.quickHobby.message.dto.MessageDto;
 
 /*
  * @name        : MessageServiceImpl
  * @date        : 2015. 6. 25.
- * @author      : ¼­ÀÎ±¸
- * @description : ¿äÃ» ¹ÞÀº ÆäÀÌÁö¿¡¼­ ÇÊ¿ä·Î ÇÏ´Â µ¥ÀÌÅÍ¸¦ DAO¸¦ ÅëÇØ °¡Á®¿À°Å³ª ÇÊ¿äÇÑ ¼­ºñ½º¸¦ ¼öÇà.
+ * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+ * @description : ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ DAOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ï¿½ï¿½ï¿½.
  */
 @Component
 public class MessageServiceImpl implements MessageService {
@@ -30,8 +31,8 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageWrite
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÆäÀÌÁö ÀÌµ¿.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½.
 	 */
 	public void messageWrite(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -43,8 +44,8 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageWriteOk
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : Message Table¿¡ »õ·Î¿î ÂÊÁö Á¤º¸ ÀúÀå.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : Message Tableï¿½ï¿½ ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void messageWriteOk(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -63,25 +64,43 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageReceiveList
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : Message Table¿¡¼­ ÇØ´ç È¸¿øÀÌ ¹ß¼ÛÇÑ ÂÊÁö ¸ñ·ÏÀ» °¡Á®¿È.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : Message Tableï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ß¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void messageReceiveList(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
-		List<MessageDto> messageList=messageDao.getReceiveList(1);
-		logger.info("ReceiveList size : " + messageList.size());
+		String pageNumber=request.getParameter("pageNumber");
+		if(pageNumber==null)pageNumber="1";
+		
+		int boardSize=10;
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		int count=messageDao.getMessageCount();
+		logger.info("count:"+count);
+		
+		List<MessageDto> messageList=null;
+		
+		if(count>0){
+			messageList=messageDao.getMessageList(startRow, endRow);
+		}
+		logger.info("messageList:"+messageList.size());
 		
 		mav.addObject("messageList", messageList);
-		mav.setViewName("message/messageReceiveList");
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("message/messageList");
 	}
 	
 	/*
 	 * @name        : messageSendList
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : Message Table¿¡¼­ ÇØ´ç È¸¿øÀÌ ¼ö½ÅÇÑ ÂÊÁö ¸ñ·ÏÀ» °¡Á®¿È.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : Message Tableï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void messageSendList(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -97,8 +116,8 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageRead
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ÂÊÁö¿¡ ´ëÇÑ Á¤º¸¸¦ °¡Á®¿È.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½Ø´ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void messageRead(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -115,8 +134,8 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageDelete
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ÂÊÁö¸¦ Message Table¿¡¼­ »èÁ¦.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½Ø´ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Message Tableï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void messageDelete(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -133,8 +152,8 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageReply
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÆäÀÌÁö ÀÌµ¿.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½.
 	 */
 	public void messageReply(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -149,8 +168,8 @@ public class MessageServiceImpl implements MessageService {
 	/*
 	 * @name        : messageReplyOk
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ´äÀå Á¤º¸¸¦ Message Table¿¡ ÀúÀå.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Message Tableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void messageReplyOk(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();

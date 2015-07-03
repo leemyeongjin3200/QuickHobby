@@ -10,6 +10,11 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
+<<<<<<< HEAD
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.js"></script>
+=======
+>>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <script>
 </script>
 <title>HYERAN</title>

@@ -3,69 +3,70 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+	<c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Tip / Review Board</title>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<title>Insert title here</title>
+<script type="text/javascript" src="${root }/css/board/script.js"></script>
+	<link rel="stylesheet" type="text/css" href="${root }/css/board/style.css">
 </head>
 <body>
-<!-- 	글쓰기 페이지로 이동 -->
-	<a href="${root}/board/writeForm.do">Write</a>
-	
-<!-- 	글 리스트가 없는 경우 안내메시지 출력 -->
-	<c:if test="${count==0}">
-		<div>
-			<div>
-				<span >There is nothing.</span>
-			</div>
-		</div>
+<table width="530" align="center">
+<tr>
+<td align="right" bgcolor="D1DBDB">
+<a href="${root}/board/jesus.do">목록보기</a>
+</td>
+<c:if test="${count==0 }">
+		<table border="1" width="530" cellpadding="2" cellspacing="0" align="center">
+			<tr>
+				<td align="center">게시판에 저장된 글이 없습니다.</td>
+			</tr>
+		</table>
 	</c:if>
-	
-<!-- 	글 리스트가 있는 경우 글들 리스트형으로 출력 -->
-	<c:if test="${count>0}">
-		<div>
-			<c:forEach var="board" items="${boardList}">
+
 			
-<!-- 			boardVisible 값이 1인 글들만 출력 -->
-				<c:if test="${board.boardVisible==1}">
-					<span>${board.boardWriter}</span>
-					<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a>
-					<small>${board.boardModifyDate}</small>
-					<span>${board.boardReadCount}</span><br/><br/>
-				</c:if>
-				
+	 
+	<c:if test="${count!=0 }">	
+	<br/><br/>
+		<table border="1" width="530" cellpadding="2" cellspacing="0" align="center">
+		<tr>
+<td align="right" bgcolor="D1DBDB">
+<a href="${root}/board/jesus.do">목록보기</a>
+</td>
+</tr>
+			<tr> 
+			
+			
+				<td align="center" width="70">작성자</td>
+			    <td align="center" width="250">작성</td>
+				<td align="center" width="100">날짜</td>
+			
+			</tr>
+			
+			<!-- Board List -->
+			<c:forEach var="board" items="${jesusList}">
+				<tr>
+					<td>${board.board_writer}</td>						
+					<td>${board.board_subject}</td>
+					<td>${board.board_createdate}</td>
+				</tr>
 			</c:forEach>
-		</div>
+		</table>
 	</c:if>
+	 
 	
-<!-- 	페이지 이동 부분 -->
-	<center>
-		<c:if test="${count>0}">
-			<c:set var="pageBlock" value="${5}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
-			
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
-			
-			<c:set var="startPage" value="${rs*pageBlock+1}"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1}"/>
-			
-			<c:if test="${endPage>pageCount}">
-				<c:set var="endPage" value="${pageCount}"/>
-			</c:if>
-			
-			<c:if test="${startPage>pageBlock}">
-				<a href="${root}/board/list.do?pageNumber=${startPage-pageBlock}">[Previous]</a>
-			</c:if>
-			
-			<c:forEach var="i" begin="${startPage}" end="${endPage}">
-				<a href="${root}/board/list.do?pageNumber=${i}">[${i}]</a>
-			</c:forEach>
-			
-			<c:if test="${endPage<pageCount}">
-				<a href="${root}/board/list.do?pageNumber=${startPage+pageBlock}">[Next]</a>
-			</c:if>
-		</c:if>
-	</center>
+	
+
+</tr>
+</table>
+
+
+
+
+
+
+
+
 </body>
 </html>

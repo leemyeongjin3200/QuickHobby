@@ -1,4 +1,4 @@
-package com.quickHobby;
+package com.quickHobby.weather;
 
 import java.io.BufferedInputStream;
 import java.net.URL;
@@ -15,10 +15,13 @@ public class KMARssMain {
     
     private String addr;
     private String sAddr;
+    private WeatherDTO weather;
+    private String closeDate;
  
-    public KMARssMain(String addr, String sAddr) throws Exception {
+    public KMARssMain(String addr, String sAddr, String closeDate) throws Exception {
     	this.addr=addr;
     	this.sAddr=sAddr;
+    	this.closeDate=closeDate;
     	
         xmlRssParser();
     }
@@ -68,7 +71,7 @@ public class KMARssMain {
                     WeatherDTO entity = new WeatherDTO();
                     if(province.contains(addr)){			
                     	if(city.contains(sAddr)){				
-                    		if(tmEf.equals("2015-07-12 00:00")){
+                    		if(tmEf.equals(closeDate)){
                     			entity.setMode(mode);
                     			entity.setTmEf(tmEf);
                     			entity.setWf(wf);
@@ -103,11 +106,19 @@ public class KMARssMain {
             eventType = xpp.next();
         }
         
-        printResult(list);
+        setWeather(list.get(0));
     }
  
-    private void printResult(Vector<WeatherDTO> list) {
-            System.out.println("도시 : "+ list.get(0).getCity() +" 날짜시간 : " + list.get(0).getTmEf() 
-                    +" 날씨 : "+ list.get(0).getWf() + " 최저 : " + list.get(0).getTmn() + " 최고 : " + list.get(0).getTmx());
-    } 
+//    private String printResult(Vector<WeatherDTO> list) {
+//            return "도시 : "+ list.get(0).getCity() +" 날짜시간 : " + list.get(0).getTmEf() 
+//                    +" 날씨 : "+ list.get(0).getWf() + " 최저 : " + list.get(0).getTmn() + " 최고 : " + list.get(0).getTmx();
+//    }
+    
+    public WeatherDTO getWeather(){
+    	return weather;
+    }
+    
+    public void setWeather(WeatherDTO weather){
+    	this.weather=weather;
+    }
 }

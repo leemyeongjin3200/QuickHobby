@@ -15,6 +15,5 @@
 	<a href="${root}/message/messageWrite.do">쪽지 쓰기</a>
 	<a href="${root}/message/messageSendList.do">발송함</a>
 	<a href="${root}/message/messageReceiveList.do">수신함</a>
-	<a href="${root}/weather/weather.do">날씨 파싱</a>
 </body>
 </html>

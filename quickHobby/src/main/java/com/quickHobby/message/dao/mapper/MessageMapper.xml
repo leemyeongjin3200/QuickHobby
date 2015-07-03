@@ -32,4 +32,16 @@
 			DELETE MESSAGE WHERE MESSAGE_NUM=#{message_num}
 		]]>
 	</delete>
+	
+	<select id="getMessageCount" resultType="int">
+			select count(*) from message
+	</select>
+	
+	<select id="getMessageList" parameterType="java.util.Map" resultType="com.quickHobby.message.dto.MessageDto">
+			<![CDATA[select * from
+ 			(select rownum rnum, a.* from 
+			(select * from message 
+			order by MESSAGE_DATE desc)a) 
+ 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+	</select>
 </mapper>
