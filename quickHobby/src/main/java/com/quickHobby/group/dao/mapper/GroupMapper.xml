@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="group.dao.mapper">
+	<resultMap type="com.quickHobby.group.dto.GroupDto" id="groupDto">
+		<result property="groupNum" column="GROUP_NUM"/>
+		<result property="groupCategory" column="GROUP_CATEGORY"/>
+		<result property="groupInout" column="GROUP_INOUT"/>
+		<result property="groupHost" column="GROUP_HOST"/>
+		<result property="groupSubject" column="GROUP_SUBJECT"/>
+		<result property="groupSubtitle" column="GROUP_SUBTITLE"/>
+		
+		<result property="groupLocation" column="GROUP_LOCATION"/>
+		<result property="groupDate" column="GROUP_DATE"/>
+		<result property="groupCost" column="GROUP_COST"/>
+	</resultMap>
+	
+	<insert id="createGroup" parameterType="com.quickHobby.group.dto.GroupDto">
+		<![CDATA[insert into ggroup(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, GROUP_LOCATION, GROUP_DATE, GROUP_COST)
+ 				values(group_num_seq.nextval, #{groupCategory},	#{groupInout}, #{groupHost}, #{groupSubject}, #{groupSubtitle}, #{groupLocation}, #{groupDate}, #{groupCost})]]>
+	</insert>
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.boardMapper"> 
+
+<select id="boardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+select * from board where board_writer=#{board_writer}
+</select>
+<select id="groupboardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+<![CDATA[
+	select * from groupboard where groupboard_writer=#{groupboard_writer}
+]]>
+
+</select>
+		<select id="boardCount" resultType="int">
+	select count(*) from board
+	
+	</select>
+		
+		<select id="groupCount" resultType="int">
+		<![CDATA[
+	select count(*) from groupboard
+	]]>
+	</select>
+	<select id="boardList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+	
+
+	<![CDATA[
+select * from board where board_writer=#{board_writer}
+
+	]]>
+	</select>
+	
+	<select id="groupList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+	
+
+	<![CDATA[
+select * from groupboard where groupboard_writer=#{groupboard_writer}
+
+	]]>
+	</select>
+	
+	<select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+	
+
+	<![CDATA[
+	select board_writer,board_subject,board_createdate from board where board_writer=#{board_writer}
+union all 
+select groupboard_writer,groupboard_subject,groupboard_createdate from groupboard where groupboard_writer=#{groupboard_writer}
+order by 2 desc
+	
+	]]>
+	</select>
+	
+
+</mapper>

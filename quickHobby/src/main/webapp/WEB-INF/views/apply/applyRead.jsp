@@ -7,6 +7,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<script src="${root}/css/apply/jquery-2.1.4.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if("${weather.wf}" != ""){
+		
+		var wf="${weather.wf}";
+		var url="${root}/weather/" + wf + ".jpg";
+		
+			$("#weather").attr("src", url);
+		}
+	});
+</script>
 </head>
 <body>
 	<!-- 해당 게시물에 대한 정보 -->
@@ -14,6 +26,10 @@
 	<label>제목 : ${applyDto.apply_subject}</label><br/>
 	<label>파일경로 : ${applyDto.apply_filepath}</label><br/>
 	<label>조회수 : ${applyDto.apply_readcount}</label><br/><br/>
+	<img id=weather style="width:304px; height:228px;" src="${root}/weather/questionMark.jpg">
+	<h4>${weather.wf}</h4>
+	<h4>최저 : ${weather.tmn}</h4>
+	<h4>최고 : ${weather.tmx}</h4>
 	
 	<a href="${root}/apply/applyUpdate.do?apply_num=${applyDto.apply_num}">수정</a><br/>
 	<a href="${root}/apply/applyDelete.do?apply_num=${applyDto.apply_num}">삭제</a>

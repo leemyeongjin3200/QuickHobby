@@ -2,29 +2,42 @@
  * 
  */
 function registerCheck(form){
-	if($("input[name='memberId']").val()==""){
-		
-	}
-}
-function sendCode(email, root){
-	var url=root+"/member/sendCode.do?email="+email.value;
 	
-	window.open(url, "", "width=350, height=250");
+}
+
+function sendCode(email, root){
+	if($("input[name='memberId']").val()==""){
+		alert("이메일을 입력해주세요.");
+	}
+	
+	if($("input[name='memberId']").val()!=""){
+		$(function(){
+			var callUrl=root+"/member/sendCode.do?email="+email.value;
+			$.ajax({
+				url:callUrl,
+				type:"get",
+				dataType:"html",
+				success:function(data){
+					$("input[name='serverCode']").val($(data).find("input[name='serverCode']").val());
+				}
+			});
+			$("#emailModal").modal();
+		});
+	}
 }
 
 function checkCode(checkForm){
 	var serverCode=$("input[name='serverCode']").val();
-	var userCode=$("input[name='userCode']").val();
-	
+	var userCode=$("input[id='userCode']").val();
 	
 	if(serverCode==userCode){
 		alert("인증이 완료 되었습니다.");
-		$(opener.document).find("label[id='emailAuth']").text("인증완료");
-		$(opener.document).find("label[id='emailAuth']").attr("style", "color:blue");
-		self.close();
-		return true;
+		$("#emailModal").modal('toggle');
+		$("#emailDiv").attr("class", "form-group has-success");
+		return false;
 	}else{
-		alert("인증번호를 잘못입력하셨습니다.")
+		alert("인증번호를 잘못입력하셨습니다.");
+		$("#emailDiv").attr("class", "form-group has-error");
 		return false;
 	}
 }
@@ -50,4 +63,10 @@ function previewImage(){
             readURL(this);
         });
      });
+}
+
+function loginPopUp(){
+	$(document).ready(function(){
+		$("#myModal").modal();
+	});
 }

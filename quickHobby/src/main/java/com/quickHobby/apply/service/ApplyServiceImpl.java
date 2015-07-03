@@ -1,10 +1,10 @@
 package com.quickHobby.apply.service;
 
-import java.util.List;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -18,12 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
+import com.quickHobby.weather.Weather;
+import com.quickHobby.weather.WeatherDTO;
 
 /*
  * @name        : ApplyServiceImpl
  * @date        : 2015. 6. 22.
- * @author      : ¼­ÀÎ±¸
- * @description : ¿äÃ» ¹ÞÀº ÆäÀÌÁö¿¡¼­ ÇÊ¿ä·Î ÇÏ´Â µ¥ÀÌÅÍ¸¦ DAO¸¦ ÅëÇØ °¡Á®¿À°Å³ª ÇÊ¿äÇÑ ¼­ºñ½º¸¦ ¼öÇà.
+ * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+ * @description : ï¿½ï¿½Ã» ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ DAOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å³ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ñ½º¸ï¿½ ï¿½ï¿½ï¿½ï¿½.
  */
 @Component
 public class ApplyServiceImpl implements ApplyService {
@@ -35,8 +37,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyWrite
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÆäÀÌÁö ÀÌµ¿.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½.
 	 */
 	public void applyWrite(ModelAndView mav){
 		logger.info("applyWrite service======");
@@ -47,8 +49,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyWriteOk
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹°À» Apply Å×ÀÌºí¿¡ ÀúÀå.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½Ã»ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ Apply ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void applyWriteOk(ModelAndView mav){
 		logger.info("applyWriteOk service======");
@@ -113,8 +115,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyList
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹°ÀÇ ¸ñ·ÏÀ» ÃÖ±Ù¿¡ »ý¼ºµÈ ¼ø¼­·Î °¡Á®¿È.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½Ã»ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void applyList(ModelAndView mav){
 		logger.info("applyList======");
@@ -129,8 +131,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyRead
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ApplyDto¸¦ °¡Á®¿È.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½Ø´ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ApplyDtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void applyRead(ModelAndView mav){
 		logger.info("applyRead======");
@@ -144,6 +146,10 @@ public class ApplyServiceImpl implements ApplyService {
 		ApplyDto applyDto=applyDao.getApplyDto(apply_num);
 		logger.info("apply_num : " + apply_num);
 		
+		Weather w=new Weather(applyDto.getApply_location(), applyDto.getApply_closedate());
+		WeatherDTO weather=w.getWeather();
+		
+		mav.addObject("weather", weather);
 		mav.addObject("applyDto", applyDto);
 		mav.setViewName("apply/applyRead");
 	}
@@ -151,8 +157,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyDelete
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ½ÅÃ»°Ô½Ã¹°À» Apply Å×ÀÌºí¿¡¼­ »èÁ¦.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½Ø´ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ Apply ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void applyDelete(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -170,8 +176,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyUpdate
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ApplyDto¸¦ °¡Á®¿È.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½Ø´ï¿½ ï¿½ï¿½È£ï¿½ï¿½ ApplyDtoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void applyUpdate(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -187,8 +193,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyUpdateOk
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ¼öÁ¤µÈ ½ÅÃ»°Ô½Ã¹°À» Apply Å×ÀÌºí¿¡¼­ ¼öÁ¤.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½Ô½Ã¹ï¿½ï¿½ï¿½ Apply ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	public void applyUpdateOk(ModelAndView mav){
 		logger.info("applyUpdateOk service======");

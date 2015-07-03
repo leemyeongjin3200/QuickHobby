@@ -30,7 +30,7 @@
 			<input type="text" name="memberSNS" value="${member.memberSNS}">
 
 			<div>
-				<img alt="이미지 없음" src="../pds/${fileName}" id="userImage" height="200" width="150"><br/>
+				<img alt="이미지 없음" src="${root}/pds/${fileName}" id="userImage" height="200" width="150"><br/>
 				<label>사진 선택</label>
 				<input type="file" name="memberFile"/>
 				<input type="submit" value="수정 완료"/>

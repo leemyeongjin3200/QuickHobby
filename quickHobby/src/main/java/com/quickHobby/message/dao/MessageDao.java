@@ -10,4 +10,6 @@ public interface MessageDao {
 	public List<MessageDto> getSendList(int message_sender);
 	public MessageDto getMessageDto(int message_num);
 	public int delete(int message_num);
+	public int getMessageCount();
+	public List<MessageDto> getMessageList(int startRow, int endRow);
 }

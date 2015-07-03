@@ -139,8 +139,8 @@
 		<!-- 버튼(쪽지 보내기, 삭제, 새로고침)// -->	
 				<div class="span12">
 				  <div class="text-right" style="margin-top:20px">
-		                    <a href="#" class="btn btn-default btn-sm" id="myMessage">send</a>
-		                    <a href="#" class="btn btn-default btn-sm">delete</a>
+		                    <a href="${root}/message/messageWrite.do" class="btn btn-default btn-sm" id="myMessage">send</a>
+		                    <a href="${root}//message/messageDelete.do" class="btn btn-default btn-sm">delete</a>
 		                    <a href="#" class="btn btn-default btn-sm">refresh</a>
 		          </div>
 				</div>	
@@ -207,7 +207,7 @@
           <h4><span class="glyphicon glyphicon-pencil"></span> Message</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
+          <form action="" role="form">
             <div class="form-group">
               <label for="from" class="col-sm-2 control-label"> From</label>
               <div class="col-sm-10">
