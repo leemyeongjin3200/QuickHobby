@@ -1,6 +1,8 @@
 package com.quickHobby.message.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -12,7 +14,7 @@ import com.quickHobby.message.dto.MessageDto;
 /*
  * @name        : MessageDaoImpl
  * @date        : 2015. 6. 25.
- * @author      : ¼­ÀÎ±¸
+ * @author      : ï¿½ï¿½ï¿½Î±ï¿½
  * @description : Message Table DAO
  */
 @Component
@@ -40,5 +42,18 @@ public class MessageDaoImpl implements MessageDao {
 	
 	public int delete(int message_num){
 		return sqlSession.delete("messageDelete", message_num);
+	}
+
+	@Override
+	public int getMessageCount() {
+		return sqlSession.selectOne("getMessageCount");
+	}
+
+	@Override
+	public List<MessageDto> getMessageList(int startRow, int endRow) {
+		Map<String,Integer>map=new HashMap<String, Integer>();
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		return sqlSession.selectList("getMessageList", map);
 	}
 }

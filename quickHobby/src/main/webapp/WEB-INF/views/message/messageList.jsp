@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
@@ -84,56 +85,17 @@
 	    	<div class="row-fluid">
 				<div class="span12">
 					<ul class="messagesList">
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><span class="label label-default">new</span><a href="#"> 메세지 제목1</a></span>
-							<span class="date">Today, <b>3:49 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><span class="label label-default">new</span><a href="#"> 메세지 제목2</a></span>
-							<span class="date">Today, <b>3:48 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><span class="label label-default">new</span><a href="#"> 메세지 제목3</a></span>
-							<span class="date">Today, <b>3:47 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목4</a></span>
-							<span class="date">Today, <b>3:46 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목5</a></span>
-							<span class="date">Today, <b>3:45 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목6</a></span>
-							<span class="date">Today, <b>3:44 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목7</a></span>
-							<span class="date">Today, <b>3:43 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목8</a></span>
-							<span class="date">Today, <b>3:42 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목9</a></span>
-							<span class="date">Today, <b>3:41 PM</b></span>
-						</li>
-						<li>
-							<span class="from"><input type="checkbox" value="">  leemyeongjin</span>
-							<span class="title"><a href="#"> 메세지 제목10</a></span>
-							<span class="date">Today, <b>3:40 PM</b></span>
-						</li>
+						
+						<!-- messageList foreach로 불러오기 -->
+						<c:forEach var="messageList" items="${messageList}">
+							<li>
+								<span class="from"><input type="checkbox" value=""> ${messageList.message_sender}</span>
+								<span class="title"><span class="label label-default">new</span><a href="/message/messageRead.do"> ${messageList.message_subject}</a></span>
+								
+								
+								<span class="date"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
+							</li>
+						</c:forEach>
 					</ul>	
 				</div>
 		<!-- 버튼(쪽지 보내기, 삭제, 새로고침)// -->	
@@ -147,33 +109,75 @@
 		<!--// 버튼(쪽지 보내기, 삭제, 새로고침)  -->
 		
 		<!-- Page 설정// -->
+		
+			<!-- Page 설정에 관련한 변수들 설정 -->
+			<c:if test="${count>0}">
+			
+			<c:set var="pageBlock" value="${3}"/>
+			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+			
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+			
+			<c:set var="startPage" value="${rs*pageBlock+1}"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+			
+			<c:if test="${endPage>pageCount}">
+				<c:set var="endPage" value="${pageCount}"/>
+			</c:if>
+			<!-- Page 설정에 관련한 변수들 설정 -->
+		
 		        <div class="row text-center">
 		            <div class="col-lg-12">
 		                <ul class="pagination">
-		                    <li>
-		                        <a href="#">&laquo;</a>
-		                    </li>
-		                    <li class="active">
-		                        <a href="#">1</a>
-		                    </li>
-		                    <li>
-		                        <a href="#">2</a>
-		                    </li>
-		                    <li>
-		                        <a href="#">3</a>
-		                    </li>
-		                    <li>
-		                        <a href="#">4</a>
-		                    </li>
-		                    <li>
-		                        <a href="#">5</a>
-		                    </li>
-		                    <li>
-		                        <a href="#">&raquo;</a>
-		                    </li>
+		                	
+		                	<!-- prev Page 버튼 생성 관련 -->
+		                	<c:if test="${startPage>pageBlock}">
+			                    <li>
+			                        <a href="#">&laquo;</a>
+			                    </li>
+		                    </c:if>
+		                    <!-- prev Page 버튼 생성 관련 -->
+		                    
+		                    <!-- 각 Page 버튼 생성 관련 -->
+		                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
+				                <c:if test="${currentPage!=i}">
+						            <li> 
+			                       		<a href="#">${i}</a> 
+				                    </li>    	
+				                </c:if>
+				                <c:if test="${currentPage==i}">
+				                <li class="active">
+					                   	<a href="#">${i}</a>
+					            </li>  
+					             </c:if>  
+		                    </c:forEach>
+		                    <!-- 각 Page 버튼 생성 관련 -->
+		                    
+<!-- 		                    <li> -->
+<!-- 		                        <a href="#">2</a> -->
+<!-- 		                    </li> -->
+<!-- 		                    <li> -->
+<!-- 		                        <a href="#">3</a> -->
+<!-- 		                    </li> -->
+<!-- 		                    <li> -->
+<!-- 		                        <a href="#">4</a> -->
+<!-- 		                    </li> -->
+<!-- 		                    <li> -->
+<!-- 		                        <a href="#">5</a> -->
+<!-- 		                    </li> -->
+							
+							<!-- next Page 버튼 생성 관련 -->
+							<c:if test="${endPage<pageCount}">
+			                    <li>
+			                        <a href="#">&raquo;</a>
+			                    </li>
+		                    </c:if>
+		                    <!-- next Page 버튼 생성 관련 -->
 		                </ul>
 		            </div>
 		        </div>
+		        
+			</c:if>
         <!-- //Page 설정 -->
 				
  		</div>
