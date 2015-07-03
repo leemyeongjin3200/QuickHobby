@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -126,7 +126,7 @@ function checkForm(form){
 function onlyNumber(event){
 	event = event || window.event;
 	var keyID = (event.which) ? event.which : event.keyCode;
-	if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+	if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
 		return;
 	else
 		return false;
@@ -134,7 +134,7 @@ function onlyNumber(event){
 function removeChar(event) {
 	event = event || window.event;
 	var keyID = (event.which) ? event.which : event.keyCode;
-	if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+	if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
 		return;
 	else
 		event.target.value = event.target.value.replace(/[^0-9]/g, "");
@@ -175,7 +175,7 @@ function removeChar(event) {
 		
 		<div>
 			<label>Date</label>
-			<input type="text" name="groupDate" id="date"/><br/>
+			<input type="text" name="groupDate1" id="date"/><br/>
 		</div>
 		
 		
@@ -203,7 +203,7 @@ function removeChar(event) {
 		<div>
 			<label >Cost</label>
 			<span >
-				<input type="text" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'>
+				<input type="text" name="groupCost" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' style='ime-mode:disabled;'>
 			</span>
 		</div>
 		

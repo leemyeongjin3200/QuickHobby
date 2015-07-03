@@ -2,76 +2,20 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<c:set var="root" value="${pageContext.request.contextPath }"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
-<script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script>
-//
 </script>
 <title>HYERAN</title>
 </head>
 <body>
-<!-- Header -->
-<header>
-<nav class="navbar navbar-default navbar-fixed-top">
- <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">QuickHobby</a>
-    </div>
-    <!-- Before Login -->
-	<!-- c:if문 설정  -->
-	<div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav">
-	      	<li><a href="#">Apply</a></li>
-	        <li><a href="#">Tip & Review</a></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	        <li id="myLogin"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	      </ul>
-	  </div>
-	<!-- c:if문 닫기 -->
-	
-	<!-- After Login
-	<c:if test="#">
-	<div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav">
-	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apply<span class="caret"></span></a>
-	          <ul class="dropdown-menu">
-	            <li><a href="#">Apply Group</a></li>
-	            <li><a href="#">Create Group</a></li>
-	          </ul>
-	        </li>
-	        <li><a href="#">Tip & Review</a></li>
-	        <li><a href="#" >My Group</a></li>
-	        <li><a href="#">My Page</a></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="#"><span class="glyphicon glyphicon-envelope"></span> 5</a></li>
-	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> NickName</a></li>
-	        <li id="myLogout"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-	      </ul>
-	  </div>
-	</c:if>
-	 -->
-  </div>
-</nav>
-</header>
-<!-- //Header -->
-
+<jsp:include page="template/header.jsp"></jsp:include>
 <!-- Content 1//-->
 <div class="container-fluid">
   <br>
@@ -269,51 +213,10 @@
         </div>
 	</div>
 </div>
-<!-- //Content2 -->
-
-<!-- Login Pop-Up// -->
- <div class="container">
-  <!-- Trigger the modal with a button -->
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
-        </div>
-        <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-              <button type="submit" class="btn btn-success btn-block" style="background-color:#BDBDBD; border-color:#BDBDBD"><span class="glyphicon glyphicon-off"></span> Login</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
-        </div>
-      </div>
-    </div>
-  </div> 
-</div>
-<!-- //Login Pop-Up -->
-
-<!-- footer// -->
-<footer>
-	<div id="copyRight">CopyRight @ QuickHobby </div>
-</footer>
-<!-- //footer -->
- 
+<jsp:include page="template/loginModal.jsp"></jsp:include>
+<jsp:include page="template/footer.jsp"></jsp:include>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
 </body>
 </html>

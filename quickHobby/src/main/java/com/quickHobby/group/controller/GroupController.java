@@ -22,7 +22,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	@Autowired
 	private GroupService groupService;
 	
-	@RequestMapping(value="/group/createForm.do",  method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/group/createForm.do",  method = RequestMethod.GET)
 	public ModelAndView createForm(HttpServletRequest request, HttpServletResponse response){
 		logger.info("createForm---------------------------");
 		
