@@ -12,11 +12,17 @@ public class GroupDto {
 	private String groupLocation;
 	private Date groupDate;
 	private int groupCost;
+	
+	private String groupFileName;
+	private String groupFilePath;
+	private long groupFileSize;
+	
 	public int getGroupNum() {
 		return groupNum;
 	}
 	public void setGroupNum(int groupNum) {
 		this.groupNum = groupNum;
+		System.out.println(groupNum);
 	}
 	public String getGroupCategory() {
 		return groupCategory;
@@ -65,5 +71,23 @@ public class GroupDto {
 	}
 	public void setGroupCost(int groupCost) {
 		this.groupCost = groupCost;
+	}
+	public String getGroupFileName() {
+		return groupFileName;
+	}
+	public void setGroupFileName(String groupFileName) {
+		this.groupFileName = groupFileName;
+	}
+	public String getGroupFilePath() {
+		return groupFilePath;
+	}
+	public void setGroupFilePath(String groupFilePath) {
+		this.groupFilePath = groupFilePath;
+	}
+	public long getGroupFileSize() {
+		return groupFileSize;
+	}
+	public void setGroupFileSize(long groupFileSize) {
+		this.groupFileSize = groupFileSize;
 	}
 }
