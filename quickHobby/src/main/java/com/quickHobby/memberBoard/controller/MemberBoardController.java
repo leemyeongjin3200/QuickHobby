@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.quickHobby.memberBoard.service.JesusService;
+import com.quickHobby.memberBoard.service.MemberBoardService;
 
 
 /**
@@ -25,14 +25,14 @@ public class MemberBoardController {
 	private final Logger logger=Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
-	private JesusService jesusService;
+	private MemberBoardService memberBoardService;
 	
 	@RequestMapping(value="/memberBoard/check.do", method=RequestMethod.GET)
 	public ModelAndView check(HttpServletRequest request, HttpServletResponse response){
 		logger.info("selfCheck-----------------");
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
-		jesusService.boardWrite(mav);
+		memberBoardService.boardWrite(mav);
 		return mav;
 		
 		
