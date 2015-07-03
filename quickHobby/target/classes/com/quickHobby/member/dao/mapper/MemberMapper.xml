@@ -59,4 +59,10 @@
 			select * from member where member_num=#{memberNum}
 		]]>	
 	</select>
+	
+	<select id="nicknameCheck" parameterType="String" resultType="String">
+		<![CDATA[
+			select member_nickname from member where member_nickname=#{nickname}
+		]]>
+	</select>
 </mapper>

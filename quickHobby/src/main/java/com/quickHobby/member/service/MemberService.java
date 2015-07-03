@@ -8,4 +8,5 @@ public interface MemberService {
 	public void loginOk(ModelAndView mav);
 	public void update(ModelAndView mav);
 	public void updateOk(ModelAndView mav);
+	public void nicknameCheck(ModelAndView mav);
 }

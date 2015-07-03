@@ -88,4 +88,10 @@ public class MemberDaoImpl implements MemberDao {
 		return sqlSession.selectOne("member.dao.mapper.getMember", memberNum);
 	}
 
+	@Override
+	public String nicknameCheck(String nickname) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.dao.mapper.nicknameCheck", nickname);
+	}
+
 }

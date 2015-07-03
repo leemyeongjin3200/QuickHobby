@@ -32,18 +32,5 @@
     </div>
   </div> 
 </div>
-<!--  
-	<div class="container">
-		<div class="page-header">
-			<h3>이메일 인증</h3>
-		</div>
-		<form name="codeForm" onsubmit="return checkCode(this)">
-			<input type="hidden" name="serverCode" value="${serverCode}"/>
-			<label>인증번호</label>
-			<input type="text" name="userCode"/>
-			<input type="submit" class="btn btn-primary" value="확인"/>
-		</form>
-	</div>
--->
 </body>
 </html>

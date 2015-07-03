@@ -79,6 +79,16 @@ public class MemberController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/member/nicknameCheck.do", method=RequestMethod.GET)
+	public ModelAndView nicknameCheck(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request", req);
+		memberService.nicknameCheck(mav);
+		
+		return mav;
+	}
+	
 	/**
 	* @name : login
 	* @date : 2015. 6. 25.

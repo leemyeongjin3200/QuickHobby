@@ -10,4 +10,5 @@ public interface MemberDao {
 	public String getFile(int memberNum);
 	public int updateOk(MemberDto member);
 	public MemberDto getMember(int memberNum);
+	public String nicknameCheck(String nickname);
 }

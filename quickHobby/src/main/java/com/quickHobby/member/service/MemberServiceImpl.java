@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -33,6 +34,7 @@ import com.quickHobby.member.dto.MemberDto;
  */
 @Component
 public class MemberServiceImpl implements MemberService{
+	private final Logger logger=Logger.getLogger(this.getClass().getName());
 	@Autowired
 	private MemberDao memberDao;
 	
@@ -94,10 +96,10 @@ public class MemberServiceImpl implements MemberService{
 		int randomCode=random.nextInt(89999)+10000;
 		
 		String code=String.valueOf(randomCode);
+		mav.addObject("serverCode", code);
 		
 		sendMail(email, code);
-		
-		mav.addObject("serverCode", code);
+
 		mav.setViewName("member/sendCode");
 	}
 	
@@ -235,5 +237,20 @@ public class MemberServiceImpl implements MemberService{
 		mav.addObject("check", check);
 		
 		mav.setViewName("member/updateOk");
+	}
+
+	public void nicknameCheck(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		String nickname=req.getParameter("memberNickName");
+		logger.info("nickname:" + nickname);
+		String serverNickname=memberDao.nicknameCheck(nickname);
+		
+		if(nickname.equals(serverNickname)){
+			mav.addObject("serverNickname", serverNickname);
+		}
+		
+		mav.setViewName("member/nicknameCheck");
 	}
 }

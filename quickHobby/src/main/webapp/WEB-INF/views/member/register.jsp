@@ -7,8 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <title>회원가입</title>
 </head>
@@ -18,18 +17,20 @@
 		<div class="page-header">
 			<h2>회원가입</h2>
 		</div>
-		<form name="registerForm" action="${root}/member/register.do" method="post" enctype="multipart/form-data">
+		<form name="registerForm" action="${root}/member/register.do" method="post" enctype="multipart/form-data" onsubmit="return registerCheck(this)">
 			<div class="col-md-7">
-				<div id="emailDiv" class="form-group">
+				<div id="emailDiv" class="form-group has-feedback">
 					<label for="memberId"><span class="glyphicon glyphicon-envelope"></span> E-Mail</label>
 					<div class="row">
 						<div class="col-md-9">
 							<input class="form-control" type="text" name="memberId" placeholder="E-Mail"/>
+							<span id="emailIcon"></span>
 						</div>
 						<div class="col-md-2">
 							<button type="button" class="form-control btn btn-primary" onclick="sendCode(memberId, '${root}')">Confirm</button>
 						</div>
 					</div>
+					<input type="hidden" name="emailCheck" value="0"/>
 				</div>
 				
 				<div class="form-group">
@@ -50,15 +51,17 @@
 					</div>
 				</div>
 				
-				<div class="form-group">
+				<div id="nicknameDiv" class="form-group has-feedback">
 					<label for="memberNickName"><span class="glyphicon glyphicon-user"></span> NickName</label>
 					<div class="row">
 						<div class="col-md-9">
 							<input class="form-control" type="text" name="memberNickName" placeholder="NickName"/>
+							<span id="nicknameIcon"></span>
 						</div>
 						<div class="col-md-2">
-							<button type="button" class="form-control btn btn-primary">Check</button>
+							<button type="button" class="form-control btn btn-primary" onclick="checkNickname(memberNickName, '${root}')">Check</button>
 						</div>
+						<input type="hidden" name="nicknameCheck" value="0"/>
 					</div>
 				</div>
 				
@@ -83,6 +86,7 @@
 		</form>
 	</div>
 <jsp:include page="sendCode.jsp"></jsp:include>
+<jsp:include page="nicknameCheck.jsp"></jsp:include>
 <jsp:include page="../../../template/loginModal.jsp"></jsp:include>
 <jsp:include page="../../../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/jquery.js"></script>
