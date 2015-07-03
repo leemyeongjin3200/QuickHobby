@@ -12,6 +12,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.js"></script>
 <script>
 //
 </script>
