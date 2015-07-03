@@ -1,4 +1,4 @@
-package com.quickHobby;
+package com.quickHobby.weather;
 
 public class WeatherDTO {
 	private String city,mode,tmEf,wf,tmn,tmx,reliability;

@@ -1,4 +1,4 @@
-package com.quickHobby;
+package com.quickHobby.weather;
 
 import java.io.BufferedInputStream;
 import java.net.URL;
@@ -10,8 +10,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 public class ExactRssMain {
 	private URL url;
 	private long diffDays;
+	private WeatherDTO weather;
 
-	private Vector<ExactWeatherDTO> list = new Vector<ExactWeatherDTO>();
+	private Vector<WeatherDTO> list = new Vector<WeatherDTO>();
 
 	public ExactRssMain(String code, long diffDays) throws Exception {
 		this.url=new URL("http://www.kma.go.kr/wid/queryDFSRSS.jsp?zone=" + code);
@@ -53,14 +54,11 @@ public class ExactRssMain {
 				tag = xpp.getName();
 
 				if (tag.equals("data")) {
-					ExactWeatherDTO entity = new ExactWeatherDTO();
+					WeatherDTO entity = new WeatherDTO();
 					if(day.equals(String.valueOf(diffDays))){	
-						entity.setHour(hour);
-						entity.setTemp(temp);
-						entity.setTmn(tmn);
-						entity.setTmx(tmx);
-						entity.setWfKor(wfKor);
-						entity.setTemp(temp);
+						entity.setWf(wfKor);
+            			entity.setTmn(tmn);
+            			entity.setTmx(tmx);
 
 						list.removeAllElements();
 						list.add(entity);
@@ -71,10 +69,18 @@ public class ExactRssMain {
 			eventType = xpp.next();
 		}
 
-		printResult(list);
+		setWeather(list.get(0));
 	}
 
-	private void printResult(Vector<ExactWeatherDTO> list) {
-		System.out.println(" 날씨 : "+ list.get(0).getWfKor() + " 최저 : " + list.get(0).getTmn() + " 최고 : " + list.get(0).getTmx() + " 평균 : " + list.get(0).getTemp());
-	} 
+//	private String printResult(Vector<ExactWeatherDTO> list) {
+//		return " 날씨 : "+ list.get(0).getWfKor() + " 최저 : " + list.get(0).getTmn() + " 최고 : " + list.get(0).getTmx() + " 평균 : " + list.get(0).getTemp();
+//	} 
+	
+	public void setWeather(WeatherDTO weather){
+		this.weather=weather;
+	}
+	
+	public WeatherDTO getWeather(){
+		return weather;
+	}
 }
