@@ -1,4 +1,4 @@
-package com.quickHobby;
+package com.quickHobby.weather;
 
 public class CityDTO { 
 	private String code = null; 
