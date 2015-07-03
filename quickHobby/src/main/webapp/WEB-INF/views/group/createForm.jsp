@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript">
 	$(function(){
@@ -175,7 +175,7 @@ function removeChar(event) {
 		
 		<div>
 			<label>Date</label>
-			<input type="text" name="groupDate" id="date"/><br/>
+			<input type="text" name="groupDate1" id="date"/><br/>
 		</div>
 		
 		

@@ -17,11 +17,7 @@
 	</resultMap>
 	
 	<insert id="createGroup" parameterType="com.quickHobby.group.dto.GroupDto">
-		<![CDATA[insert into group(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, 
-				GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, 
-				GROUP_LOCATION, GROUP_DATE,	GROUP_COST)
- 				values(group_num_seq.nextval, #{groupCategory},
- 				#{groupInout}, #{groupHost}, #{groupSubject}, #{groupSubtitle}
-				#{groupLocation}, #{groupDate}, #{groupCost})]]>
+		<![CDATA[insert into ggroup(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, GROUP_LOCATION, GROUP_DATE, GROUP_COST)
+ 				values(group_num_seq.nextval, #{groupCategory},	#{groupInout}, #{groupHost}, #{groupSubject}, #{groupSubtitle}, #{groupLocation}, #{groupDate}, #{groupCost})]]>
 	</insert>
 </mapper>

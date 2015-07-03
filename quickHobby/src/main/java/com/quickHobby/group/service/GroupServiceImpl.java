@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.group.dao.GroupDao;
@@ -42,11 +43,11 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	@Override
 	public void createGroup(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		GroupDto groupDto=(GroupDto)map.get("groupDto");
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
+		GroupDto groupDto=(GroupDto)map.get("GroupDto");
 		
 		try {
-			String textDate=request.getParameter("groupDate");
+			String textDate=request.getParameter("groupDate1");
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			Date date = (Date)format.parse(textDate);
 			

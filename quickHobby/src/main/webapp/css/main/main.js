@@ -5,7 +5,8 @@
 //로그인 팝업창
 $(document).ready(function(){
     $("#myLogin").click(function(){
-        $("#myModal").modal();
+    	var openModal=$("#myModal").clone();
+        $(openModal).modal();
     });
 });
 
