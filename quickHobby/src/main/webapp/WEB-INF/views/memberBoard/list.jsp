@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="${root }/css/board/script.js"></script>
-	<link rel="stylesheet" type="text/css" href="${root }/css/board/style.css">
+<script type="text/javascript" src="${root }/css/memberBoard/memberBoard.js"></script>
+	<link rel="stylesheet" type="text/css" href="${root }/css/memberBoard/style.css">
 </head>
 <body>
 <table width="530" align="center">

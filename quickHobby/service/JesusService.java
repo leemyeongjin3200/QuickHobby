@@ -1,4 +1,4 @@
-package com.quickHobby.memberBoard.service;
+package com.java.jesus.service;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 *@author:염상아
 *@description: 
  */
-public interface MemberBoardService {
+public interface JesusService {
 	public void boardWrite(ModelAndView mav);
 
 }
