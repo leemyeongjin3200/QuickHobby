@@ -40,8 +40,9 @@ public class MessageDaoImpl implements MessageDao {
 		return sqlSession.selectOne("getMessageDto", message_num);
 	}
 	
-	public int delete(int message_num){
-		return sqlSession.delete("messageDelete", message_num);
+	public int delete(String message_num){
+		int messageNum=Integer.parseInt(message_num);
+		return sqlSession.delete("messageDelete", messageNum);
 	}
 
 	@Override

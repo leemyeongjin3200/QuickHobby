@@ -13,6 +13,7 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root}/css/message/message.css"/>
 <script type="text/javascript" src="${root}/css/message/message.js"></script>
+<script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
 <script>
 //
 </script>
@@ -89,8 +90,8 @@
 						<!-- messageList foreach로 불러오기 -->
 						<c:forEach var="messageList" items="${messageList}">
 							<li>
-								<span class="from"><input type="checkbox" value=""> ${messageList.message_sender}</span>
-								<span class="title"><span class="label label-default">new</span><a href="/message/messageRead.do"> ${messageList.message_subject}</a></span>
+								<span class="from"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> ${messageList.message_sender}</span>
+								<span class="title"><span class="label label-default">new</span><a href="${root}/message/messageRead.do?message_num=${messageList.message_num}"> ${messageList.message_subject}</a></span>
 								
 								
 								<span class="date"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
@@ -101,8 +102,8 @@
 		<!-- 버튼(쪽지 보내기, 삭제, 새로고침)// -->	
 				<div class="span12">
 				  <div class="text-right" style="margin-top:20px">
-		                    <a href="${root}/message/messageWrite.do" class="btn btn-default btn-sm" id="myMessage">send</a>
-		                    <a href="${root}//message/messageDelete.do" class="btn btn-default btn-sm">delete</a>
+		                    <a href="#" class="btn btn-default btn-sm" id="myMessage">send</a>
+		                    <a href="#" id="messageDel" class="btn btn-default btn-sm">delete</a>
 		                    <a href="#" class="btn btn-default btn-sm">refresh</a>
 		          </div>
 				</div>	
@@ -125,7 +126,9 @@
 				<c:set var="endPage" value="${pageCount}"/>
 			</c:if>
 			<!-- Page 설정에 관련한 변수들 설정 -->
-		
+			<form id="messagePage" name="messagePage">
+			
+			<input type="hidden" name="pageNumber" value="${pageNumber}"/>
 		        <div class="row text-center">
 		            <div class="col-lg-12">
 		                <ul class="pagination">
@@ -142,30 +145,17 @@
 		                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
 				                <c:if test="${currentPage!=i}">
 						            <li> 
-			                       		<a href="#">${i}</a> 
-				                    </li>    	
+			                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
+				                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
 				                </c:if>
 				                <c:if test="${currentPage==i}">
-				                <li class="active">
-					                   	<a href="#">${i}</a>
-					            </li>  
+					                <li class="active">
+						                   	<a href="" id="currentP">${i}</a>
+						            </li>  
 					             </c:if>  
 		                    </c:forEach>
 		                    <!-- 각 Page 버튼 생성 관련 -->
 		                    
-<!-- 		                    <li> -->
-<!-- 		                        <a href="#">2</a> -->
-<!-- 		                    </li> -->
-<!-- 		                    <li> -->
-<!-- 		                        <a href="#">3</a> -->
-<!-- 		                    </li> -->
-<!-- 		                    <li> -->
-<!-- 		                        <a href="#">4</a> -->
-<!-- 		                    </li> -->
-<!-- 		                    <li> -->
-<!-- 		                        <a href="#">5</a> -->
-<!-- 		                    </li> -->
-							
 							<!-- next Page 버튼 생성 관련 -->
 							<c:if test="${endPage<pageCount}">
 			                    <li>
@@ -176,6 +166,7 @@
 		                </ul>
 		            </div>
 		        </div>
+		    </form>
 		        
 			</c:if>
         <!-- //Page 설정 -->

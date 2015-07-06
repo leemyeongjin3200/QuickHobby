@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.quickHobby.board.dto.BoardDto;
 import com.quickHobby.message.dao.MessageDao;
 import com.quickHobby.message.dto.MessageDto;
 
@@ -67,7 +66,7 @@ public class MessageServiceImpl implements MessageService {
 	 * @author      : ���α�
 	 * @description : Message Table���� �ش� ȸ���� �߼��� ���� ����� ������.
 	 */
-	public void messageReceiveList(ModelAndView mav){
+	public void messageList(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
@@ -141,12 +140,26 @@ public class MessageServiceImpl implements MessageService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
-		int message_num=Integer.parseInt(request.getParameter("message_num"));
-		int check=messageDao.delete(message_num);
-		logger.info("check : " + check);
+		String checkedMsg="";
+		if(request.getParameter("message_num")!=null){
+			checkedMsg=request.getParameter("message_num");
+			//System.out.println(checkedMsg);
+		}
 		
-		mav.addObject("check", check);
-		mav.setViewName("message/messageDelete");
+		String[] messageNumArr = checkedMsg.split(",");
+		
+		
+		if(messageNumArr !=null && messageNumArr.length>0){
+    		for(int i=0; i<messageNumArr.length;i++){
+    			logger.info(messageNumArr[i]);
+    			String message_num=messageNumArr[i];
+    			int check=messageDao.delete(message_num);
+    			logger.info("check : " + check);
+    			mav.addObject("check", check);
+    		}
+    	}
+		// int check=messageDao.delete(message_num);
+		mav.setViewName("message/messageList");
 	}
 	
 	/*

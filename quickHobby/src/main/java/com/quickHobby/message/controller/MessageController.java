@@ -16,8 +16,8 @@ import com.quickHobby.message.service.MessageService;
 /*
  * @name        : MessageController
  * @date        : 2015. 6. 25.
- * @author      : ¼­ÀÎ±¸
- * @description : ÂÊÁö °ü·Ã ÆäÀÌÁö ¿äÃ»½Ã service Å¬·¡½º¿Í ¿¬°á.
+ * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+ * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ service Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
  */
 @Controller
 public class MessageController {
@@ -29,8 +29,8 @@ public class MessageController {
 	/*
 	 * @name        : messageWrite
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÂÊÁö ¾²±â ÆäÀÌÁö ¿äÃ»½Ã MessageServiceÀÇ messageWrite()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ MessageServiceï¿½ï¿½ messageWrite()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	@RequestMapping(value="/message/messageWrite.do", method=RequestMethod.GET)
 	public ModelAndView messageWrite(HttpServletRequest request){
@@ -47,8 +47,8 @@ public class MessageController {
 	/*
 	 * @name        : messageWriteOk
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÂÊÁö ¾²±â ÆäÀÌÁö ¿Ï·á ÈÄ MessageServiceÀÇ messageWriteOk()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ MessageServiceï¿½ï¿½ messageWriteOk()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	@RequestMapping(value="/message/messageWriteOk.do", method=RequestMethod.POST)
 	public ModelAndView messageWriteOk(HttpServletRequest request, MessageDto messageDto){
@@ -66,17 +66,17 @@ public class MessageController {
 	/*
 	 * @name        : messageReceiveList
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ¼ö½ÅÇÔ ÆäÀÌÁö ¿äÃ»½Ã MessageServiceÀÇ messageReceiveList()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ MessageServiceï¿½ï¿½ messageReceiveList()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
-	@RequestMapping(value="/message/messageReceiveList.do", method=RequestMethod.GET)
-	public ModelAndView messageReceiveList(HttpServletRequest request){
-		logger.info("messageReceiveList======");
+	@RequestMapping(value="/message/messageList.do", method=RequestMethod.GET)
+	public ModelAndView messageList(HttpServletRequest request){
+		logger.info("messageList======");
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
-		messageService.messageReceiveList(mav);
+		messageService.messageList(mav);
 		
 		return mav;
 	}
@@ -84,8 +84,8 @@ public class MessageController {
 	/*
 	 * @name        : messageSendList
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ¹ß½ÅÇÔ ÆäÀÌÁö ¿äÃ»½Ã MessageServiceÀÇ messageSendList()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ß½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ MessageServiceï¿½ï¿½ messageSendList()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	@RequestMapping(value="/message/messageSendList.do", method=RequestMethod.GET)
 	public ModelAndView messageSendList(HttpServletRequest request){
@@ -102,8 +102,8 @@ public class MessageController {
 	/*
 	 * @name        : messageRead
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÂÊÁö ¸ñ·Ï¿¡¼­ Á¦¸ñ ¼±ÅÃ½Ã MessageServiceÀÇ messageRead()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½ï¿½ MessageServiceï¿½ï¿½ messageRead()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	@RequestMapping(value="/message/messageRead.do", method=RequestMethod.GET)
 	public ModelAndView messageRead(HttpServletRequest request){
@@ -120,8 +120,8 @@ public class MessageController {
 	/*
 	 * @name        : messageDelete
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÂÊÁö »èÁ¦ ¼±ÅÃ½Ã MessageServiceÀÇ messageDelete()·Î ¿¬°á. 
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½ï¿½ MessageServiceï¿½ï¿½ messageDelete()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. 
 	 */
 	@RequestMapping(value="/message/messageDelete.do", method=RequestMethod.GET)
 	public ModelAndView messageDelete(HttpServletRequest request){
@@ -138,8 +138,8 @@ public class MessageController {
 	/*
 	 * @name        : messageReply
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ´äÀå ¼±ÅÃ½Ã MessageServiceÀÇ messageReply()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã½ï¿½ MessageServiceï¿½ï¿½ messageReply()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	@RequestMapping(value="/message/messageReply.do", method=RequestMethod.GET)
 	public ModelAndView messageReply(HttpServletRequest request){
@@ -156,8 +156,8 @@ public class MessageController {
 	/*
 	 * @name        : messageReplyOk
 	 * @date        : 2015. 6. 25.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ´äÀå ÀÛ¼º ¿Ï·á ÈÄ MessageServiceÀÇ messageReplyOk()·Î ¿¬°á.
+	 * @author      : ï¿½ï¿½ï¿½Î±ï¿½
+	 * @description : ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½Ï·ï¿½ ï¿½ï¿½ MessageServiceï¿½ï¿½ messageReplyOk()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 	 */
 	@RequestMapping(value="/message/messageReplyOk.do", method=RequestMethod.POST)
 	public ModelAndView messageReplyOk(HttpServletRequest request, MessageDto messageDto){
