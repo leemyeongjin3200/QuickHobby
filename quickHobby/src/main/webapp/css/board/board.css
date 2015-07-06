@@ -1,0 +1,162 @@
+@CHARSET "UTF-8";
+/**footer==============================================
+==================================================== */
+footer {
+	margin-top: 45px;
+ 	padding: 35px 0 36px;
+  	border-top: 1px solid #E5E5E5;
+  	background-color:#E5E5E5;
+}
+
+#copyRight {
+	color: #777;
+	font-size: 12px;
+	text-align: center;
+}
+
+/**body================================================
+==================================================== */
+body {
+    padding-top: 70px;
+}
+
+/* a태그 효과없음 */
+a:link{text-decoration:none;}
+a:visited{text-decoration:none;}
+a:hover{text-decoration:none;}
+a:active{text-decoration:none;}
+
+/* tab-list or album타입  버튼 정렬*/
+.tab-right{
+	position: relative;
+	top: -50px;
+	right: 0px;
+}
+
+/** List 타입 게시판=========================================
+==================================================== */
+.gTable {
+		display:table;
+		width:100%;
+		font-size: 13px;
+}
+.gTableRow {
+		display:table-row;
+}
+.gTableHeading {
+		display:table-header-group;
+		background-color:#ddd;
+}
+.gTableCell{
+		display:table-cell;
+		padding:6px 15px;
+		border-bottom:1px solid #D5D5D5;
+		text-align:center;
+}
+.gTableHead {
+		display:table-cell;
+		padding:6px 20px;
+		border-top:1px solid #999999;
+		border-bottom:1px solid #999999;
+		text-align:center;
+}
+.gTableHeading {
+		display:table-header-group;
+		background-color:#ddd;
+		font-weight:bold;
+}
+.gTableBody {
+		display: table-row-group;
+}
+.number{
+	display: inline-block;
+	width: 5%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+.title{
+	display: inline-block;
+	width:45%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+.titlec{
+	display: inline-block;
+	width:45%;
+	text-align:left !important;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+.nickname{
+	display: inline-block;
+	width: 15%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+.date{
+	display: inline-block;
+	width: 15%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+.count{
+	display: inline-block;
+	width: 10%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+.good{
+	display: inline-block;
+	width: 10%;
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+
+/** Album 타입 게시판=========================================
+==================================================== */
+.gAlbum-img {
+	border-width: 0px 0px 0px 0px;
+}
+.floatleft{
+    float : left;
+    padding: 2px;
+}
+.floatright{
+    float: right;
+    padding: 2px;
+}
+.clearboth{
+    clear : both;
+}
+.gAlbum-date-wrapper{    
+    padding: 10px;
+    border-color : #d7d7d7;
+    border-style : solid;
+    border-width: 0px 1px 1px 1px;
+    padding-bottom : 10px;
+    font-size: 12px;
+}
+.gAlbum-container{    
+    padding: 15px;
+    border-color: #d7d7d7;
+    border-style: solid;
+    border-width : 0px 0px 0px 0px;
+    padding-bottom : 15px;
+    height:150px;
+}
+.gAlbum-container p{
+	white-space: nowrap;
+	overflow:hidden !important;
+	text-overflow: ellipsis;	
+}
+/**  glyphicon 색상  */
+.glyphicon-user, .glyphicon-comment, .glyphicon-calendar, .glyphicon-heart{
+	color:#A6A6A6 !important;
+}
