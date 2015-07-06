@@ -86,7 +86,6 @@
 		</form>
 	</div>
 <jsp:include page="sendCode.jsp"></jsp:include>
-<jsp:include page="nicknameCheck.jsp"></jsp:include>
 <jsp:include page="../../../template/loginModal.jsp"></jsp:include>
 <jsp:include page="../../../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/jquery.js"></script>

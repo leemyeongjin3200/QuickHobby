@@ -97,6 +97,9 @@ function checkCode(checkForm){
 	}
 }
 
+function checkNickname(nickname, root){
+	
+}
 function previewImage(){
 	$(document).ready(function(){
         function readURL(input) {
