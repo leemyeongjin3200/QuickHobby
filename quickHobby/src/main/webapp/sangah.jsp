@@ -14,7 +14,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <a href="${root}">test</a>
-<a href="${root}/memberBoard/check.do?board_writer=1&&groupboard_writer=1">회원목록보기</a>
+<a href="${root}/memberBoard/check.do?board_writer=1&&groupboard_writer=1">개인 게시판</a>
 
 </body>
 </html>
