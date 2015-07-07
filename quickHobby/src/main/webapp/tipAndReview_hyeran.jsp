@@ -560,6 +560,57 @@
     </div><!-- #menu3 끝 -->
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
+ 
+ <!-- Reply Pop-Up// -->
+ <div class="container">
+ <!-- Modal -->
+  <div class="modal fade" id="myModalReply" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-comment" style="color:white !important"></span> Comments</h4>
+        </div>
+        <div class="modal-Reply-body">
+          <ul class="reply-box">
+               <li class="left clearfix">
+                   <div class="reply-body">                                        
+                       <strong ><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong>
+                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i> 13:00:00</small>                                      
+                       <p>
+                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                       </p>
+                   </div>
+               </li>
+               <li class="left clearfix">
+                   <div class="reply-body clearfix">
+                       <strong ><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong>
+                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i> 13:00:00</small>
+                       <p>
+                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                       </p>
+                   </div>
+               </li>
+               <li class="left clearfix">
+                <div class="reply-body">                                        
+                    <strong ><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong>
+                    <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i> 13:00:00</small>                                      
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                    </p>
+                </div>
+           </li> 
+           </ul>
+        </div>
+        <div class="modal-footer" style="font-color:white">
+        	<a href="#" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a>
+            <a href="#" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+<!-- //Reply Pop-Up -->
 
 <jsp:include page="WEB-INF/views/template/loginModal.jsp"></jsp:include>
 <jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
