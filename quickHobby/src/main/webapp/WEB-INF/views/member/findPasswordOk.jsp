@@ -18,14 +18,17 @@
 			<h2>비밀번호 찾기</h2>
 		</div>
 		<div style="dispay: inline-block; text-align: center;">
-		<h3 class="text-info">회원님의 비밀번호는 </h3>
-		<a class="btn btn-default" href="javascript:window.close();" >닫기</a>
+		<h3>회원님의 비밀번호는 ${password}입니다.</h3>
+		<p class="text-info">비밀번호는 처음 네글자만 공개 됩니다.</p><br/>
+		<a id="login" class="btn btn-default" href="#">로그인</a>
+		<a class="btn btn-default" href="${root}/memberMain.do">메인으로</a>
 		</div>
 	</div>
 </body>
 <jsp:include page="../template/loginModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/jquery.js"></script>
+<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>

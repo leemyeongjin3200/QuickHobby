@@ -19,7 +19,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">QuickHobby</a>
+      <a class="navbar-brand" href="${root}/memberMain.do">QuickHobby</a>
     </div>
     <!-- Before Login -->
 	<!-- c:if문 설정  -->

@@ -4,7 +4,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+	
 	<!-- mvc:mapping 으로 인터셉터 거치는 url등록 -->
 	<!-- mvc:exclude-mapping path="" 으로 인터셉터 거치지 않을 url등록 -->
 	<!--
@@ -25,4 +25,5 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	-->
+	
 </beans>

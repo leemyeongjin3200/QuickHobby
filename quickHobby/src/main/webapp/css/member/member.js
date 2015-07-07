@@ -248,7 +248,7 @@ function checkCodeFindPass(checkForm){
 	
 	if((serverCode==userCode)){
 		alert("인증이 완료 되었습니다.");
-		$("#emailCheck").val("1");
+		$("input[name='emailCheck']").val("1");
 		$("#findPassModal").modal('toggle');
 		
 		return false;
@@ -263,7 +263,7 @@ function findPasswordCheck(form){
 		return false;
 	}
 	
-	if($("input[name='emailCheck']").val()!=1){
+	if($("input[name='emailCheck']").val()!="1"){
 		alert("이메일 인증을 해주세요.");
 		
 		return false;

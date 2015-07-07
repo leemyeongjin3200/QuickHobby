@@ -39,6 +39,16 @@ $(document).ready(function(){
         $("#myModal").modal("toggle");
     });
     
+    $("#login").click(function(){
+    	var cookieId=$.cookie('cookieId');
+		if(cookieId!=undefined){
+			$("#userId").val(cookieId);
+			$("#rememberId").attr("checked", true);
+		}
+		
+        $("#myModal").modal("toggle");
+    });
+    
     $("#loginBtn").click(function(){
 		if($("#userId").val()==""){
 			alert("E-mail을 입력하세요.");

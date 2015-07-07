@@ -301,8 +301,17 @@ public class MemberServiceImpl implements MemberService{
 		String email=req.getParameter("memberId");
 		
 		String password=memberDao.findPassword(email);
+		String clientPassword="";
 		
-		mav.addObject("password", password);
+		for(int i=0; i<password.length(); i++){
+			if(i<4){
+				clientPassword+=password.charAt(i);
+			}else{
+				clientPassword+="*";
+			}
+		}
+		
+		mav.addObject("password", clientPassword);
 		mav.setViewName("member/findPasswordOk");
 	}
 }
