@@ -11,4 +11,5 @@ public interface MessageService {
 	public void messageDelete(ModelAndView mav);
 	public void messageReply(ModelAndView mav);
 	public void messageReplyOk(ModelAndView mav);
+	public void getNewMessage(ModelAndView mav);
 }

@@ -11,6 +11,7 @@ public class MemberDto {
 	private String memberFileName;
 	private String memberFilePath;
 	private String memberFileSize;
+	private String memberRead;
 
 	public int getMemberNum() {
 		return memberNum;
@@ -90,5 +91,13 @@ public class MemberDto {
 
 	public void setMemberFileSize(String memberFileSize) {
 		this.memberFileSize = memberFileSize;
+	}
+
+	public String getMemberRead() {
+		return memberRead;
+	}
+
+	public void setMemberRead(String memberRead) {
+		this.memberRead = memberRead;
 	}
 }

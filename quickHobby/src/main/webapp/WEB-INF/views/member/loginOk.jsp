@@ -20,7 +20,7 @@
 	<c:if test="${member==null}">
 		<script type="text/javascript">
 			alert("로그인 실패");
-			$(location).attr("href", "${root}/member/login.do");
+			$(location).attr("href", "${root}/memberMain.do");
 		</script>
 	</c:if>
 </body>

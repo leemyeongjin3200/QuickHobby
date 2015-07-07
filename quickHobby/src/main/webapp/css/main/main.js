@@ -1,13 +1,53 @@
 /**
  * 
  */
+function getNewMessage(root, memberNum){
+	if(memberNum!=""){
+		setInterval(function(){
+			var callUrl=root+"/getNewMessage.do?memberNum="+memberNum;
+			alert(callUrl);
+			$.ajax({
+				url:callUrl,
+				type:"get",
+				dataType:"html",
+				success:function(data){
+					alert($(data).find("input[type='hidden']").val());
+					$("#newMessage").text();
+				}
+			});
+		}, 5000);
+	}
+}
 
 //로그인 팝업창
 $(document).ready(function(){
     $("#myLogin").click(function(){
-    	var openModal=$("#myModal").clone();
-        $(openModal).modal();
+    	var cookieId=$.cookie('cookieId');
+		if(cookieId!=undefined){
+			$("#userId").val(cookieId);
+			$("#rememberId").attr("checked", true);
+		}
+		
+        $("#myModal").modal("toggle");
     });
+    
+    $("#loginBtn").click(function(){
+		if($("#userId").val()==""){
+			alert("E-mail을 입력하세요.");
+			return false;
+		}
+		
+		if($("#userPassword").val()==""){
+			alert("Password를 입력하세요.");
+			return false;
+		}
+		
+		if($("#rememberId").is(":checked")){
+			$.cookie('cookieId', $("#userId").val(), {expires:7});
+		}else{
+			$.removeCookie('cookieId');
+		}
+	});
 });
 
 //content1-메인 이미지슬라이드 형식 구현

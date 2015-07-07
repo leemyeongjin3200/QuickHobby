@@ -171,4 +171,14 @@ public class MessageController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/getNewMessage.do", method=RequestMethod.GET)
+	public ModelAndView getNewMessage(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request", req);
+		messageService.getNewMessage(mav);
+		
+		return mav;
+	}
 }

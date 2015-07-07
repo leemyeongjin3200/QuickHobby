@@ -60,9 +60,15 @@
 		]]>	
 	</select>
 	
-	<select id="nicknameCheck" parameterType="String" resultType="String">
+	<select id="checkNickname" parameterType="String" resultType="String">
 		<![CDATA[
 			select member_nickname from member where member_nickname=#{nickname}
+		]]>
+	</select>
+	
+	<select id="checkEmail" parameterType="String" resultType="String">
+		<![CDATA[
+			select member_id from member where member_id=#{email}
 		]]>
 	</select>
 </mapper>

@@ -44,4 +44,10 @@
 			order by MESSAGE_DATE desc)a) 
  			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
 	</select>
+	
+	<select id="getNewMessage" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from message where message_receiver=#{memberNum} and message_read='no'
+		]]>
+	</select>
 </mapper>

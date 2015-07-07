@@ -32,7 +32,7 @@ public class MemberController {
 	 */
 	@RequestMapping(value="/memberMain.do", method=RequestMethod.GET)
 	public String main(HttpServletRequest req){
-		return "memberMain";
+		return "redirect:main_hyeran.jsp";
 	}
 	
 	/**
@@ -79,25 +79,14 @@ public class MemberController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/member/nicknameCheck.do", method=RequestMethod.GET)
+	@RequestMapping(value="/member/checkNickname.do", method=RequestMethod.GET)
 	public ModelAndView nicknameCheck(HttpServletRequest req){
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request", req);
-		memberService.nicknameCheck(mav);
+		memberService.checkNickname(mav);
 		
 		return mav;
-	}
-	
-	/**
-	* @name : login
-	* @date : 2015. 6. 25.
-	* @author : 이명진
-	* @description : 로그인요청 들어올 때 로그인 화면으로 응답하는 메소드
-	 */
-	@RequestMapping(value="/member/login.do", method=RequestMethod.GET)
-	public String login(HttpServletRequest req){
-		return "member/login";
 	}
 	
 	/**
@@ -159,6 +148,6 @@ public class MemberController {
 	public String logout(HttpServletRequest req){
 		req.getSession().invalidate();
 		
-		return "memberMain";
+		return "redirect:/main_hyeran.jsp";
 	}
 }

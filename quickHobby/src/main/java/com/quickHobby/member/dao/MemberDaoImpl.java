@@ -89,9 +89,14 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public String nicknameCheck(String nickname) {
+	public String checkNickname(String nickname) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.dao.mapper.nicknameCheck", nickname);
+		return sqlSession.selectOne("member.dao.mapper.checkNickname", nickname);
 	}
 
+	@Override
+	public String checkEmail(String email) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.dao.mapper.checkEmail", email);
+	}
 }

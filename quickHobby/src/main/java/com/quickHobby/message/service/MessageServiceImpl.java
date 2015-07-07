@@ -197,4 +197,19 @@ public class MessageServiceImpl implements MessageService {
 		mav.addObject("check", check);
 		mav.setViewName("message/messageReplyOk");
 	}
+	
+	public void getNewMessage(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		
+		int memberNum=Integer.parseInt(req.getParameter("memberNum"));
+		
+		int newMessageNum=messageDao.getNewMessage(memberNum);
+		
+		System.out.println(newMessageNum);
+		
+		mav.addObject("newMessageNum", newMessageNum);
+		mav.setViewName("template/header");
+	}
 }

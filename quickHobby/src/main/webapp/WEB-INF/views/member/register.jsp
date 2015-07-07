@@ -12,7 +12,7 @@
 <title>회원가입</title>
 </head>
 <body onload="previewImage()">
-<jsp:include page="../../../template/header.jsp"></jsp:include><br/><br/>
+<jsp:include page="../template/header.jsp"></jsp:include><br/><br/>
 	<div class="container">
 		<div class="page-header">
 			<h2>회원가입</h2>
@@ -37,7 +37,7 @@
 					<label for="memberPassword"><span class="glyphicon glyphicon-lock"></span> Password</label>
 					<div class="row">
 						<div class="col-md-9">
-							<input class="form-control" type="password" name="memberPassword" placeholder="Password"/>
+							<input class="form-control" type="password" name="memberPassword" maxlength="10" placeholder="Password"/>
 						</div>
 					</div>
 				</div>
@@ -46,7 +46,7 @@
 					<label for="rePassword"><span class="glyphicon glyphicon-lock"></span> Confirm you password</label>
 					<div class="row">
 						<div class="col-md-9">
-							<input class="form-control" type="password" name="rePassword" placeholder="Confirm your password"/>
+							<input class="form-control" type="password" name="rePassword" maxlength="10" placeholder="Confirm your password"/>
 						</div>
 					</div>
 				</div>
@@ -59,17 +59,23 @@
 							<span id="nicknameIcon"></span>
 						</div>
 						<div class="col-md-2">
-							<button type="button" class="form-control btn btn-primary" onclick="checkNickname(memberNickName, '${root}')">Check</button>
+							<button type="button" class="form-control btn btn-primary" onclick="checkNickname(memberNickName, '${root}')">&nbsp;Check</button>
 						</div>
 						<input type="hidden" name="nicknameCheck" value="0"/>
 					</div>
+					<div>
+						<input id="serverNickname" type="hidden" value="${serverNickname}"/>
+						<input id="nicknameCheck" type="hidden"/>
+						<p id="nicknameAlert"></p>
+					</div>
+						
 				</div>
 				
 				<div class="form-group">
 					<label for="memberSNS"><span class="glyphicon glyphicon-eye-open"></span> SNS Address</label>
 					<div class="row">
 						<div class="col-md-9">
-							<input class="form-control" type="password" name="memberSNS" placeholder="SNS Address"/>
+							<input class="form-control" type="text" name="memberSNS" placeholder="SNS Address"/>
 						</div>
 					</div>
 				</div>
@@ -86,8 +92,8 @@
 		</form>
 	</div>
 <jsp:include page="sendCode.jsp"></jsp:include>
-<jsp:include page="../../../template/loginModal.jsp"></jsp:include>
-<jsp:include page="../../../template/footer.jsp"></jsp:include>
+<jsp:include page="../template/loginModal.jsp"></jsp:include>
+<jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/jquery.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>

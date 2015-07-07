@@ -18,7 +18,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="template/header.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <!-- 일반게시판 Content 시작 -->
 <div class="container">
 	<!-- Page Header -->
@@ -561,8 +561,8 @@
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
 
-<jsp:include page="template/loginModal.jsp"></jsp:include>
-<jsp:include page="template/footer.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/loginModal.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>

@@ -90,15 +90,22 @@ public class MemberServiceImpl implements MemberService{
 		HttpServletRequest req=(HttpServletRequest)map.get("request");
 		String email=req.getParameter("email");
 		
-		Random random=new Random();
-		random.setSeed(new Date().getTime());
+		String serverEmail=memberDao.checkEmail(email);
+		
+		if(serverEmail==null){
+			Random random=new Random();
+			random.setSeed(new Date().getTime());
 
-		int randomCode=random.nextInt(89999)+10000;
+			int randomCode=random.nextInt(89999)+10000;
+			
+			String code=String.valueOf(randomCode);
+			mav.addObject("serverCode", code);
+			
+			sendMail(email, code);
+		}else{
+			mav.addObject("serverCode", -1);
+		}
 		
-		String code=String.valueOf(randomCode);
-		mav.addObject("serverCode", code);
-		
-		sendMail(email, code);
 
 		mav.setViewName("member/sendCode");
 	}
@@ -155,8 +162,8 @@ public class MemberServiceImpl implements MemberService{
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest req=(HttpServletRequest)map.get("request");
 		
-		String email=req.getParameter("memberEmail");
-		String password=req.getParameter("memberPassword");
+		String email=req.getParameter("userId");
+		String password=req.getParameter("userPassword");
 		
 		HashMap<String, String> hMap=new HashMap<String, String>();
 		hMap.put("email", email);
@@ -239,18 +246,19 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("member/updateOk");
 	}
 
-	public void nicknameCheck(ModelAndView mav) {
+	public void checkNickname(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		
 		HttpServletRequest req=(HttpServletRequest)map.get("request");
-		String nickname=req.getParameter("memberNickName");
-		logger.info("nickname:" + nickname);
-		String serverNickname=memberDao.nicknameCheck(nickname);
-		
+		String nickname=req.getParameter("nickname");
+		String serverNickname=memberDao.checkNickname(nickname);
+
 		if(nickname.equals(serverNickname)){
 			mav.addObject("serverNickname", serverNickname);
+		}else{
+			mav.addObject("serverNickname", null);
 		}
 		
-		mav.setViewName("member/nicknameCheck");
+		mav.setViewName("member/register");
 	}
 }

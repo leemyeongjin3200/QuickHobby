@@ -57,4 +57,10 @@ public class MessageDaoImpl implements MessageDao {
 		map.put("endRow", endRow);
 		return sqlSession.selectList("getMessageList", map);
 	}
+	
+	@Override
+	public int getNewMessage(int memberNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("message.dao.mapper.getNewMessage", memberNum);
+	}
 }
