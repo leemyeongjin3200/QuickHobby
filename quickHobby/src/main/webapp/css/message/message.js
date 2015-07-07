@@ -52,15 +52,15 @@ function checkForm(messageForm){
 	alert("Message Form check");
 }
 
+// 현재 페이지 클릭 막기
 $(document).ready(function(){
 	$("#currentP").click(function(e){
 		// alert("currentP");
 		e.preventDefault();
 	});
-	
-	
 });
 
+// 체크한 message들 한번에 delete 컨트롤러로 보내기
 $(document).ready(function(){
 	$("#messageDel").click(function(e){
 		var checkedMsg="";
@@ -82,6 +82,7 @@ $(document).ready(function(){
 	});
 });
 
+// message 작성 후 send 컨트롤러로 보내기
 $(document).ready(function(){
 	$("#sendMsg").click(function(e){
 		var sendMsg = document.getElementById("sendMsg");
@@ -121,44 +122,9 @@ $(document).ready(function(){
 	});
 });
 
-
-//function sendMsg(){
-//	var sendMsg = document.getElementById("sendMsg");
-//	var messageFrom = document.getElementById("messageFrom");
-//	var message_sender=messageFrom.val();
-//	
-//	var messageTo = document.getElementById("messageTo");
-//	var message_receiver=messageTo.val();
-//	
-//	var messageCon = document.getElementById("message_content");
-//	var message_content=messageCon.val();
-//	
-//	alert(message_sender, message_receiver, message_content);
-//	
-//	var sendData="message_sender="+message_sender+"message_receiver="+message_receiver+"message_content="+message_content;
-//	var root=getContextPath();
-//	var callUrl=root+"/message/messageWrite.do";
-//	
-//	$.ajax({
-//		url:callUrl,
-//		type:"post",
-//		data:sendData,
-//		contentType:"application/x-www-form-urlencoded;charset=utf-8",
-//		dataType:"text",
-//		success:function(data){
-//			alert("message가 전송되었습니다.")
-//		
-//			
-//		},
-//		error:function(xhr, status, error){
-//			alert(xhr+","+status+","+error);
-//		}
-//	});
-//}
-
+// root값 받아오는 함수
 function getContextPath(){
     var offset=location.href.indexOf(location.host)+location.host.length;
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
     return ctxPath;
 }
-
