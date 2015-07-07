@@ -38,8 +38,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+          <p>Not a member? <a href="${root}/member/register.do">Sign Up</a></p>
+          <p>Forgot <a href="${root}/member/findPassword.do">Password?</a></p>
         </div>
       </div>
     </div>

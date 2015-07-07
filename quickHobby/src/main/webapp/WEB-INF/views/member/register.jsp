@@ -11,8 +11,8 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <title>회원가입</title>
 </head>
-<body onload="previewImage()">
 <jsp:include page="../template/header.jsp"></jsp:include><br/><br/>
+<body onload="previewImage()">
 	<div class="container">
 		<div class="page-header">
 			<h2>회원가입</h2>

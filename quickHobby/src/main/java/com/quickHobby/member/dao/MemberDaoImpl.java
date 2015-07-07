@@ -99,4 +99,10 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.dao.mapper.checkEmail", email);
 	}
+
+	@Override
+	public String findPassword(String email) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.dao.mapper.findPassword", email);
+	}
 }

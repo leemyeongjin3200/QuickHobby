@@ -9,4 +9,6 @@ public interface MemberService {
 	public void update(ModelAndView mav);
 	public void updateOk(ModelAndView mav);
 	public void checkNickname(ModelAndView mav);
+	public void sendCodeFindPass(ModelAndView mav);
+	public void findPassword(ModelAndView mav);
 }
