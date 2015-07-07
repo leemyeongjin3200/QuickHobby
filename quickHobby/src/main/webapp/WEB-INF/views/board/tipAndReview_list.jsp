@@ -19,7 +19,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="../../../WEB-INF/views/template/header.jsp"></jsp:include>
 <!-- 일반게시판 Content 시작 -->
 <div class="container">
 	<!-- Page Header -->
@@ -62,87 +62,38 @@
                    <!-- menu1 전체의 list1 시작--> 
                        <div id="list1" class="tab-pane active">
                        	<div class="row-fluid">
-						<div class="gTable">
-							<!-- list1 header -->
-							<div class="gTableRow">
-								<div class="gTableHead number"><strong>#</strong></div>
-								<div class="gTableHead nickname"><strong>NickName</strong></div>
-								<div class="gTableHead title"><strong>Title</strong></div>
-								<div class="gTableHead date"><i class="glyphicon glyphicon-calendar"></i><strong> Date</strong></div>
-								<div class="gTableHead count"><strong>Views</strong></div>
-								<div class="gTableHead good"><i class="glyphicon glyphicon-heart"></i><strong> Good</strong></div>
-							</div>
-							
-							<!-- list1 contents -->
-							<c:if test="${count==0}">
+							<div class="gTable">
+								<!-- list1 header -->
 								<div class="gTableRow">
-									<div class="gTableCell number"></div>
-									<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-										<a href="#"></a></div>
-									<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-										<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-									<div class="gTableCell date"> 13:48 </div>
-									<div class="gTableCell count">45</div>
-									<div class="gTableCell good">1</div>
-								</div><!-- .gTableRow 끝-->
-							</c:if>
-							
-							<c:if test="${count!=0}">
+									<div class="gTableHead number"><strong>#</strong></div>
+									<div class="gTableHead nickname"><strong>NickName</strong></div>
+									<div class="gTableHead title"><strong>Title</strong></div>
+									<div class="gTableHead date"><i class="glyphicon glyphicon-calendar"></i><strong> Date</strong></div>
+									<div class="gTableHead count"><strong>Views</strong></div>
+									<div class="gTableHead good"><i class="glyphicon glyphicon-heart"></i><strong> Good</strong></div>
+								</div>
+								
+								<!-- list1 contents -->
+		
 								<div class="gTableRow">
-									<div class="gTableCell number"></div>
-									<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-										<a href="#"></a></div>
-									<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-										<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-									<div class="gTableCell date"> 13:48 </div>
-									<div class="gTableCell count">45</div>
-									<div class="gTableCell good">1</div>
+								
+									<c:forEach var="board" items="${boardList}">
+									<!-- boardVisible 값이 1인 글들만 출력 -->
+										<c:if test="${board.boardVisible==1}">
+											<div class="gTableCell number">${board.boardNum}</div>
+											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
+												<a href="#">${board.boardWriter}</a></div>
+											<div class="gTableCell titlec"><a href="#">${board.boardSubject}&nbsp;</a>
+												<i class="glyphicon glyphicon-comment"></i><a href="#"><b id="myReply"> 3</b></a></div>
+											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
+											<div class="gTableCell count">${board.boardReadCount}</div>
+											<div class="gTableCell good">${board.boardRecommand}</div>
+										</c:if>
+									<!-- boardVisible 값이 1인 글들만 출력 -->
+									</c:forEach>
+									
 								</div><!-- .gTableRow 끝-->
-							</c:if>
-							<div class="gTableRow">
-								<div class="gTableCell number">4</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">3</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">2</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">1</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
-						</div> <!-- .gTable 끝  -->
+							</div> <!-- .gTable 끝  -->
 					</div><!-- .row-fluid 끝 -->
                    </div><!-- #list1 끝 -->
 
@@ -208,6 +159,7 @@
                        </div><!-- .row-fluid 끝 -->
                    </div><!-- #album1 끝 -->
                </div>
+             </div>
               
 	        <!-- menu1 전체의 page넘기기 -->   
 	       <!-- Page 설정에 관련한 변수들 설정 -->
@@ -672,8 +624,8 @@
   </div>
 <!-- //Reply Pop-Up -->
 
-<jsp:include page="WEB-INF/views/template/loginModal.jsp"></jsp:include>
-<jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
+<jsp:include page="../../../WEB-INF/views/template/loginModal.jsp"></jsp:include>
+<jsp:include page="../../../WEB-INF/views/template/footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>
