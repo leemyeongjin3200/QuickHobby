@@ -13,4 +13,5 @@ public interface MessageDao {
 	public int getMessageCount();
 	public List<MessageDto> getMessageList(int startRow, int endRow);
 	public int getNewMessage(int memberNum);
+	public int readChange(int message_num);
 }

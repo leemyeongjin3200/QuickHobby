@@ -20,51 +20,37 @@ import com.quickHobby.message.dto.MessageDto;
  * @author      : ���α�
  * @description : ��û ���� ���������� �ʿ�� �ϴ� �����͸� DAO�� ���� �������ų� �ʿ��� ���񽺸� ����.
  */
+
 @Component
 public class MessageServiceImpl implements MessageService {
 	private Logger logger=Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
 	private MessageDao messageDao;
-	
-	/*
-	 * @name        : messageWrite
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : ������ �̵�.
+
+	/**
+	* @name : messageWrite
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message 작성 기능 / ajax 이용하여 view와 연결
 	 */
 	public void messageWrite(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
-		mav.setViewName("message/messageWrite");
-	}
-	
-	/*
-	 * @name        : messageWriteOk
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : Message Table�� ���ο� ���� ���� ����.
-	 */
-	public void messageWriteOk(ModelAndView mav){
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		// HttpServletRequest request=(HttpServletRequest) map.get("request");
 		MessageDto messageDto=(MessageDto) map.get("messageDto");
-		
-		messageDto.setMessage_date(new Date());
 		
 		int check=messageDao.send(messageDto);
 		logger.info("check : " + check);
 		
 		mav.addObject("check", check);
-		mav.setViewName("message/messageWriteOk");
+		mav.setViewName("message/messageList");
 	}
 	
-	/*
-	 * @name        : messageReceiveList
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : Message Table���� �ش� ȸ���� �߼��� ���� ����� ������.
+	/**
+	* @name : messageList
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message list 기능 / ajax 이용하여 view와 연결
 	 */
 	public void messageList(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -85,8 +71,9 @@ public class MessageServiceImpl implements MessageService {
 		
 		if(count>0){
 			messageList=messageDao.getMessageList(startRow, endRow);
+			logger.info("messageList:"+messageList.size());
 		}
-		logger.info("messageList:"+messageList.size());
+		
 		
 		mav.addObject("messageList", messageList);
 		mav.addObject("count", count);
@@ -102,8 +89,8 @@ public class MessageServiceImpl implements MessageService {
 	 * @description : Message Table���� �ش� ȸ���� ������ ���� ����� ������.
 	 */
 	public void messageSendList(ModelAndView mav){
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		//Map<String, Object> map=mav.getModelMap();
+		//HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		List<MessageDto> messageList=messageDao.getSendList(1);
 		logger.info("SendList size : " + messageList.size());
@@ -112,29 +99,33 @@ public class MessageServiceImpl implements MessageService {
 		mav.setViewName("message/messageSendList");
 	}
 	
-	/*
-	 * @name        : messageRead
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : �ش� ��ȣ�� ������ ���� ������ ������.
+	/**
+	* @name : messageList
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message list 기능 / 읽은 message와 안읽은 message 구별
 	 */
 	public void messageRead(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		MessageDto messageDto=(MessageDto) map.get("messageDto");
 		
 		int message_num=Integer.parseInt(request.getParameter("message_num"));
-		MessageDto messageDto=messageDao.getMessageDto(message_num);
+		
+		messageDao.readChange(message_num);
+		
+		messageDto=messageDao.getMessageDto(message_num);
 		logger.info("message_num : " + messageDto.getMessage_num());
 		
 		mav.addObject("messageDto", messageDto);
 		mav.setViewName("message/messageRead");
 	}
 	
-	/*
-	 * @name        : messageDelete
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : �ش� ��ȣ�� ������ Message Table���� ����.
+	/**
+	* @name : messageDelete
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message 삭제 기능 / 체크된 message들 다수를 삭제
 	 */
 	public void messageDelete(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -186,7 +177,7 @@ public class MessageServiceImpl implements MessageService {
 	 */
 	public void messageReplyOk(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		//HttpServletRequest request=(HttpServletRequest) map.get("request");
 		MessageDto messageDto=(MessageDto) map.get("messageDto");
 		
 		messageDto.setMessage_date(new Date());
@@ -198,6 +189,12 @@ public class MessageServiceImpl implements MessageService {
 		mav.setViewName("message/messageReplyOk");
 	}
 	
+	/**
+	* @name : getNewMessage
+	* @date : 2015. 7. 7.
+	* @author : 이명진
+	* @description : 안읽은 message 개수 카운트
+	 */
 	public void getNewMessage(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		

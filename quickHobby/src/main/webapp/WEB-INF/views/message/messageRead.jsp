@@ -14,7 +14,6 @@
 	<label>번호 : ${messageDto.message_num}</label><br/>
 	<label>발신자 : ${messageDto.message_sender}</label><br/>
 	<label>수신자 : ${messageDto.message_receiver}</label><br/>
-	<label>제목 : ${messageDto.message_subject}</label><br/>
 	<label>발신시간 : <fmt:formatDate value="${messageDto.message_date}" type="both"/></label><br/>
 	<br/>
 	

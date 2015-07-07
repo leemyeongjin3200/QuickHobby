@@ -4,7 +4,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface MessageService {
 	public void messageWrite(ModelAndView mav);
-	public void messageWriteOk(ModelAndView mav);
 	public void messageList(ModelAndView mav);
 	public void messageSendList(ModelAndView mav);
 	public void messageRead(ModelAndView mav);

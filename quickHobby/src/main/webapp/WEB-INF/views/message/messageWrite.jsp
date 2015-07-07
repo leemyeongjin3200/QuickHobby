@@ -21,9 +21,6 @@
 		<label>수신자</label>
 		<input type="text" value="seo" disabled="disabled"/><br/>
 		
-		<label>제목</label>
-		<input type="text" name="message_subject"/><br/>
-		
 		<label>내용</label>
 		<textarea rows="4" cols="50" name="message_content"></textarea><br/>
 		
