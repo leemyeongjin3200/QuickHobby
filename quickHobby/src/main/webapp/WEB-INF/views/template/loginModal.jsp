@@ -22,7 +22,7 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" action="${root}/member/login.do" method="post">
+          <form role="form" action="${root}/member/login.do?root1" method="post">
             <div class="form-group">
               <label for="username"><span class="glyphicon glyphicon-user"></span> E-mail</label>
               <input type="text" class="form-control" id="userId" name="userId" placeholder="Enter email">
