@@ -1,5 +1,8 @@
 package com.quickHobby.member.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,8 +34,13 @@ public class MemberController {
 	* @description : 메인이동 요청 url이 들어오면 memberMain페이지로 응답
 	 */
 	@RequestMapping(value="/memberMain.do", method=RequestMethod.GET)
-	public String main(HttpServletRequest req){
-		return "redirect:main_hyeran.jsp";
+	public ModelAndView main(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request", req);
+		mav.addObject("abc", "/quickHobby/main_hyeran.jsp");
+		mav.setViewName("redirect:main_hyeran.jsp");
+		return mav;
 	}
 	
 	/**
@@ -100,9 +108,28 @@ public class MemberController {
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("request", req);
+		System.out.println(req.getRequestURI());
 		memberService.loginOk(mav);
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/member/aaa.do", method=RequestMethod.GET)
+	public String aa(HttpServletRequest req, HttpServletResponse res) throws IOException{
+//		String abc=req.getParameter("abc");
+//		System.out.println("abc:" + abc);
+		
+		PrintWriter out=res.getWriter();
+		out.print("<script>");
+		// out.print("alert('aaa')");
+		// out.print("window.open('/quickHobby/loginModal.jsp', '', 'width=200 height=200')");
+		out.print("window.open('http://www.naver.com', '', 'width=300, height=300')");
+		// out.print("alert('aaa')");
+		out.print("</script>");
+		
+		// return "redirect:"+ abc;
+		// return "redirect:/main_hyeran.jsp";
+		return null;
 	}
 	
 	/**
