@@ -23,9 +23,12 @@ public class GroupDaoImpl implements GroupDao {
 	public List<GroupDto> myGroupList(int memberNum) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("group.dao.mapper.myGroupList", memberNum);
+	}
 	
 	@Override
 	public int updateGroup(ApplyDto groupDto){
 		return sqlSession.update("group.dao.mapper.updateGroup", groupDto);
 	}
+
+
 }

@@ -7,8 +7,6 @@ import com.quickHobby.apply.dto.ApplyDto;
 
 public interface GroupDao {
 
-	int createGroup(GroupDto groupDto);
-	
 	public List<GroupDto> myGroupList(int memberNum);
 	int createGroup(ApplyDto groupDto);
 	int updateGroup(ApplyDto groupDto);
