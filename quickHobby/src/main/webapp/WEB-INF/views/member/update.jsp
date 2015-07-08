@@ -12,7 +12,7 @@
 <title>회원정보수정</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
-<body onload="previewImage()">
+<body>
 <br/><br/>
 	<div class="container">
 		<div class="page-header">
@@ -74,7 +74,7 @@
 			<div class="col-md-3">
 				<label for="memberFile"><span class="glyphicon glyphicon-camera"></span> 사진 선택</label><br/>
 				<img class="img-thumnail" alt="이미지 없음" src="${root}/pds/${fileName}" id="userImage" height="300" width="250"><br/><br/>
-				<input type="file" name="memberFile"/>
+				<input type="file" name="memberFile" onclick="previewImage()"/>
 			</div>
 		</form>
 	</div>

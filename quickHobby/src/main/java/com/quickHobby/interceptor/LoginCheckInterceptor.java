@@ -6,11 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse res, Object handler){
+	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler){
 		try{
-			if(request.getSession().getAttribute("member") == null){
-				res.sendRedirect("/quickHobby/member/login.do");
-				
+			if(req.getSession().getAttribute("member") == null){
+				System.out.println("servlet path:" + req.getServletPath());
+				System.out.println("context path:" + req.getContextPath());
+				System.out.println("request uri:" + req.getRequestURI());
+				System.out.println("request url:" + req.getRequestURL());
+				res.sendRedirect("/");
 				return false;
 			}
 		}catch(Exception e){
