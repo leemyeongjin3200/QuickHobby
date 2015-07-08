@@ -151,7 +151,7 @@ a:active{text-decoration:none;}
     padding-bottom : 15px;
     height:150px;
 }
-.gAlbum-container p{
+.gAlbum-container p, .gAlbum-container h4{
 	white-space: nowrap;
 	overflow:hidden !important;
 	text-overflow: ellipsis;	
@@ -186,7 +186,7 @@ a:active{text-decoration:none;}
 	color: #8d8888;
 }
 
-.modal-header, h4, .close {
+.modal-header, .modal-header h4, .close {
       background-color: #BDBDBD;
       color:white !important;
       text-align: center;
