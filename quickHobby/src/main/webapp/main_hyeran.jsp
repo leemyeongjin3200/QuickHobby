@@ -8,14 +8,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="root1" value="${pageContext.request.requestURI }"/>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <script>
 </script>
 <title>HYERAN</title>
 </head>
-<jsp:include page="WEB-INF/views/template/header.jsp?root1=${root1}"></jsp:include>
+<jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
 <!-- Content 1//-->
 <div class="container-fluid">
@@ -216,12 +213,6 @@
         </div>
 	</div>
 </div>
-<jsp:include page="WEB-INF/views/template/loginModal.jsp?root1=${root1}"></jsp:include>
-<jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="${root}/css/main/main.js"></script>
-<script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>
+<jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
 </html>

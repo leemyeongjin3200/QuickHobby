@@ -20,4 +20,10 @@
 		<![CDATA[insert into ggroup(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, GROUP_LOCATION, GROUP_DATE, GROUP_COST)
  				values(group_num_seq.nextval, #{groupCategory},	#{groupInout}, #{groupHost}, #{groupSubject}, #{groupSubtitle}, #{groupLocation}, #{groupDate}, #{groupCost})]]>
 	</insert>
+	
+	<select id="myGroupList" parameterType="int" resultMap="groupDto">
+		<![CDATA[
+			select * from ggroup where group_num=(select join_groupnum where join_membernum=#{memberNum})
+		]]>
+	</select>
 </mapper>

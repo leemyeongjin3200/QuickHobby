@@ -6,11 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" type="text/css" href="${root}/css/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/bootstrap/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <title>Insert title here</title>
 </head>
 <body onload="getNewMessage('${root}', '${member.memberNum}')">
 <!-- Header -->
-
 <header>
 <nav class="navbar navbar-default navbar-fixed-top">
 <%-- <br/><br/>
@@ -51,7 +53,7 @@ ${param.root1} --%>
 	          </ul>
 	        </li>
 	        <li><a href="#">Tip & Review</a></li>
-	        <li><a href="#" >My Group</a></li>
+	        <li><a href="${root}/myGroup/myGroupList.do">My Group</a></li>
 	        <li><a href="#">My Page</a></li>
 	      </ul>
 	      <input type="hidden" name="newMessageNum" value="${newMessageNum}"/>
@@ -67,4 +69,10 @@ ${param.root1} --%>
 </header>
 <!-- //Header -->
 </body>
+<jsp:include page="loginModal.jsp"></jsp:include>
+<script type="text/javascript" src="${root}/css/jquery.js"></script>
+<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
+<script type="text/javascript" src="${root}/css/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script type="text/javascript" src="${root}/css/member/member.js"></script>
 </html>

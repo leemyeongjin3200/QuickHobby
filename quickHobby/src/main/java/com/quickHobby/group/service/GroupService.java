@@ -7,5 +7,6 @@ public interface GroupService {
 	void createForm(ModelAndView mav);
 
 	void createGroup(ModelAndView mav);
+	public void myGroupList(ModelAndView mav);
 
 }
