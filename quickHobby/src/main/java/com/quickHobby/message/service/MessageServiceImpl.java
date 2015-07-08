@@ -57,6 +57,7 @@ public class MessageServiceImpl implements MessageService {
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
 		String pageNumber=request.getParameter("pageNumber");
+		logger.info("pageNumber:"+pageNumber);
 		if(pageNumber==null)pageNumber="1";
 		
 		int boardSize=10;

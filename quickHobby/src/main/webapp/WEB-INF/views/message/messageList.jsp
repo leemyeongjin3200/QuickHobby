@@ -93,7 +93,7 @@
 								<!-- message 선택하기 -->
 								<span class="from"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> ${messageList.message_receiver}</span>
 								<!-- message 선택하기 -->
-								<span class="title"><c:if test="${messageList.message_read=='no'}"><span class="label label-default">new</span></c:if><a href="${root}/message/messageRead.do?message_num=${messageList.message_num}">${messageList.message_content}</a></span>
+								<span class="title"><c:if test="${messageList.message_read=='no'}"><span class="label label-default">new</span>&nbsp;</c:if><a href="${root}/message/messageRead.do?message_num=${messageList.message_num}">${messageList.message_content}</a></span>
 								<span class="date"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
 							</li>
 						</c:forEach>
@@ -105,7 +105,7 @@
 				  <div class="text-right" style="margin-top:20px">
 		                    <a href="#" class="btn btn-default btn-sm" id="myMessage">send</a>
 		                    <a href="#" id="messageDel" class="btn btn-default btn-sm">delete</a>
-		                    <a href="#" class="btn btn-default btn-sm">refresh</a>
+		                    <a href="${root}/message/messageList.do?pageNumber=${currentPage}" class="btn btn-default btn-sm">refresh</a>
 		          </div>
 				</div>	
 		<!--// 버튼(쪽지 보내기, 삭제, 새로고침)  -->
@@ -200,7 +200,7 @@
 					  <div class="text-right" style="margin-top:20px">
 			                    <a href="#" class="btn btn-default btn-sm" id="myMessage">send</a>
 			                    <a href="#" id="messageDel" class="btn btn-default btn-sm">delete</a>
-			                    <a href="#" class="btn btn-default btn-sm">refresh</a>
+			                    <a href="${root}/message/messageList.do?pageNumber=${currentPage}" class="btn btn-default btn-sm">refresh</a>
 			          </div>
 					</div>	
 			<!--// 버튼(쪽지 보내기, 삭제, 새로고침)  -->

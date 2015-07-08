@@ -16,7 +16,7 @@
 <script>
 //
 </script>
-<title>Insert title here</title>
+<title>Tip/Review</title>
 </head>
 <body>
 <jsp:include page="../../../WEB-INF/views/template/header.jsp"></jsp:include>
@@ -83,7 +83,14 @@
 											<div class="gTableCell number">${board.boardNum}</div>
 											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
 												<a href="#">${board.boardWriter}</a></div>
-											<div class="gTableCell titlec"><a href="#">${board.boardSubject}&nbsp;</a>
+											<div class="gTableCell titlec">
+											
+											<!-- tip/review 구분하기 -->
+												<c:if test="${board.boardSection=='t'}"><span class="label label-default">Tip</span></c:if>
+												<c:if test="${board.boardSection=='r'}"><span class="label label-default">Review</span></c:if>
+											<!-- tip/review 구분하기 -->
+											
+												&nbsp;<a href="#">${board.boardSubject}&nbsp;</a>
 												<i class="glyphicon glyphicon-comment"></i><a href="#"><b id="myReply"> 3</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
@@ -101,60 +108,34 @@
                    <div id="album1" class="tab-pane">
 			        <div class="row-fluid">
 			        	<div class="gAlbum">
-			        		<!-- album1 contents -->
-			        	 	<div class="col-md-4">
-			        	 	  <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Review]<a href="#">ㅇㅇㅇ모임 후기입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
-					        </div><!-- .col-md-4 끝 -->
-					        
-					        <div class="col-md-4">
-			        	 	  <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Tip]<a href="#">The Green Fields of Spring</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
-					        </div><!-- .col-md-4 끝 -->
-     
-						    <div class="col-md-4" style="position:relative; top:-8px;"> <!--style (padding or margin 8px 어디인지 확인 필요!!!!!!) -->
-						      <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Review]<a href="#">The Green Fields of Spring</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
- 								</div><!-- .col-md-4 끝 -->
+				        	<c:forEach var="board" items="${boardList}">
+								<!-- boardVisible 값이 1인 글들만 출력 -->
+								<c:if test="${board.boardVisible==1}">
+					        		<!-- album1 contents -->
+					        	 	<div class="col-md-4">
+					        	 	  <div class="gAlbum-img">
+					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  </div>
+							          <div class="gAlbum-date-wrapper">
+							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
+							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
+							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
+							            <span class="clearboth"> &nbsp; </span>
+							          </div>
+							          <div class="gAlbum-container">
+							            <h4>
+							            	<!-- tip/review 구분하기 -->
+							            	<c:if test="${board.boardSection=='t'}">[Tip]</c:if>
+							            	<c:if test="${board.boardSection=='r'}">[Review]</c:if>
+							            	<!-- tip/review 구분하기 -->
+							            <a href="#">${board.boardSubject}</a></h4>
+							            <p>${board.boardContent}</p>
+							            <a href="#" >read more <i>&raquo;</i></a>
+							          </div>
+							        </div><!-- .col-md-4 끝 -->
+								</c:if>
+						    </c:forEach>    
 			        	</div><!-- .gAlbum 끝 -->
                        </div><!-- .row-fluid 끝 -->
                    </div><!-- #album1 끝 -->

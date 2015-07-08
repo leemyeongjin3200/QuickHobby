@@ -67,7 +67,7 @@ $(document).ready(function(){
 		$("input:checkbox:checked").each(function(){
 			checkedMsg += $(this).val() + ","; 
 		});
-		alert(checkedMsg);
+		// alert(checkedMsg);
 		
 		var root=getContextPath();
 		var callUrl=root+"/message/messageDelete.do?message_num="+checkedMsg;

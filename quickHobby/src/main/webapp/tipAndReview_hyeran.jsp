@@ -108,7 +108,7 @@
 								<div class="gTableCell date"> 13:48 </div>
 								<div class="gTableCell count">45</div>
 								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
+							</div><!-- .gTableRow 끝  -->
 							
 							<div class="gTableRow">
 								<div class="gTableCell number">3</div>
@@ -119,7 +119,7 @@
 								<div class="gTableCell date"> 13:48 </div>
 								<div class="gTableCell count">45</div>
 								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
+							</div><!-- .gTableRow 끝  -->
 							
 							<div class="gTableRow">
 								<div class="gTableCell number">2</div>
@@ -130,7 +130,7 @@
 								<div class="gTableCell date"> 13:48 </div>
 								<div class="gTableCell count">45</div>
 								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
+							</div><!-- .gTableRow 끝  -->
 							
 							<div class="gTableRow">
 								<div class="gTableCell number">1</div>
@@ -141,7 +141,7 @@
 								<div class="gTableCell date"> 13:48 </div>
 								<div class="gTableCell count">45</div>
 								<div class="gTableCell good">1</div>
-							</div>.gTableRow 끝
+							</div><!-- .gTableRow 끝  -->
 						</div> <!-- .gTable 끝  -->
 					</div><!-- .row-fluid 끝 -->
                    </div><!-- #list1 끝 -->
@@ -163,7 +163,7 @@
 					            <span class="clearboth"> &nbsp; </span>
 					          </div>
 					          <div class="gAlbum-container">
-					            <h4>[Review]<a href="#">ㅇㅇㅇ모임 후기입니다.</a></h4>
+					            <h4>[Review]<a href="#">ㅇㅇㅇ모임 후기입니다.dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd</a></h4>
 					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
 					            <a href="#" >read more <i>&raquo;</i></a>
 					          </div>
