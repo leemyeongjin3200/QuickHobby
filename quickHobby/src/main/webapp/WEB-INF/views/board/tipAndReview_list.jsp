@@ -91,7 +91,7 @@
 											<!-- tip/review 구분하기 -->
 											
 												&nbsp;<a href="#">${board.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a href="#"></a></div>
+												<i class="glyphicon glyphicon-comment"></i><a href="#"><b id="myReply1"> 3</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
 											<div class="gTableCell good">${board.boardRecommand}</div>
