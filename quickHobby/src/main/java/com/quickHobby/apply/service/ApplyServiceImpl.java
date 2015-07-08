@@ -204,7 +204,10 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		ApplyDto applyDto=applyDao.getApplyDto(apply_num);
 
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		
 		mav.addObject("applyDto", applyDto);
+		mav.addObject("date", sdf.format(applyDto.getApply_closedate()));
 		mav.setViewName("apply/applyUpdate");
 	}
 	
