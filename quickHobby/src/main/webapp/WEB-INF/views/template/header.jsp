@@ -10,6 +10,7 @@
 </head>
 <body onload="getNewMessage('${root}', '${member.memberNum}')">
 <!-- Header -->
+
 <header>
 <nav class="navbar navbar-default navbar-fixed-top">
 <%-- <br/><br/>

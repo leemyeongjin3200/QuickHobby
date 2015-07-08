@@ -90,8 +90,8 @@
 												<c:if test="${board.boardSection=='r'}"><span class="label label-default">Review</span></c:if>
 											<!-- tip/review 구분하기 -->
 											
-												&nbsp;<a href="#">${board.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a href="#"><b id="myReply"> 3</b></a></div>
+												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
+												<i class="glyphicon glyphicon-comment"></i><a href="#"><b id="myReply1"> 3</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
 											<div class="gTableCell good">${board.boardRecommand}</div>
@@ -120,7 +120,7 @@
 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
 							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
-							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><b id="myReply"> 3</b></span>
 							            <span class="clearboth"> &nbsp; </span>
 							          </div>
 							          <div class="gAlbum-container">
@@ -608,7 +608,10 @@
 <jsp:include page="../../../WEB-INF/views/template/loginModal.jsp"></jsp:include>
 <jsp:include page="../../../WEB-INF/views/template/footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>
 </html>

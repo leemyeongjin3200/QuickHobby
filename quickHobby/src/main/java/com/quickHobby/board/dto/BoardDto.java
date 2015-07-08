@@ -1,6 +1,10 @@
 package com.quickHobby.board.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 public class BoardDto {
 	private int boardNum;
@@ -18,6 +22,8 @@ public class BoardDto {
 	private int boardReadCount;
 	
 	private String boardSection;
+	
+	private List<BoardReplyDto> boardReplyList = new ArrayList<BoardReplyDto>();
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -96,5 +102,11 @@ public class BoardDto {
 	}
 	public void setBoardSection(String boardSection) {
 		this.boardSection = boardSection;
+	}
+	public List<BoardReplyDto> getBoardReplyList() {
+		return boardReplyList;
+	}
+	public void setBoardReplyList(List<BoardReplyDto> boardReplyList) {
+		this.boardReplyList = boardReplyList;
 	}
 }

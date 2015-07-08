@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${root}/css/board/board.css"/>
 <title>Tip / Review Board</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<script type="text/javascript" src="${root}/css/boardReply/boardReply.js"></script>
 <script type="text/javascript">
 //  	수정 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
 	function boardUpdate(boardNum) {
@@ -66,7 +71,7 @@
 			</span>
 		</div>
 		
-<!-- 		수정, 삭제, 목록버기 버튼 부분 -->
+<!-- 		수정, 삭제, 목록보기 버튼 부분 -->
 		<form id="boardUD" name="boardUD"> 
 			<input id="boardNum" type="hidden" name="boardNum" value="${board.boardNum}">
 			<input type="hidden" name="pageNumber" value="${pageNumber}"/>
@@ -77,5 +82,43 @@
 				<input type="button" value="List" onclick="location.href='${root}/board/list.do'"/>
 			</div>
 		</form>
+		
+		<div class="board-reply" data-num="${board.boardNum}">
+		
+			<div class="input-group">
+		      <input type="text" name="writeReply" class="form-control" placeholder="Comment...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" name="replyBtn" type="button">Reply</button>
+		      </span>
+		    </div>
+		    <br/>
+			
+			<div class="replyDiv-wrap" >
+			<c:forEach var="reply" items="${board.replyList}">
+				<div class="replyDiv" data-replynum="${reply.reply_num}">
+					<span class="reply_member">${reply.member_id}</span>
+					<span class="reply_content">${reply.r_content}</span>
+					<span class="reply_date"><small><fmt:formatDate value="${reply.modify_time}" pattern="yyyy-MM-dd hh:mm:ss"/></small></span>
+					
+					<c:if test="${reply.member_num==member_num}">
+					<span class="reply_btns" >
+						<a class="modifyBtn" >수정</a>
+						&nbsp;/&nbsp;
+						<a class="deleteBtn">삭제</a>						
+					</span>
+					</c:if>
+				</div>
+			</c:forEach>
+			</div>
+		</div>
+		
+<jsp:include page="../../../WEB-INF/views/template/loginModal.jsp"></jsp:include>
+<jsp:include page="../../../WEB-INF/views/template/footer.jsp"></jsp:include>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${root}/css/board/board.js"></script>
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>
 </html>
