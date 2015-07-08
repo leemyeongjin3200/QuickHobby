@@ -1,5 +1,11 @@
 package com.quickHobby.weather;
 
+/*
+ * @name        : CityDTO
+ * @date        : 2015. 7. 2.
+ * @author      : 서인구
+ * @description : 도시 정보에 대한 DTO
+ */
 public class CityDTO { 
 	private String code = null; 
 	private String name = null; 

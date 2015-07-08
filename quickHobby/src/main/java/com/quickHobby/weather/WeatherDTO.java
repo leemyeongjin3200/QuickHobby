@@ -1,5 +1,11 @@
 package com.quickHobby.weather;
 
+/*
+ * @name        : WeatherDTO
+ * @date        : 2015. 7. 2.
+ * @author      : 서인구
+ * @description : 날씨 정보 DTO
+ */
 public class WeatherDTO {
 	private String city,mode,tmEf,wf,tmn,tmx,reliability;
 	 

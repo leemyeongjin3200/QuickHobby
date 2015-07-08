@@ -17,8 +17,8 @@ import com.quickHobby.apply.service.ApplyService;
 /*
  * @name        : ApplyController
  * @date        : 2015. 6. 22.
- * @author      : ¼­ÀÎ±¸
- * @description : ½ÅÃ»°Ô½ÃÆÇ °ü·Ã ÆäÀÌÁö ¿äÃ»½Ã ÆäÀÌÁö¿¡ ¸Â´Â service¿Í ¿¬°á. 
+ * @author      : ì„œì¸êµ¬
+ * @description : ì‹ ì²­ê²Œì‹œë¬¼ ê´€ë ¨ ì»¨íŠ¸ë¡¤ëŸ¬ 
  */
 @Controller
 public class ApplyController {
@@ -30,8 +30,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyWrite
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹° ÀÛ¼º ÆäÀÌÁö ¿äÃ»½Ã ApplyServiceÀÇ applyWrite·Î ÀÌµ¿.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ê²Œì‹œë¬¼ ì‘ì„± í˜ì´ì§€ ìš”ì²­ì‹œ
 	 */
 	@RequestMapping(value="/apply/applyWrite.do", method=RequestMethod.GET)
 	public ModelAndView applyWrite(HttpServletRequest request){
@@ -47,8 +47,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyWriteOk
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹° ÀÛ¼º ¿Ï·á ÈÄ ApplyServiceÀÇ applyWriteOk·Î request¿Í ApplyDto¸¦ °¡Áö°í ÀÌµ¿.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ ì‘ì„± í›„ ì™„ë£Œ ë²„íŠ¼ í´ë¦­ì‹œ
 	 */
 	@RequestMapping(value="/apply/applyWriteOk.do", method=RequestMethod.POST)
 	public ModelAndView applyWriteOk(MultipartHttpServletRequest request, ApplyDto applyDto){
@@ -66,8 +66,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyList
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹° ¸ñ·Ï ¿äÃ»½Ã ApplyServiceÀÇ applyList·Î ÀÌµ¿
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ ëª©ë¡ í˜ì´ì§€ ìš”ì²­ì‹œ
 	 */
 	@RequestMapping(value="/apply/applyList.do", method=RequestMethod.GET)
 	public ModelAndView applyList(HttpServletRequest request){
@@ -83,8 +83,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyRead
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½ÃÆÇ¿¡¼­ °Ô½Ã¹° Á¦¸ñ ¼±ÅÃ½Ã ApplyServiceÀÇ applyRead·Î request¸¦ °¡Áö°í ÀÌµ¿.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ ëª©ë¡ì—ì„œ íŠ¹ì • ê²Œì‹œë¬¼ í´ë¦­ì‹œ
 	 */
 	@RequestMapping(value="/apply/applyRead.do", method=RequestMethod.GET)
 	public ModelAndView applyRead(HttpServletRequest request){
@@ -101,8 +101,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyDelete
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹°¿¡¼­ »èÁ¦ ¼±ÅÃ½Ã ApplyServiceÀÇ applyDelete·Î request¸¦ °¡Áö°í ÀÌµ¿.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ ì‚­ì œ ìš”ì²­ì‹œ
 	 */
 	@RequestMapping(value="apply/applyDelete.do", method=RequestMethod.GET)
 	public ModelAndView applyDelete(HttpServletRequest request){
@@ -119,8 +119,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyUpdate
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹°¿¡¼­ ¼öÁ¤ ¼±ÅÃ½Ã ApplyServiceÀÇ applyUpdate·Î request¸¦ °¡Áö°í ÀÌµ¿.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ ìˆ˜ì • ìš”ì²­ì‹œ
 	 */
 	@RequestMapping(value="apply/applyUpdate.do", method=RequestMethod.GET)
 	public ModelAndView applyUpdate(HttpServletRequest request){
@@ -137,8 +137,8 @@ public class ApplyController {
 	/*
 	 * @name        : applyUpdateOk
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹° ¼öÁ¤ ¿Ï·á ÈÄ ApplyServiceÀÇ applyUpdate·Î request¿Í ApplyDto¸¦ °¡Áö°í ÀÌµ¿.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ ìˆ˜ì • í›„ ì™„ë£Œ ë²„íŠ¼ í´ë¦­ì‹œ
 	 */
 	@RequestMapping(value="apply/applyUpdateOk.do", method=RequestMethod.POST)
 	public ModelAndView applyUpdateOk(MultipartHttpServletRequest request, ApplyDto applyDto){

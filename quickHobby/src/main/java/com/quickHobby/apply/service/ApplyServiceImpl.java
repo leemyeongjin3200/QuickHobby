@@ -18,14 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
+import com.quickHobby.group.dao.GroupDao;
 import com.quickHobby.weather.Weather;
 import com.quickHobby.weather.WeatherDTO;
 
 /*
  * @name        : ApplyServiceImpl
  * @date        : 2015. 6. 22.
- * @author      : ���α�
- * @description : ��û ���� ���������� �ʿ�� �ϴ� �����͸� DAO�� ���� �������ų� �ʿ��� ���񽺸� ����.
+ * @author      : 서인구
+ * @description : 신청 게시물과 관련된 서비스를 수행하는 클래스
  */
 @Component
 public class ApplyServiceImpl implements ApplyService {
@@ -33,24 +34,37 @@ public class ApplyServiceImpl implements ApplyService {
 	
 	@Autowired
 	private ApplyDao applyDao;
+
+	@Autowired
+	private GroupDao groupDao;
 	
 	/*
 	 * @name        : applyWrite
 	 * @date        : 2015. 6. 22.
-	 * @author      : ���α�
-	 * @description : ������ �̵�.
+	 * @author      : 서인구
+	 * @description : 신청 게시물 작성 페이지로 작성자의 이름을 가지고 이동
 	 */
 	public void applyWrite(ModelAndView mav){
 		logger.info("applyWrite service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
+//		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
+//		String groupHost=member.getMemberId();
+		
+		String groupHost="hahaha";
+				
+		logger.info("groupHost:"+groupHost);
+		
+		mav.addObject("groupHost", groupHost);
 		mav.setViewName("apply/applyWrite");
 	}
 	
 	/*
 	 * @name        : applyWriteOk
 	 * @date        : 2015. 6. 22.
-	 * @author      : ���α�
-	 * @description : ��û�Խù��� Apply ���̺� ����.
+	 * @author      : 서인구
+	 * @description : 신청 게시물 작성 결과를 가지고 이동
 	 */
 	public void applyWriteOk(ModelAndView mav){
 		logger.info("applyWriteOk service======");
@@ -58,11 +72,13 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map=mav.getModelMap();
 		MultipartHttpServletRequest request=(MultipartHttpServletRequest) map.get("request");
 		ApplyDto applyDto=(ApplyDto) map.get("applyDto");
+		int cost=Integer.parseInt(request.getParameter("groupCost"));
 		
 		applyDto.setApply_createdate(new Date());
 		applyDto.setApply_modifydate(applyDto.getApply_createdate());
 		applyDto.setApply_recommend(0);
 		applyDto.setApply_readcount(0);
+		applyDto.setApply_cost(cost);
 		
 		Date closeDate=null;
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -85,7 +101,7 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		if(fileSize!=0){
 			try{
-				String dir="C:\\Users\\KOSTA_07_008\\Desktop\\PJT\\workspace\\test folder";
+				String dir="C:\\Users\\KOSTA_07_008\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
 				
 				logger.info("dir : " + dir);
 				
@@ -93,7 +109,7 @@ public class ApplyServiceImpl implements ApplyService {
 				upFile.transferTo(file);		
 				
 				applyDto.setApply_filepath(file.getAbsolutePath());
-				applyDto.setApply_filename(fileName);
+				applyDto.setApply_filename(timeName);
 				applyDto.setApply_filesize(String.valueOf(fileSize));
 			}catch(Exception e){
 				logger.info("File IO Error!");
@@ -106,6 +122,8 @@ public class ApplyServiceImpl implements ApplyService {
 		}else{
 			check=applyDao.insert(applyDto);
 		}
+		groupDao.createGroup(applyDto);
+		
 		logger.info("check : " + check);
 		
 		mav.addObject("check", check);
@@ -115,8 +133,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyList
 	 * @date        : 2015. 6. 22.
-	 * @author      : ���α�
-	 * @description : ��û�Խù��� ����� �ֱٿ� ������ ������ ������.
+	 * @author      : 서인구
+	 * @description : 신청 게시물들의 리스트를 시간순서로 정렬하여 이동
 	 */
 	public void applyList(ModelAndView mav){
 		logger.info("applyList======");
@@ -131,8 +149,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyRead
 	 * @date        : 2015. 6. 22.
-	 * @author      : ���α�
-	 * @description : �ش� ��ȣ�� ApplyDto�� ������.
+	 * @author      : 서인구
+	 * @description : 헤당 번호의 게시물 DTO와 날씨 정보를 가지고 이동
 	 */
 	public void applyRead(ModelAndView mav){
 		logger.info("applyRead======");
@@ -157,8 +175,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyDelete
 	 * @date        : 2015. 6. 23.
-	 * @author      : ���α�
-	 * @description : �ش� ��ȣ�� ��û�Խù��� Apply ���̺��� ����.
+	 * @author      : 서인구
+	 * @description : 해당 번호의 신청 게시물의 삭제 결과를 가지고 이동
 	 */
 	public void applyDelete(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -176,8 +194,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyUpdate
 	 * @date        : 2015. 6. 23.
-	 * @author      : ���α�
-	 * @description : �ش� ��ȣ�� ApplyDto�� ������.
+	 * @author      : 서인구
+	 * @description : 해당 번호의 신청게시물 DTO를 가지고 이동
 	 */
 	public void applyUpdate(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -193,8 +211,8 @@ public class ApplyServiceImpl implements ApplyService {
 	/*
 	 * @name        : applyUpdateOk
 	 * @date        : 2015. 6. 23.
-	 * @author      : ���α�
-	 * @description : ������ ��û�Խù��� Apply ���̺��� ����.
+	 * @author      : 서인구
+	 * @description : 해당 번호의 신청 게시물 수정 결과를 가지고 이동
 	 */
 	public void applyUpdateOk(ModelAndView mav){
 		logger.info("applyUpdateOk service======");
@@ -202,8 +220,10 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map=mav.getModelMap();
 		MultipartHttpServletRequest request=(MultipartHttpServletRequest) map.get("request");
 		ApplyDto applyDto=(ApplyDto) map.get("applyDto");
+		int cost=Integer.parseInt(request.getParameter("groupCost"));
 		
 		applyDto.setApply_modifydate(new Date());
+		applyDto.setApply_cost(cost);
 		
 		Date closeDate=null;
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -226,7 +246,7 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		if(fileSize!=0){
 			try{
-				String dir="C:\\Users\\Seo IG\\Desktop\\PJT\\test folder";
+				String dir="C:\\Users\\KOSTA_07_008\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
 				
 				logger.info("dir : " + dir);
 				
@@ -234,7 +254,7 @@ public class ApplyServiceImpl implements ApplyService {
 				upFile.transferTo(file);		
 				
 				applyDto.setApply_filepath(file.getAbsolutePath());
-				applyDto.setApply_filename(fileName);
+				applyDto.setApply_filename(timeName);
 				applyDto.setApply_filesize(String.valueOf(fileSize));
 			}catch(Exception e){
 				logger.info("File IO Error!");
@@ -247,6 +267,9 @@ public class ApplyServiceImpl implements ApplyService {
 		}else{
 			check=applyDao.update(applyDto);
 		}
+		
+		groupDao.updateGroup(applyDto);
+		
 		logger.info("check : " + check);
 		
 		mav.addObject("check", check);

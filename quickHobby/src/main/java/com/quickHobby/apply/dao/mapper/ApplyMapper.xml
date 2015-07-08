@@ -5,13 +5,13 @@
 <mapper namespace="apply.dao.mapper">
 	<insert id="applyInsertFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			INSERT INTO APPLY VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_filename}, #{apply_filepath}, #{apply_filesize}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount})
+			INSERT INTO APPLY VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_filename}, #{apply_filepath}, #{apply_filesize}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount}, #{apply_category}, #{apply_inout}, #{apply_cost})
 		]]>
 	</insert>
 	
 	<insert id="applyInsert" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			INSERT INTO APPLY(APPLY_NUM, APPLY_HOST, APPLY_SECTION, APPLY_CONTENT, APPLY_LOCATION, APPLY_SUBJECT, APPLY_SUBTITLE, APPLY_CREATEDATE, APPLY_MODIFYDATE, APPLY_CLOSEDATE, APPLY_RECOMMEND, APPLY_READCOUNT) VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount})
+			INSERT INTO APPLY(APPLY_NUM, APPLY_HOST, APPLY_SECTION, APPLY_CONTENT, APPLY_LOCATION, APPLY_SUBJECT, APPLY_SUBTITLE, APPLY_CREATEDATE, APPLY_MODIFYDATE, APPLY_CLOSEDATE, APPLY_RECOMMEND, APPLY_READCOUNT, APPLY_CATEGORY, APPLY_INOUT, APPLY_COST) VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount}, #{apply_category}, #{apply_inout}, #{apply_cost})
 		]]>
 	</insert>
 	
@@ -41,13 +41,13 @@
 	
 	<update id="applyUpdateFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=#{apply_filename}, APPLY_FILEPATH=#{apply_filepath}, APPLY_FILESIZE=#{apply_filesize}, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate} WHERE APPLY_NUM=#{apply_num}
+			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=#{apply_filename}, APPLY_FILEPATH=#{apply_filepath}, APPLY_FILESIZE=#{apply_filesize}, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate}, APPLY_CATEGORY=#{apply_category}, APPLY_INOUT=#{apply_inout}, APPLY_COST=#{apply_cost} WHERE APPLY_NUM=#{apply_num}
 		]]>
 	</update>
 	
 	<update id="applyUpdate" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=NULL, APPLY_FILEPATH=NULL, APPLY_FILESIZE=NULL, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate} WHERE APPLY_NUM=#{apply_num}
+			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=NULL, APPLY_FILEPATH=NULL, APPLY_FILESIZE=NULL, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate}, APPLY_CATEGORY=#{apply_category}, APPLY_INOUT=#{apply_inout}, APPLY_COST=#{apply_cost} WHERE APPLY_NUM=#{apply_num}
 		]]>
 	</update>
 </mapper>

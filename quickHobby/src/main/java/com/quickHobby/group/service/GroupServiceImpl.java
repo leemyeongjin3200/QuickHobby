@@ -59,10 +59,10 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 			logger.info("GroupDate Error");
 			e.printStackTrace();
 		}
-		int check=groupDao.createGroup(groupDto);
-		logger.info("check:"+check);
-		
-		mav.addObject("check", check);
-		mav.setViewName("group/createOk");
+//		int check=groupDao.createGroup(groupDto);
+//		logger.info("check:"+check);
+//		
+//		mav.addObject("check", check);
+//		mav.setViewName("group/createOk");
 	}
 }

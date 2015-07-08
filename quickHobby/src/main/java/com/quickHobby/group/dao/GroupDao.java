@@ -1,9 +1,9 @@
 package com.quickHobby.group.dao;
 
-import com.quickHobby.group.dto.GroupDto;
+import com.quickHobby.apply.dto.ApplyDto;
 
 public interface GroupDao {
 
-	int createGroup(GroupDto groupDto);
-
+	int createGroup(ApplyDto groupDto);
+	int updateGroup(ApplyDto groupDto);
 }

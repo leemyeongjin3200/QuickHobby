@@ -7,6 +7,12 @@ import java.util.Vector;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+/*
+ * @name        : KMARssMain
+ * @date        : 2015. 7. 2.
+ * @author      : 서인구
+ * @description : 3일 후부터 10일 후까지의 대략적인 날씨 정보를 가져오는 클래스
+ */
 public class KMARssMain {
 	private URL url = new URL(
             "http://www.kma.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108");

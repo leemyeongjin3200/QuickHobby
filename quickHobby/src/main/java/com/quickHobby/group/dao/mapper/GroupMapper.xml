@@ -16,8 +16,14 @@
 		<result property="groupCost" column="GROUP_COST"/>
 	</resultMap>
 	
-	<insert id="createGroup" parameterType="com.quickHobby.group.dto.GroupDto">
-		<![CDATA[insert into ggroup(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, GROUP_LOCATION, GROUP_DATE, GROUP_COST)
- 				values(group_num_seq.nextval, #{groupCategory},	#{groupInout}, #{groupHost}, #{groupSubject}, #{groupSubtitle}, #{groupLocation}, #{groupDate}, #{groupCost})]]>
+	<insert id="createGroup" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[insert into ggroup(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, GROUP_LOCATION, GROUP_DATE, GROUP_COST, GROUP_APPLYNUM)
+ 				values(group_num_seq.nextval, #{apply_category}, #{apply_inout}, #{apply_host}, #{apply_subject}, #{apply_subtitle}, #{apply_location}, #{apply_closedate}, #{apply_cost}, APPLY_NUM_SEQ.currval)]]>
 	</insert>
+	
+	<update id="updateGroup" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			UPDATE GGROUP SET GGROUP_CATEGORY=#{apply_category}, GGROUP_INOUT=#{apply_inout}, GGROUP_SUBJECT=#{apply_subject}, GGROUP_SUBTITLE=#{apply_subtitle}, GGROUP_LOCATION=#{apply_location}, GGROUP_CLOSEDATE=#{apply_closedate}, GGROUP_COST=#{apply_cost} WHERE GGROUP_APPLYNUM=#{apply_num}
+ 		]]>
+	</update>
 </mapper>

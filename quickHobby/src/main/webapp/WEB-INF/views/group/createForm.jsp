@@ -145,9 +145,8 @@ function removeChar(event) {
 <body>
 	<c:set var="root" value="${pageContext.request.contextPath}"/>
 
-	<form action="${root}/group/createGroup.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
-		<input type="hidden" name="groupHost" value="${groupHost}"/>
-		<div>${groupHost}</div>
+	<form action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
+		<input type="hidden" name="apply_host" value="seo"/>
 			
 		<div>
 			<label>Category</label>
@@ -175,28 +174,32 @@ function removeChar(event) {
 		
 		<div>
 			<label>Date</label>
-			<input type="text" name="groupDate1" id="date"/><br/>
+			<input type="text" name="apply_date" id="date"/><br/>
 		</div>
 		
+		<div>
+			<label>Section</label>
+			<input type="text" name="apply_section"/><br/>
+		</div>
 		
 		<div>
 			<label>Location</label>
 	 			<div id="map_canvas" style="width:460px; height:380px;"></div>
 	 			<div id="address" style="display:none"></div><br/>
-	 			<input type="text" id="addr" size="70" name="groupLocation">
+	 			<input type="text" id="addr" size="70" name="apply_location">
 		</div><br/>
 		
 		<div>
 			<label >Title</label>
 			<span >
-				<input type="text" name="groupSubject"/>
+				<input type="text" name="apply_subject"/>
 			</span>
 		</div>
 		
 		<div>
 			<label >Subtitle</label>
 			<span >
-				<input type="text" name="groupSubtitle"/>
+				<input type="text" name="apply_subtitle"/>
 			</span>
 		</div>
 		
@@ -210,7 +213,7 @@ function removeChar(event) {
 		<div style="height:230px;">
 			<label class="title" style="height:230px;">Content</label>
 			<span style="height:230px;">
-				<textarea rows="14" cols="58" name="groupContent"></textarea>
+				<textarea rows="14" cols="58" name="apply_content"></textarea>
 			</span>
 		</div>
 		
@@ -218,6 +221,7 @@ function removeChar(event) {
 		<div style="width:598px; border-width:2px; text-align:center;">
 			<input type="submit" value="Create"/>
 			<input type="reset" value="Reset"/>
+			<input type="button" value="목록보기" onclick="location.href='${root}/apply/applyList.do'"/>
 		</div>
 	</form>
 </body>

@@ -11,7 +11,7 @@ import com.quickHobby.apply.dto.ApplyDto;
 /*
  * @name        : ApplyDaoImpl
  * @date        : 2015. 6. 22.
- * @author      : ¼­ÀÎ±¸
+ * @author      : ì„œì¸êµ¬
  * @description : Apply Table DAO
  */
 @Component
@@ -22,8 +22,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : insertFile
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÆÄÀÏÀÌ Ã·ºÎµÈ ½ÅÃ»°Ô½Ã¹° ÀúÀå.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‚¬ì§„ì´ í¬í•¨ëœ ì‹ ì²­ê²Œì‹œë¬¼ì„ DBì— ì €ì¥
 	 */
 	public int insertFile(ApplyDto applyDto){
 		return sqlSession.insert("applyInsertFile", applyDto);
@@ -32,8 +32,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : insert
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÆÄÀÏÀÌ Ã·ºÎµÇÁö ¾ÊÀº ½ÅÃ»°Ô½Ã¹° ÀúÀå.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‚¬ì§„ì´ í¬í•¨ë˜ì§€ ì•Šì€ ì‹ ì²­ ê²Œì‹œë¬¼ì„ DBì— ì €ì¥
 	 */
 	public int insert(ApplyDto applyDto){
 		return sqlSession.insert("applyInsert", applyDto);
@@ -42,8 +42,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : getListByCreateDate
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ½ÅÃ»°Ô½Ã¹°µéÀÇ ¸ñ·ÏÀ» ÃÖ±Ù »ı¼ºµÈ ¼ø¼­´ë·Î ºÒ·¯¿È.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‹ ì²­ ê²Œì‹œë¬¼ë“¤ì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ìƒì„± ìˆœì„œëŒ€ë¡œ ê°€ì ¸ì˜¨ë‹¤.
 	 */
 	public List<ApplyDto> getListByCreateDate(){
 		return sqlSession.selectList("getListByCreateDate");
@@ -52,8 +52,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : getApplyDto
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ½ÅÃ»°Ô½Ã¹° Á¤º¸¸¦ ºÒ·¯¿È.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : í•´ë‹¹ ë²ˆí˜¸ì˜ ì‹ ì²­ ê²Œì‹œë¬¼ì˜ ATOë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 	 */
 	public ApplyDto getApplyDto(int apply_num){
 		return sqlSession.selectOne("getApplyDto", apply_num);
@@ -62,8 +62,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : incrementReadcount
 	 * @date        : 2015. 6. 22.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ½ÅÃ»°Ô½Ã¹°ÀÇ Á¶È¸¼ö¸¦ 1 Áõ°¡.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : í•´ë‹¹ ë²ˆí˜¸ì˜ ì‹ ì²­ ê²Œì‹œë¬¼ì˜ ì¡°íšŒìˆ˜ë¥¼ 1 ì¦ê°€ì‹œí‚¨ë‹¤.
 	 */
 	public void incrementReadcount(int apply_num){
 		sqlSession.update("incrementReadcount", apply_num);
@@ -72,8 +72,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : delete
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ½ÅÃ»°Ô½Ã¹°À» »èÁ¦.
+	 * @author      : ì„œì¸êµ¬
+	 * @description : í•´ë‹¹ ë²ˆí˜¸ì˜ ì‹ ì²­ ê²Œì‹œë¬¼ì„ DBì—ì„œ ì‚­ì œí•œë‹¤.
 	 */
 	public int delete(int apply_num){
 		return sqlSession.delete("applyDelete", apply_num);
@@ -83,8 +83,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : update
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ½ÅÃ»°Ô½Ã¹° ¼öÁ¤(ÆÄÀÏ Ã·ºÎ°¡ ¾øÀ» ½Ã).
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‚¬ì§„ ë³€ë™ì´ ì—†ëŠ” ì‹ ì²­ ê²Œì‹œë¬¼ì„ ìˆ˜ì •í•œë‹¤.
 	 */
 	public int update(ApplyDto applyDto){
 		return sqlSession.update("applyUpdate", applyDto);
@@ -93,8 +93,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	/*
 	 * @name        : updateFile
 	 * @date        : 2015. 6. 23.
-	 * @author      : ¼­ÀÎ±¸
-	 * @description : ÇØ´ç ¹øÈ£ÀÇ ½ÅÃ»°Ô½Ã¹° ¼öÁ¤(ÆÄÀÏ Ã·ºÎ½Ã)
+	 * @author      : ì„œì¸êµ¬
+	 * @description : ì‚¬ì§„ ë³€ë™ì´ ìˆëŠ” ì‹ ì²­ ê²Œì‹œë¬¼ì„ ìˆ˜ì •í•œë‹¤.
 	 */
 	public int updateFile(ApplyDto applyDto){
 		return sqlSession.update("applyUpdateFile", applyDto);

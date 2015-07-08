@@ -5,6 +5,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.StringTokenizer;
 
+/*
+ * @name        : Weather
+ * @date        : 2015. 7. 2.
+ * @author      : 서인구
+ * @description : 해당 지역의 모임 날짜의 날씨 정보를 가져오는 클래스
+ */
 public class Weather {
 	private WeatherDTO weather;
 
@@ -21,6 +27,7 @@ public class Weather {
 		
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		
+		st.nextToken();
 		String temp=st.nextToken();
 		if(temp.endsWith("시")){						// 광역시, 특별시일 경우
 			sAddr=temp.substring(0, 2);
@@ -56,10 +63,22 @@ public class Weather {
 		}
 	}
 	
+	/*
+	 * @name        : getWeather
+	 * @date        : 2015. 7. 2.
+	 * @author      : 서인구
+	 * @description : weather getter
+	 */
 	public WeatherDTO getWeather() {
 		return weather;
 	}
 
+	/*
+	 * @name        : setWeather
+	 * @date        : 2015. 7. 2.
+	 * @author      : 서인구
+	 * @description : weather setter
+	 */
 	public void setWeather(WeatherDTO weather) {
 		this.weather = weather;
 	}
