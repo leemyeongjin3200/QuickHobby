@@ -25,7 +25,6 @@
 			<tr> 
 				<td align="center" width="30">번호</td>
 				<td align="center" width="150">수신자</td>
-				<td align="center" width="250">제목</td>
 				<td align="center" width="200">발신시간</td>
 			</tr>
 			
@@ -35,7 +34,7 @@
 				<td>${message.message_num}</td>
 				<td>${message.message_receiver}</td>
 				<td>
-					<a href="${root}/message/messageRead.do?message_num=${message.message_num}">${message.message_subject}</a>
+					<a href="${root}/message/messageRead.do?message_num=${message.message_num}"></a>
 				</td>
 				<td><fmt:formatDate value="${message.message_date}" type="both"/></td>
 			</tr>

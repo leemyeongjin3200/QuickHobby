@@ -35,7 +35,7 @@
 				<td>${message.message_num}</td>
 				<td>${message.message_sender}</td>
 				<td>
-					<a href="${root}/message/messageRead.do?message_num=${message.message_num}">${message.message_subject}</a>
+					<a href="${root}/message/messageRead.do?message_num=${message.message_num}"></a>
 				</td>
 				<td><fmt:formatDate value="${message.message_date}" type="both"/></td>
 			</tr>

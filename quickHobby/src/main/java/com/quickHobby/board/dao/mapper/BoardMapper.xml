@@ -14,6 +14,8 @@
 		<result property="boardVisible" column="BOARD_VISIBLE"/>
 		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
 		<result property="boardReadCount" column="BOARD_READCOUNT"/>
+		
+		<result property="boardSection" column="BOARD_SECTION"/>
 	</resultMap>
 	
 	<select id="boardCount" resultType="int">
@@ -31,10 +33,10 @@
 	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
 		<![CDATA[insert into board(BOARD_NUM, BOARD_WRITER, BOARD_SUBJECT, 
 				BOARD_CONTENT,BOARD_CREATEDATE, BOARD_MODIFYDATE, 
-				BOARD_VISIBLE, BOARD_RECOMMAND,	BOARD_READCOUNT)
+				BOARD_VISIBLE, BOARD_RECOMMAND,	BOARD_READCOUNT, BOARD_SECTION)
  				values(board_num_seq.nextval, #{boardWriter},
  				#{boardSubject}, #{boardContent},
-				sysdate, sysdate, 1, #{boardRecommand}, #{boardReadCount})]]>
+				sysdate, sysdate, 1, #{boardRecommand}, #{boardReadCount}, #{boardSection})]]>
 	</insert>
 	
 	<update id="readCount" parameterType="int">

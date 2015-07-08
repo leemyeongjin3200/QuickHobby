@@ -17,6 +17,8 @@ public class BoardDto {
 	private int boardRecommand;
 	private int boardReadCount;
 	
+	private String boardSection;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -88,5 +90,11 @@ public class BoardDto {
 	}
 	public void setBoardReadCount(int boardReadCount) {
 		this.boardReadCount = boardReadCount;
+	}
+	public String getBoardSection() {
+		return boardSection;
+	}
+	public void setBoardSection(String boardSection) {
+		this.boardSection = boardSection;
 	}
 }

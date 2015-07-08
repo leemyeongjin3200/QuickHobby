@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 </head>
 <body>
 <!-- Login Pop-Up// -->
@@ -20,24 +22,24 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
+          <form role="form" action="${root}/member/login.do" method="post">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+              <label for="username"><span class="glyphicon glyphicon-user"></span> E-mail</label>
+              <input type="text" class="form-control" id="userId" name="userId" placeholder="Enter email">
             </div>
             <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+              <label for="userPassword"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Enter password">
             </div>
             <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
+              <label><input id="rememberId" name="rememberId" type="checkbox">Remember me</label>
             </div>
-              <button type="submit" class="btn btn-success btn-block" style="background-color:#BDBDBD; border-color:#BDBDBD"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button type="submit" id="loginBtn" class="btn btn-success btn-block" style="background-color:#BDBDBD; border-color:#BDBDBD"><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
         </div>
         <div class="modal-footer">
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
+          <p>Not a member? <a href="${root}/member/register.do">Sign Up</a></p>
+          <p>Forgot <a href="${root}/member/findPassword.do">Password?</a></p>
         </div>
       </div>
     </div>

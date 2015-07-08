@@ -61,7 +61,7 @@ public class BoardServiceImpl implements BoardService {
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("board/list");
+		mav.setViewName("board/tipAndReview_list");
 	}
 
 	/**

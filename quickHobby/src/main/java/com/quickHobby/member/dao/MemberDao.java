@@ -10,5 +10,7 @@ public interface MemberDao {
 	public String getFile(int memberNum);
 	public int updateOk(MemberDto member);
 	public MemberDto getMember(int memberNum);
-	public String nicknameCheck(String nickname);
+	public String checkNickname(String nickname);
+	public String checkEmail(String email);
+	public String findPassword(String email);
 }

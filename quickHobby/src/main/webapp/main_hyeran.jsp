@@ -14,8 +14,8 @@
 </script>
 <title>HYERAN</title>
 </head>
+<jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
-<jsp:include page="template/header.jsp"></jsp:include>
 <!-- Content 1//-->
 <div class="container-fluid">
   <br>
@@ -213,11 +213,12 @@
         </div>
 	</div>
 </div>
-<jsp:include page="template/loginModal.jsp"></jsp:include>
-<jsp:include page="template/footer.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/loginModal.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.0/masonry.pkgd.js"></script>
+<script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>
 </html>

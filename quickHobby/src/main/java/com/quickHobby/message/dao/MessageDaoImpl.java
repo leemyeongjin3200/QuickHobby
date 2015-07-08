@@ -3,7 +3,6 @@ package com.quickHobby.message.dao;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import com.quickHobby.message.dto.MessageDto;
  */
 @Component
 public class MessageDaoImpl implements MessageDao {
-	private Logger logger=Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -40,8 +38,9 @@ public class MessageDaoImpl implements MessageDao {
 		return sqlSession.selectOne("getMessageDto", message_num);
 	}
 	
-	public int delete(int message_num){
-		return sqlSession.delete("messageDelete", message_num);
+	public int delete(String message_num){
+		int messageNum=Integer.parseInt(message_num);
+		return sqlSession.delete("messageDelete", messageNum);
 	}
 
 	@Override
@@ -55,5 +54,15 @@ public class MessageDaoImpl implements MessageDao {
 		map.put("startRow", startRow);
 		map.put("endRow", endRow);
 		return sqlSession.selectList("getMessageList", map);
+	}
+	
+	@Override
+	public int getNewMessage(int memberNum) {
+		return sqlSession.selectOne("message.dao.mapper.getNewMessage", memberNum);
+	}
+
+	@Override
+	public int readChange(int message_num) {
+		return sqlSession.update("message.dao.mapper.readChange", message_num);
 	}
 }

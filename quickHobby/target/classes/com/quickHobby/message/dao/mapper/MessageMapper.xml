@@ -5,7 +5,7 @@
 <mapper namespace="message.dao.mapper">
 	<insert id="messageSend" parameterType="com.quickHobby.message.dto.MessageDto">
 		<![CDATA[
-			INSERT INTO MESSAGE VALUES(MESSAGE_NUM_SEQ.NEXTVAL, #{message_sender}, #{message_receiver}, #{message_subject}, #{message_content}, #{message_date})
+			INSERT INTO MESSAGE VALUES(MESSAGE_NUM_SEQ.NEXTVAL, #{message_sender}, #{message_receiver}, #{message_content}, sysdate, 'no')
 		]]>
 	</insert>
 	
@@ -44,4 +44,17 @@
 			order by MESSAGE_DATE desc)a) 
  			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
 	</select>
+	
+	<select id="getNewMessage" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from message where message_receiver=#{memberNum} and message_read='no'
+		]]>
+	</select>
+	
+	<update id="readChange" parameterType="int">
+		<![CDATA[
+			update message set message_read='yes'
+			where message_num=#{message_num}
+		]]>
+	</update>
 </mapper>
