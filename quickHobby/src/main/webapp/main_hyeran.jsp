@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
+<c:set var="root1" value="${pageContext.request.requestURI }"/>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
@@ -14,11 +15,13 @@
 </script>
 <title>HYERAN</title>
 </head>
-<jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/header.jsp?root1=${root1}"></jsp:include>
 <body>
 <!-- Content 1//-->
 <div class="container-fluid">
-  <br>
+  <br/><%-- <br/><br/><br/><br/>
+  ${param.abc}
+  ${root1} --%>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -213,7 +216,7 @@
         </div>
 	</div>
 </div>
-<jsp:include page="WEB-INF/views/template/loginModal.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/loginModal.jsp?root1=${root1}"></jsp:include>
 <jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
