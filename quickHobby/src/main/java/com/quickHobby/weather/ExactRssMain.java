@@ -7,6 +7,12 @@ import java.util.Vector;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+/*
+ * @name        : ExactRssMain
+ * @date        : 2015. 7. 2.
+ * @author      : 서인구
+ * @description : 오늘, 내일, 모레의 해당 지역의 자세한 날씨를 가져오는 클래스
+ */
 public class ExactRssMain {
 	private URL url;
 	private long diffDays;

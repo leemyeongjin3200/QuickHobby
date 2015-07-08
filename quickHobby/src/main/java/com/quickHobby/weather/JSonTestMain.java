@@ -12,6 +12,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
+/*
+ * @name        : JSonTestMain
+ * @date        : 2015. 7. 2.
+ * @author      : 서인구
+ * @description : 해당 도시의 지역코드를 가져오는 클래스
+ */
 public class JSonTestMain { 
 	final static String topURL = "http://www.kma.go.kr/DFSROOT/POINT/DATA/top.json.txt"; 
 	final static String mdlURL = "http://www.kma.go.kr/DFSROOT/POINT/DATA/mdl.%s.json.txt"; 

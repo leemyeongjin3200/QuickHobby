@@ -5,7 +5,7 @@ import java.util.Date;
 /*
  * @name        : ApplyDto
  * @date        : 2015. 6. 22.
- * @author      : ¼­ÀÎ±¸
+ * @author      : ï¿½ï¿½ï¿½Î±ï¿½
  * @description : Apply Table DTO
  */
 public class ApplyDto {
@@ -24,7 +24,28 @@ public class ApplyDto {
 	private Date apply_closedate;
 	private int apply_recommend;
 	private int apply_readcount;
+	private String apply_category;
+	private String apply_inout;
+	private int apply_cost;
 	
+	public String getApply_category() {
+		return apply_category;
+	}
+	public void setApply_category(String apply_category) {
+		this.apply_category = apply_category;
+	}
+	public String getApply_inout() {
+		return apply_inout;
+	}
+	public void setApply_inout(String apply_inout) {
+		this.apply_inout = apply_inout;
+	}
+	public int getApply_cost() {
+		return apply_cost;
+	}
+	public void setApply_cost(int apply_cost) {
+		this.apply_cost = apply_cost;
+	}
 	public int getApply_num() {
 		return apply_num;
 	}

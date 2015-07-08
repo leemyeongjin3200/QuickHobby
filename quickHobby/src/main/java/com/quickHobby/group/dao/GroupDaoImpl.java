@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.group.dto.GroupDto;
 
 @Component
@@ -14,7 +15,7 @@ public class GroupDaoImpl implements GroupDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int createGroup(GroupDto groupDto) {
+	public int createGroup(ApplyDto groupDto) {
 		return sqlSession.insert("group.dao.mapper.createGroup", groupDto);
 	}
 
@@ -22,5 +23,9 @@ public class GroupDaoImpl implements GroupDao {
 	public List<GroupDto> myGroupList(int memberNum) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("group.dao.mapper.myGroupList", memberNum);
+	
+	@Override
+	public int updateGroup(ApplyDto groupDto){
+		return sqlSession.update("group.dao.mapper.updateGroup", groupDto);
 	}
 }
