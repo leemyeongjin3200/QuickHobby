@@ -29,6 +29,16 @@ margin-left:auto;
 
 }
 */
+.src{
+
+overflow:auto;width:1000px;height:1000px;
+
+
+
+
+
+
+}
 .subject{
 	height:300px;
 }
@@ -88,32 +98,35 @@ border-right:1px solid #000;
 
 
 <c:if test="${count!=0 }">	
-  <div class="container">
+  <div class="container src">
   
 
 
 	<c:forEach var="board" items="${jesusList}">
 
-<div class="row">
-  <div class="col-sm-* col-md-* col-lg-* subject1" style="background-color:lavender;">${board.board_writer}</div>
+<div class="row"> 
+  <div class="col-sm-9 col-md-9 col-lg-9 subject1" style="background-color:lavender;">
+  
+  
+  <img src="${root}/img/${board.board_filename}" width="304" height="236">
 
-
+ </div>
 </div>
 <!--  <ul>-->
 <div class="row">
- <div class="col-sm-* col-md-* col-lg-* subject" style="background-color:lightcyan;">${board.board_subject}</div>
+ <div class="col-sm-9 col-md-9 col-lg-9 subject" style="background-color:lightcyan;">${board.board_content}</div>
   </div>
   <div class="row">
- <div class="col-sm-* col-md-* col-lg-*" style="background-color:lightcyan;">
- <input type="text" name="email"/>
-		<input type="button" id="btn1" value="버튼"/>
+ <div class="col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
+ <input type="text" name="e1"/>
+		<input type="button" id="btn1" maxlength="5" size="5" value="버튼"/>
  
  </div>
   </div>
   <div class="row">
- <div class="col-sm-* col-md-* col-lg-*" style="background-color:lightcyan;">
+ <div class="col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
  댓글:
-	<input type="text" name="email"/>
+	<input type="text" name="e"/>
  </div>
 	
   </div>
