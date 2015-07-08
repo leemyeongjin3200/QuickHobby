@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.board.dao.BoardDao;
 import com.quickHobby.board.dto.BoardDto;
+import com.quickHobby.boardReply.dao.BoardReplyDao;
 
 
 /**
@@ -27,6 +28,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private BoardReplyDao boardReplyDao;
 	
 	/**
 	* @name : boardList
@@ -125,7 +129,10 @@ public class BoardServiceImpl implements BoardService {
 		logger.info("boardNum:"+boardNum);
 		logger.info("pageNumber:"+pageNumber);
 		
+//		boardReply와 연결중
 		BoardDto boardDto=boardDao.boardRead(boardNum);
+//		boardDto.setReplyList(boardReplyDao.getBoardReplyList(boardDto.getBoardNum()));
+		
 		logger.info("boardDto:"+boardDto);
 		
 		mav.addObject("board", boardDto);
