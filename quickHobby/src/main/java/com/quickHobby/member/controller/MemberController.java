@@ -150,4 +150,29 @@ public class MemberController {
 		
 		return "redirect:/main_hyeran.jsp";
 	}
+	
+	@RequestMapping(value="/member/findPassword.do", method=RequestMethod.GET)
+	public String findPassword(HttpServletRequest req){
+		return "member/findPassword";
+	}
+	
+	@RequestMapping(value="/member/sendCodeFindPass.do", method=RequestMethod.GET)
+	public ModelAndView sendCodeFindPass(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request", req);
+		memberService.sendCodeFindPass(mav);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/member/findPassword.do", method=RequestMethod.POST)
+	public ModelAndView findPassword(HttpServletRequest req, HttpServletResponse res){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request", req);
+		memberService.findPassword(mav);
+		
+		return mav;
+	}
 }

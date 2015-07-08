@@ -155,6 +155,7 @@ function checkNickname(nickname, root){
 		});
 	}
 }
+
 function previewImage(){
 	$(document).ready(function(){
         function readURL(input) {
@@ -176,4 +177,95 @@ function previewImage(){
             readURL(this);
         });
      });
+}
+
+function updateCheck(form){
+	if($("input[name='memberPassword']").val()==""){
+		alert("비밀번호를 입력해주세요.");
+		$("input[name='memberPassword']").focus();
+		return false;
+	}
+	
+	if($("input[name='memberPassword']").val().length < 8){
+		alert("비밀번호는 8글자 이상이여야 합니다.");
+		$("input[name='memberPassword']").focus();
+		return false;
+	}
+	
+	if($("input[name='rePassword']").val()==""){
+		alert("비밀번호를 다시한번 입력해주세요.");
+		$("input[name='rePassword']").focus();
+		return false;
+	}
+	
+	if($("input[name='memberSNS']").val()==""){
+		alert("SNS주소를 입력해주세요.");
+		$("input[name='memberSNS']").focus();
+		return false;
+	}
+}
+
+function sendCodeFindPass(email, root){
+	if($("input[name='memberId']").val()==""){
+		alert("이메일을 입력해주세요.");
+	}
+	
+	if($("input[name='memberId']").val()!=""){
+		$(function(){
+			$("#findPassModal").modal("toggle");
+			var callUrl=root+"/member/sendCodeFindPass.do?email="+email.value;
+			$.ajax({
+				url:callUrl,
+				type:"get",
+				dataType:"html",
+				success:function(data){
+					$("input[name='serverCode']").val($(data).find("input[name='serverCode']").val());
+					if($("input[name='serverCode']").val()==-1){
+						$("#findPassModal").modal("toggle");
+						alert("존재하지않는 이메일입니다.");
+					}
+				}
+			});
+		});
+	}
+}
+
+function checkCodeFindPass(checkForm){
+	var serverCode=$("input[name='serverCode']").val();
+	var userCode=$("input[id='userCode']").val();
+	
+	if(serverCode==""){
+		serverCode="Mail Error";
+		alert("이메일 발송에 실패 했습니다. 이메일 주소를 확인해주세요.");
+		return false;
+	}
+	
+	if(serverCode!=userCode){
+		alert("인증번호를 잘못입력하셨습니다.");
+		
+		return false;
+	}
+	
+	if((serverCode==userCode)){
+		alert("인증이 완료 되었습니다.");
+		$("input[name='emailCheck']").val("1");
+		$("#findPassModal").modal('toggle');
+		
+		return false;
+	}
+}
+
+function findPasswordCheck(form){
+	if($("input[name='memberId']").val()==""){
+		alert("이메일을 입력해주세요.");
+		$("input[name='memberId']").focus();
+		
+		return false;
+	}
+	
+	if($("input[name='emailCheck']").val()!="1"){
+		alert("이메일 인증을 해주세요.");
+		
+		return false;
+	}
 }

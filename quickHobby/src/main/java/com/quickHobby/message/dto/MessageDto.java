@@ -5,16 +5,16 @@ import java.util.Date;
 /*
  * @name        : MessageDto
  * @date        : 2015. 6. 25.
- * @author      : ¼­ÀÎ±¸
+ * @author      : ï¿½ï¿½ï¿½Î±ï¿½
  * @description : Message Table DTO
  */
 public class MessageDto {
 	private int message_num;
 	private int message_sender;
 	private int message_receiver;
-	private String message_subject;
 	private String message_content;
 	private Date message_date;
+	private String message_read;
 	
 	public int getMessage_num() {
 		return message_num;
@@ -34,12 +34,6 @@ public class MessageDto {
 	public void setMessage_receiver(int message_receiver) {
 		this.message_receiver = message_receiver;
 	}
-	public String getMessage_subject() {
-		return message_subject;
-	}
-	public void setMessage_subject(String message_subject) {
-		this.message_subject = message_subject;
-	}
 	public String getMessage_content() {
 		return message_content;
 	}
@@ -51,5 +45,11 @@ public class MessageDto {
 	}
 	public void setMessage_date(Date message_date) {
 		this.message_date = message_date;
+	}
+	public String getMessage_read() {
+		return message_read;
+	}
+	public void setMessage_read(String message_read) {
+		this.message_read = message_read;
 	}
 }

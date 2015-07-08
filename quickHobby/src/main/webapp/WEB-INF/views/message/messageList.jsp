@@ -90,13 +90,14 @@
 						<!-- messageList foreach로 불러오기 -->
 						<c:forEach var="messageList" items="${messageList}">
 							<li>
-								<span class="from"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> ${messageList.message_sender}</span>
-								<span class="title"><span class="label label-default">new</span><a href="${root}/message/messageRead.do?message_num=${messageList.message_num}"> ${messageList.message_subject}</a></span>
-								
-								
+								<!-- message 선택하기 -->
+								<span class="from"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> ${messageList.message_receiver}</span>
+								<!-- message 선택하기 -->
+								<span class="title"><c:if test="${messageList.message_read=='no'}"><span class="label label-default">new</span>&nbsp;</c:if><a href="${root}/message/messageRead.do?message_num=${messageList.message_num}">${messageList.message_content}</a></span>
 								<span class="date"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
 							</li>
 						</c:forEach>
+						<!-- messageList foreach로 불러오기 -->
 					</ul>	
 				</div>
 		<!-- 버튼(쪽지 보내기, 삭제, 새로고침)// -->	
@@ -104,7 +105,7 @@
 				  <div class="text-right" style="margin-top:20px">
 		                    <a href="#" class="btn btn-default btn-sm" id="myMessage">send</a>
 		                    <a href="#" id="messageDel" class="btn btn-default btn-sm">delete</a>
-		                    <a href="#" class="btn btn-default btn-sm">refresh</a>
+		                    <a href="${root}/message/messageList.do?pageNumber=${currentPage}" class="btn btn-default btn-sm">refresh</a>
 		          </div>
 				</div>	
 		<!--// 버튼(쪽지 보내기, 삭제, 새로고침)  -->
@@ -152,7 +153,7 @@
 					                <li class="active">
 						                   	<a href="" id="currentP">${i}</a>
 						            </li>  
-					             </c:if>  
+					            </c:if>  
 		                    </c:forEach>
 		                    <!-- 각 Page 버튼 생성 관련 -->
 		                    
@@ -176,14 +177,103 @@
     <!-- //Tab1 설정 -->
     
     <!-- Tab2 설정// -->
-    <div id="menu2" class="tab-pane fade">
-      
-    </div>
+	    <div id="menu2" class="tab-pane fade">
+	      <div class="row-fluid">
+					<div class="span12">
+						<ul class="messagesList">
+							
+							<!-- messageList foreach로 불러오기 -->
+							<c:forEach var="messageList" items="${messageList}">
+									<li>
+										<!-- message 선택하기 -->
+										<span class="from"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> ${messageList.message_receiver}</span>
+										<!-- message 선택하기 -->
+										<span class="title"><span class="label label-default">new</span><a href="${root}/message/messageRead.do?message_num=${messageList.message_num}">${messageList.message_content}</a></span>
+										<span class="date"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
+									</li>
+							</c:forEach>
+							<!-- messageList foreach로 불러오기 -->
+						</ul>	
+					</div>
+			<!-- 버튼(쪽지 보내기, 삭제, 새로고침)// -->	
+					<div class="span12">
+					  <div class="text-right" style="margin-top:20px">
+			                    <a href="#" class="btn btn-default btn-sm" id="myMessage">send</a>
+			                    <a href="#" id="messageDel" class="btn btn-default btn-sm">delete</a>
+			                    <a href="${root}/message/messageList.do?pageNumber=${currentPage}" class="btn btn-default btn-sm">refresh</a>
+			          </div>
+					</div>	
+			<!--// 버튼(쪽지 보내기, 삭제, 새로고침)  -->
+			
+			<!-- Page 설정// -->
+			
+				<!-- Page 설정에 관련한 변수들 설정 -->
+				<c:if test="${count>0}">
+				
+				<c:set var="pageBlock" value="${3}"/>
+				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+				
+				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+				
+				<c:set var="startPage" value="${rs*pageBlock+1}"/>
+				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+				
+				<c:if test="${endPage>pageCount}">
+					<c:set var="endPage" value="${pageCount}"/>
+				</c:if>
+				<!-- Page 설정에 관련한 변수들 설정 -->
+				<form id="messagePage" name="messagePage">
+				
+				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
+			        <div class="row text-center">
+			            <div class="col-lg-12">
+			                <ul class="pagination">
+			                	
+			                	<!-- prev Page 버튼 생성 관련 -->
+			                	<c:if test="${startPage>pageBlock}">
+				                    <li>
+				                        <a href="#">&laquo;</a>
+				                    </li>
+			                    </c:if>
+			                    <!-- prev Page 버튼 생성 관련 -->
+			                    
+			                    <!-- 각 Page 버튼 생성 관련 -->
+			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
+					                <c:if test="${currentPage!=i}">
+							            <li> 
+				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
+					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
+					                </c:if>
+					                <c:if test="${currentPage==i}">
+						                <li class="active">
+							                   	<a href="" id="currentP">${i}</a>
+							            </li>  
+						            </c:if>  
+			                    </c:forEach>
+			                    <!-- 각 Page 버튼 생성 관련 -->
+			                    
+								<!-- next Page 버튼 생성 관련 -->
+								<c:if test="${endPage<pageCount}">
+				                    <li>
+				                        <a href="#">&raquo;</a>
+				                    </li>
+			                    </c:if>
+			                    <!-- next Page 버튼 생성 관련 -->
+			                </ul>
+			            </div>
+			        </div>
+			    </form>
+			        
+				</c:if>
+	        <!-- //Page 설정 -->
+					
+	 		</div>
+	    </div>
     <!-- //Tab2 설정 -->
     
     <!-- Tab3 설정// -->
     <div id="menu3" class="tab-pane fade">
-
+		<h4>hohohohohohohohoho</h4>
     </div>
     <!-- //Tab3 설정 -->
   </div>
@@ -202,11 +292,13 @@
           <h4><span class="glyphicon glyphicon-pencil"></span> Message</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form action="" role="form">
+        
+        <!-- message sending -->
+          <form name="sendMsg" role="form">
             <div class="form-group">
               <label for="from" class="col-sm-2 control-label"> From</label>
               <div class="col-sm-10">
-              	<input type="text" class="form-control" id="messageFrom" value="" disabled="disabled">
+              	<input type="text" class="form-control" id="messageFrom" value="1" disabled="disabled">
               </div>
             </div>
             <div class="form-group">
@@ -218,16 +310,17 @@
             <div class="form-group">
               <label for="message" class="col-sm-2 control-label">Message</label>
         		<div class="col-sm-10">
-           		 <textarea class="form-control" rows="4" name="message"></textarea>
+           		 <textarea class="form-control" rows="4" id="messageContent" ></textarea>
         		</div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-success btn-sm" style="background-color:#BDBDBD; border-color:#BDBDBD; margin-top:10px">
+              <button type="button" id="sendMsg" class="btn btn-success btn-sm" style="background-color:#BDBDBD; border-color:#BDBDBD; margin-top:10px">
                Send</button>
               <button type="reset" class="btn btn-success btn-sm" style="background-color:#BDBDBD; border-color:#BDBDBD; margin-top:10px">
                Cancel</button>
              </div>
           </form>
+          <!-- message sending -->
         </div>
       </div>
     </div>

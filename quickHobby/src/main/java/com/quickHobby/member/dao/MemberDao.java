@@ -12,4 +12,5 @@ public interface MemberDao {
 	public MemberDto getMember(int memberNum);
 	public String checkNickname(String nickname);
 	public String checkEmail(String email);
+	public String findPassword(String email);
 }

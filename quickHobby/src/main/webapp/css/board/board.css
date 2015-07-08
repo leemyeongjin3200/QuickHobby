@@ -160,3 +160,40 @@ a:active{text-decoration:none;}
 .glyphicon-user, .glyphicon-comment, .glyphicon-calendar, .glyphicon-heart{
 	color:#A6A6A6 !important;
 }
+
+
+/** Reply Model창=========================================
+==================================================== */
+ .modal-Reply-body {
+	height: 250px;
+	overflow-y: scroll;
+}
+ .reply-box {
+	margin: 0;
+	padding: 15px;
+	list-style: none;
+}
+ .reply-box li {
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	border-bottom: 1px dotted #808080;
+}
+ .reply-box li.left .reply-body {
+	margin-left: 5px;
+}
+ .reply-box li .reply-body p {
+	margin: 0;
+	color: #8d8888;
+}
+
+.modal-header, h4, .close {
+      background-color: #BDBDBD;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+      text-align: center;
+  }
+  

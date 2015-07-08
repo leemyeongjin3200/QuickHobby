@@ -41,7 +41,7 @@ select * from groupboard where groupboard_writer=#{groupboard_writer}
 	]]>
 	</select>
 	
-	<select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+	<!--  <select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
 	
 
 	<![CDATA[
@@ -52,6 +52,20 @@ order by 2 desc
 	
 	]]>
 	</select>
+	 -->
+	 <select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
 	
+
+	<![CDATA[
+select board_filename,board_filepath,board_filesize,board_content,board_createdate from board where board_writer=#{board_writer}
+union 
+select groupboard_filename,groupboard_filepath, groupboard_filesize,groupboard_content,groupboard_createdate from groupboard where groupboard_writer=#{groupboard_writer}
+order by 2 desc
+	
+	]]>
+	</select>
+
+	 
+	 
 
 </mapper>

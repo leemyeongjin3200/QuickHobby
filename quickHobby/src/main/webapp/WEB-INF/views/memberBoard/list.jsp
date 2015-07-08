@@ -7,25 +7,145 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript" src="${root }/css/memberBoard/memberBoard.js"></script>
 	<link rel="stylesheet" type="text/css" href="${root }/css/memberBoard/style.css">
+	
+	<style type="text/css">
+
+
+@CHARSET "UTF-8";
+
+/*.container{
+width:500px;
+text-align:center;
+margin-right:auto;
+margin-left:auto;
+
+
+}
+*/
+.src{
+
+overflow:auto;width:1000px;height:1000px;
+
+
+
+
+
+
+}
+.subject{
+	height:300px;
+}
+
+.subject1{
+	height:200px;
+}
+.container row{
+clear:left;
+margin:0;
+padding:0;
+list-style-type:none;
+}
+
+
+.container .header{
+font-weight: bold;
+text-align:center;
+border-top:1px solid #000;
+
+}
+
+
+/*.container{
+float:left;
+margin:0;
+padding: 2px 1px;
+border-bottom: 1px solid #000;
+border-left:1px solid #000;
+
+
+
+}
+*/
+
+
+/*.container {
+width: 270px;
+height:500px;
+border-right:1px solid #000;
+}*/
+
+/*.container-fluid row col-sm-8{
+width: 270px;
+border-right:1px solid #000;
+
+}
+
+.container-fluid row col-sm-8{
+width: 270px;
+border-right:1px solid #000;
+
+}*/
+</style>
 </head>
 <body>
-<table width="530" align="center">
+
+
+<c:if test="${count!=0 }">	
+  <div class="container src">
+  
+
+
+	<c:forEach var="board" items="${jesusList}">
+
+<div class="row"> 
+  <div class="col-sm-9 col-md-9 col-lg-9 subject1" style="background-color:lavender;">
+  
+  
+  <img src="${root}/img/${board.board_filename}" width="304" height="236">
+
+ </div>
+</div>
+<!--  <ul>-->
+<div class="row">
+ <div class="col-sm-9 col-md-9 col-lg-9 subject" style="background-color:lightcyan;">${board.board_content}</div>
+  </div>
+  <div class="row">
+ <div class="col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
+ <input type="text" name="e1"/>
+		<input type="button" id="btn1" maxlength="5" size="5" value="버튼"/>
+ 
+ </div>
+  </div>
+  <div class="row">
+ <div class="col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
+ 댓글:
+	<input type="text" name="e"/>
+ </div>
+	
+  </div>
+  
+<!--  </ul>-->
+
+
+			</c:forEach>
+
+
+</div>
+</c:if>
+  
+<!--  <table width="530" align="center">
 <tr>
 <td align="right" bgcolor="D1DBDB">
 <a href="${root}/board/jesus.do">목록보기</a>
 </td>
-<c:if test="${count==0 }">
-		<table border="1" width="530" cellpadding="2" cellspacing="0" align="center">
-			<tr>
-				<td align="center">게시판에 저장된 글이 없습니다.</td>
-			</tr>
-		</table>
-	</c:if>
 
-			
 	 
 	<c:if test="${count!=0 }">	
 	<br/><br/>
@@ -42,10 +162,10 @@
 			    <td align="center" width="250">작성</td>
 				<td align="center" width="100">날짜</td>
 			
-			</tr>
+			</tr>-->
 			
 			<!-- Board List -->
-			<c:forEach var="board" items="${jesusList}">
+			<!--<c:forEach var="board" items="${jesusList}">
 				<tr>
 					<td>${board.board_writer}</td>						
 					<td>${board.board_subject}</td>
@@ -60,7 +180,7 @@
 
 </tr>
 </table>
-
+-->
 
 
 

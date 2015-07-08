@@ -71,4 +71,10 @@
 			select member_id from member where member_id=#{email}
 		]]>
 	</select>
+	
+	<select id="findPassword" parameterType="String" resultType="String">
+		<![CDATA[
+			select member_password from member where member_id=#{email}
+		]]>
+	</select>
 </mapper>

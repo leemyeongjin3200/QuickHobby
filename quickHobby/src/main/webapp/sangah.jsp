@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,7 +14,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <a href="${root}">test</a>
-<a href="${root}/memberBoard/check.do?board_writer=1&&groupboard_writer=1">회원목록보기</a>
+<a href="${root}/memberBoard/check.do?board_writer=1&&groupboard_writer=1">개인 게시판</a>
 
 </body>
 </html>

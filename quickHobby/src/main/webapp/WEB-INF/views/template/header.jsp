@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body onload="getNewMessage('${root}', '${member.memberNum}')">
-<input type="hidden" id="newMessageNum" value="${newMessageNum}"/>
 <!-- Header -->
 <header>
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -20,7 +19,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">QuickHobby</a>
+      <a class="navbar-brand" href="${root}/memberMain.do">QuickHobby</a>
     </div>
     <!-- Before Login -->
 	<!-- c:if문 설정  -->
@@ -52,9 +51,10 @@
 	        <li><a href="#" >My Group</a></li>
 	        <li><a href="#">My Page</a></li>
 	      </ul>
+	      <input type="hidden" name="newMessageNum" value="${newMessageNum}"/>
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a  href="#"><span class="glyphicon glyphicon-envelope"></span><span id="newMessage"></span></a></li>
-	        <li><a href="#"><span class="glyphicon glyphicon-user"></span> ${member.memberNickName}</a></li>
+	      	<li><a href="#"><span id="newMessage" class="badge"><span class="glyphicon glyphicon-envelope"></span></span></a></li>
+	        <li><a href="${root}/member/update.do"><span class="glyphicon glyphicon-user"></span> ${member.memberNickName}</a></li>
 	        <li id="myLogout"><a href="${root}/member/logout.do"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 	      </ul>
 	  </div>

@@ -8,3 +8,10 @@ $(document).ready(function(){
       $(this).tab('show');
   });
 });
+
+//Reply 팝업창
+$(document).ready(function(){
+    $("#myReply").click(function(){
+        $("#myModalReply").modal();
+    });
+});

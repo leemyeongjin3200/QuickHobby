@@ -191,8 +191,14 @@ public class MemberServiceImpl implements MemberService{
 		MemberDto member=(MemberDto)req.getSession().getAttribute("member");
 		
 		String filePath=memberDao.getFile(member.getMemberNum());
+		String fileName=null;
 		
-		String fileName=filePath.split("\\\\")[10];
+		if(filePath!=null){
+			fileName=filePath.split("\\\\")[10];
+		}else{
+			fileName="default.PNG";
+			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+		}
 		mav.addObject("fileName", fileName);
 		mav.setViewName("member/update");
 	}
@@ -260,5 +266,52 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		mav.setViewName("member/register");
+	}
+	
+	public void sendCodeFindPass(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		String email=req.getParameter("email");
+		
+		String serverEmail=memberDao.checkEmail(email);
+		
+		if(serverEmail!=null){
+			Random random=new Random();
+			random.setSeed(new Date().getTime());
+
+			int randomCode=random.nextInt(89999)+10000;
+			
+			String code=String.valueOf(randomCode);
+			mav.addObject("serverCode", code);
+			
+			sendMail(email, code);
+		}else{
+			mav.addObject("serverCode", -1);
+		}
+		
+
+		mav.setViewName("member/sendCodeFindPass");
+	}
+
+	public void findPassword(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		String email=req.getParameter("memberId");
+		
+		String password=memberDao.findPassword(email);
+		String clientPassword="";
+		
+		for(int i=0; i<password.length(); i++){
+			if(i<4){
+				clientPassword+=password.charAt(i);
+			}else{
+				clientPassword+="*";
+			}
+		}
+		
+		mav.addObject("password", clientPassword);
+		mav.setViewName("member/findPasswordOk");
 	}
 }

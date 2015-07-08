@@ -3,25 +3,43 @@
  */
 function getNewMessage(root, memberNum){
 	if(memberNum!=""){
+		var callUrl=root+"/getNewMessage.do?memberNum="+memberNum;
+		$.ajax({
+			url:callUrl,
+			type:"get",
+			dataType:"html",
+			success:function(data){
+				$("#newMessage").append("<span id='messageNum'>&nbsp;&nbsp;" + $(data).find("input[name='newMessageNum']").val() + "</span>");
+			}
+		});
+		
 		setInterval(function(){
-			var callUrl=root+"/getNewMessage.do?memberNum="+memberNum;
-			alert(callUrl);
 			$.ajax({
 				url:callUrl,
 				type:"get",
 				dataType:"html",
 				success:function(data){
-					alert($(data).find("input[type='hidden']").val());
-					$("#newMessage").text();
+					$("#messageNum").text($(data).find("input[name='newMessageNum']").val());
+					$("#messageNum").prepend("&nbsp;&nbsp");
 				}
 			});
-		}, 5000);
+		}, 60000);
 	}
 }
 
 //로그인 팝업창
 $(document).ready(function(){
     $("#myLogin").click(function(){
+    	var cookieId=$.cookie('cookieId');
+		if(cookieId!=undefined){
+			$("#userId").val(cookieId);
+			$("#rememberId").attr("checked", true);
+		}
+		
+        $("#myModal").modal("toggle");
+    });
+    
+    $("#login").click(function(){
     	var cookieId=$.cookie('cookieId');
 		if(cookieId!=undefined){
 			$("#userId").val(cookieId);
