@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardReply.dao.mapper">
+	<resultMap type="com.quickHobby.boardReply.dto.BoardReplyDto" id="boardReplyDto">
+		<result property="boardReplyNum" column="BOARDREPLY_NUM"/>
+		<result property="boardReplyWriter" column="BOARDREPLY_WRITER"/>
+		<result property="boardReplyBoardNum" column="BOARDREPLY_BOARDNUM"/>
+		<result property="boardReplyContent" column="BOARDREPLY_CONTENT"/>
+		<result property="boardReplyCreateDate" column="BOARDREPLY_CREATEDATE"/>
+		<result property="boardReplyModifyDate" column="BOARDREPLY_MODIFYDATE"/>
+		<result property="memberNickName" column="MEMBER_NICKNAME"/>
+
+	</resultMap>
+	<insert id="boardReplyWrite" parameterType="com.quickHobby.boardReply.dto.BoardReplyDto">
+		INSERT INTO BOARDREPLY VALUES(boardreply_num_seq.nextval, #{boardReplyWriter}, 
+		#{boardReplyBoardNum}, #{boardReplyContent}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<select id="getBoardReplyList" resultMap="boardReplyDto" parameterType="int" >
+		<![CDATA[select r.boardreply_num as boardreply_num, 
+		r.boardreply_writer as boardreply_writer,
+		r.boardreply_boardnum as boardreply_boardnum, 
+		r.boardreply_content as boardreply_content,  
+		r.boardreply_createdate as boardreply_createdate,  
+		r.boardreply_modifydate as boardreply_modifydate, 
+		m.member_nickname as member_nickname
+		from boardreply r	
+		inner join member m on m.member_num = r.boardreply_writer
+		where  r.BOARDREPLY_BOARDNUM=#{boardReplyBoardNum}
+		order by boardreply_createdate desc]]>
+	</select>
+	
+	<update id="boardReplyModify" parameterType="com.quickHobby.boardReply.dto.BoardReplyDto">
+		<![CDATA[update reply set BOARDREPLY_CONTENT=#{boardReplyContent}, BOARDREPLY_MODIFYDATE=sysdate
+		where boardReplyNum=#{BOARDREPLY_NUM}]]>
+	</update>
+	
+</mapper>

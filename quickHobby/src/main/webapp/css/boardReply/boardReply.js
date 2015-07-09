@@ -11,6 +11,36 @@ $(".board-reply").on('click', '.edit_ok', modifyReply);
 $(".board-reply").on('click', '.edit_cancel', cancelReply);
 $(".board-reply").on('keydown', '.edit_text', triggerEditReply);
 
+$(document).ready(function(){
+	$('button[name="replyBtn"]').click(function(e){
+		writeReply(e);
+	});
+	
+	$('.modifyBtn').click(function(e){
+		clickModifyBtn(e);
+	});
+	
+	$('.edit_ok').click(function(e){
+		modifyReply(e);
+	});
+	
+	$('.deleteBtn').click(function(e){
+		deleteReply(e);
+	});
+	
+	$('.edit_cancel').click(function(e){
+		cancelReply(e);
+	});
+	
+	$('.form-control').click(function(e){
+		triggerWriteReply(e);
+	});
+	
+	$('.edit_text').click(function(e){
+		triggerEditReply(e);
+	});
+});
+
 function triggerWriteReply(e){
 	if(e.which===13){
 		writeReply(e);
@@ -23,25 +53,32 @@ function triggerEditReply(e){
 }
 
 function writeReply(e){
+	//alert("hahaha");
+	
 	var target = $(e.target)
 	var replaySection =target.parents('.board-reply'); 
 	boardNum = replaySection.data('num'),
 	text = replaySection.find('.form-control').val();
 	var replyWrap = replaySection.find('.replyDiv-wrap');
-	var sendData="boardNumber="+boardNum+"&r_content="+text;
+	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
+	var root=getContextPath();
+	var callUrl=root+"/boardReply/boardReplyWrite.do";
+	console.log(sendData, callUrl);
 	$.ajax({
-		url:"replyWrite.do",
+		url:callUrl,
 		type:"post",
 		data:sendData,
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
+			console.log("hahaha");
+			console.log(decodeURIComponent(data));
 			var replyList = JSON.parse(decodeURIComponent(data));
+			console.log("success1");
 			replyWrap.html(getReplyList(replyList));
-
+			console.log("success2");
 			replaySection.find('.form-control').val('');
-		
-			
+			console.log("success3");
 		},
 		error:function(xhr, status, error){
 			alert(xhr+","+status+","+error);
@@ -59,7 +96,7 @@ function getReplyList(replyList){
 }
 
 function makeReplyDiv(reply) {
-	var d = new Date(reply.modify_time);
+	var d = new Date(reply.boardReplyModifyDate);
 	var time = d.toLocaleString();
 	var year = time.substring(0, 4);
 	
@@ -86,14 +123,14 @@ function makeReplyDiv(reply) {
 	var second = time.substring(20, 22);	
 	console.log(time);
 	
-	var text = '<div class="replyDiv" data-replynum="' + reply.reply_num + '">';
-	text += '<span class="reply_member">' + reply.member_id + '</span>';
-	text += '<span class="reply_content">' + reply.r_content + '</span>';
+	var text = '<div class="replyDiv" data-replynum="' + reply.boardReplyNum + '">';
+	text += '<span class="reply_member">' + reply.memberNickName + '</span>';
+	text += '<span class="reply_content">' + reply.boardReplyContent + '</span>';
 	text += '<span class="reply_date"><small>'+year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second + '</small></span>';
-	if (parseInt(window.config.memberNum, 10) === reply.member_num) {
+//	if (parseInt(window.config.member, 10) === reply.boardReplyWriter) {
 		text += '<span class="reply_btns">'
 				+ '<a class="modifyBtn" >수정</a>&nbsp;/&nbsp;<a class="deleteBtn">삭제</a></span></div>';
-	}
+//	}
 	return text;	
 }
 function clickModifyBtn(e){
@@ -111,9 +148,12 @@ function modifyReply(e){
 	var boardNum = replaySection.data('num');
 	var replyNum = replayDiv.data('replynum');
 	var editText = replayDiv.find('.reply_edit input').val();
-	var sendData="replyNumber="+replyNum+"&r_content="+editText+"&boardNumber="+boardNum;
+	var sendData="boardReplyNum="+replyNum+"&boardReplyContent="+editText+"&boardNum="+boardNum;
+	var root=getContextPath();
+	var callUrl=root+"boardReply/boardReplyModify.do";
+	console.log(sendData, callUrl);
 	$.ajax({
-		url:"modifyReply.do",
+		url:callUrl,
 		type:"post",
 		data:sendData,
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
@@ -155,4 +195,19 @@ function deleteReply(e){
 			alert(xhr+","+status+","+error);
 		}
 	});
+}
+
+//root값 받아오는 함수
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
+
+function rplLine(value){
+    if (value != null && value != "") { 
+        return value.replace(/\n/g, "\\n");
+    }else{
+        return value;
+    }
 }

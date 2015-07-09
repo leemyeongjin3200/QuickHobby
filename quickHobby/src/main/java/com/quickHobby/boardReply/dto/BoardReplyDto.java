@@ -9,6 +9,7 @@ public class BoardReplyDto {
 	private String boardReplyContent;
 	private Date boardReplyCreateDate;
 	private Date boardReplyModifyDate;
+	private String memberNickName;
 	public int getBoardReplyNum() {
 		return boardReplyNum;
 	}
@@ -44,5 +45,11 @@ public class BoardReplyDto {
 	}
 	public void setBoardReplyModifyDate(Date boardReplyModifyDate) {
 		this.boardReplyModifyDate = boardReplyModifyDate;
+	}
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 }

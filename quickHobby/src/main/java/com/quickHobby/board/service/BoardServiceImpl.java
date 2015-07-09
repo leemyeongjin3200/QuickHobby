@@ -131,7 +131,7 @@ public class BoardServiceImpl implements BoardService {
 		
 //		boardReply와 연결중
 		BoardDto boardDto=boardDao.boardRead(boardNum);
-//		boardDto.setReplyList(boardReplyDao.getBoardReplyList(boardDto.getBoardNum()));
+		boardDto.setBoardReplyList(boardReplyDao.getBoardReplyList(boardNum));
 		
 		logger.info("boardDto:"+boardDto);
 		

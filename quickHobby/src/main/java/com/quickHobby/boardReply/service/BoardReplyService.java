@@ -1,11 +1,11 @@
 package com.quickHobby.boardReply.service;
 
-import org.springframework.web.servlet.ModelAndView;
+import java.util.List;
+
+import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 public interface BoardReplyService {
-
-	void boardReplyWrite(ModelAndView mav);
-
-	void boardReplyList(ModelAndView mav);
-
+	public int boardReplyWrite(BoardReplyDto boardReplyDto);
+	public List<BoardReplyDto> getBoardReplyList(int boardNum);
+	public int boardReplyModify(BoardReplyDto boardReplyDto);
 }

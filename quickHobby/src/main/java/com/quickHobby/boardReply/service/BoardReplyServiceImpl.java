@@ -1,10 +1,14 @@
 package com.quickHobby.boardReply.service;
 
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,33 +30,29 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	@Autowired
 	private BoardReplyDao boardReplyDao;
 
+	/**
+	* @name : getBoardReplyList
+	* @date : 2015. 7. 9.
+	* @author : 차건강
+	* @description : Tip & Review BoardReply 리스트 DB에 요청
+	 */
+	public List<BoardReplyDto> getBoardReplyList(int boardNum){
+		return boardReplyDao.getBoardReplyList(boardNum);	
+	}
+
+	/**
+	* @name : boardReplyWrite
+	* @date : 2015. 7. 9.
+	* @author : 차건강
+	* @description : Tip & Review BoardReply 작성한 내용 DB에 저장
+	 */
 	@Override
-	public void boardReplyWrite(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		BoardReplyDto boardReplyDto=(BoardReplyDto)map.get("boardReplyDto");
-		
-		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));
-		String boardReplyContent = request.getParameter("boardReplyContent");
-		
-		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-		int boardReplyWriter=member.getMemberNum();
-		
-		boardReplyDto.setBoardReplyWriter(boardReplyWriter);
-		boardReplyDto.setBoardReplyBoardNum(boardReplyBoardNum);
-		boardReplyDto.setBoardReplyContent(boardReplyContent);
-		
-		int check=boardReplyDao.boardReplyWrite(boardReplyDto);
-		
-		mav.addObject("check", check);
-		
-		mav.setViewName("board/read");
-		
+	public int boardReplyWrite(BoardReplyDto boardReplyDto) {
+		return boardReplyDao.boardReplyWrite(boardReplyDto);
 	}
 
 	@Override
-	public void boardReplyList(ModelAndView mav) {
-		// TODO Auto-generated method stub
-		
+	public int boardReplyModify(BoardReplyDto boardReplyDto) {
+		return boardReplyDao.boardReplyModify(boardReplyDto);
 	}
 }
