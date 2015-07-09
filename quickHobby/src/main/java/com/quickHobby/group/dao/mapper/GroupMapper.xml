@@ -23,7 +23,7 @@
 	
 	<select id="myGroupList" parameterType="int" resultMap="groupDto">
 		<![CDATA[
-			select * from ggroup where group_num=(select join_groupnum from join where join_membernum=#{memberNum})
+			select a.* from ggroup a, join b where a.group_num=b.join_groupnum and b.join_membernum=#{memberNum}
 		]]>
 	</select>
 	
