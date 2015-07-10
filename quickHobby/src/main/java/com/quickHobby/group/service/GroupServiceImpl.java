@@ -3,6 +3,7 @@ package com.quickHobby.group.service;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -15,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.group.dao.GroupDao;
 import com.quickHobby.group.dto.GroupDto;
+import com.quickHobby.member.dto.MemberDto;
 
 @Component
 public class GroupServiceImpl implements GroupService {
@@ -64,5 +66,18 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 //		
 //		mav.addObject("check", check);
 //		mav.setViewName("group/createOk");
+	}
+
+	@Override
+	public void myGroupList(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		MemberDto member=(MemberDto)req.getSession().getAttribute("member");
+		
+		List<GroupDto> groupList=groupDao.myGroupList(member.getMemberNum());
+		
+		mav.addObject("groupList", groupList);
+		mav.setViewName("myGroup/myGroupList");
 	}
 }

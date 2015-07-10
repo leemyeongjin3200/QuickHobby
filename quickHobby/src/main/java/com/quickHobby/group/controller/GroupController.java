@@ -44,4 +44,14 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/myGroup/myGroupList.do", method=RequestMethod.GET)
+	public ModelAndView myGroupList(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", req);
+		
+		groupService.myGroupList(mav);
+		
+		return mav;
+	}
 }

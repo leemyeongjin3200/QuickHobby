@@ -21,6 +21,12 @@
  				values(group_num_seq.nextval, #{apply_category}, #{apply_inout}, #{apply_host}, #{apply_subject}, #{apply_subtitle}, #{apply_location}, #{apply_closedate}, #{apply_cost}, APPLY_NUM_SEQ.currval)]]>
 	</insert>
 	
+	<select id="myGroupList" parameterType="int" resultMap="groupDto">
+		<![CDATA[
+			select a.* from ggroup a, join b where a.group_num=b.join_groupnum and b.join_membernum=#{memberNum}
+		]]>
+	</select>
+	
 	<update id="updateGroup" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
 			UPDATE GGROUP SET GROUP_CATEGORY=#{apply_category}, GROUP_INOUT=#{apply_inout}, GROUP_SUBJECT=#{apply_subject}, GROUP_SUBTITLE=#{apply_subtitle}, GROUP_LOCATION=#{apply_location}, GROUP_DATE=#{apply_closedate}, GROUP_COST=#{apply_cost} WHERE GROUP_APPLYNUM=#{apply_num}

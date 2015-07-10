@@ -1,5 +1,7 @@
 package com.quickHobby.boardReply.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,5 +22,16 @@ public class BoardReplyDaoImpl implements BoardReplyDao {
 	@Override
 	public int boardReplyWrite(BoardReplyDto boardReplyDto) {
 		return sqlSession.insert("boardReply.dao.mapper.boardReplyWrite", boardReplyDto);
+	}
+
+	@Override
+	public List<BoardReplyDto> getBoardReplyList(int boardNum) {
+		// System.out.println("boardReplyDaoImpl passed");
+		return sqlSession.selectList("boardReply.dao.mapper.getBoardReplyList", boardNum);
+	}
+
+	@Override
+	public int boardReplyModify(BoardReplyDto boardReplyDto) {
+		return sqlSession.update("boardReply.dao.mapper.boardReplyModify", boardReplyDto);
 	}
 }
