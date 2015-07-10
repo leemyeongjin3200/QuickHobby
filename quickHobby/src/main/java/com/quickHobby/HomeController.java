@@ -4,12 +4,17 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.quickHobby.board.dto.BoardDto;
 
 /**
  * Handles requests for the application home page.
@@ -36,4 +41,14 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value="/apply/writeForm.do", method=RequestMethod.GET)
+	public String fileWrite(HttpServletRequest request){
+		return "apply/writeForm";
+	}
+	
+	@RequestMapping(value="/apply/write.do", method=RequestMethod.POST)
+	public String fileWritePost(HttpServletRequest request){
+		System.out.println(request.getParameter("file_name"));	
+		return "apply/writeOk";
+	}
 }
