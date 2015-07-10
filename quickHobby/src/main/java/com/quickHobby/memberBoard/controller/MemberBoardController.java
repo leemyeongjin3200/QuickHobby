@@ -2,6 +2,7 @@ package com.quickHobby.memberBoard.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.memberBoard.service.MemberBoardService;
 
 
@@ -28,7 +30,7 @@ public class MemberBoardController {
 	private MemberBoardService memberBoardService;
 	
 	@RequestMapping(value="/memberBoard/check.do", method=RequestMethod.GET)
-	public ModelAndView check(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView check(HttpServletRequest request, HttpServletResponse response,MemberDto memberDto){
 		logger.info("selfCheck-----------------");
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
@@ -37,6 +39,9 @@ public class MemberBoardController {
 		
 		
 	}
+	
+
+
 	
 	
 	
