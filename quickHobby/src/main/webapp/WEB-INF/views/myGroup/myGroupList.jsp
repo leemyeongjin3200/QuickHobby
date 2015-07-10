@@ -18,10 +18,13 @@
 		<div class="page-header">
 			<h2>My Group</h2>
 		</div>
+	</div>
+	<div class="container-fluid">
 		<div id="backgroundDiv" class="row">
 			<div class="col-md-4 postDiv">
 				<a href="#">	
-					<img src="${root}/background/post11.png" class="img-responsive" height="150" width="250"></img>
+					<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
+					
 					<div>
 						
 					</div>
@@ -29,27 +32,27 @@
 			</div>
 			<div class="col-md-4 postDiv">
 				<a href="#">
-					<img src="${root}/background/post11.png" class="img-responsive" height="150" width="250"></img>
+					<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
 				</a>
 			</div>
 			<div class="col-md-4 postDiv">
 				<a href="#">
-					<img src="${root}/background/post11.png" class="img-responsive" height="150" width="250"></img>
+					<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
 				</a>
 			</div>
 			<div class="col-md-4 postDiv">
 				<a href="#">
-					<img src="${root}/background/post11.png" class="img-responsive" height="150" width="250"></img>
+					<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
 				</a>
 			</div>
 			<div class="col-md-4 postDiv">
 				<a href="#">
-					<img src="${root}/background/post11.png" class="img-responsive" height="150" width="250"></img>
+					<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
 				</a>
 			</div>
 			<div class="col-md-4 postDiv">
 				<a href="#">
-					<img src="${root}/background/post11.png" class="img-responsive" height="150" width="250"></img>
+					<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
 				</a>
 			</div>
 		</div>
