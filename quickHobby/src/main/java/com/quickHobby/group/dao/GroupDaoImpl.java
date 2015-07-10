@@ -30,5 +30,11 @@ public class GroupDaoImpl implements GroupDao {
 		return sqlSession.update("group.dao.mapper.updateGroup", groupDto);
 	}
 
+	@Override
+	public int createGroupFile(ApplyDto groupDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("group.dao.mapper.createGroupFile", groupDto);
+	}
+
 
 }

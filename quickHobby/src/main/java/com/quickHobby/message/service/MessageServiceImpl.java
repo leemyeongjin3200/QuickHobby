@@ -205,8 +205,6 @@ public class MessageServiceImpl implements MessageService {
 		
 		int newMessageNum=messageDao.getNewMessage(memberNum);
 		
-		System.out.println(newMessageNum);
-		
 		mav.addObject("newMessageNum", newMessageNum);
 		mav.setViewName("template/header");
 	}

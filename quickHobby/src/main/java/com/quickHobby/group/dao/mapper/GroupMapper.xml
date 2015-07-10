@@ -21,9 +21,15 @@
  				values(group_num_seq.nextval, #{apply_category}, #{apply_inout}, #{apply_host}, #{apply_subject}, #{apply_subtitle}, #{apply_location}, #{apply_closedate}, #{apply_cost}, APPLY_NUM_SEQ.currval)]]>
 	</insert>
 	
+	<insert id="createGroupFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			insert into ggroup(GROUP_NUM, GROUP_CATEGORY, GROUP_INOUT, GROUP_HOST,GROUP_SUBJECT, GROUP_SUBTITLE, GROUP_LOCATION, GROUP_DATE, GROUP_COST, GROUP_APPLYNUM, GROUP_FILENAME, GROUP_FILEPATH, GROUP_FILESIZE)
+ 				values(group_num_seq.nextval, #{apply_category}, #{apply_inout}, #{apply_host}, #{apply_subject}, #{apply_subtitle}, #{apply_location}, #{apply_closedate}, #{apply_cost}, APPLY_NUM_SEQ.currval, #{apply_filename}, #{apply_filepath}, #{apply_filesize})
+		]]>
+	</insert>
 	<select id="myGroupList" parameterType="int" resultMap="groupDto">
 		<![CDATA[
-			select a.* from ggroup a, join b where a.group_num=b.join_groupnum and b.join_membernum=#{memberNum}
+			select a.* from ggroup a, join b where a.group_num=b.join_groupnum and b.join_membernum=#{memberNum} order by group_date asc
 		]]>
 	</select>
 	

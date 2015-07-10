@@ -9,5 +9,6 @@ public interface GroupDao {
 
 	public List<GroupDto> myGroupList(int memberNum);
 	int createGroup(ApplyDto groupDto);
+	int createGroupFile(ApplyDto groupDto);
 	int updateGroup(ApplyDto groupDto);
 }

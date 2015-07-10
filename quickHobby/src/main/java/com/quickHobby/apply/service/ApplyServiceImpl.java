@@ -101,7 +101,7 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		if(fileSize!=0){
 			try{
-				String dir="C:\\Users\\KOSTA_07_008\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
 				
 				logger.info("dir : " + dir);
 				
@@ -119,10 +119,11 @@ public class ApplyServiceImpl implements ApplyService {
 		int check=0;
 		if(applyDto.getApply_filename() != null){
 			check=applyDao.insertFile(applyDto);
+			groupDao.createGroupFile(applyDto);
 		}else{
 			check=applyDao.insert(applyDto);
+			groupDao.createGroup(applyDto);
 		}
-		groupDao.createGroup(applyDto);
 		
 		logger.info("check : " + check);
 		
@@ -249,7 +250,7 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		if(fileSize!=0){
 			try{
-				String dir="C:\\Users\\KOSTA_07_008\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
 				
 				logger.info("dir : " + dir);
 				
