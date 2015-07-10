@@ -23,7 +23,7 @@
 	
 	<update id="updateGroup" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			UPDATE GGROUP SET GGROUP_CATEGORY=#{apply_category}, GGROUP_INOUT=#{apply_inout}, GGROUP_SUBJECT=#{apply_subject}, GGROUP_SUBTITLE=#{apply_subtitle}, GGROUP_LOCATION=#{apply_location}, GGROUP_CLOSEDATE=#{apply_closedate}, GGROUP_COST=#{apply_cost} WHERE GGROUP_APPLYNUM=#{apply_num}
+			UPDATE GGROUP SET GROUP_CATEGORY=#{apply_category}, GROUP_INOUT=#{apply_inout}, GROUP_SUBJECT=#{apply_subject}, GROUP_SUBTITLE=#{apply_subtitle}, GROUP_LOCATION=#{apply_location}, GROUP_DATE=#{apply_closedate}, GROUP_COST=#{apply_cost} WHERE GROUP_APPLYNUM=#{apply_num}
  		]]>
 	</update>
 </mapper>

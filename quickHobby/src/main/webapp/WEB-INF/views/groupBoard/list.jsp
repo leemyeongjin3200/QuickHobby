@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- 	글쓰기 페이지로 이동 -->
-	<a href="${root}/groupBoard/writeForm.do">Write</a>
+	<a href="${root}/groupBoard/writeForm.do?groupBoardGroupNum=${groupBoardGroupNum}">Write</a>
 	
 <!-- 	글 리스트가 없는 경우 안내메시지 출력 -->
 	<c:if test="${count==0}">
