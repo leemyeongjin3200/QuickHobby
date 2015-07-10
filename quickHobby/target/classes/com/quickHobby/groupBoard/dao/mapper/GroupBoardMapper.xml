@@ -23,7 +23,7 @@
 	<select id="groupBoardList" parameterType="java.util.Map" resultMap="groupBoardDto">
 			<![CDATA[select * from
  			(select rownum rnum, a.* from 
-			(select * from groupboard where GROUPBOARD_VISIBLE=1 
+			(select * from groupboard where GROUPBOARD_VISIBLE=1 and GROUPBOARD_GROUPNUM=5 
 			order by GROUPBOARD_CREATEDATE desc)a) 
  			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
 	</select>

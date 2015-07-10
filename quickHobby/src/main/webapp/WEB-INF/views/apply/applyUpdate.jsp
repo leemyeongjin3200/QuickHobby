@@ -68,7 +68,7 @@
 	$(function(){
 		document.getElementById("${applyDto.apply_category}").selected=true;
 		document.getElementById("${applyDto.apply_inout}").selected=true;
-		document.getElementById("apply_file").setAttribute("defaultValue", "${applyDto.apply_filepath}");
+//		document.getElementById("apply_file").defaultValue="${applyDto.apply_filepath}";
 	});
 </script>
 
