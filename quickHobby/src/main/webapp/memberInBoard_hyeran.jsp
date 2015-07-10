@@ -32,7 +32,8 @@
                     <li><i class="glyphicon glyphicon-user"></i><span><a href="#"> Leemyeongjin</a></span></li>
                     <li><i class="glyphicon glyphicon-star"></i><b>Member Level: </b><span> USER</span></li>
                     <li><i class="glyphicon glyphicon-zoom-in"></i><b>SNS: </b><span><a href="#"> Look around!</a></span></li>
-                </ul>                    
+                </ul>
+                <a href="#" class="btn btn-primary btn-block" style="">send a Message</a>                    
              </div>
         </div>
       </div><!--/left-->
