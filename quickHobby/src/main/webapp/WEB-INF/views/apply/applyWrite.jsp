@@ -251,6 +251,7 @@ function removeChar(event) {
 }
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+<<<<<<< HEAD
 <script type="text/javascript">                
 	var dropBox = document.getElementById("dropbox");          
 	var dropImage = document.createElement("img");   
@@ -309,4 +310,10 @@ function removeChar(event) {
 		dropImage.getElementByTag("img").setAttribute("height", "100");
 	}, true)
 </script>
+=======
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script type="text/javascript" src="${root}/css/member/member.js"></script>
+</body>
+>>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </html>

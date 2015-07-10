@@ -20,23 +20,21 @@
 
 @CHARSET "UTF-8";
 
-/*.container{
-width:500px;
-text-align:center;
-margin-right:auto;
-margin-left:auto;
 
-
-}
-*/
 .src{
 
 overflow:auto;width:1000px;height:1000px;
+align:auto;
 
 
 
 
 
+}
+
+.a{
+overflow:auto;
+align:auto;
 
 }
 .subject{
@@ -62,69 +60,47 @@ border-top:1px solid #000;
 }
 
 
-/*.container{
-float:left;
-margin:0;
-padding: 2px 1px;
-border-bottom: 1px solid #000;
-border-left:1px solid #000;
 
-
-
-}
-*/
-
-
-/*.container {
-width: 270px;
-height:500px;
-border-right:1px solid #000;
-}*/
-
-/*.container-fluid row col-sm-8{
-width: 270px;
-border-right:1px solid #000;
-
-}
-
-.container-fluid row col-sm-8{
-width: 270px;
-border-right:1px solid #000;
-
-}*/
 </style>
 </head>
 <body>
 
 
 <c:if test="${count!=0 }">	
-  <div class="container src">
+  <div class="container src" align="center">
   
 
 
-	<c:forEach var="board" items="${jesusList}">
+	<c:forEach var="board" items="${memberBoardList}">
 
 <div class="row"> 
   <div class="col-sm-9 col-md-9 col-lg-9 subject1" style="background-color:lavender;">
   
   
-  <img src="${root}/img/${board.board_filename}" width="304" height="236">
+  <img class="a" src="${root}/img/${board.board_filename}" width="304" height="236" align="left">
 
  </div>
 </div>
 <!--  <ul>-->
 <div class="row">
- <div class="col-sm-9 col-md-9 col-lg-9 subject" style="background-color:lightcyan;">${board.board_content}</div>
+ <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 subject" style="background-color:lightcyan;">${board.board_content}</div>
   </div>
   <div class="row">
- <div class="col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
- <input type="text" name="e1"/>
-		<input type="button" id="btn1" maxlength="5" size="5" value="버튼"/>
+ <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
  
+ 
+ 
+
+ 
+
+ <input type="text" name="e1"/>
+		<input type="button" id="btn1" maxlength="30" size="30" value="버튼"/>
+
+
  </div>
   </div>
   <div class="row">
- <div class="col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
+ <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9" style="background-color:lightcyan;">
  댓글:
 	<input type="text" name="e"/>
  </div>
@@ -146,6 +122,7 @@ border-right:1px solid #000;
 <a href="${root}/board/jesus.do">목록보기</a>
 </td>
 
+	 
 	 
 	<c:if test="${count!=0 }">	
 	<br/><br/>

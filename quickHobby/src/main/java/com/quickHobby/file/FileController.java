@@ -16,16 +16,16 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Controller
 public class FileController {
 
-	@RequestMapping(value = "/upload.do", method = RequestMethod.POST)
+	@RequestMapping(value = "apply/upload.do", method = RequestMethod.POST)
 	public @ResponseBody FileMeta upload(MultipartHttpServletRequest request, HttpSession session) throws Exception{
 		
 		FileMeta fileMeta = null;
 
-		String path = "C:/TripPeeple_repo/content_file/";
+		String path = "C:/Users/KOSTA_07_008/git/QuickHobby/quickHobby/src/main/webapp/groupImage/";
 
 		MultipartFile mpf = request.getFile("files");
 		
-		String member_num = String.valueOf(session.getAttribute("member_num"));
+		String member_num = "1";
 		long currTime = System.currentTimeMillis();		
 		String tail = (mpf.getOriginalFilename()).substring((mpf.getOriginalFilename()).lastIndexOf("."));
 		String customFileName = member_num + "_" + currTime + tail;
@@ -37,6 +37,11 @@ public class FileController {
 		fileMeta.setFileSize(String.valueOf(mpf.getSize()));
 		fileMeta.setFileType(customFileType);
 		fileMeta.setFilePath(path);
+		
+		System.out.println("file Name :  " + fileMeta.getFileName());
+		System.out.println("file Size :  " + fileMeta.getFileSize());
+		System.out.println("file Type :  " + fileMeta.getFileType());
+		System.out.println("file Path :  " + fileMeta.getFilePath());
 		
 		FileOutputStream fos = null;
 		BufferedOutputStream bos = null;

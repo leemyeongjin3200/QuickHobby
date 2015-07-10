@@ -115,6 +115,7 @@
                                 <p> TITLE: </p>
                         </div>
                 </div>
+                
           </a>
        </div>
 	  <div class="col-md-4" >
