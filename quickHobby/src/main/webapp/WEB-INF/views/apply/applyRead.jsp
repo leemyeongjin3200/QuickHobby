@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<script src="${root}/css/apply/jquery-2.1.4.js"></script>
+<script src="${root}/css/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		if("${weather.wf}" != ""){

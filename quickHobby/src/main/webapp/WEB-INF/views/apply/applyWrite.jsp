@@ -1,13 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+
+<title>모임 신청하기</title>
+
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -125,6 +127,7 @@ function removeChar(event) {
 		event.target.value = event.target.value.replace(/[^0-9]/g, "");
 }
 </script>
+
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include><br/><br/>
 <body>
@@ -133,7 +136,7 @@ function removeChar(event) {
 			<h2>모임 신청하기</h2>
 		</div>
 		
-		<form name="applyCreateForm" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
+		<form name="applyCreateForm" class="form-horizontal" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 			<div class="col-md-6">
 				<input type="hidden" name="apply_host" value="1"/>
 				
@@ -204,9 +207,9 @@ function removeChar(event) {
 				
 				<div class="form-group">
 					<label for="" class="title"><span class="glyphicon glyphicon-pencil"></span> Content</label>
-					<div class="row" style="height:230px;">
+					<div class="row">
 						<div class="col-md-9">
-							<textarea class="form-control" rows="14" cols="58" name="apply_content" placeholder="Content"></textarea>
+							<textarea class="form-control" rows="15" cols="58" name="apply_content" placeholder="Content"></textarea>
 						</div>
 					</div>
 				</div>
@@ -233,11 +236,12 @@ function removeChar(event) {
 		 			</div>
 				</div>
 				
+				
 				<div class="form-group">
 					<label for=""><span class="glyphicon glyphicon-camera"></span> Picture</label>
 					<div class="row">
 						<div class="col-md-10">
-							<input class="btn btn-default" type="file" name="apply_file"/>
+							<input class="btn btn-default" type="file" name="apply_file" id="apply_file"/>
 						</div>
 					</div>
 				</div><br/>
@@ -245,6 +249,7 @@ function removeChar(event) {
 				<!-- 글쓰기, 취소, 버튼 부분 -->
 				<div class="form-group">
 					<input type="submit" class="btn btn-default" value="Complete"/>
+					<input type="button" class="btn btn-default" onclick="window.history.back(-1)" value="Cancel"></input>
 					<input type="button" class="btn btn-default" value="List" onclick="location.href='${root}/apply/applyList.do'"/>
 				</div>
 			</div>
@@ -254,6 +259,7 @@ function removeChar(event) {
 	
 <jsp:include page="../template/loginModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>

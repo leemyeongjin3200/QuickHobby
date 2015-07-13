@@ -91,7 +91,7 @@ public class KMARssMain {
                     			break;
                     		}
                     	} else {
-                    		if(tmEf.equals("2015-07-12 00:00")){
+                    		if(tmEf.equals(closeDate)){
                     	
                 			entity.setMode(mode);
                 			entity.setTmEf(tmEf);
