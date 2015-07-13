@@ -7,6 +7,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<<<<<<< HEAD
+<script src="${root}/css/jquery.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if("${weather.wf}" != ""){
+		
+		var wf="${weather.wf}";
+		var url="${root}/weather/" + wf + ".jpg";
+		
+			$("#weather").attr("src", url);
+		}
+	});
+</script>
+=======
+>>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
