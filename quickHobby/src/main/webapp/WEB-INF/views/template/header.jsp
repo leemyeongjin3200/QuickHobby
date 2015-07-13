@@ -58,7 +58,7 @@ ${param.root1} --%>
 	      </ul>
 	      <input type="hidden" name="newMessageNum" value="${newMessageNum}"/>
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="#"><span id="newMessage" class="badge"><span class="glyphicon glyphicon-envelope"></span></span></a></li>
+	      	<li><a href="${root}/message/messageList.do"><span id="newMessage" class="badge"><span class="glyphicon glyphicon-envelope"></span></span></a></li>
 	        <li><a href="${root}/member/update.do"><span class="glyphicon glyphicon-user"></span> ${member.memberNickName}</a></li>
 	        <li id="myLogout"><a href="${root}/member/logout.do"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 	      </ul>

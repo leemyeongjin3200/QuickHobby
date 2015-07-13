@@ -61,23 +61,6 @@ public class MessageController {
 		
 		return mav;
 	}
-	/*
-	 * @name        : messageSendList
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : �߽��� ������ ��û�� MessageService�� messageSendList()�� ����.
-	 */
-	@RequestMapping(value="/message/messageSendList.do", method=RequestMethod.GET)
-	public ModelAndView messageSendList(HttpServletRequest request){
-		logger.info("messageSendList======");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		
-		messageService.messageSendList(mav);
-		
-		return mav;
-	}
 
 	/**
 	* @name : messageRead
@@ -91,7 +74,6 @@ public class MessageController {
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
-		mav.addObject("messageDto", messageDto);
 		
 		messageService.messageRead(mav);
 		

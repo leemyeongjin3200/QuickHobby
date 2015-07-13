@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<c:set var="root" value="${pageContext.request.contextPath}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-
 <script type="text/javascript">
 	$(document).ready(function(){
 		var geocoder = new google.maps.Geocoder();
@@ -99,13 +97,7 @@
   margin-bottom: 10px;
  
 }
-
 </style>
-
-<title>모임 가입하기</title>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
-
-<script src="${root}/css/jquery.js"></script>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body style="font-family:'맑은 샘물', Sans-serif;">
@@ -186,9 +178,10 @@
         </div>
         <hr>
         <div class="col-lg-12">
+        	<p><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
+		</div>
         	<p onclick="location.href='${root}/apply/applyOk.do?apply_num=${applyDto.apply_num}'"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
-	</div>
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){

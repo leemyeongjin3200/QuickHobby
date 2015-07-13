@@ -19,6 +19,11 @@ body {
 
 <title>Main</title>
 
+<c:set var="root" value="${pageContext.request.contextPath}"/>
+<c:set var="root1" value="${pageContext.request.requestURI}"/>
+<script>
+</script>
+<title>HYERAN</title>
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
