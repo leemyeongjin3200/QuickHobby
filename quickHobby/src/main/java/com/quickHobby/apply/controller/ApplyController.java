@@ -164,4 +164,14 @@ public class ApplyController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/main.do", method=RequestMethod.GET)
+	public ModelAndView main(HttpServletRequest request){
+		logger.info("main======");
+		
+		ModelAndView mav=new ModelAndView();
+		applyService.main(mav);
+		
+		return mav;
+	}
 }

@@ -48,4 +48,10 @@
 			select * from ggroup where group_num=#{groupNum}
 		]]>
 	</select>
+
+	<insert id="joinMember" parameterType="java.util.HashMap">
+		<![CDATA[
+			INSERT INTO JOIN VALUES((SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}), #{member_num}) 
+ 		]]>
+	</insert>
 </mapper>

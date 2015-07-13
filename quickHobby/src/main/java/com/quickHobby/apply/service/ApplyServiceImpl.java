@@ -299,6 +299,19 @@ public class ApplyServiceImpl implements ApplyService {
 		groupMap.put("member_num", member.getMemberNum());
 		
 		int check=groupDao.joinMember(groupMap);
-		System.out.println("check : " + check);
+		
+		mav.addObject("check", check);
+		
+		mav.setViewName("");
+	}
+	
+	public void main(ModelAndView mav){
+		logger.info("main======");
+		
+		List<ApplyDto> applyDtoList=applyDao.getListByCreateDate();
+		logger.info("list size : " + applyDtoList.size());
+		
+		mav.addObject("applyDtoList", applyDtoList);
+		mav.setViewName("forward:main_hyeran.jsp");
 	}
 }

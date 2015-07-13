@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 function getNewMessage(root, memberNum){
 	if(memberNum!=""){
 		var callUrl=root+"/getNewMessage.do?memberNum="+memberNum;
