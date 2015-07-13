@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.group.dao.GroupDao;
+import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.weather.Weather;
 import com.quickHobby.weather.WeatherDTO;
 
@@ -49,11 +50,9 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-//		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-//		String groupHost=member.getMemberId();
-		
-		String groupHost="hahaha";
-				
+		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
+		String groupHost=member.getMemberId();
+
 		logger.info("groupHost:"+groupHost);
 		
 		mav.addObject("groupHost", groupHost);

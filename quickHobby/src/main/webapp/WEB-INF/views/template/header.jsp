@@ -31,8 +31,8 @@ ${param.root1} --%>
 	<c:if test="${member==null}">
 	<div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	      	<li><a href="#">Apply</a></li>
-	        <li><a href="#">Tip & Review</a></li>
+	      	<li><a href="${root}/apply/applyList.do">Apply</a></li>
+	        <li><a href="${root}/board/list.do">Tip & Review</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="${root}/member/register.do"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -48,11 +48,11 @@ ${param.root1} --%>
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apply<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Apply Group</a></li>
-	            <li><a href="#">Create Group</a></li>
+	            <li><a href="${root}/apply/applyList.do">Apply Group</a></li>
+	            <li><a href="${root}/apply/applyWrite.do">Create Group</a></li>
 	          </ul>
 	        </li>
-	        <li><a href="#">Tip & Review</a></li>
+	        <li><a href="${root}/board/list.do">Tip & Review</a></li>
 	        <li><a href="${root}/myGroup/myGroupList.do">My Group</a></li>
 	        <li><a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}">My Page</a></li>
 	      </ul>

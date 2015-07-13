@@ -38,7 +38,7 @@ public class ApplyController {
 		logger.info("applyWrite======");
 		
 		ModelAndView mav=new ModelAndView();
-		
+		mav.addObject("request", request);
 		applyService.applyWrite(mav);
 		
 		return mav;

@@ -7,20 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<script src="${root}/css/apply/jquery-2.1.4.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		if("${weather.wf}" != ""){
-		
-		var wf="${weather.wf}";
-		var url="${root}/weather/" + wf + ".jpg";
-		
-			$("#weather").attr("src", url);
-		}
-	});
-</script>
 </head>
+<jsp:include page="../template/header.jsp"></jsp:include>
 <body>
+	<br/><br/>
 	<!-- 해당 게시물에 대한 정보 -->
 	<label>번호 : ${applyDto.apply_num}</label><br/>
 	<label>제목 : ${applyDto.apply_subject}</label><br/>
@@ -34,4 +24,16 @@
 	<a href="${root}/apply/applyUpdate.do?apply_num=${applyDto.apply_num}">수정</a><br/>
 	<a href="${root}/apply/applyDelete.do?apply_num=${applyDto.apply_num}">삭제</a>
 </body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if("${weather.wf}" != ""){
+		
+		var wf="${weather.wf}";
+		var url="${root}/weather/" + wf + ".jpg";
+		
+			$("#weather").attr("src", url);
+		}
+	});
+</script>
+<jsp:include page="../template/footer.jsp"></jsp:include>
 </html>
