@@ -17,7 +17,7 @@
 <link href="${root}/css/groupBoard/groupBoard.css" rel="stylesheet">
 <style>
 #gb-bgImg {
-	background: url(${root}/img/bg.jpg) no-repeat center center;
+	background: url(${root}/img/para.jpg) no-repeat center center;
 	padding: 0;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -30,8 +30,9 @@
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
 <!--===========group board Information=================-->
-	<section id="gInfo">
-	<div class="container">
+<section id="gInfo">
+	<div id="gb-bgImg"><!-- background Image -->
+		<div class="container">
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -42,7 +43,6 @@
 		</div><!-- .row 끝 -->
 	</div><!-- .container 끝 -->
 	
-	<div id="gb-bgImg"><!-- background Image -->
 		<div class="container">
 			<div class="row">
 				<div class="gInfo_content">
@@ -250,16 +250,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
-				<!-- BEGAIN ABOUT HEADING -->
+				<!-- GroupMember heading -->
 				<div class="heading">
 					<h3 class="text-denter">Group Member</h3>
 					<p>모임을 신청한 사람들입니다.</p>
-				</div>
+				</div> <!-- .heading 끝 -->
+				
+				<!-- GroupMember List 슬라이드 영역 -->
 				<div class="gMember_area">
-					<!-- BEGAIN TEAM SLIDER -->
 					<div class="gMember_slider">
-
-						<!-- BEGAIN SINGLE TEAM SLIDE#1 -->
+						<!-- GroupMember 01 시작 -->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
@@ -270,8 +270,9 @@
 								</h5>
 								<span>Host</span>
 							</div>
-						</div>
-						<!-- BEGAIN SINGLE TEAM SLIDE#2 -->
+						</div><!-- GroupMember 01 끝 -->
+						
+						<!-- GroupMember 02 시작-->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
@@ -282,91 +283,81 @@
 								</h5>
 								<span>Member</span>
 							</div>
-						</div>
-						<!-- BEGAIN SINGLE TEAM SLIDE#3 -->
+						</div><!-- GroupMember 02 끝 -->
+						
+						<!-- GroupMember 03 시작 -->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
-									<img src="${root}/img/Penguins.jpg" alt="img"
-										class="img-responsive">
+									<img src="${root}/img/Penguins.jpg" alt="img" class="img-responsive">
 								</div>
 								<h5>
-									<i class="glyphicon glyphicon-user"></i><a href="#">
-										seoingoo2</a>
+									<i class="glyphicon glyphicon-user"></i><a href="#"> seoingoo2</a>
 								</h5>
 								<span>Member</span>
-
-
 							</div>
-						</div>
-						<!-- BEGAIN SINGLE TEAM SLIDE#4 -->
+						</div><!-- GroupMember 03 끝 -->
+						
+						<!-- GroupMember 04 시작 -->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
-									<img src="${root}/img/Penguins.jpg" alt="img"
-										class="img-responsive">
+									<img src="${root}/img/Penguins.jpg" alt="img" class="img-responsive">
 								</div>
 								<h5>
-									<i class="glyphicon glyphicon-user"></i><a href="#">
-										seoingoo3</a>
+									<i class="glyphicon glyphicon-user"></i><a href="#"> seoingoo3</a>
 								</h5>
 								<span>Member</span>
-
-
 							</div>
-						</div>
-						<!-- BEGAIN SINGLE TEAM SLIDE#5 -->
+						</div><!-- GroupMember 04 끝 -->
+						
+						<!-- GroupMember 05 시작  -->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
-									<img src="${root}/img/Penguins.jpg" alt="img"
-										class="img-responsive">
+									<img src="${root}/img/Penguins.jpg" alt="img"	class="img-responsive">
 								</div>
 								<h5>
-									<i class="glyphicon glyphicon-user"></i><a href="#">
-										seoingoo4</a>
+									<i class="glyphicon glyphicon-user"></i><a href="#"> seoingoo4</a>
 								</h5>
 								<span>Member</span>
 							</div>
-						</div>
-						<!-- BEGAIN SINGLE TEAM SLIDE#6 -->
+						</div><!-- GroupMember 05 끝 -->
+						
+						<!-- GroupMember 06 시작 -->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
-									<img src="${root}/img/groupMember04.jpg" alt="img"
-										class="img-responsive">
+									<img src="${root}/img/groupMember04.jpg" alt="img" class="img-responsive">
 								</div>
 								<h5>
-									<i class="glyphicon glyphicon-user"></i><a href="#">
-										kimhyeran1</a>
+									<i class="glyphicon glyphicon-user"></i><a href="#"> kimhyeran1</a>
 								</h5>
 								<span>Member</span>
-
 							</div>
-						</div>
-						<!-- BEGAIN SINGLE TEAM SLIDE#7 -->
+						</div><!-- GroupMember 06 끝 -->
+						
+						<!-- GroupMember 07 시작 -->
 						<div class="col-lg-3 col-md-3 col-sm-4">
 							<div class="single_gMember">
 								<div class="gMember_img">
-									<img src="${root}/img/groupMember03.jpg" alt="img"
-										class="img-responsive">
+									<img src="${root}/img/groupMember03.jpg" alt="img" class="img-responsive">
 								</div>
 								<h5>
-									<i class="glyphicon glyphicon-user"></i><a href="#">
-										kimhyeran2</a>
+									<i class="glyphicon glyphicon-user"></i><a href="#"> kimhyeran2</a>
 								</h5>
 								<span>Member</span>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+						</div><!-- GroupMember 07 끝 -->
+					</div><!-- .gMember_slider 끝 -->
+				</div><!-- .gMember_area 끝 -->
+			</div><!-- .col-lg-12 col-md-12 끝 -->
+		</div><!-- .row 끝 -->
+	</div><!-- .container 끝 -->
 	</section>
-	<!--=========== END TEAM SECTION ================-->
+	<!--=========== GroupMember list 끝 ================-->
 
-	<!-- Reply Pop-Up// -->
+	<!--===========Reply Pop-Up 시작================ -->
 	<div class="container">
 		<!-- Modal -->
 		<div class="modal fade" id="myModalReply" role="dialog">
@@ -375,126 +366,68 @@
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">
-							<span class="glyphicon glyphicon-comment"
-								style="color: white !important"></span> Comments
+							<span class="glyphicon glyphicon-comment" style="color: white !important"></span> Comments
 						</h4>
-					</div>
+					</div> <!-- .modal-header 끝 -->
 					<div class="modal-Reply-body">
 						<ul class="reply-box">
 							<li class="left clearfix">
 								<div class="reply-body">
-									<strong><i class="glyphicon glyphicon-user"></i>
-										Leemyeongjin</strong> <small class="pull-right text-muted"><i
-										class="glyphicon glyphicon-calendar"></i> 13:00:00</small>
+									<strong><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong> 
+									<small class="pull-right text-muted">
+										<i class="glyphicon glyphicon-calendar"></i> 13:00:00
+									</small>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Curabitur bibendum ornare dolor, quis ullamcorper ligula
-										sodales.</p>
+										Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.</p>
 								</div>
 							</li>
 							<li class="left clearfix">
 								<div class="reply-body clearfix">
-									<strong><i class="glyphicon glyphicon-user"></i>
-										Leemyeongjin</strong> <small class="pull-right text-muted"><i
-										class="glyphicon glyphicon-calendar"></i> 13:00:00</small>
+									<strong><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong> 
+									<small class="pull-right text-muted">
+										<i class="glyphicon glyphicon-calendar"></i> 13:00:00
+									</small>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Curabitur bibendum ornare dolor, quis ullamcorper ligula
-										sodales.</p>
+										Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.</p>
 								</div>
 							</li>
 							<li class="left clearfix">
 								<div class="reply-body">
-									<strong><i class="glyphicon glyphicon-user"></i>
-										Leemyeongjin</strong> <small class="pull-right text-muted"><i
-										class="glyphicon glyphicon-calendar"></i> 13:00:00</small>
+									<strong><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong> 
+									<small class="pull-right text-muted">
+										<i class="glyphicon glyphicon-calendar"></i> 13:00:00
+									</small>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Curabitur bibendum ornare dolor, quis ullamcorper ligula
-										sodales.</p>
+										Curabitur bibendum ornare dolor, quis ullamcorper ligula	sodales.</p>
 								</div>
 							</li>
 						</ul>
-					</div>
+					</div><!-- .modal-Reply-body 끝 -->
 					<div class="modal-footer" style="font-color: white">
-						<a href="#" class="btn btn-primary"
-							style="background-color: #BDBDBD; border-color: #BDBDBD;">to
-							Content</a> <a href="#" class="btn btn-primary"
-							style="background-color: #BDBDBD; border-color: #BDBDBD; width: 11%;">to
-							List</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- //Reply Pop-Up -->
-
+						<a href="#" class="btn btn-primary" style="background-color: #BDBDBD; border-color: #BDBDBD;">
+							to Content</a> 
+						<a href="#" class="btn btn-primary" style="background-color: #BDBDBD; border-color: #BDBDBD; width: 11%;">
+							to List</a>
+					</div><!-- .modal-footer 끝 -->
+				</div><!-- .modal-content 끝 -->
+			</div><!-- .modal-dialog 끝 -->
+		</div><!-- #myModalReply 끝 -->
+	</div><!-- .container 끝 -->
+	<!--=============Reply Pop-Up 끝================= -->
 
 
 	<!-- Google map -->
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
-	<!-- for circle counter -->
-	<script
-		src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
-	<!-- For smooth animatin -->
+	<!-- For GroupMember -->
 	<script src="${root}/css/groupBoard/wow.min.js"></script>
 	<!-- superslides slider -->
-	<script src="${root}/css/groupBoard/jquery.superslides.min.js"
-		type="text/javascript"></script>
+	<script src="${root}/css/groupBoard/jquery.superslides.min.js" type="text/javascript"></script>
 	<!-- slick slider -->
 	<script src="${root}/css/groupBoard/slick.min.js"></script>
-	<script>
-
-jQuery(function($){
-	//gMember_slider
-
-		$('.gMember_slider').slick({
-		  dots: false,
-		  infinite: true,
-		  speed: 600,
-		  slidesToShow: 5,
-		  slidesToScroll: 5,
-		  responsive: [
-		    {
-		      breakpoint: 1024,
-		      settings: {
-		        slidesToShow: 3,
-		        slidesToScroll: 3,
-		        infinite: true,
-		        dots: true
-		      }
-		    },
-		    {
-		      breakpoint: 600,
-		      settings: {
-		        slidesToShow: 2,
-		        slidesToScroll: 2,
-		      }
-		    },
-		    {
-		      breakpoint: 480,
-		      settings: {
-		        slidesToShow: 1,
-		        slidesToScroll: 1,
-		      }
-		    }
-		  ]
-		});
-
-  var zoom= $('#map_canvas').gmap('option', 'zoom');
-  
-  $('#map_canvas').gmap().bind('init', function(ev, map) {
-    $('#map_canvas').gmap('addMarker', {'position': '57.7973433,12.0502107', 'bounds': true});
-    $('#map_canvas').gmap('option', 'zoom', 13);
-  });
-
-});
-
-//Reply 팝업창
-$(document).ready(function(){
-    $(".myInGroupReply").click(function(){
-        $("#myModalReply").modal();
-    });
-});
-
+	<!--  groupBoard.js-->
+	<script src="${root}/css/groupBoard/groupBoard.js"></script>
+<script>
 </script>
 </body>
 <jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
