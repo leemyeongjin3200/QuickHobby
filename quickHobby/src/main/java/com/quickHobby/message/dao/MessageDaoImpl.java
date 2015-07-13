@@ -26,14 +26,6 @@ public class MessageDaoImpl implements MessageDao {
 		return sqlSession.insert("messageSend", messageDto);
 	}
 	
-	public List<MessageDto> getReceiveList(int message_receiver){
-		return sqlSession.selectList("messageReceiveList", message_receiver);
-	}
-
-	public List<MessageDto> getSendList(int message_sender){
-		return sqlSession.selectList("messageSendList", message_sender);
-	}
-	
 	public MessageDto getMessageDto(int message_num){
 		return sqlSession.selectOne("getMessageDto", message_num);
 	}

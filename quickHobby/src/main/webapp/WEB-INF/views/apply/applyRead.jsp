@@ -10,19 +10,21 @@
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
-	<br/><br/>
-	<!-- 해당 게시물에 대한 정보 -->
-	<label>번호 : ${applyDto.apply_num}</label><br/>
-	<label>제목 : ${applyDto.apply_subject}</label><br/>
-	<label>파일경로 : ${applyDto.apply_filepath}</label><br/>
-	<label>조회수 : ${applyDto.apply_readcount}</label><br/><br/>
-	<img id=weather style="width:304px; height:228px;" src="${root}/weather/questionMark.jpg">
-	<h4>${weather.wf}</h4>
-	<h4>최저 : ${weather.tmn}</h4>
-	<h4>최고 : ${weather.tmx}</h4>
-	
-	<a href="${root}/apply/applyUpdate.do?apply_num=${applyDto.apply_num}">수정</a><br/>
-	<a href="${root}/apply/applyDelete.do?apply_num=${applyDto.apply_num}">삭제</a>
+	<div class="container">
+		<br/><br/><br/><br/>
+		<!-- 해당 게시물에 대한 정보 -->
+		<label>번호 : ${applyDto.apply_num}</label><br/>
+		<label>제목 : ${applyDto.apply_subject}</label><br/>
+		<label>파일경로 : ${applyDto.apply_filepath}</label><br/>
+		<label>조회수 : ${applyDto.apply_readcount}</label><br/><br/>
+		<img id=weather style="width:304px; height:228px;" src="${root}/weather/questionMark.jpg">
+		<h4>${weather.wf}</h4>
+		<h4>최저 : ${weather.tmn}</h4>
+		<h4>최고 : ${weather.tmx}</h4>
+		
+		<a href="${root}/apply/applyUpdate.do?apply_num=${applyDto.apply_num}">수정</a><br/>
+		<a href="${root}/apply/applyDelete.do?apply_num=${applyDto.apply_num}">삭제</a>
+	</div>
 </body>
 <script type="text/javascript">
 	$(document).ready(function(){

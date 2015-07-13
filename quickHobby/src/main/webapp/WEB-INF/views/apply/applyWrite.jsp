@@ -114,7 +114,8 @@
 						<div class="col-md-10">
 				 			<div id="map_canvas" style="width:460px; height:380px;"></div>
 				 			<div id="address" style="display:none"></div><br/>
-			 				<input class="form-control" type="text" id="addr" size="70" name="apply_location">
+			 				<input class="form-control" type="text" id="addrText" size="70" disabled>
+			 				<input type="hidden" id="addr" name="apply_location"/>
 			 			</div>
 		 			</div>
 				</div>
@@ -144,7 +145,7 @@
 	$(document).ready(function(){
 		var latlng=new google.maps.LatLng(37.5640, 126.9751);
 		var mapOptions={
-				zoom:7,
+				zoom:10,
 				center:latlng,
 				mapTypeId:google.maps.MapTypeId.ROADMAP
 		}
@@ -166,6 +167,7 @@
 				if(status==google.maps.GeocoderStatus.OK){
 					$('#address').html(results[0].formatted_address);
 					var addr=document.getElementById("address").innerHTML;
+					document.getElementById("addrText").value=addr;
 					document.getElementById("addr").value=addr;
 					$('#lat').html(results[0].geometry.location.lat());
 					$('#lng').html(results[0].geometry.location.lng());

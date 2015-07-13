@@ -9,18 +9,6 @@
 		]]>
 	</insert>
 	
-	<select id="messageReceiveList" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
-		<![CDATA[
-			SELECT * FROM MESSAGE WHERE MESSAGE_RECEIVER=#{message_receiver} ORDER BY MESSAGE_DATE DESC
-		]]>
-	</select>
-	
-	<select id="messageSendList" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
-		<![CDATA[
-			SELECT * FROM MESSAGE WHERE MESSAGE_SENDER=#{message_sender} ORDER BY MESSAGE_DATE DESC
-		]]>
-	</select>
-	
 	<select id="getMessageDto" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
 		<![CDATA[
 			SELECT * FROM MESSAGE WHERE MESSAGE_NUM=#{message_num}

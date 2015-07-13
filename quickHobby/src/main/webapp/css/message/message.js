@@ -43,7 +43,7 @@ $(document).ready(function(){
 //메세지 팝업창
 $(document).ready(function(){
     $("#myMessage").click(function(){
-        $("#myModal").modal();
+        $("#messageModal").modal();
     });
 });
 
@@ -113,7 +113,7 @@ $(document).ready(function(){
 			dataType:"text",
 			success:function(data){
 				alert("message가 전송되었습니다.");
-				$("#myModal").modal("toggle");
+				$("#messageModal").modal("toggle");
 			},
 			error:function(xhr, status, error){
 				alert(xhr+","+status+","+error);

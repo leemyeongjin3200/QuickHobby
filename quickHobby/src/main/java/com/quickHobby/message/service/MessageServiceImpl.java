@@ -83,23 +83,6 @@ public class MessageServiceImpl implements MessageService {
 		mav.setViewName("message/messageList");
 	}
 	
-	/*
-	 * @name        : messageSendList
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : Message Table���� �ش� ȸ���� ������ ���� ����� ������.
-	 */
-	public void messageSendList(ModelAndView mav){
-		//Map<String, Object> map=mav.getModelMap();
-		//HttpServletRequest request=(HttpServletRequest) map.get("request");
-		
-		List<MessageDto> messageList=messageDao.getSendList(1);
-		logger.info("SendList size : " + messageList.size());
-		
-		mav.addObject("messageList", messageList);
-		mav.setViewName("message/messageSendList");
-	}
-	
 	/**
 	* @name : messageList
 	* @date : 2015. 6. 25. / 2015. 7. 7.

@@ -15,6 +15,8 @@ public class MessageDto {
 	private String message_content;
 	private Date message_date;
 	private String message_read;
+	private String message_senderNick;
+	private String message_receiverNick;
 	
 	public int getMessage_num() {
 		return message_num;
@@ -51,5 +53,17 @@ public class MessageDto {
 	}
 	public void setMessage_read(String message_read) {
 		this.message_read = message_read;
+	}
+	public String getMessage_senderNick() {
+		return message_senderNick;
+	}
+	public void setMessage_senderNick(String message_senderNick) {
+		this.message_senderNick = message_senderNick;
+	}
+	public String getMessage_receiverNick() {
+		return message_receiverNick;
+	}
+	public void setMessage_receiverNick(String message_receiverNick) {
+		this.message_receiverNick = message_receiverNick;
 	}
 }
