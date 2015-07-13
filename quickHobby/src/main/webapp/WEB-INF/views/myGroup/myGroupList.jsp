@@ -22,9 +22,15 @@
 		<div id="backgroundDiv" class="row">
 			<c:forEach var="group" items="${groupList}">
 				<div class="col-md-3 postDiv">
-					<a href="#">	
-						<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
-						<img src="${root}/groupImage/${group.groupFileName}" class="img-responsive" height="100" width="200"></img>
+					<a href="${root}/groupBoard/list.do?groupNum=${group.groupNum}">
+						<img src="${root}/background/polaroid.png" class="img-responsive polaroid"></img>
+						<img src="${root}/groupImage/${group.groupFileName}" class="photo"></img>
+						<div class="groupTitle">${group.groupSubject}</div>
+						<div class="groupInfo">
+							<p>DATE: ${group.groupDate}</p>
+							<p>SUBTITLE: ${group.groupSubtitle}</p>
+							<p>LOCATION: ${group.groupLocation}</p>
+						</div>
 					</a>
 				</div>
 			</c:forEach>

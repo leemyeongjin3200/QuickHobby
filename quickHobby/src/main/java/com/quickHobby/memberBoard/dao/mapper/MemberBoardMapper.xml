@@ -4,6 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.boardMapper"> 
 
+
+
+<resultMap type="com.quickHobby.member.dto.MemberDto" id="memberDto">
+		<result property="memberNum" column="member_num"/>
+		<result property="memberId" column="member_id"/>
+		<result property="memberPassword" column="member_password"/>
+		<result property="memberNickName" column="member_nickname"/>
+		<result property="memberLevel" column="member_level"/>
+		<result property="memberSNS" column="member_sns"/>
+		<result property="memberReport" column="member_report"/>
+		<result property="memberFileName" column="member_filename"/>
+		<result property="memberFilePath" column="member_filepath"/>
+		<result property="memberFileSize" column="member_filesize"/>
+	</resultMap>
+
 <select id="boardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
 select * from board where board_writer=#{board_writer}
 </select>
@@ -57,14 +72,62 @@ order by 2 desc
 	
 
 	<![CDATA[
-select board_filename,board_filepath,board_filesize,board_content,board_createdate from board where board_writer=#{board_writer}
-union 
-select groupboard_filename,groupboard_filepath, groupboard_filesize,groupboard_content,groupboard_createdate from groupboard where groupboard_writer=#{groupboard_writer}
+	select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{board_writer} and m.member_num=#{board_writer}
+	union all
+  select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{groupboard_writer} and g.groupboard_writer=#{groupboard_writer}
 order by 2 desc
+
 	
 	]]>
 	</select>
 
+	 	<select id="getn" parameterType="String" resultType="int">
+	
+
+	<![CDATA[
+select member_num from member where member_nickname=#{memberNickName}
+
+	]]>
+	</select>
+	
+	
+	 	<select id="getnn" parameterType="String" resultMap="memberDto">
+	
+
+	<![CDATA[
+select member_num from member where member_nickname=#{memberNickName}
+
+	]]>
+	</select>
+	
+	
+		 <select id="gList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+	
+
+	<![CDATA[
+	select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{member_num} and m.member_num=#{member_num}
+	union all
+select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{member_num} and g.groupboard_writer=#{member_num}
+
+order by 2 desc
+
+	
+	]]>
+	</select>
+	
+		 <select id="okselect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+	
+
+	<![CDATA[
+select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{member_num} and g.groupboard_writer=#{member_num}
+union all
+select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{member_num} and m.member_num=#{member_num}
+order by 2 desc
+
+	
+	]]>
+	</select>
+	 
 	 
 	 
 

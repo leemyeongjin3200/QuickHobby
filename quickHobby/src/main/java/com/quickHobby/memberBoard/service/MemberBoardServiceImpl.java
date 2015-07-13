@@ -6,10 +6,12 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.memberBoard.dao.MemberBoardDao;
 import com.quickHobby.memberBoard.dto.MemberBoardDto;
 
@@ -35,28 +37,82 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	public void boardWrite(ModelAndView mav) {
 		Map<String,Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		MemberDto memberDto=(MemberDto)map.get("memberDto");
 		
-		int board_writer=Integer.parseInt(request.getParameter("board_writer"));
-		int groupboard_writer=Integer.parseInt(request.getParameter("groupboard_writer"));
+		//	boardDto=boardDao.boardRead(boardNumber);
+		
+		//BoardDto boardDto=(BoardDto) map.get("boardDto");	
+		int memberNum=request.getParameter("memberNum");
+		
+		String memberNickName=request.getParameter("memberNickName");
+		
+		logger.info("memberNickName:"+memberNickName);
+		memberDto=memberBoardDao.getNumm(memberNickName);
+		logger.info("memberDao:"+memberDto);
+		int member_num=memberDto.getMemberNum();
+	logger.info("member_num:"+member_num);
+	//		AddressDto addressDto=addressDao.selectOk(name);
+
+	//dto로 넘기자 ==테스트
+//	MemberBoardDto memberBoardDto=memberBoardDao.selectOk(member_num);
+	//logger.info("memberBoardDto:"+memberBoardDto);
+
+	/////
+	
+	
+	List<MemberBoardDto>memberBoardList=null;
+	memberBoardList=memberBoardDao.getSumlistt(member_num);
+	logger.info("memberBoardList:"+memberBoardList.size());
+	
+	 mav.addObject("memberBoardList",memberBoardList);
+
+	mav.setViewName("memberBoard/list");
+		
+	   
+		
+	}
+	
+}
+	
+	
+	
+	
+	
+	
+		
+		//////
+    // int check=memberBoardDao.getNum(memberNickName);
+		
+	//	logger.info("check:"+check);
+		////////
+		
+		/////////
+		
+		/*String board_writer=request.getParameter("board_writer");
+	    String groupboard_writer=request.getParameter("groupboard_writer");
 		logger.info("board_writer:"+board_writer);
-		logger.info("groupboard_writer:"+groupboard_writer);
 		
+		
+		logger.info("groupboard_writer:"+groupboard_writer);
+		//참고하는 형태:BoardDto boardDto=boardDao.boardRead(boardNumber);
+		
+		*/
 
   
 
 	
-	List<MemberBoardDto>memberBoardList=null;
-	memberBoardList=memberBoardDao.getSumlist(board_writer,groupboard_writer);
+	//List<MemberBoardDto>memberBoardList=null;
+	//memberBoardList=memberBoardDao.getSumlist(board_writer,groupboard_writer);
 	
-logger.info("jesusList:"+memberBoardList.size());
- mav.addObject("jesusList",memberBoardList);
-	
-	
+//logger.info("jesusList:"+memberBoardList.size());
+// mav.addObject("jesusList",memberBoardList);
 	
 	
 	
-	mav.setViewName("memberBoard/list");
+	
+	
+//	mav.setViewName("memberBoard/list");
 
-	}
 
-}
+
+//}

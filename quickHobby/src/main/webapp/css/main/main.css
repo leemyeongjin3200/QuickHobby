@@ -70,7 +70,7 @@ footer {
 
 /**login Pop-up============================================
 ======================================================= */
-.modal-header, h4, .close {
+.modal-header, .modal-header h4, .close {
       background-color: #BDBDBD;
       color:white !important;
       text-align: center;
