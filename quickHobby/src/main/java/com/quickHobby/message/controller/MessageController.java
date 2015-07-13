@@ -74,7 +74,6 @@ public class MessageController {
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
-		mav.addObject("messageDto", messageDto);
 		
 		messageService.messageRead(mav);
 		

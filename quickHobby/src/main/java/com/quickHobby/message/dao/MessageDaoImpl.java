@@ -26,10 +26,6 @@ public class MessageDaoImpl implements MessageDao {
 		return sqlSession.insert("messageSend", messageDto);
 	}
 	
-	public MessageDto getMessageDto(int message_num){
-		return sqlSession.selectOne("getMessageDto", message_num);
-	}
-	
 	public int delete(String message_num){
 		int messageNum=Integer.parseInt(message_num);
 		return sqlSession.delete("messageDelete", messageNum);

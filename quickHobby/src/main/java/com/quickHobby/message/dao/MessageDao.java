@@ -6,7 +6,6 @@ import com.quickHobby.message.dto.MessageDto;
 
 public interface MessageDao {
 	public int send(MessageDto messageDto);
-	public MessageDto getMessageDto(int message_num);
 	public int delete(String message_num);
 	public int getMessageCount();
 	public List<MessageDto> getMessageList(int startRow, int endRow);

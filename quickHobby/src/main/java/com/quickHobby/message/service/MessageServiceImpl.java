@@ -92,16 +92,11 @@ public class MessageServiceImpl implements MessageService {
 	public void messageRead(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
-		MessageDto messageDto=(MessageDto) map.get("messageDto");
 		
 		int message_num=Integer.parseInt(request.getParameter("message_num"));
 		
 		messageDao.readChange(message_num);
-		
-		messageDto=messageDao.getMessageDto(message_num);
-		logger.info("message_num : " + messageDto.getMessage_num());
-		
-		mav.addObject("messageDto", messageDto);
+
 		mav.setViewName("message/messageRead");
 	}
 	

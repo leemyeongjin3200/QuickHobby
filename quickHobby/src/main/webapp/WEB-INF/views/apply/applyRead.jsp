@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<<<<<<< HEAD
 <script src="${root}/css/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -20,8 +19,6 @@
 		}
 	});
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>

@@ -26,12 +26,10 @@ $(function() {
     var $filterGroup = $(filterGroup);
     $filterGroup.on('click', 'li', function() {
       $filterGroup.find('.is-checked').removeClass('is-checked');
-      $(this).appendClass('is-checked');
+      $(this).addClass('is-checked');
     });
   });
-
 });
-
 
 //tab넘기기
 $(document).ready(function(){
@@ -39,14 +37,6 @@ $(document).ready(function(){
         $(this).tab('show');
     });
 });
-
-//메세지 팝업창
-$(document).ready(function(){
-    $("#myMessage").click(function(){
-        $("#messageModal").modal();
-    });
-});
-
 
 function checkForm(messageForm){
 	alert("Message Form check");
@@ -59,6 +49,21 @@ $(document).ready(function(){
 		e.preventDefault();
 	});
 });
+
+function deleteMessage(messageNum){
+	var root=getContextPath();
+	var callUrl=root+"/message/messageDelete.do?message_num="+messageNum;
+	
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			alert("삭제되었습니다.");
+			location.reload();
+		}
+	});
+}
 
 // 체크한 message들 한번에 delete 컨트롤러로 보내기
 $(document).ready(function(){
@@ -77,6 +82,7 @@ $(document).ready(function(){
 			dataType:"html",
 			success:function(data){
 				alert("삭제되었습니다.");
+				location.reload();
 			}
 		});
 	});
@@ -85,21 +91,11 @@ $(document).ready(function(){
 // message 작성 후 send 컨트롤러로 보내기
 $(document).ready(function(){
 	$("#sendMsg").click(function(e){
-		var sendMsg = document.getElementById("sendMsg");
-		var messageFrom = document.getElementById("messageFrom");
-		var message_sender=messageFrom.value;
-		message_sender=Number(message_sender);
+		var message_sender=$("#messageFromHidden").val();
 		
-		var messageTo = document.getElementById("messageTo");
-		var message_receiver=messageTo.value;
-		message_receiver=Number(message_receiver);
+		var message_receiver=$("#messageToHidden").val();
 		
-		var messageCon = document.getElementById("messageContent");
-		var message_content=messageCon.value;
-		
-		console.log(message_sender);
-		console.log(message_receiver);
-		console.log(message_content);
+		var message_content=$("#messageContent").val();
 		
 		var sendData="message_sender="+message_sender+"&message_receiver="+message_receiver+"&message_content="+message_content;
 		var root=getContextPath();
@@ -114,6 +110,7 @@ $(document).ready(function(){
 			success:function(data){
 				alert("message가 전송되었습니다.");
 				$("#messageModal").modal("toggle");
+				location.reload();
 			},
 			error:function(xhr, status, error){
 				alert(xhr+","+status+","+error);
@@ -127,4 +124,28 @@ function getContextPath(){
     var offset=location.href.indexOf(location.host)+location.host.length;
     var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
     return ctxPath;
+}
+
+function readMessage(messageNum, memberNum, receiverNum){
+	$("." + messageNum).slideToggle("slow");
+	
+	if(memberNum==receiverNum){
+		var root=getContextPath();
+		var callUrl=root + "/message/messageRead.do?message_num=" + messageNum;
+		
+		$.ajax({
+			url:callUrl,
+			type:"get",
+			dataType:"text",
+			success:function(data){
+				
+			}
+		});
+	}
+}
+
+function replyMessage(receiverNum, receiverNick){
+	$("#messageModal").find("#messageTo").val(receiverNick);
+	$("#messageModal").find("#messageToHidden").val(receiverNum);
+	$("#messageModal").modal("toggle");
 }
