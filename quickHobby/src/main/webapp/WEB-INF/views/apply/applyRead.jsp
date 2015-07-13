@@ -108,7 +108,7 @@
 <script src="${root}/css/jquery.js"></script>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
-<body style="font-family:'맑은 샘물', Sans-serif";>
+<body style="font-family:'맑은 샘물', Sans-serif;">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -116,8 +116,8 @@
                      <img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
                  </div>
                  <div class="post-meta">
-                	<span><i class="glyphicon glyphicon-user"></i> 5 Joins</span>&nbsp;&nbsp;
-                	<span><i class="glyphicon glyphicon-heart"></i> 1 Likes</span>&nbsp;&nbsp;
+                	<span><i class="glyphicon glyphicon-user"></i> ${joins} Joins</span>&nbsp;&nbsp;
+                	<span><i class="glyphicon glyphicon-heart"></i> ${recommends} Likes</span>&nbsp;&nbsp;
                 	<span><i class="glyphicon glyphicon-book"></i> ${applyDto.apply_readcount} Reads</span>
               	</div>
             </div>
@@ -157,12 +157,12 @@
                 
       			<div class="single_gMember" >
                     <div class="gMember_img">
-                    	<img src="${root}/img/Tulips.jpg" alt="img">
+                    	<img src="${root}/pds/default.PNG" alt="img">
                     </div>
-                    <ul class="list-unstyled groupApply-list">
-	                    <li><i class="glyphicon glyphicon-user"></i> <span><a href="#"> ${applyDto.apply_host}</a></span></li>
-	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level: </b><span> USER</span></li>
-	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS: </b><span><a href="#"> https://www.facebook.com/ingoo.seo.9</a></span></li>
+                    <ul class="list-unstyled groupApply-list" style="text-align:left;">
+	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span><a href="#"> ${host.memberNickName}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level : </b><span> ${host.memberLevel}</span></li>
+	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="#"> ${host.memberSNS}</a></span></li>
                     </ul>                  
              	</div>   
              	
@@ -186,7 +186,7 @@
         </div>
         <hr>
         <div class="col-lg-12">
-        	<p><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
+        	<p onclick="location.href='${root}/apply/applyOk.do?apply_num=${applyDto.apply_num}'"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
 	</div>
 </body>
@@ -198,6 +198,11 @@
 		var url="${root}/weather/" + wf + ".jpg";
 		
 			$("#weather").attr("src", url);
+		}
+		
+		if("${host.memberFileName}" !=""){
+			var fileName="${host.memberFileName}";
+			var url="${root}/pds/" + fileName + ".jpg";
 		}
 	});
 </script>
