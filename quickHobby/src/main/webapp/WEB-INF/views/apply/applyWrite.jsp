@@ -12,7 +12,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<<<<<<< HEAD
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
@@ -129,8 +129,6 @@ function removeChar(event) {
 }
 </script>
 
-=======
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
