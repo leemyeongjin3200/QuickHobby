@@ -34,7 +34,6 @@ a:active{text-decoration:none !important;}
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
     <div class="container">
- 
 
     </div>
     
