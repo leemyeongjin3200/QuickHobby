@@ -50,9 +50,27 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	public int boardReplyWrite(BoardReplyDto boardReplyDto) {
 		return boardReplyDao.boardReplyWrite(boardReplyDto);
 	}
-
+	
+	/**
+	* @name : boardReplyModify
+	* @date : 2015. 7. 13.
+	* @author : 차건강
+	* @description : Tip & Review BoardReply 수정한 내용 DB에 저장
+	 */
 	@Override
 	public int boardReplyModify(BoardReplyDto boardReplyDto) {
 		return boardReplyDao.boardReplyModify(boardReplyDto);
 	}
+
+	/**
+	* @name : boardReplyModify
+	* @date : 2015. 7. 13.
+	* @author : 차건강
+	* @description : Tip & Review BoardReply DB에서 삭제
+	 */
+	@Override
+	public int boardReplyDelete(BoardReplyDto boardReplyDto) {
+		return boardReplyDao.boardReplyDelete(boardReplyDto);
+	}
+
 }

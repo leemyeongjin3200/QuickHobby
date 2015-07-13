@@ -26,12 +26,21 @@ public class BoardReplyDaoImpl implements BoardReplyDao {
 
 	@Override
 	public List<BoardReplyDto> getBoardReplyList(int boardNum) {
-		// System.out.println("boardReplyDaoImpl passed");
 		return sqlSession.selectList("boardReply.dao.mapper.getBoardReplyList", boardNum);
 	}
 
 	@Override
 	public int boardReplyModify(BoardReplyDto boardReplyDto) {
 		return sqlSession.update("boardReply.dao.mapper.boardReplyModify", boardReplyDto);
+	}
+
+	@Override
+	public int boardReplyDelete(BoardReplyDto boardReplyDto) {
+		return sqlSession.delete("boardReply.dao.mapper.boardReplyDelete", boardReplyDto);
+	}
+
+	@Override
+	public int getBoardReplyCount(int boardNum) {
+		return sqlSession.selectOne("boardReply.dao.mapper.getBoardReplyCount", boardNum);
 	}
 }
