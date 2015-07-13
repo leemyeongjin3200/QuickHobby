@@ -152,4 +152,16 @@ public class ApplyController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="apply/applyOk.do", method=RequestMethod.GET)
+	public ModelAndView applyOk(HttpServletRequest request){
+		logger.info("applyOk======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.applyOk(mav);
+		
+		return mav;
+	}
 }
