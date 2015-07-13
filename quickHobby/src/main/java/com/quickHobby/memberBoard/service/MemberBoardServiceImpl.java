@@ -42,15 +42,21 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		//	boardDto=boardDao.boardRead(boardNumber);
 		
 		//BoardDto boardDto=(BoardDto) map.get("boardDto");	
-		int memberNum=request.getParameter("memberNum");
-		
+		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
+		logger.info("memberNum:"+memberNum);
 		String memberNickName=request.getParameter("memberNickName");
+		logger.info("memberNickName:"+memberNickName);
+		//memberDto=memberBoardDao.getNum(memberNum);
+		
+		
+		//잘된것 일단 주석처리
+		/*String memberNickName=request.getParameter("memberNickName");
 		
 		logger.info("memberNickName:"+memberNickName);
 		memberDto=memberBoardDao.getNumm(memberNickName);
 		logger.info("memberDao:"+memberDto);
 		int member_num=memberDto.getMemberNum();
-	logger.info("member_num:"+member_num);
+	logger.info("member_num:"+member_num);*/
 	//		AddressDto addressDto=addressDao.selectOk(name);
 
 	//dto로 넘기자 ==테스트
@@ -59,15 +65,18 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 
 	/////
 	
-	
+///**********************
+		//잘된것 잠시 주석처리
+		
 	List<MemberBoardDto>memberBoardList=null;
-	memberBoardList=memberBoardDao.getSumlistt(member_num);
-	logger.info("memberBoardList:"+memberBoardList.size());
+	memberBoardList=memberBoardDao.getSumlist(memberNum);
 	
+	//세 줄을 잘 된것
+	logger.info("memberBoardList:"+memberBoardList.size());
+	mav.addObject("memberNickName", memberNickName);
 	 mav.addObject("memberBoardList",memberBoardList);
 
-	mav.setViewName("memberBoard/list");
-		
+	mav.setViewName("memberBoard/list");		
 	   
 		
 	}

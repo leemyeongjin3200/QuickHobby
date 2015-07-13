@@ -102,9 +102,9 @@
 					
 <%-- 					<c:if test="${reply.boardReplyWriter==member}"> --%>
 					<span class="reply_btns" >
-						<a class="modifyBtn" >수정</a>
+						<a class="modifyBtn" style='cursor:pointer;'>수정</a>
 						&nbsp;/&nbsp;
-						<a class="deleteBtn">삭제</a>						
+						<a class="deleteBtn" style='cursor:pointer;'>삭제</a>						
 					</span>
 <%-- 					</c:if> --%>
 				</div>

@@ -131,6 +131,7 @@
 	  </div>
 	  <div class="col-md-4" >
 	     <a href="#" class="apply-box">
+	     
               <img src="${root}/img/Desert.jpg" class="img-responsive" alt="">
                <div class="apply-box-caption">
                          <div class="apply-box-caption-content">

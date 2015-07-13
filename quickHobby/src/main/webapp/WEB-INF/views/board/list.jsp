@@ -84,7 +84,7 @@
 											<!-- tip/review 구분하기 -->
 											
 												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a href="#"><b id="myReply1"> 3</b></a></div>
+												<i class="glyphicon glyphicon-comment"></i><a href="#"><b class="myReply">${board.boardReplyCount}</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
 											<div class="gTableCell good">${board.boardRecommand}</div>
@@ -113,7 +113,7 @@
 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
 							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
-							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><b id="myReply"> 3</b></span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><b class="myReply">${board.boardReplyCount}</b></span>
 							            <span class="clearboth"> &nbsp; </span>
 							          </div>
 							          <div class="gAlbum-container">
@@ -557,37 +557,25 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title"><span class="glyphicon glyphicon-comment" style="color:white !important"></span> Comments</h4>
         </div>
+        
+       
         <div class="modal-Reply-body">
           <ul class="reply-box">
+          	 <c:forEach var="reply" items="${board.boardReplyList}">
                <li class="left clearfix">
                    <div class="reply-body">                                        
-                       <strong ><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong>
-                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i> 13:00:00</small>                                      
+                       <strong ><i class="glyphicon glyphicon-user"></i>${reply.memberNickName}</strong>
+                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>${reply.boardReplyModifyDate}</small>                                      
                        <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+                           ${reply.boardReplyContent}
                        </p>
                    </div>
                </li>
-               <li class="left clearfix">
-                   <div class="reply-body clearfix">
-                       <strong ><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong>
-                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i> 13:00:00</small>
-                       <p>
-                           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                       </p>
-                   </div>
-               </li>
-               <li class="left clearfix">
-                <div class="reply-body">                                        
-                    <strong ><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong>
-                    <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i> 13:00:00</small>                                      
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                    </p>
-                </div>
-           </li> 
+           	 </c:forEach>   
            </ul>
         </div>
+       
+        
         <div class="modal-footer" style="font-color:white">
         	<a href="#" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a>
             <a href="#" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a>

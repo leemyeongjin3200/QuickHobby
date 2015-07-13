@@ -66,7 +66,7 @@ public class MemberBoardDaoImpl implements MemberBoardDao {
 	}
 
 	
-	@Override
+	/*@Override
 	public List<MemberBoardDto> getSumlist(String board_writer, String groupboard_writer) {
 	System.out.println("board_writer:"+board_writer);
 	System.out.println("groupboard_writer"+groupboard_writer);
@@ -76,7 +76,7 @@ public class MemberBoardDaoImpl implements MemberBoardDao {
 	hMap.put("groupboard_writer",groupboard_writer);
 		return  sqlSession.selectList("dao.boardMapper.sumList",hMap);
 
-	}
+	}*/
 
 	@Override
 	public int getNum(String memberNickName) {
@@ -93,17 +93,29 @@ public class MemberBoardDaoImpl implements MemberBoardDao {
 		return sqlSession.selectOne("dao.boardMapper.getnn",memberNickName);
 	}
 
-	@Override
+	/*@Override
 	public List<MemberBoardDto> getSumlistt(int member_num) {
 		
 		return sqlSession.selectList("dao.boardMapper.gList",member_num);
 	}
-
-	@Override
+*/
+/*	@Override
 	public MemberBoardDto selectOk(int member_num) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("dao.boardMapper.okselect", member_num);
+	}*/
+
+
+	@Override
+	public List<MemberBoardDto> getSumlist(int memberNum) {
+		
+		System.out.println("memberNumDao:"+memberNum);
+	//	return null;
+		return sqlSession.selectList("dao.boardMapper.skyList",memberNum);
+		
 	}
+
+	
 	
 
 }
