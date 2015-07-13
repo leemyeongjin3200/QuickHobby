@@ -22,14 +22,15 @@ public interface MemberBoardDao {
 	public int getGroupCount();
 	public List<MemberBoardDto>getGroupList(int groupboard_writer);
 	
-	public List<MemberBoardDto>getSumlist(String board_writer,String groupboard_writer);
+	//public List<MemberBoardDto>getSumlist(String board_writer,String groupboard_writer);
     public int getNum(String memberNickName);
     
     public MemberDto getNumm(String memberNickName);
     
-    public List<MemberBoardDto>getSumlistt(int member_num);
+    public List<MemberBoardDto>getSumlist(int memberNum);
     
     
-	public MemberBoardDto selectOk(int member_num);
+	//public MemberBoardDto selectOk(int member_num);
+
 
 }

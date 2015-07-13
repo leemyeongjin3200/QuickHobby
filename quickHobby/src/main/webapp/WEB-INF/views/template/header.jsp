@@ -54,7 +54,7 @@ ${param.root1} --%>
 	        </li>
 	        <li><a href="${root}/board/list.do">Tip & Review</a></li>
 	        <li><a href="${root}/myGroup/myGroupList.do">My Group</a></li>
-	        <li><a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}">My Page</a></li>
+	        <li><a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}&memberNickName=${member.memberNickName}">My Page</a></li>
 	      </ul>
 	      <input type="hidden" name="newMessageNum" value="${newMessageNum}"/>
 	      <ul class="nav navbar-nav navbar-right">
