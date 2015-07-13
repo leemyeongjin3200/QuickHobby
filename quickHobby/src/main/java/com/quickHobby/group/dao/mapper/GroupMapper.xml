@@ -42,4 +42,10 @@
 			UPDATE GGROUP SET GROUP_CATEGORY=#{apply_category}, GROUP_INOUT=#{apply_inout}, GROUP_SUBJECT=#{apply_subject}, GROUP_SUBTITLE=#{apply_subtitle}, GROUP_LOCATION=#{apply_location}, GROUP_DATE=#{apply_closedate}, GROUP_COST=#{apply_cost} WHERE GROUP_APPLYNUM=#{apply_num}
  		]]>
 	</update>
+	
+	<select id="getGroupDto" parameterType="int" resultMap="groupDto">
+		<![CDATA[
+			select * from ggroup where group_num=#{groupNum}
+		]]>
+	</select>
 </mapper>

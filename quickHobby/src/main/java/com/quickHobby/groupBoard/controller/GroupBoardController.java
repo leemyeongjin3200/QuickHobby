@@ -141,4 +141,14 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/groupBoard/groupPage.do", method=RequestMethod.GET)
+	public ModelAndView groupPage(HttpServletRequest req){
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("request", req);
+		groupBoardService.groupPage(mav);
+		
+		return mav;
+	}
 }

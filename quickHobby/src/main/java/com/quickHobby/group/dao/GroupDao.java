@@ -12,5 +12,6 @@ public interface GroupDao {
 	int createGroup(ApplyDto groupDto);
 	int createGroupFile(ApplyDto groupDto);
 	int updateGroup(ApplyDto groupDto);
-	int memberJoin(HashMap<String, Integer> map);
+	int joinMember(HashMap<String, Integer> map);
+	GroupDto getGroupDto(int groupNum);
 }

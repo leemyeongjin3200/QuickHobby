@@ -41,4 +41,10 @@ public class GroupDaoImpl implements GroupDao {
 	public int joinMember(HashMap<String, Integer> map){
 		return sqlSession.insert("joinMember", map);
 	}
+
+	@Override
+	public GroupDto getGroupDto(int groupNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getGroupDto", groupNum);
+	}
 }
