@@ -1,16 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+    padding-top: 70px;
+}
+</style>
+
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="root1" value="${pageContext.request.requestURI }"/>
-<script>
-</script>
-<title>HYERAN</title>
+
+<title>Main</title>
+
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
@@ -79,6 +87,7 @@
 
 <!-- Navigation bar//-->
  <div class="container">
+ 
  <nav class="navbar navbar-inverse">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -90,13 +99,14 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li id="best"><a href="#">BEST</a></li>
-        <li id="location"><a href="#">LOCATION</a></li>
-        <li id="time"><a href="#">TIME</a></li>
-        <li id="eye"><a href="#">EYE</a></li>
-        <li id="mouth"><a href="#">MOUTH</a></li>
-        <li id="hands"><a href="#">HANDS</a></li>
-        <li id="legs"><a href="#">LEGS</a></li>
+       <li id="" data-filter="*"><a href="#">ALL</a></li>
+  	   <li id="" data-filter=".best"><a href="#">BEST</a></li>
+       <li id="" data-filter=".location"><a href="#">LOCATION</a></li>
+       <li id="" data-filter=".time"><a href="#">TIME</a></li>
+       <li id="" data-filter=".eye"><a href="#">EYE</a></li>
+       <li id="" data-filter=".mouth"><a href="#">MOUTH</a></li>
+       <li id="" data-filter=".hand"><a href="#">HANDS</a></li>
+       <li id="" data-filter=".legs"><a href="#">LEGS</a></li>
       </ul>
     </div>
 </nav>
@@ -105,115 +115,22 @@
 
 <!-- Content 2// -->
 <div class="container">
-	<div class="row no-gutter">
-	  <div class="col-md-4" >
-	   	<a href="#" class="apply-box">
-              <img src="${root}/img/Lighthouse.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                                <p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-                
-          </a>
-       </div>
-	  <div class="col-md-4" >
-	  	  <a href="#" class="apply-box">
-              <img src="${root}/img/Chrysanthemum.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                                <p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-	  </div>
-	  <div class="col-md-4" >
-	     <a href="#" class="apply-box">
-	     
-              <img src="${root}/img/Desert.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                                 <p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-	  </div>
-	</div>
-	
-	<div class="row no-gutter">
-	  <div class="col-md-4" >  	   	
-	  	<a href="#" class="apply-box">
-              <img src="${root}/img/Hydrangeas.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                                <p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-         </a>
-	  </div>
-	  <div class="col-md-4" >  	   	
-	 	 <a href="#" class="apply-box">
-              <img src="${root}/img/Jellyfish.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                                <p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-      </div>
-	  <div class="col-md-4" >
-	  	<a href="#" class="apply-box">
-              <img src="${root}/img/Koala.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                              <p> DATE: </p>
-                              <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-	  </div>
-	</div>
-	 
-	<div class="row no-gutter">
-	  <div class="col-md-4" >  	   	
-	  	<a href="#" class="apply-box">
-              <img src="${root}/img/Penguins.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                          		<p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-      </div>  
-	  <div class="col-md-4" >  	   	
-	  	<a href="#" class="apply-box">
-              <img src="${root}/img/Tulips.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                       			<p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-       </div>
-	  <div class="col-md-4" >  	   	
-	 	 <a href="#" class="apply-box">
-              <img src="${root}/img/Lighthouse.jpg" class="img-responsive" alt="">
-               <div class="apply-box-caption">
-                         <div class="apply-box-caption-content">
-                          		<p> DATE: </p>
-                                <p> TITLE: </p>
-                        </div>
-                </div>
-          </a>
-        </div>
-	</div>
+<div class="grid no-gutter">
+	<c:forEach var="board" items="${applyDtoList}">
+		<div class="col-md-4 ${board.apply_category} ${board.apply_inout}" id="board">
+			<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
+				<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive" style="width:400px; height:250px;">
+				<div class="apply-box-caption">
+					<div class="apply-box-caption-content">
+						<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date"/> </p>
+						<p> TITLE : ${board.apply_subject} </p>
+						<p> SUBTITLE : ${board.apply_subtitle} </p>
+					</div>
+				</div>
+			</a>
+		</div>
+	</c:forEach>
+   </div>
 </div>
 </body>
 <jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>

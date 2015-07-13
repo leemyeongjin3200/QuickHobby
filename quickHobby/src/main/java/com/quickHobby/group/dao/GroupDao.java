@@ -9,8 +9,8 @@ import com.quickHobby.group.dto.GroupDto;
 public interface GroupDao {
 
 	public List<GroupDto> myGroupList(int memberNum);
-	int createGroup(ApplyDto groupDto);
-	int createGroupFile(ApplyDto groupDto);
-	int updateGroup(ApplyDto groupDto);
-	int memberJoin(HashMap<String, Integer> map);
+	public int createGroup(ApplyDto groupDto);
+	public int createGroupFile(ApplyDto groupDto);
+	public int updateGroup(ApplyDto groupDto);
+	public int joinMember(HashMap<String, Integer> map);
 }

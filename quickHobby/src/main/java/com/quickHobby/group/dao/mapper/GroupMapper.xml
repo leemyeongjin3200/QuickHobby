@@ -42,4 +42,10 @@
 			UPDATE GGROUP SET GROUP_CATEGORY=#{apply_category}, GROUP_INOUT=#{apply_inout}, GROUP_SUBJECT=#{apply_subject}, GROUP_SUBTITLE=#{apply_subtitle}, GROUP_LOCATION=#{apply_location}, GROUP_DATE=#{apply_closedate}, GROUP_COST=#{apply_cost} WHERE GROUP_APPLYNUM=#{apply_num}
  		]]>
 	</update>
+	
+	<insert id="joinMember" parameterType="java.util.HashMap">
+		<![CDATA[
+			INSERT INTO JOIN VALUES((SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}), #{member_num}) 
+ 		]]>
+	</insert>
 </mapper>
