@@ -52,13 +52,6 @@
 <!-- Custom styles for this template -->
 <link href="${root}/css/cover.css" rel="stylesheet">
 
-<script type="text/javascript">
-$(function () {
-	  $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom'});
-	  $(".chosen-select").chosen();
-	});
-</script>
-
 <script>
 $(function () {	
     'use strict';
@@ -140,10 +133,10 @@ $(function () {
 				<label for="fileupload" class="col-sm-3 control-label" style="text-align: right; margin-top: 20px;">파일 업로드</label>
 				<div class="col-sm-7" style="text-align: left;">
 					<span class="btn btn-default fileinput-button" >
-			        <i class="glyphicon glyphicon-plus"></i>
-			        <span>Add a file..</span>
-			        <!-- The file input field used as target for the file upload widget -->
-			        <input id="fileupload" type="file" name="files">
+				        <i class="glyphicon glyphicon-plus"></i>
+				        <span>Add a file..</span>
+				        <!-- The file input field used as target for the file upload widget -->
+				        <input id="fileupload" type="file" name="files">
 				    </span>
 				    <br>
 				    <br>
@@ -163,7 +156,6 @@ $(function () {
 				</div>					
 			</div>
 		
-		
 			<br/><br/>
 			<form class="form-horizontal" action="write.do" name="form" method="post" enctype="multipart/form-data">
 
@@ -178,7 +170,6 @@ $(function () {
 				<button type="button" class="btn btn-default" onclick="window.history.back(-1)">취소</button>
 
 			</form>
-
 		</div>
 		
 	</div>	

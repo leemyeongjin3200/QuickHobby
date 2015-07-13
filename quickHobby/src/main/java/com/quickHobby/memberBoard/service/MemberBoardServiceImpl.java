@@ -42,6 +42,8 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		//	boardDto=boardDao.boardRead(boardNumber);
 		
 		//BoardDto boardDto=(BoardDto) map.get("boardDto");	
+		int memberNum=request.getParameter("memberNum");
+		
 		String memberNickName=request.getParameter("memberNickName");
 		
 		logger.info("memberNickName:"+memberNickName);
@@ -56,6 +58,8 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	//logger.info("memberBoardDto:"+memberBoardDto);
 
 	/////
+	
+	
 	List<MemberBoardDto>memberBoardList=null;
 	memberBoardList=memberBoardDao.getSumlistt(member_num);
 	logger.info("memberBoardList:"+memberBoardList.size());

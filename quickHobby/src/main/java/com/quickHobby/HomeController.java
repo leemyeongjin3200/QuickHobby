@@ -48,7 +48,6 @@ public class HomeController {
 	
 	@RequestMapping(value="/apply/write.do", method=RequestMethod.POST)
 	public String fileWritePost(HttpServletRequest request){
-		System.out.println(request.getParameter("file_name"));	
 		return "apply/writeOk";
 	}
 }
