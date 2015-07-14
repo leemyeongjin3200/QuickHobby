@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.quickHobby.group.dao.GroupDao;
+import com.quickHobby.group.dto.GroupDto;
 import com.quickHobby.groupBoard.dao.GroupBoardDao;
 import com.quickHobby.groupBoard.dto.GroupBoardDto;
 
@@ -25,7 +27,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	
 	@Autowired
 	private GroupBoardDao groupBoardDao;
-	
+	private GroupDao groupDao;
 	/**
 	* @name : groupBoardList
 	* @date : 2015. 6. 25.
@@ -199,6 +201,16 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		mav.addObject("check", check);
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/updateOk");
+	}
+	
+	public void groupPage(ModelAndView mav){
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest req=(HttpServletRequest)map.get("request");
 		
+		int groupNum=Integer.parseInt(req.getParameter("groupNum"));
+		
+		GroupDto group=groupDao.getGroupDto(groupNum);
+		
+		List<GroupBoardDto> groupBoard=groupBoardDao.getGroupBoardList(startRow, endRow);
 	}
 }
