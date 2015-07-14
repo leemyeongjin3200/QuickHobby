@@ -17,7 +17,9 @@
 /*body 상단부 여백 */
 body {
     padding-top: 70px;
+
 }
+
 
 /* a태그 효과없음 */
 a:link{text-decoration:none !important;}
@@ -33,15 +35,16 @@ a:active{text-decoration:none !important;}
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>
-    <div class="container">
+    <div class="container-fluid-full">
 
-    </div>
+	</div>
+    
     
 <script>
-//
 
 
 </script>
 </body>
 <jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
+<script type="text/javascript" src="${root}/js/jquery.masonry.min.js"></script>
 </html>

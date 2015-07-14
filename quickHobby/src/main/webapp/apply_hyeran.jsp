@@ -19,10 +19,12 @@
 // filter 설정
 $(function() {
   // init Isotope
-  var $grid = $('.grid').isotope({
+  
+  var $category = $('#category').isotope({
     layoutMode: 'fitRows',
     itemSelector: '.col-md-4'
   });
+  
   // filter functions
   var filterFns = {
 
@@ -150,7 +152,7 @@ body {
 <!-- //Navigation bar -->
 
 <div class="container">
-<div class="grid no-gutter">
+<div class="grid no-gutter" id="category">
 	  <div class="col-md-4 location best legs" >
 	   	<a href="#" class="apply-box">
               <img src="${root}/img/Chrysanthemum.jpg" class="img-responsive" alt="">
