@@ -46,14 +46,17 @@
       <!--right-->
       <div class="col-md-9" id="content1">
       	<c:forEach var="board" items="${memberBoardList}">
-      
+ 
+
+
       		<!--  myBoard 01 시작-->
       	   <div class="myBoard">
                 <div class="myBoard-item">
                         <h4><strong>${board.board_subject}</strong></h4>
                         <div class="clearfix myBoard-underline">
                             <p class="pull-left">
-                              <i class="glyphicon glyphicon-user"></i> by <a href="#">${memberNickName}</a> | <i class="glyphicon glyphicon-tag"></i> Category <a href="#">TIP</a> | <i class="glyphicon glyphicon-calendar"></i>${board.board_createdate}
+                              <i class="glyphicon glyphicon-user"></i> by <a href="#">${memberNickName}</a> | <i class="glyphicon glyphicon-tag"></i> Category <a href="#">TIP</a> | <i class="glyphicon glyphicon-calendar">${board.board_date}</i>
+                              
                           <p class="pull-right"><i class="glyphicon glyphicon-comment"></i> 3 Comments</p>    
                       </div>
 
@@ -113,7 +116,9 @@
                     </div><!-- .myBoardReply-panel 끝 -->
        		 	</div><!-- .myBoard-item 끝 -->
 			</div><!-- .myBoard  01끝 -->
-			
+			</c:forEach>
+        </div><!--/right-->
+        </c:if>
 			<!--  myBoard 02 시작-->
       	 
 			<!-- .myBoard  02끝 -->
@@ -121,9 +126,7 @@
     			<button type="button" class="btn btn-primary btn-block" data-toggle="collapse" data-target="#demo">read more</button>
 			</div>
 		
-			</c:forEach>
-        </div><!--/right-->
-        </c:if>
+			
   	</div><!--/row-->
 </div><!--/container-->
 
