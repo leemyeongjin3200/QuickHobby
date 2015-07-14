@@ -33,8 +33,16 @@
 	</select>
 	
 	<update id="boardReplyModify" parameterType="com.quickHobby.boardReply.dto.BoardReplyDto">
-		<![CDATA[update reply set BOARDREPLY_CONTENT=#{boardReplyContent}, BOARDREPLY_MODIFYDATE=sysdate
-		where boardReplyNum=#{BOARDREPLY_NUM}]]>
+		<![CDATA[update boardreply set BOARDREPLY_CONTENT=#{boardReplyContent}, BOARDREPLY_MODIFYDATE=sysdate
+		where BOARDREPLY_NUM=#{boardReplyNum}]]>
 	</update>
+	
+	<delete id="boardReplyDelete" parameterType="com.quickHobby.boardReply.dto.BoardReplyDto">
+		<![CDATA[delete from boardreply where BOARDREPLY_NUM=#{boardReplyNum}]]>
+	</delete>
+	
+	<select id="getBoardReplyCount" parameterType="int" resultType="int">
+		<![CDATA[select count(*) from boardreply where boardreply_boardnum=#{boardReplyBoardNum}]]>
+	</select>
 	
 </mapper>

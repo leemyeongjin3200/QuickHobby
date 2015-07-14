@@ -3,6 +3,7 @@ package com.quickHobby.apply.dao;
 import java.util.List;
 
 import com.quickHobby.apply.dto.ApplyDto;
+import com.quickHobby.member.dto.MemberDto;
 
 public interface ApplyDao {
 	public int insertFile(ApplyDto applyDto);
@@ -13,4 +14,7 @@ public interface ApplyDao {
 	public int delete(int apply_num);
 	public int update(ApplyDto applyDto);
 	public int updateFile(ApplyDto applyDto);
+	public int getJoins(int applyNum);
+	public int getRecommends(int applyNum);
+	public MemberDto getHost(int apply_num);
 }

@@ -46,7 +46,7 @@ body {
        <li id="" data-filter=".time"><a href="#">TIME</a></li>
        <li id="" data-filter=".eye"><a href="#">EYE</a></li>
        <li id="" data-filter=".mouth"><a href="#">MOUTH</a></li>
-       <li id="" data-filter=".hand"><a href="#">HANDS</a></li>
+       <li id="" data-filter=".hand"><a href="#">HAND</a></li>
        <li id="" data-filter=".legs"><a href="#">LEGS</a></li>
       </ul>
     </div>
@@ -59,7 +59,7 @@ body {
 	<c:forEach var="board" items="${applyDtoList}">
 		<div class="col-md-4 ${board.apply_category} ${board.apply_inout}" id="board">
 			<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
-				<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive" style="width:400px; height:300px;">
+				<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive" style="width:400px; height:250px;">
 				<div class="apply-box-caption">
 					<div class="apply-box-caption-content">
 						<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date"/> </p>

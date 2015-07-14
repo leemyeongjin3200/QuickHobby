@@ -1,14 +1,17 @@
 package com.quickHobby.group.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
-import com.quickHobby.group.dto.GroupDto;
 import com.quickHobby.apply.dto.ApplyDto;
+import com.quickHobby.group.dto.GroupDto;
 
 public interface GroupDao {
 
 	public List<GroupDto> myGroupList(int memberNum);
-	int createGroup(ApplyDto groupDto);
-	int createGroupFile(ApplyDto groupDto);
-	int updateGroup(ApplyDto groupDto);
+	GroupDto getGroupDto(int groupNum);
+	public int createGroup(ApplyDto groupDto);
+	public int createGroupFile(ApplyDto groupDto);
+	public int updateGroup(ApplyDto groupDto);
+	public int joinMember(HashMap<String, Integer> map);
 }

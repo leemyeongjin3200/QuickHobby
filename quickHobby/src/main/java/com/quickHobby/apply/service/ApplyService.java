@@ -10,4 +10,6 @@ public interface ApplyService {
 	public void applyDelete(ModelAndView mav);
 	public void applyUpdate(ModelAndView mav);
 	public void applyUpdateOk(ModelAndView mav);
+	public void applyOk(ModelAndView mav);
+	public void main(ModelAndView mav);
 }

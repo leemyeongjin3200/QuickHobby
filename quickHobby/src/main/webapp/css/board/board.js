@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 //Reply 팝업창
 $(document).ready(function(){
-    $("#myReply").click(function(){
+    $(".myReply").click(function(){
         $("#myModalReply").modal();
     });
 });

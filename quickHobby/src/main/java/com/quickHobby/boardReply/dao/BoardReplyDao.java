@@ -12,4 +12,7 @@ public interface BoardReplyDao {
 
 	int boardReplyModify(BoardReplyDto boardReplyDto);
 
+	int boardReplyDelete(BoardReplyDto boardReplyDto);
+
+	int getBoardReplyCount(int boardNum);
 }

@@ -37,11 +37,12 @@ public class BoardController {
 	* @description : Tip & Review Board 리스트를 불러오는 method
 	 */
 	@RequestMapping(value="/board/list.do", method=RequestMethod.GET)
-	public ModelAndView boardList(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView boardList(HttpServletRequest request, BoardDto boardDto){
 		logger.info("boardList---------------------------");
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
+		mav.addObject("boardDto", boardDto);
 		boardService.boardList(mav);
 		return mav;
 	}
@@ -53,7 +54,7 @@ public class BoardController {
 	* @description : Tip & Review Board 글쓰기 페이지 이동 method
 	 */
 	@RequestMapping(value="/board/writeForm.do",  method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView boardWriteForm(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView boardWriteForm(HttpServletRequest request){
 		logger.info("boardWriteForm---------------------------");
 		
 		ModelAndView mav=new ModelAndView();

@@ -12,7 +12,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<<<<<<< HEAD
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
@@ -129,8 +129,6 @@ function removeChar(event) {
 }
 </script>
 
-=======
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
@@ -235,7 +233,8 @@ function removeChar(event) {
 						<div class="col-md-10">
 				 			<div id="map_canvas" style="width:460px; height:380px;"></div>
 				 			<div id="address" style="display:none"></div><br/>
-			 				<input class="form-control" type="text" id="addr" size="70" name="apply_location">
+			 				<input class="form-control" type="text" id="addrText" size="70" disabled>
+			 				<input type="hidden" id="addr" name="apply_location"/>
 			 			</div>
 		 			</div>
 				</div>
@@ -267,7 +266,7 @@ function removeChar(event) {
 	$(document).ready(function(){
 		var latlng=new google.maps.LatLng(37.5640, 126.9751);
 		var mapOptions={
-				zoom:7,
+				zoom:10,
 				center:latlng,
 				mapTypeId:google.maps.MapTypeId.ROADMAP
 		}
@@ -289,6 +288,7 @@ function removeChar(event) {
 				if(status==google.maps.GeocoderStatus.OK){
 					$('#address').html(results[0].formatted_address);
 					var addr=document.getElementById("address").innerHTML;
+					document.getElementById("addrText").value=addr;
 					document.getElementById("addr").value=addr;
 					$('#lat').html(results[0].geometry.location.lat());
 					$('#lng').html(results[0].geometry.location.lng());

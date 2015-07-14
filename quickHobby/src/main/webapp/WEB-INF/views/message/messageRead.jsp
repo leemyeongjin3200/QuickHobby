@@ -18,7 +18,7 @@
 	<br/>
 	
 	<!-- 수신 쪽지일 경우에만 답장 버튼 -->
-	<c:if test="${member.member_num == messageDto.message_receiver}">
+	<c:if test="${member.memberNum == messageDto.message_receiver}">
 		<a href="${root}/message/messageReply.do?message_receiver=${messageDto.message_sender}">답장</a>
 	</c:if>
 	<a href="${root}/message/messageDelete.do?message_num=${messageDto.message_num}">삭제</a>
