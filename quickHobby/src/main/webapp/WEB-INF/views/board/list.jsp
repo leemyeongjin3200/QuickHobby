@@ -84,7 +84,7 @@
 											<!-- tip/review 구분하기 -->
 											
 												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a href="#"><b class="myReply">${board.boardReplyCount}</b></a></div>
+												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}')" class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
 											<div class="gTableCell good">${board.boardRecommand}</div>
@@ -548,44 +548,45 @@
  </div><!-- .container 끝 -->
  
  <!-- Reply Pop-Up// -->
- <div class="container">
- <!-- Modal -->
-  <div class="modal fade" id="myModalReply" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title"><span class="glyphicon glyphicon-comment" style="color:white !important"></span> Comments</h4>
-        </div>
+<!--  <div class="container"> -->
+<!--  <!-- Modal --> -->
+<!--   <div class="modal fade" id="myModalReply" role="dialog"> -->
+<!--     <div class="modal-dialog modal-lg"> -->
+<!--       <div class="modal-content"> -->
+<!--         <div class="modal-header"> -->
+<!--           <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+<!--           <h4 class="modal-title"><span class="glyphicon glyphicon-comment" style="color:white !important"></span> Comments</h4> -->
+<!--         </div> -->
         
        
-        <div class="modal-Reply-body">
-          <ul class="reply-box">
-          	 <c:forEach var="reply" items="${board.boardReplyList}">
-               <li class="left clearfix">
-                   <div class="reply-body">                                        
-                       <strong ><i class="glyphicon glyphicon-user"></i>${reply.memberNickName}</strong>
-                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>${reply.boardReplyModifyDate}</small>                                      
-                       <p>
-                           ${reply.boardReplyContent}
-                       </p>
-                   </div>
-               </li>
-           	 </c:forEach>   
-           </ul>
-        </div>
+<!--         <div class="modal-Reply-body"> -->
+<!--           <ul class="reply-box"> -->
+<%--           	 <c:forEach var="reply" items="${board.boardReplyList}"> --%>
+<!--                <li class="left clearfix"> -->
+<!--                    <div class="reply-body">                                         -->
+<%--                        <strong ><i class="glyphicon glyphicon-user"></i>${reply.memberNickName}</strong> --%>
+<%--                        <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>${reply.boardReplyModifyDate}</small>                                       --%>
+<!--                        <p> -->
+<%--                            ${reply.boardReplyContent} --%>
+<!--                        </p> -->
+<!--                    </div> -->
+<!--                </li> -->
+<%--            	 </c:forEach>    --%>
+<!--            </ul> -->
+<!--         </div> -->
        
         
-        <div class="modal-footer" style="font-color:white">
-        	<a href="#" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a>
-            <a href="#" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
+<!--         <div class="modal-footer" style="font-color:white"> -->
+<!--         	<a href="#" class="btn btn-primary" name="toContent" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a> -->
+<!--             <a href="#" class="btn btn-primary" name="toList" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
 <!-- //Reply Pop-Up -->
 </body>
+<jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>
 </html>

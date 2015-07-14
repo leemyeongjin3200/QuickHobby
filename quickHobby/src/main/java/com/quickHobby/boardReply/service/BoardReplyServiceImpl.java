@@ -1,5 +1,7 @@
 package com.quickHobby.boardReply.service;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.boardReply.dao.BoardReplyDao;
 import com.quickHobby.boardReply.dto.BoardReplyDto;
-import com.quickHobby.member.dto.MemberDto;
 
 /**
 * @name : BoardReplyServiceImpl
@@ -73,4 +76,36 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 		return boardReplyDao.boardReplyDelete(boardReplyDto);
 	}
 
+	@Override
+	public void boardReplyList(ModelAndView mav) {
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		
+		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
+		logger.info("boardNum:"+boardNum);
+		
+		List<BoardReplyDto> boardReplyList=new ArrayList<BoardReplyDto>();
+		
+		boardReplyList = boardReplyDao.getBoardReplyList(boardNum);
+		logger.info("replySize:"+boardReplyList.size());
+		ObjectMapper obj = new ObjectMapper();
+		String encode="";
+		try {
+			encode = URLEncoder.encode(obj.writeValueAsString(boardReplyList), "UTF-8");
+		} catch (JsonGenerationException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		logger.info("encode:"+encode);
+		
+//		mav.addObject("boardReplyList", boardReplyList);
+		mav.addObject("encode", encode);
+		mav.setViewName("board/replyCheckModal");
+	}
 }

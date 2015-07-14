@@ -1,7 +1,5 @@
 package com.quickHobby.boardReply.controller;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +7,6 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,7 +73,10 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @author : 차건강
 	* @description : boardReply 리스트 불러오기
 	 */
-	public String getBoardReplyList(int boardNum) throws Exception {
+	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.POST)
+	public @ResponseBody String getBoardReplyList(int boardNum) throws Exception {
+		logger.info("getBoardReplyList---------------------------------");
+		
 		List<BoardReplyDto> replyList = new ArrayList<BoardReplyDto>();
 		replyList = boardReplyService.getBoardReplyList(boardNum);
 		logger.info("replySize:"+replyList.size());
@@ -146,5 +145,16 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@RequestMapping(value = "/boardReply/boardReplyList.do", method = RequestMethod.POST)
+	public ModelAndView boardReplyList(HttpServletRequest request){
+		logger.info("boardReplyList---------------------------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		boardReplyService.boardReplyList(mav);
+		
+		return mav;
 	}
 }
