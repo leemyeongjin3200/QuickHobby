@@ -46,7 +46,7 @@ body {
        <li id="" data-filter=".time"><a href="#">TIME</a></li>
        <li id="" data-filter=".eye"><a href="#">EYE</a></li>
        <li id="" data-filter=".mouth"><a href="#">MOUTH</a></li>
-       <li id="" data-filter=".hand"><a href="#">HANDS</a></li>
+       <li id="" data-filter=".hand"><a href="#">HAND</a></li>
        <li id="" data-filter=".legs"><a href="#">LEGS</a></li>
       </ul>
     </div>

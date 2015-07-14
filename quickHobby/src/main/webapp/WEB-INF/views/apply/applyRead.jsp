@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="${root}/css/jquery.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
@@ -33,7 +34,7 @@
 	  
 	                var latlng = new google.maps.LatLng(lat , lng);
 	                var myOptions = {
-	                    zoom: 16,
+	                    zoom: 7,
 	                    center: latlng,
 	                    mapTypeControl: true,
 	                    mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -102,6 +103,7 @@
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body style="font-family:'맑은 샘물', Sans-serif;">
     <div class="container">
+    	<hr>
         <div class="row">
             <div class="col-md-12">
                 <div class="groupApply-img post-thumb">
@@ -164,7 +166,7 @@
 						<img id=weather style="width:80px; height:80px;" src="${root}/weather/questionMark.jpg"><br/>
 						<b>${weather.wf}</b><br/>
 		                <b>최저 : ${weather.tmn}</b><br/>
-		                <b>최저 : ${weather.tmx}</b>
+		                <b>최고 : ${weather.tmx}</b>
 					</div>
 	                
 	                <div class="col-lg-8" style="margin-top:5px;">
@@ -176,10 +178,8 @@
                	</div>     	
              </div>
         </div>
-        <hr>
+
         <div class="col-lg-12">
-        	<p><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
-		</div>
         	<p onclick="location.href='${root}/apply/applyOk.do?apply_num=${applyDto.apply_num}'"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
 </body>
