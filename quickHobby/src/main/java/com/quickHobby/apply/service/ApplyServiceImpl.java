@@ -52,7 +52,7 @@ public class ApplyServiceImpl implements ApplyService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-		String groupHost=member.getMemberId();
+		int groupHost=member.getMemberNum();
 
 		logger.info("groupHost:"+groupHost);
 		
