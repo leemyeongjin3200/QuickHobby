@@ -20,7 +20,7 @@
 $(function() {
   // init Isotope
   
-  var $category = $('#category').isotope({
+  var $grid = $('.grid').isotope({
     layoutMode: 'fitRows',
     itemSelector: '.col-md-4'
   });
