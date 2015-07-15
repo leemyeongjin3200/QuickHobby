@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:set var="root" value="${pageContext.request.contextPath }"/>
 <title>Reply Check</title>
 </head>
 <body>
@@ -30,11 +31,6 @@
 <!--                        <p> -->
 <%--                            ${reply.boardReplyContent} --%>
 <!--                        </p> -->
-                       <strong><i class="glyphicon glyphicon-user"></i>1</strong>
-                       <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>2</small>                                      
-                       <p>
-                           3
-                       </p>
                    </div>
                </li>
            	 </c:forEach>   
@@ -43,12 +39,12 @@
        
         
         <div class="modal-footer" style="font-color:white">
-        	<a href="#" class="btn btn-primary" name="toContent" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a>
+        	<a onclick="toContent()" id="toContent" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a>
             <a href="#" class="btn btn-primary" name="toList" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a>
         </div>
       </div>
     </div>
   </div>
- </div>
+</div>
 </body>
 </html>

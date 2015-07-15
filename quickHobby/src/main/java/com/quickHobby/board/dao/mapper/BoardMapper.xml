@@ -22,12 +22,17 @@
 			select count(*) from board where BOARD_VISIBLE=1
 	</select>
 	
-	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
-			<![CDATA[select * from
+	<select id="boardList" resultMap="boardDto">
+<!-- 	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto"> -->
+<!-- 			<![CDATA[select * from -->
+<!--  			(select rownum rnum, a.* from  -->
+<!-- 			(select * from board where BOARD_VISIBLE=1  -->
+<!-- 			order by BOARD_CREATEDATE desc)a)  -->
+<!--  			where rnum>=#{startRow} and rnum <= #{endRow}]]>  -->
+ 			<![CDATA[select * from
  			(select rownum rnum, a.* from 
 			(select * from board where BOARD_VISIBLE=1 
-			order by BOARD_CREATEDATE desc)a) 
- 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+			order by BOARD_CREATEDATE desc)a)]]>
 	</select>
 	
 	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
