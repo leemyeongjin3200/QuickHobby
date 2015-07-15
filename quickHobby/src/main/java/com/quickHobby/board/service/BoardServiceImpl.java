@@ -1,5 +1,6 @@
 package com.quickHobby.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -42,6 +43,7 @@ public class BoardServiceImpl implements BoardService {
 	public void boardList(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		BoardDto boardDto=(BoardDto)map.get("boardDto");
 		
 		String pageNumber=request.getParameter("pageNumber");
 		if(pageNumber==null)pageNumber="1";
@@ -54,18 +56,32 @@ public class BoardServiceImpl implements BoardService {
 		int count=boardDao.getBoardCount();
 		logger.info("count:"+count);
 		
-		List<BoardDto> boardList=null;
+		List<BoardDto> boardList=new ArrayList<BoardDto>();
 		
 		if(count>0){
 			boardList=boardDao.getBoardList(startRow, endRow);
 		}
-		logger.info("boardList:"+boardList.size());
+		
+		int boardListSize=boardList.size();
+		
+		// reply count 추가
+		for(int i=0;i<boardListSize;i++){
+			logger.info("boardList:"+boardList.get(i));
+			logger.info("boardNum:"+boardList.get(i).getBoardNum());
+			int boardNum=boardList.get(i).getBoardNum();
+			int boardReplyCount=boardReplyDao.getBoardReplyCount(boardNum);
+			
+			boardList.get(i).setBoardReplyCount(boardReplyCount);
+//			boardList.set(i, boardDto);
+			logger.info("boardDtogetBoardReplyCount:"+boardList.get(i).getBoardReplyCount());
+		}
 		
 		mav.addObject("boardList", boardList);
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);
-		mav.setViewName("board/tipAndReview_list");
+		mav.addObject("board", boardDto);
+		mav.setViewName("board/list");
 	}
 
 	/**

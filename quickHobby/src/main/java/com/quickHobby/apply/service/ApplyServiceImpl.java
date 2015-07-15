@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.group.dao.GroupDao;
+import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.weather.Weather;
 import com.quickHobby.weather.WeatherDTO;
 
@@ -49,11 +51,9 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-//		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-//		String groupHost=member.getMemberId();
-		
-		String groupHost="hahaha";
-				
+		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
+		String groupHost=member.getMemberId();
+
 		logger.info("groupHost:"+groupHost);
 		
 		mav.addObject("groupHost", groupHost);
@@ -168,6 +168,13 @@ public class ApplyServiceImpl implements ApplyService {
 		Weather w=new Weather(applyDto.getApply_location(), applyDto.getApply_closedate());
 		WeatherDTO weather=w.getWeather();
 		
+		int joins=applyDao.getJoins(apply_num);
+		int recommends=applyDao.getRecommends(apply_num);
+		MemberDto host=applyDao.getHost(apply_num);
+		
+		mav.addObject("joins", joins);
+		mav.addObject("recommends", recommends);
+		mav.addObject("host", host);
 		mav.addObject("weather", weather);
 		mav.addObject("applyDto", applyDto);
 		mav.setViewName("apply/applyRead");
@@ -278,5 +285,33 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		mav.addObject("check", check);
 		mav.setViewName("apply/applyUpdateOk");
+	}
+	
+	public void applyOk(ModelAndView mav){
+		logger.info("applyOk service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		int apply_num=Integer.parseInt(request.getParameter("apply_num"));
+		
+		MemberDto member=(MemberDto) request.getSession().getAttribute("member");
+		HashMap<String, Integer> groupMap=new HashMap<String, Integer>();
+		groupMap.put("apply_num", apply_num);
+		groupMap.put("member_num", member.getMemberNum());
+		
+		int check=groupDao.joinMember(groupMap);
+		
+		mav.addObject("check", check);
+		
+		mav.setViewName("");
+	}
+	
+	public void main(ModelAndView mav){
+		logger.info("main======");
+		
+		List<ApplyDto> applyDtoList=applyDao.getListByCreateDate();
+		logger.info("list size : " + applyDtoList.size());
+		
+		mav.addObject("applyDtoList", applyDtoList);
+		mav.setViewName("forward:main_hyeran.jsp");
 	}
 }

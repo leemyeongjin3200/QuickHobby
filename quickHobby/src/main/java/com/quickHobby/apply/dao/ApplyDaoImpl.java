@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.quickHobby.apply.dto.ApplyDto;
+import com.quickHobby.member.dto.MemberDto;
 
 /*
  * @name        : ApplyDaoImpl
@@ -98,5 +99,17 @@ public class ApplyDaoImpl implements ApplyDao {
 	 */
 	public int updateFile(ApplyDto applyDto){
 		return sqlSession.update("applyUpdateFile", applyDto);
+	}
+	
+	public int getJoins(int applyNum){
+		return sqlSession.selectOne("getJoins", applyNum);
+	}
+	
+	public int getRecommends(int applyNum){
+		return sqlSession.selectOne("getRecommends", applyNum);
+	}
+	
+	public MemberDto getHost(int apply_num){
+		return sqlSession.selectOne("getHost", apply_num);
 	}
 }

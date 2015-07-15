@@ -9,18 +9,6 @@
 		]]>
 	</insert>
 	
-	<select id="messageReceiveList" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
-		<![CDATA[
-			SELECT * FROM MESSAGE WHERE MESSAGE_RECEIVER=#{message_receiver} ORDER BY MESSAGE_DATE DESC
-		]]>
-	</select>
-	
-	<select id="messageSendList" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
-		<![CDATA[
-			SELECT * FROM MESSAGE WHERE MESSAGE_SENDER=#{message_sender} ORDER BY MESSAGE_DATE DESC
-		]]>
-	</select>
-	
 	<select id="getMessageDto" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
 		<![CDATA[
 			SELECT * FROM MESSAGE WHERE MESSAGE_NUM=#{message_num}
@@ -38,11 +26,10 @@
 	</select>
 	
 	<select id="getMessageList" parameterType="java.util.Map" resultType="com.quickHobby.message.dto.MessageDto">
-			<![CDATA[select * from
- 			(select rownum rnum, a.* from 
-			(select * from message 
-			order by MESSAGE_DATE desc)a) 
- 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+			<![CDATA[select * from 
+			(select rownum rnum, a.*, b.member_nickname as message_senderNick, c.member_nickname as message_receiverNick from 
+			message a, member b, member c where b.member_num=a.message_sender and c.member_num=a.message_receiver)
+			where rnum >= #{startRow} and rnum <= #{endRow} order by message_date desc]]> 
 	</select>
 	
 	<select id="getNewMessage" parameterType="int" resultType="int">

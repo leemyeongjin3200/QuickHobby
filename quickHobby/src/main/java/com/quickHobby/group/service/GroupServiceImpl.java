@@ -76,7 +76,9 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		MemberDto member=(MemberDto)req.getSession().getAttribute("member");
 		
 		List<GroupDto> groupList=groupDao.myGroupList(member.getMemberNum());
-		
+		for(int i=0; i<groupList.size(); i++){
+			System.out.println(groupList.get(i).getGroupFileName());
+		}
 		mav.addObject("groupList", groupList);
 		mav.setViewName("myGroup/myGroupList");
 	}

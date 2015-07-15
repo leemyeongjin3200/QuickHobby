@@ -24,15 +24,15 @@ ${param.root1} --%>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="${root}/memberMain.do">QuickHobby</a>
+      <a class="navbar-brand" href="${root}/main.do">QuickHobby</a>
     </div>
     <!-- Before Login -->
 	<!-- c:if문 설정  -->
 	<c:if test="${member==null}">
 	<div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	      	<li><a href="#">Apply</a></li>
-	        <li><a href="#">Tip & Review</a></li>
+	      	<li><a href="${root}/apply/applyList.do">Apply</a></li>
+	        <li><a href="${root}/board/list.do">Tip & Review</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="${root}/member/register.do"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -48,17 +48,17 @@ ${param.root1} --%>
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apply<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="#">Apply Group</a></li>
-	            <li><a href="#">Create Group</a></li>
+	            <li><a href="${root}/apply/applyList.do">Apply Group</a></li>
+	            <li><a href="${root}/apply/applyWrite.do">Create Group</a></li>
 	          </ul>
 	        </li>
-	        <li><a href="#">Tip & Review</a></li>
+	        <li><a href="${root}/board/list.do">Tip & Review</a></li>
 	        <li><a href="${root}/myGroup/myGroupList.do">My Group</a></li>
-	        <li><a href="${root}/memberBoard/check.do?memberNickName=${member.memberNickName}">My Page</a></li>
+	        <li><a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}&memberNickName=${member.memberNickName}">My Page</a></li>
 	      </ul>
 	      <input type="hidden" name="newMessageNum" value="${newMessageNum}"/>
 	      <ul class="nav navbar-nav navbar-right">
-	      	<li><a href="#"><span id="newMessage" class="badge"><span class="glyphicon glyphicon-envelope"></span></span></a></li>
+	      	<li><a href="${root}/message/messageList.do"><span id="newMessage" class="badge"><span class="glyphicon glyphicon-envelope"></span></span></a></li>
 	        <li><a href="${root}/member/update.do"><span class="glyphicon glyphicon-user"></span> ${member.memberNickName}</a></li>
 	        <li id="myLogout"><a href="${root}/member/logout.do"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 	      </ul>

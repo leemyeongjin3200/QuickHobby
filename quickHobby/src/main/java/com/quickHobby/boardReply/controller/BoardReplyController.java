@@ -1,7 +1,5 @@
 package com.quickHobby.boardReply.controller;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +7,6 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,7 +73,10 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @author : 차건강
 	* @description : boardReply 리스트 불러오기
 	 */
-	public String getBoardReplyList(int boardNum) throws Exception {
+	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.POST)
+	public @ResponseBody String getBoardReplyList(int boardNum) throws Exception {
+		logger.info("getBoardReplyList---------------------------------");
+		
 		List<BoardReplyDto> replyList = new ArrayList<BoardReplyDto>();
 		replyList = boardReplyService.getBoardReplyList(boardNum);
 		logger.info("replySize:"+replyList.size());
@@ -85,13 +84,19 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		return URLEncoder.encode(obj.writeValueAsString(replyList), "UTF-8");		
 	}
 	
+	/**
+	* @name : boardReplyModify
+	* @date : 2015. 7. 13.
+	* @author : 차건강
+	* @description : boardReply 수정하기
+	 */
 	@RequestMapping(value = "boardReply/boardReplyModify.do", method = RequestMethod.POST)
 	public @ResponseBody String boardReplyModify(BoardReplyDto boardReplyDto, HttpServletRequest request) {
 		logger.info("boardReplyModify---------------------------------");
 		
 		int boardReplyNum = Integer.parseInt(request.getParameter("boardReplyNum"));
 		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));
-		String boardReplycontent = request.getParameter("boardReplycontent");
+		String boardReplyContent = request.getParameter("boardReplyContent");
 		
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
 		int boardReplyWriter=member.getMemberNum();
@@ -99,7 +104,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		boardReplyDto.setBoardReplyWriter(boardReplyWriter);
 		boardReplyDto.setBoardReplyBoardNum(boardReplyBoardNum);
 		boardReplyDto.setBoardReplyNum(boardReplyNum);
-		boardReplyDto.setBoardReplyContent(boardReplycontent);
+		boardReplyDto.setBoardReplyContent(boardReplyContent);
 		try {
 			int check = boardReplyService.boardReplyModify(boardReplyDto);
 			if (check!=0) {
@@ -112,25 +117,44 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		return null;
 	}
 	
-//	@RequestMapping(value = "/deleteReply.do", method = RequestMethod.POST)
-//	public @ResponseBody String deleteReply(ReplyDto replyDto,
-//			HttpSession session, HttpServletRequest request,
-//			HttpServletResponse response) {
-//
-//		int reply_num = Integer.parseInt(request.getParameter("replyNumber"));
-//		int board_num = Integer.parseInt(request.getParameter("boardNumber"));
-//	    replyDto.setMember_num((int)session.getAttribute("member_num"));
-//		replyDto.setBoard_num(board_num);
-//		replyDto.setReply_num(reply_num);
-//		try {
-//			boolean check = replyService.deleteReply(replyDto);
-//			if (check) {
-//				return getReplyList(board_num);
-//			}
-//		} catch (Exception e) {
-//			System.out.println("Reply Controller Error");
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	/**
+	* @name : boardReplyDelete
+	* @date : 2015. 7. 13.
+	* @author : 차건강
+	* @description : boardReply 삭제하기
+	 */
+	@RequestMapping(value = "boardReply/boardReplyDelete.do", method = RequestMethod.POST)
+	public @ResponseBody String boardReplyDelete(BoardReplyDto boardReplyDto, HttpServletRequest request) {
+		logger.info("boardReplyDelete---------------------------------");
+		
+		int boardReplyNum = Integer.parseInt(request.getParameter("boardReplyNum"));
+		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));
+		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
+		int boardReplyWriter=member.getMemberNum();
+		
+		boardReplyDto.setBoardReplyWriter(boardReplyWriter);
+		boardReplyDto.setBoardReplyBoardNum(boardReplyBoardNum);
+		boardReplyDto.setBoardReplyNum(boardReplyNum);
+		try {
+			int check = boardReplyService.boardReplyDelete(boardReplyDto);
+			if (check!=0) {
+				return getBoardReplyList(boardReplyBoardNum);
+			}
+		} catch (Exception e) {
+			System.out.println("Reply Controller Error");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@RequestMapping(value = "/boardReply/boardReplyList.do", method = RequestMethod.POST)
+	public ModelAndView boardReplyList(HttpServletRequest request){
+		logger.info("boardReplyList---------------------------");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		boardReplyService.boardReplyList(mav);
+		
+		return mav;
+	}
 }

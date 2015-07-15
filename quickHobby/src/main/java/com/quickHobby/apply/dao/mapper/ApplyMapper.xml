@@ -3,6 +3,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="apply.dao.mapper">
+	<resultMap type="com.quickHobby.member.dto.MemberDto" id="memberDto">
+		<result property="memberNum" column="member_num"/>
+		<result property="memberId" column="member_id"/>
+		<result property="memberPassword" column="member_password"/>
+		<result property="memberNickName" column="member_nickname"/>
+		<result property="memberLevel" column="member_level"/>
+		<result property="memberSNS" column="member_sns"/>
+		<result property="memberReport" column="member_report"/>
+		<result property="memberFileName" column="member_filename"/>
+		<result property="memberFilePath" column="member_filepath"/>
+		<result property="memberFileSize" column="member_filesize"/>
+	</resultMap>
+	
 	<insert id="applyInsertFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
 			INSERT INTO APPLY VALUES(APPLY_NUM_SEQ.NEXTVAL, #{apply_host}, #{apply_section}, #{apply_filename}, #{apply_filepath}, #{apply_filesize}, #{apply_content}, #{apply_location}, #{apply_subject}, #{apply_subtitle}, #{apply_createdate}, #{apply_modifydate}, #{apply_closedate}, #{apply_recommend}, #{apply_readcount}, #{apply_category}, #{apply_inout}, #{apply_cost})
@@ -50,4 +63,22 @@
 			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=NULL, APPLY_FILEPATH=NULL, APPLY_FILESIZE=NULL, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate}, APPLY_CATEGORY=#{apply_category}, APPLY_INOUT=#{apply_inout}, APPLY_COST=#{apply_cost} WHERE APPLY_NUM=#{apply_num}
 		]]>
 	</update>
+	
+	<select id="getJoins" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=#{applyNum}
+		]]>
+	</select>
+	
+	<select id="getRecommends" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM RECOMMEND WHERE RECOMMEND_BOARDNUM=#{applyNum} AND RECOMMEND_TYPE='A'
+		]]>
+	</select>
+	
+	<select id="getHost" resultMap="memberDto" parameterType="int">
+		<![CDATA[
+			SELECT * FROM MEMBER WHERE (SELECT APPLY_HOST FROM APPLY WHERE APPLY_NUM=#{apply_num})=MEMBER_NUM
+		]]>
+	</select>
 </mapper>

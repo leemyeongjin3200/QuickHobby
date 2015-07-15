@@ -15,12 +15,16 @@ public class MemberBoardDto {
 	private int board_visible;
 	
 	private int board_readcount;
+
+	private String board_date;
 	
 	
-	
-	
-	
-	
+	public String getBoard_date() {
+		return board_date;
+	}
+	public void setBoard_date(String board_date) {
+		this.board_date = board_date;
+	}
 	public int getBoard_num() {
 		return board_num;
 	}

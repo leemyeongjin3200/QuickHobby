@@ -25,6 +25,8 @@ public class BoardDto {
 	
 	private List<BoardReplyDto> boardReplyList = new ArrayList<BoardReplyDto>();
 	
+	private int boardReplyCount;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -108,5 +110,11 @@ public class BoardDto {
 	}
 	public void setBoardReplyList(List<BoardReplyDto> boardReplyList) {
 		this.boardReplyList = boardReplyList;
+	}
+	public int getBoardReplyCount() {
+		return boardReplyCount;
+	}
+	public void setBoardReplyCount(int boardReplyCount) {
+		this.boardReplyCount = boardReplyCount;
 	}
 }

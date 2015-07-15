@@ -17,5 +17,6 @@ public interface GroupBoardService {
 	void groupBoardUpdateForm(ModelAndView mav);
 
 	void groupBoardUpdate(ModelAndView mav);
-
+	
+	void groupPage(ModelAndView mav);
 }

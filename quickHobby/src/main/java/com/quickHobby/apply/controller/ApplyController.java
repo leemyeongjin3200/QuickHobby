@@ -38,7 +38,7 @@ public class ApplyController {
 		logger.info("applyWrite======");
 		
 		ModelAndView mav=new ModelAndView();
-		
+		mav.addObject("request", request);
 		applyService.applyWrite(mav);
 		
 		return mav;
@@ -149,6 +149,28 @@ public class ApplyController {
 		mav.addObject("applyDto", applyDto);
 		
 		applyService.applyUpdateOk(mav);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="apply/applyOk.do", method=RequestMethod.GET)
+	public ModelAndView applyOk(HttpServletRequest request){
+		logger.info("applyOk======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.applyOk(mav);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/main.do", method=RequestMethod.GET)
+	public ModelAndView main(HttpServletRequest request){
+		logger.info("main======");
+		
+		ModelAndView mav=new ModelAndView();
+		applyService.main(mav);
 		
 		return mav;
 	}

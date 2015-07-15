@@ -14,6 +14,10 @@
 		<result property="groupLocation" column="GROUP_LOCATION"/>
 		<result property="groupDate" column="GROUP_DATE"/>
 		<result property="groupCost" column="GROUP_COST"/>
+		
+		<result property="groupFileName" column="GROUP_FILENAME"/>
+		<result property="groupFilePath" column="GROUP_FILEPATH"/>
+		<result property="groupFileSize" column="GROUP_FILESIZE"/>
 	</resultMap>
 	
 	<insert id="createGroup" parameterType="com.quickHobby.apply.dto.ApplyDto">
@@ -38,4 +42,16 @@
 			UPDATE GGROUP SET GROUP_CATEGORY=#{apply_category}, GROUP_INOUT=#{apply_inout}, GROUP_SUBJECT=#{apply_subject}, GROUP_SUBTITLE=#{apply_subtitle}, GROUP_LOCATION=#{apply_location}, GROUP_DATE=#{apply_closedate}, GROUP_COST=#{apply_cost} WHERE GROUP_APPLYNUM=#{apply_num}
  		]]>
 	</update>
+	
+	<select id="getGroupDto" parameterType="int" resultMap="groupDto">
+		<![CDATA[
+			select * from ggroup where group_num=#{groupNum}
+		]]>
+	</select>
+
+	<insert id="joinMember" parameterType="java.util.HashMap">
+		<![CDATA[
+			INSERT INTO JOIN VALUES((SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}), #{member_num}) 
+ 		]]>
+	</insert>
 </mapper>

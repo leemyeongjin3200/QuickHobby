@@ -19,10 +19,12 @@
 // filter 설정
 $(function() {
   // init Isotope
-  var $grid = $('.grid').isotope({
+  
+  var $category = $('#category').isotope({
     layoutMode: 'fitRows',
     itemSelector: '.col-md-4'
   });
+  
   // filter functions
   var filterFns = {
 
@@ -41,7 +43,7 @@ $(function() {
     var $filterGroup = $(filterGroup);
     $filterGroup.on('click', 'li', function() {
       $filterGroup.find('.is-checked').removeClass('is-checked');
-      $(this).appendClass('is-checked');
+      $(this).addClass('is-checked');
     });
   });
 
@@ -150,10 +152,10 @@ body {
 <!-- //Navigation bar -->
 
 <div class="container">
-<div class="grid no-gutter">
+<div class="grid no-gutter" id="category">
 	  <div class="col-md-4 location best legs" >
 	   	<a href="#" class="apply-box">
-              <img src="C:\Users\KOSTA_07_008\Desktop\PJT\workspace\test folder\1436242263685_board.jpg" class="img-responsive" alt="">
+              <img src="${root}/img/Chrysanthemum.jpg" class="img-responsive" alt="">
                <div class="apply-box-caption">
                          <div class="apply-box-caption-content">
                                 <p> DATE: </p>

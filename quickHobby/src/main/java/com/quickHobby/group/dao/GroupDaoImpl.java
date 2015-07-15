@@ -1,5 +1,6 @@
 package com.quickHobby.group.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -35,6 +36,15 @@ public class GroupDaoImpl implements GroupDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("group.dao.mapper.createGroupFile", groupDto);
 	}
+	
+	@Override
+	public int joinMember(HashMap<String, Integer> map){
+		return sqlSession.insert("joinMember", map);
+	}
 
-
+	@Override
+	public GroupDto getGroupDto(int groupNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("getGroupDto", groupNum);
+	}
 }

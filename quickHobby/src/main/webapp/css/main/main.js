@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 function getNewMessage(root, memberNum){
 	if(memberNum!=""){
 		var callUrl=root+"/getNewMessage.do?memberNum="+memberNum;
@@ -10,6 +11,9 @@ function getNewMessage(root, memberNum){
 			dataType:"html",
 			success:function(data){
 				$("#newMessage").append("<span id='messageNum'>&nbsp;&nbsp;" + $(data).find("input[name='newMessageNum']").val() + "</span>");
+				if($(data).find("input[name='newMessageNum']").val() > 0){
+					$("#newMessage").css("background-color", "gold");
+				}
 			}
 		});
 		

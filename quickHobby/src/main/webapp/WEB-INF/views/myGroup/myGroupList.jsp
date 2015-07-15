@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,9 +23,15 @@
 		<div id="backgroundDiv" class="row">
 			<c:forEach var="group" items="${groupList}">
 				<div class="col-md-3 postDiv">
-					<a href="#">	
-						<img src="${root}/background/polaroid.png" class="img-responsive" height="150" width="250"></img>
-						<img src="${root}/groupImage/${group.groupFileName}" class="img-responsive" height="100" width="200"></img>
+					<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}">
+						<img src="${root}/background/polaroid.png" class="img-responsive polaroid"></img>
+						<img src="${root}/groupImage/${group.groupFileName}" class="photo"></img>
+						<div class="groupTitle">${group.groupSubject}</div>
+						<div class="groupInfo">
+							<p>DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></p>
+							<p>SUBTITLE: ${group.groupSubtitle}</p>
+							<p>LOCATION: ${group.groupLocation}</p>
+						</div>
 					</a>
 				</div>
 			</c:forEach>

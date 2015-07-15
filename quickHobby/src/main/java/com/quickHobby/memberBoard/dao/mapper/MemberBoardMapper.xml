@@ -101,7 +101,7 @@ select member_num from member where member_nickname=#{memberNickName}
 	</select>
 	
 	
-		 <select id="gList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+		 <select id="ssList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
 	
 
 	<![CDATA[
@@ -115,20 +115,22 @@ order by 2 desc
 	]]>
 	</select>
 	
-		 <select id="okselect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+		 <select id="skyList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
 	
 
 	<![CDATA[
-select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{member_num} and g.groupboard_writer=#{member_num}
-union all
-select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{member_num} and m.member_num=#{member_num}
-order by 2 desc
+select b.board_subject,b.board_filename,b.board_filepath,b.board_filesize,b.board_content,TO_CHAR(b.board_createdate,'YYYY-MM-DD') as board_date from board b,member m where b.board_writer=#{memberNum} and m.member_num=#{memberNum}
+	union all
+select g.groupboard_subject,g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,TO_CHAR(g.groupboard_createdate,'YYYY-MM-DD') as group_date from member m, groupboard g where m.member_num=#{memberNum} and g.groupboard_writer=#{memberNum}
+
+order by 6 desc
 
 	
 	]]>
 	</select>
 	 
 	 
+
 	 
 
 </mapper>
