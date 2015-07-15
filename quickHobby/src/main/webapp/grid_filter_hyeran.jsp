@@ -15,13 +15,11 @@
 body {
     padding-top: 70px;
 }
-
 /* a태그 효과없음 */
 a:link{text-decoration:none !important;}
 a:visited{text-decoration:none !important;}
 a:hover{text-decoration:none !important;}
 a:active{text-decoration:none !important;}
-
 /* Content and Main Elements
 =================================================================== */
 #content {
@@ -59,7 +57,6 @@ a:active{text-decoration:none !important;}
 	padding: 10px;
 	background: #fff !important;
 }
-
 /* Masonry Gallery
 =================================================================== */
 .masonry-thumb {
@@ -202,8 +199,6 @@ a:active{text-decoration:none !important;}
 	
 <script>
 //filter 설정
-
-
 $(function() {
    var $container = $('.grid');
    var gutter = 6;
@@ -216,11 +211,9 @@ $(function() {
              columnWidth: function( containerWidth ) {
                var num_of_boxes = (containerWidth/min_width | 0);
                var box_width = (((containerWidth - (num_of_boxes-1)*gutter)/num_of_boxes) | 0) ;
-
                if (containerWidth < min_width) {
                    box_width = containerWidth;
                }
-
                $('.masonry-thumb').width(box_width);
                return box_width;
              }
@@ -228,7 +221,6 @@ $(function() {
    });
  
 });
-
 $(function() {
 	  // init Isotope
 	  
@@ -240,7 +232,6 @@ $(function() {
 	  
 	  // filter functions
 	  var filterFns = {
-
 	  };
 	  // bind filter button click
 	  $('.navbar-nav').on('click', 'li', function() {
@@ -259,10 +250,7 @@ $(function() {
 	      $(this).addClass('is-checked');
 	    });
 	  });
-
 	});
-
-
 </script>
 <!-- masonry js -->
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
