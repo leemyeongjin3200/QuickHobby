@@ -1,6 +1,7 @@
 package com.quickHobby.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,5 +105,11 @@ public class MemberDaoImpl implements MemberDao {
 	public String findPassword(String email) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.dao.mapper.findPassword", email);
+	}
+
+	@Override
+	public List<MemberDto> getMemberList(int groupNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("member.dao.mapper.getMemberList", groupNum);
 	}
 }

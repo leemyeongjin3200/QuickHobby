@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="groupReply.dao.mapper">
+	<resultMap type="com.quickHobby.groupReply.dto.GroupReplyDto" id="groupReplyDto">
+		<result property="groupReplyNum" column="GROUPREPLY_NUM"/>
+		<result property="groupReplyWriter" column="GROUPREPLY_WRITER"/>
+		<result property="groupReplyBoardNum" column="GROUPREPLY_BOARDNUM"/>
+		<result property="groupReplyContent" column="GROUPREPLY_CONTENT"/>
+		<result property="groupReplyCreateDate" column="GROUPREPLY_CREATEDATE"/>
+		<result property="groupReplyModifyDate" column="GROUPREPLY_MODIFYDATE"/>
+		<result property="memberNickName" column="MEMBER_NICKNAME"/>
+	</resultMap>
+	
+	<select id="getReplyCount" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from groupreply where groupreply_boardnum=#{boardNum}
+		]]>
+	</select>
+</mapper>

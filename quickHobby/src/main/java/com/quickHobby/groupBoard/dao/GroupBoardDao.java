@@ -1,14 +1,15 @@
 package com.quickHobby.groupBoard.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.quickHobby.groupBoard.dto.GroupBoardDto;
 
 public interface GroupBoardDao {
 
-	int getGroupBoardCount();
+	int getGroupBoardCount(int groupNum);
 
-	List<GroupBoardDto> getGroupBoardList(int startRow, int endRow);
+	List<GroupBoardDto> getGroupBoardList(HashMap<String, Integer> hMap);
 
 	int groupBoardWrite(GroupBoardDto groupBoardDto);
 

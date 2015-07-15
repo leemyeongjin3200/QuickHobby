@@ -4,8 +4,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 public interface GroupBoardService {
 
-	void groupBoardList(ModelAndView mav);
-
 	void groupBoardWriteForm(ModelAndView mav);
 
 	void groupBoardWrite(ModelAndView mav);

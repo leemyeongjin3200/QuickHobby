@@ -43,8 +43,8 @@ public class GroupDaoImpl implements GroupDao {
 	}
 
 	@Override
-	public GroupDto getGroupDto(int groupNum) {
+	public GroupDto getGroupDto(int groupNumber) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("getGroupDto", groupNum);
+		return sqlSession.selectOne("getGroupDto", groupNumber);
 	}
 }

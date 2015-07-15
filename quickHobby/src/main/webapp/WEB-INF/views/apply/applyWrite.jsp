@@ -140,7 +140,11 @@ function removeChar(event) {
 		
 		<form name="applyCreateForm" class="form-horizontal" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 			<div class="col-md-6">
+<<<<<<< HEAD
 				<input type="hidden" name="apply_host" value="${session.member.memberNum}"/>
+=======
+				<input type="hidden" name="apply_host" value="${groupHost}"/>
+>>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 				
 				<div id="category" class="form-group">
 					<label for=""><span class="glyphicon glyphicon-list-alt"></span> Category  /  Indoor & Outdoor</label>
