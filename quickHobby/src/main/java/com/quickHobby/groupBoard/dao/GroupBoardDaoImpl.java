@@ -27,8 +27,8 @@ public class GroupBoardDaoImpl implements GroupBoardDao {
 	}
 
 	@Override
-	public List<GroupBoardDto> getGroupBoardList(HashMap<String, Integer> hMap) {
-		return sqlSession.selectList("groupBoard.dao.mapper.groupBoardList", hMap);
+	public List<GroupBoardDto> getGroupBoardList(int groupNum) {
+		return sqlSession.selectList("groupBoard.dao.mapper.groupBoardList", groupNum);
 	}
 
 	@Override

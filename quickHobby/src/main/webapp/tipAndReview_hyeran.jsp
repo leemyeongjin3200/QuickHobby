@@ -283,12 +283,12 @@ $(document).ready(function(){
                <header class="panel-heading tab-bg-default tab-right">
                    <ul class="nav nav-pills pull-right">
                        <li class="active">
-                           <a data-toggle="pill" href="#list2">
+                           <a data-toggle="pill" href="#list1 #list2 #list3">
                                <i class="glyphicon glyphicon-th-list"></i>
                            </a>
                        </li>
                        <li class="">
-                           <a data-toggle="pill" href="#album2">
+                           <a data-toggle="pill" href="#album1">
                                <i class="glyphicon glyphicon-th-large"></i>
                            </a>
                        </li>
@@ -298,7 +298,7 @@ $(document).ready(function(){
                <div class="panel-body">
                    <div class="tab-content">
                    <!-- menu2 Tip 게시판 list2 시작--> 
-                       <div id="list2" class="tab-pane active">
+                       <div id="list1" class="tab-pane active">
                        	<div class="row-fluid">
 						<div class="gTable">
 							<!-- list2 header -->
@@ -457,12 +457,12 @@ $(document).ready(function(){
                <header class="panel-heading tab-bg-default tab-right">
                    <ul class="nav nav-pills pull-right">
                        <li class="active">
-                           <a data-toggle="pill" href="#list3">
+                           <a data-toggle="pill" href="#list1">
                                <i class="glyphicon glyphicon-th-list"></i>
                            </a>
                        </li>
                        <li class="">
-                           <a data-toggle="pill" href="#album3">
+                           <a data-toggle="pill" href="#album1">
                                <i class="glyphicon glyphicon-th-large"></i>
                            </a>
                        </li>
@@ -472,7 +472,7 @@ $(document).ready(function(){
                <div class="panel-body">
                    <div class="tab-content">
                    <!-- menu3 REview게시판 list3 시작--> 
-                       <div id="list3" class="tab-pane active">
+                       <div id="list1" class="tab-pane active">
                        	<div class="row-fluid">
 						<div class="gTable">
 							<!-- list3 header -->
@@ -545,7 +545,7 @@ $(document).ready(function(){
                   </div><!-- #list3 끝 -->
 
                   <!-- menu3 Review게시판 album3 시작--> 
-                  <div id="album3" class="tab-pane">
+                  <div id="album1" class="tab-pane">
 			        <div class="row-fluid">
 			        	<div class="gAlbum">
 			        		<!-- album3 contents -->

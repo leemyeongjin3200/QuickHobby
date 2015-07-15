@@ -117,6 +117,7 @@ public class ApplyServiceImpl implements ApplyService {
 		}
 		
 		int check=0;
+		
 		if(applyDto.getApply_filename() != null){
 			check=applyDao.insertFile(applyDto);
 			groupDao.createGroupFile(applyDto);

@@ -18,117 +18,6 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		var latlng=new google.maps.LatLng(37.5640, 126.9751);
-		var mapOptions={
-				zoom:7,
-				center:latlng,
-				mapTypeId:google.maps.MapTypeId.ROADMAP
-		}
-		var map=new google.maps.Map(document.getElementById("map_canvas"),
-	            mapOptions);
-		var marker=new google.maps.Marker({
-			position:latlng,
-			map:map
-		});
-		
-		var geocoder=new google.maps.Geocoder();
-		
-		google.maps.event.addListener(map, 'click', function(event){
-			var location=event.latLng;
-			geocoder.geocode({
-				'latLng':location
-			},
-			function(results, status){
-				if(status==google.maps.GeocoderStatus.OK){
-					$('#address').html(results[0].formatted_address);
-					var addr=document.getElementById("address").innerHTML;
-					document.getElementById("addr").value=addr;
-					$('#lat').html(results[0].geometry.location.lat());
-					$('#lng').html(results[0].geometry.location.lng());
-				}
-				
-			});
-			if(!marker){
-				marker=new google.maps.Marker({
-					position:location,
-					map:map
-				});
-			}
-			else{
-				marker.setMap(null);
-				marker=new google.maps.Marker({
-					position:location,
-					map:map
-				});
-			}
-			map.setCenter(location);
-		});
-	});
-</script>
-<script type="text/javascript">
-function checkForm(form){
-// 	alert(form.groupCategory.value);
-// 	alert(form.groupInout.value);
-// 	console.log(form.groupDate.value);
-// 	console.log(form.groupSubject.value);
-	
-	if(form.apply_category.value==""){
-		alert("You have to check at least a category.");
-		form.apply_category[0].focus();
-		return false;
-	}
-	
-	if(form.apply_inout.value==""){
-		alert("You have to choose indoor or outdoor.");
-		form.apply_inout[0].focus();
-		return false;
-	}
-	
-	if(form.apply_date.value==""){
-		alert("You have to choose the closing date.");
-		form.apply_date.focus();
-		return false;
-	}
-	
-	if(form.apply_subject.value==""){
-		alert("You have to input the title.");
-		form.apply_subject.focus();
-		return false;
-	}
-	
-	if(form.apply_subtitle.value==""){
-		alert("You have to input the subtitle.");
-		form.apply_subtitle.focus();
-		return false;
-	}
-	
-	if(form.apply_content.value==""){
-		alert("You have to input the content.");
-		form.apply_content.focus();
-		return false;
-	}
-}
-
-function onlyNumber(event){
-	event = event || window.event;
-	var keyID = (event.which) ? event.which : event.keyCode;
-	if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
-		return;
-	else
-		return false;
-}
-function removeChar(event) {
-	event = event || window.event;
-	var keyID = (event.which) ? event.which : event.keyCode;
-	if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 || keyID == 9) 
-		return;
-	else
-		event.target.value = event.target.value.replace(/[^0-9]/g, "");
-}
-</script>
-
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
@@ -140,11 +29,7 @@ function removeChar(event) {
 		
 		<form name="applyCreateForm" class="form-horizontal" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 			<div class="col-md-6">
-<<<<<<< HEAD
-				<input type="hidden" name="apply_host" value="${session.member.memberNum}"/>
-=======
-				<input type="hidden" name="apply_host" value="${groupHost}"/>
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
+				<input type="hidden" name="apply_host" value="${member.memberNum}"/>
 				
 				<div id="category" class="form-group">
 					<label for=""><span class="glyphicon glyphicon-list-alt"></span> Category  /  Indoor & Outdoor</label>
@@ -378,10 +263,7 @@ function removeChar(event) {
 }
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 <script type="text/javascript">                
 	var dropBox = document.getElementById("dropbox");          
 	var dropImage = document.createElement("img");   
@@ -440,11 +322,8 @@ function removeChar(event) {
 		dropImage.getElementByTag("img").setAttribute("height", "100");
 	}, true)
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </html>
