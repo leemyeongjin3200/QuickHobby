@@ -77,4 +77,10 @@
 			select member_password from member where member_id=#{email}
 		]]>
 	</select>
+	
+	<select id="getMemberList" parameterType="int" resultMap="memberDto">
+		<![CDATA[
+			select a.* from member a, join b where a.member_num=b.join_membernum and b.join_groupnum=#{groupNum}
+		]]>	
+	</select>
 </mapper>

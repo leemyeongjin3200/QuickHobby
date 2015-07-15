@@ -163,7 +163,7 @@
              	<div class="single_gMember" style="margin-top:20px">
              		<div class="col-lg-4">
 		                <b style="margin-top:35px;"> <fmt:formatDate value="${applyDto.apply_closedate}" type="date"/></b><br/><br/>
-						<img id=weather style="width:80px; height:80px;" src="${root}/weather/questionMark.jpg"><br/>
+						<img id=weather style="width:80px; height:80px;" src="${root}/weather/QuestionMark.png"><br/>
 						<b>${weather.wf}</b><br/>
 		                <b>최저 : ${weather.tmn}</b><br/>
 		                <b>최고 : ${weather.tmx}</b>

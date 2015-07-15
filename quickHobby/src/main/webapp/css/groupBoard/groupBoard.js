@@ -39,13 +39,52 @@ $(document).ready(function(){
 	});
 
 //GoogleMap
-  var zoom= $('#map_canvas').gmap('option', 'zoom');
+/*  var zoom= $('#map_canvas').gmap('option', 'zoom');
   
   $('#map_canvas').gmap().bind('init', function(ev, map) {
     $('#map_canvas').gmap('addMarker', {'position': '57.7973433,12.0502107', 'bounds': true});
     $('#map_canvas').gmap('option', 'zoom', 13);
   });
+*/
+});
 
+$(document).ready(function(){
+	var geocoder = new google.maps.Geocoder();
+	 
+    var addr=$("#groupLocation").val();
+ 
+    var lat="";
+    var lng="";
+ 
+    geocoder.geocode({'address':addr},
+ 
+        function(results, status){
+ 
+            if(results!=""){
+ 
+                var location=results[0].geometry.location;
+ 
+                lat=location.lat();
+                lng=location.lng();
+  
+                var latlng = new google.maps.LatLng(lat , lng);
+                var myOptions = {
+                    zoom: 16,
+                    center: latlng,
+                    mapTypeControl: true,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                
+        		var marker=new google.maps.Marker({
+        			position:latlng,
+        			map:map
+        		});
+        		
+        		var geocoder=new google.maps.Geocoder();
+            }
+        }
+	)
 });
 
 //Reply 팝업창
