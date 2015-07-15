@@ -9,7 +9,7 @@ import com.quickHobby.group.dto.GroupDto;
 public interface GroupDao {
 
 	public List<GroupDto> myGroupList(int memberNum);
-	GroupDto getGroupDto(int groupNum);
+	GroupDto getGroupDto(int groupNumber);
 	public int createGroup(ApplyDto groupDto);
 	public int createGroupFile(ApplyDto groupDto);
 	public int updateGroup(ApplyDto groupDto);

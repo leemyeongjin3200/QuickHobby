@@ -22,16 +22,13 @@ public class GroupBoardDaoImpl implements GroupBoardDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public int getGroupBoardCount() {
-		return sqlSession.selectOne("groupBoard.dao.mapper.groupBoardCount");
+	public int getGroupBoardCount(int groupNum) {
+		return sqlSession.selectOne("groupBoard.dao.mapper.groupBoardCount", groupNum);
 	}
 
 	@Override
-	public List<GroupBoardDto> getGroupBoardList(int startRow, int endRow) {
-		Map<String,Integer>map=new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		return sqlSession.selectList("groupBoard.dao.mapper.groupBoardList", map);
+	public List<GroupBoardDto> getGroupBoardList(HashMap<String, Integer> hMap) {
+		return sqlSession.selectList("groupBoard.dao.mapper.groupBoardList", hMap);
 	}
 
 	@Override
@@ -61,5 +58,4 @@ public class GroupBoardDaoImpl implements GroupBoardDao {
 	public int groupBoardUpdate(GroupBoardDto groupBoardDto) {
 		return sqlSession.update("groupBoard.dao.mapper.groupBoardUpdate", groupBoardDto);
 	}
-
 }

@@ -117,7 +117,6 @@ body {
 </nav>
 </div>
 <!-- //Navigation bar -->
-
 <!-- Content 2// -->
 <div class="container">
 <div class="grid no-gutter">

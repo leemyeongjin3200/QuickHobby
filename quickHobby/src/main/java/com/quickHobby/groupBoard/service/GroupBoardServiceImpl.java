@@ -1,5 +1,6 @@
 package com.quickHobby.groupBoard.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -14,6 +15,11 @@ import com.quickHobby.group.dao.GroupDao;
 import com.quickHobby.group.dto.GroupDto;
 import com.quickHobby.groupBoard.dao.GroupBoardDao;
 import com.quickHobby.groupBoard.dto.GroupBoardDto;
+import com.quickHobby.groupReply.dao.GroupReplyDao;
+import com.quickHobby.member.dao.MemberDao;
+import com.quickHobby.member.dto.MemberDto;
+import com.quickHobby.weather.Weather;
+import com.quickHobby.weather.WeatherDTO;
 
 /**
 * @name : GroupBoardServiceImpl
@@ -27,44 +33,15 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	
 	@Autowired
 	private GroupBoardDao groupBoardDao;
+	
+	@Autowired
 	private GroupDao groupDao;
-	/**
-	* @name : groupBoardList
-	* @date : 2015. 6. 25.
-	* @author : 차건강
-	* @description : Group Board List 불러오기
-	 */
-	@Override
-	public void groupBoardList(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		
-		String pageNumber=request.getParameter("pageNumber");
-		if(pageNumber==null)pageNumber="1";
-		
-		int boardSize=10;
-		int currentPage=Integer.parseInt(pageNumber);
-		int startRow=(currentPage-1)*boardSize+1;
-		int endRow=currentPage*boardSize;
-		
-		int count=groupBoardDao.getGroupBoardCount();
-		logger.info("count:"+count);
-		
-		List<GroupBoardDto> groupBoardList=null;
-		
-		if(count>0){
-			groupBoardList=groupBoardDao.getGroupBoardList(startRow, endRow);
-		}
-		logger.info("groupBoardList:"+groupBoardList.size());
-		
-		mav.addObject("groupBoardList", groupBoardList);
-		mav.addObject("count", count);
-		mav.addObject("boardSize", boardSize);
-		mav.addObject("currentPage", currentPage);
-		mav.setViewName("groupBoard/list");
-		
-	}
-
+	
+	@Autowired
+	private MemberDao memberDao;
+	
+	@Autowired
+	private GroupReplyDao groupReplyDao;
 	/**
 	* @name : groupBoardWriteForm
 	* @date : 2015. 6. 25.
@@ -208,9 +185,55 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		HttpServletRequest req=(HttpServletRequest)map.get("request");
 		
 		int groupNum=Integer.parseInt(req.getParameter("groupNum"));
+		logger.info("groupNum:" + groupNum);
+		String pageNumber="1";
+		
+		int boardSize=3;
+		
+		int currentPage=Integer.parseInt(pageNumber);
+		int startRow=(currentPage-1)*boardSize+1;
+		int endRow=currentPage*boardSize;
+		
+		HashMap<String, Integer> hMap=new HashMap<String, Integer>();
+		hMap.put("startRow", startRow);
+		hMap.put("endRow", endRow);
+		hMap.put("groupNum", groupNum);
 		
 		GroupDto group=groupDao.getGroupDto(groupNum);
 		
-		List<GroupBoardDto> groupBoard=groupBoardDao.getGroupBoardList(startRow, endRow);
+		int count=groupBoardDao.getGroupBoardCount(groupNum);
+		
+		List<GroupBoardDto> groupBoard=null;
+		
+		if(count>0){
+			groupBoard=groupBoardDao.getGroupBoardList(hMap);
+			for(int i=0; i<groupBoard.size(); i++){
+				int boardNum=groupBoard.get(i).getGroupBoardNum();
+				int replyCount=groupReplyDao.getReplyCount(boardNum);
+				groupBoard.get(i).setGroupBoardReplyCount(replyCount);
+			}
+		}
+		
+		List<MemberDto> member=memberDao.getMemberList(groupNum);
+		
+		Weather w=new Weather(group.getGroupLocation(), group.getGroupDate());
+		WeatherDTO weather=w.getWeather();
+		
+		for(int i=0; i<member.size(); i++){
+			String filePath=member.get(i).getMemberFilePath();
+			if(filePath!=null){
+				String fileName=filePath.split("\\\\")[10];
+				member.get(i).setMemberFileName(fileName);
+			}
+		}
+	
+		mav.addObject("memberList", member);
+		mav.addObject("group", group);
+		mav.addObject("groupBoardList", groupBoard);
+		mav.addObject("weather", weather);
+		mav.addObject("count", count);
+		mav.addObject("boardSize", boardSize);
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName("groupBoard/groupPage");
 	}
 }

@@ -34,15 +34,6 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @author : 차건강
 	* @description : Group Board 리스트를 불러오는 method
 	 */
-	@RequestMapping(value="/groupBoard/list.do", method=RequestMethod.GET)
-	public ModelAndView groupBoardList(HttpServletRequest request, HttpServletResponse response){
-		logger.info("groupBoardList---------------------------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		groupBoardService.groupBoardList(mav);
-		return mav;
-	}
 	
 	/**
 	* @name : groupBoardWriteForm

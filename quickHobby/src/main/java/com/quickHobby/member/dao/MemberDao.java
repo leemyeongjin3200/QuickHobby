@@ -1,6 +1,7 @@
 package com.quickHobby.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import com.quickHobby.member.dto.MemberDto;
 
@@ -13,4 +14,5 @@ public interface MemberDao {
 	public String checkNickname(String nickname);
 	public String checkEmail(String email);
 	public String findPassword(String email);
+	public List<MemberDto> getMemberList(int groupNum);
 }
