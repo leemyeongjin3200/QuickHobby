@@ -30,55 +30,25 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	@Autowired
 	private MemberBoardDao memberBoardDao;
 	
-	
-	
-	
 	@Override
 	public void boardWrite(ModelAndView mav) {
-		Map<String,Object> map=mav.getModelMap();
+		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		MemberDto memberDto=(MemberDto)map.get("memberDto");
-		
-		//	boardDto=boardDao.boardRead(boardNumber);
-		
-		//BoardDto boardDto=(BoardDto) map.get("boardDto");	
-		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
-		logger.info("memberNum:"+memberNum);
-		String memberNickName=request.getParameter("memberNickName");
-		logger.info("memberNickName:"+memberNickName);
-		//memberDto=memberBoardDao.getNum(memberNum);
-		
-		
-		//잘된것 일단 주석처리
-		/*String memberNickName=request.getParameter("memberNickName");
-		
-		logger.info("memberNickName:"+memberNickName);
-		memberDto=memberBoardDao.getNumm(memberNickName);
-		logger.info("memberDao:"+memberDto);
-		int member_num=memberDto.getMemberNum();
-	logger.info("member_num:"+member_num);*/
-	//		AddressDto addressDto=addressDao.selectOk(name);
 
-	//dto로 넘기자 ==테스트
-//	MemberBoardDto memberBoardDto=memberBoardDao.selectOk(member_num);
-	//logger.info("memberBoardDto:"+memberBoardDto);
+		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
 
-	/////
-	
-///**********************
-		//잘된것 잠시 주석처리
-		
-	List<MemberBoardDto>memberBoardList=null;
-	memberBoardList=memberBoardDao.getSumlist(memberNum);
-	
-	//세 줄을 잘 된것
-	logger.info("memberBoardList:"+memberBoardList.size());
-	mav.addObject("memberNickName", memberNickName);
-	 mav.addObject("memberBoardList",memberBoardList);
 
-	mav.setViewName("memberBoard/list");		
-	   
+		List<MemberBoardDto>memberBoardList=null;
+		memberBoardList=memberBoardDao.getSumlist(member.getMemberNum());
+
+		logger.info("memberBoardList:"+memberBoardList.size());
 		
+		mav.addObject("member", member);
+		mav.addObject("memberBoardList",memberBoardList);
+
+		mav.setViewName("memberBoard/list");		
+
+
 	}
 	
 }
