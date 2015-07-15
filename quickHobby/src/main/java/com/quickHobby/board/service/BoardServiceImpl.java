@@ -56,32 +56,31 @@ public class BoardServiceImpl implements BoardService {
 		int count=boardDao.getBoardCount();
 		logger.info("count:"+count);
 		
-		List<BoardDto> boardList=new ArrayList<BoardDto>();;
+		List<BoardDto> boardList=new ArrayList<BoardDto>();
 		
 		if(count>0){
 			boardList=boardDao.getBoardList(startRow, endRow);
-			
 		}
 		
 		int boardListSize=boardList.size();
 		
+		// reply count 추가
 		for(int i=0;i<boardListSize;i++){
+			logger.info("boardList:"+boardList.get(i));
 			logger.info("boardNum:"+boardList.get(i).getBoardNum());
 			int boardNum=boardList.get(i).getBoardNum();
 			int boardReplyCount=boardReplyDao.getBoardReplyCount(boardNum);
-			boardDto.setBoardReplyCount(boardReplyCount);
 			
-			boardList.set(i, boardDto);
+			boardList.get(i).setBoardReplyCount(boardReplyCount);
+//			boardList.set(i, boardDto);
 			logger.info("boardDtogetBoardReplyCount:"+boardList.get(i).getBoardReplyCount());
-			logger.info("AfterrrrrrrrrrrrrrrrrboardNum:"+boardNum);
-//			boardList.get(i).setBoardReplyCount(boardReplyCount);
 		}
-		logger.info("boardList:"+boardList.size());
 		
 		mav.addObject("boardList", boardList);
 		mav.addObject("count", count);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);
+		mav.addObject("board", boardDto);
 		mav.setViewName("board/list");
 	}
 

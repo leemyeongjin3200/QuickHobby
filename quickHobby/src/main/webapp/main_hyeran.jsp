@@ -19,8 +19,6 @@ body {
 
 <title>Main</title>
 
-<c:set var="root" value="${pageContext.request.contextPath}"/>
-<c:set var="root1" value="${pageContext.request.requestURI}"/>
 <script>
 </script>
 <title>HYERAN</title>
@@ -117,6 +115,7 @@ body {
 </nav>
 </div>
 <!-- //Navigation bar -->
+
 <!-- Content 2// -->
 <div class="container">
 <div class="grid no-gutter">
