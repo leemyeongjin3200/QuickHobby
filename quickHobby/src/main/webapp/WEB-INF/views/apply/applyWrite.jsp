@@ -29,11 +29,7 @@
 		
 		<form name="applyCreateForm" class="form-horizontal" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 			<div class="col-md-6">
-<<<<<<< HEAD
 				<input type="hidden" name="apply_host" value="${session.member.memberNum}"/>
-=======
-				<input type="hidden" name="apply_host" value="${member.memberNum}"/>
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 				
 				<div id="category" class="form-group">
 					<label for=""><span class="glyphicon glyphicon-list-alt"></span> Category  /  Indoor & Outdoor</label>
@@ -267,65 +263,6 @@ function removeChar(event) {
 }
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
-
-<script type="text/javascript">                
-	var dropBox = document.getElementById("dropbox");          
-	var dropImage = document.createElement("img");   
-        
-	function onDragEnter(event){    
-    	if (event.dataTransfer.dropEffect == "move")
-    		event.preventDefault();                    
-    }
-	
-	function onDragOver(event){
-		if (event.dataTransfer.dropEffect == "move") {
-    		event.preventDefault();      
-		}
-	}
-		
-	function onDrop(event){                                
-		var file = event.dataTransfer.files[0];      
-         
-  		var imageType = /image.*/;
-  		var textType = /text.*/;
-  		var isImage;
-  
-  		if(file.type.match(imageType)){
-    		isImage = true; 
-  		}
-  		else if(file.type.match(textType)){
-    		isImage = false;
-  		} 
-           
-  		var reader = new FileReader();    
-  
-  		reader.onload = (function(aFile){
-  			return function(e) {         
-      			var result = e.target.result;  
-      	
-      			if(isImage){
-        			dropImage.src = result;                                                                            
-        			dropBox.appendChild(dropImage)
-       			}
-       			else{
-        			dropBox.innerHTML = result;
-       			}        
-    		};
-    	})(file);
-    
-  		if(isImage){ reader.readAsDataURL(file); }
-  		else { reader.readAsText(file,"EUC-KR"); }
-  
-  		event.stopPropagation();
-  		event.preventDefault(); 
-	}                      
-
-	dropImage.addEventListener("load", function(e) {
-		//이미지 로딩 시 추가 처리할 로직 기입(사이즈 조절 등)
-		dropImage.setAttribute("width", "100");
-		dropImage.getElementByTag("img").setAttribute("height", "100");
-	}, true)
-</script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>

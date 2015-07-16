@@ -180,7 +180,7 @@
 			</div><!-- .myBoard  01끝 -->
 		</c:forEach>
 		
-	
+		
      </div>
      <!--/right-->
      </c:if>	
@@ -204,7 +204,6 @@
 					var subject="${memberBoardList[current].boardSubject}";
 					var createDate="${memberBoardList[current].boardCreateDate}";
 					var content="${memberBoardList[current].boardContent}";
-					alert(current + "\n" + size + "\n" + subject + "\n" + createDate);
 					
 					$("#content1 > div:eq(0)").attr("class", current);
 					$("."+current).clone().appendTo("#content1");

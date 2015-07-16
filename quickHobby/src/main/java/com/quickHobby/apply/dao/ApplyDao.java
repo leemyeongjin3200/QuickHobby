@@ -1,5 +1,6 @@
 package com.quickHobby.apply.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.quickHobby.apply.dto.ApplyDto;
@@ -17,4 +18,7 @@ public interface ApplyDao {
 	public int getJoins(int applyNum);
 	public int getRecommends(int applyNum);
 	public MemberDto getHost(int apply_num);
+	public int memberRecommend(HashMap<String, Integer> memberMap);
+	public int memberGroups(int memberNum);
+	public int isJoinGroup(HashMap<String, Integer> memberMap);
 }

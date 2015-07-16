@@ -161,10 +161,20 @@ public class ApplyServiceImpl implements ApplyService {
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		int apply_num=Integer.parseInt(request.getParameter("apply_num"));
 //		logger.info("apply_num : " + apply_num);
+		
+		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
+		int memberNum=member.getMemberNum();
+		
+		HashMap<String, Integer> memberMap=new HashMap<String, Integer>();
+		memberMap.put("memberNum", memberNum);
+		memberMap.put("apply_num", apply_num);
+		int memberRecommend=applyDao.memberRecommend(memberMap);
+		
+		int memberGroups=applyDao.memberGroups(memberNum);
 
 		applyDao.incrementReadcount(apply_num);
 		ApplyDto applyDto=applyDao.getApplyDto(apply_num);
-		logger.info("apply_num : " + apply_num);
+//		logger.info("apply_num : " + apply_num);
 		
 		Weather w=new Weather(applyDto.getApply_location(), applyDto.getApply_closedate());
 		WeatherDTO weather=w.getWeather();
@@ -173,6 +183,11 @@ public class ApplyServiceImpl implements ApplyService {
 		int recommends=applyDao.getRecommends(apply_num);
 		MemberDto host=applyDao.getHost(apply_num);
 		
+		int isJoin=applyDao.isJoinGroup(memberMap);
+		
+		mav.addObject("isJoin", isJoin);
+		mav.addObject("memberGroups", memberGroups);
+		mav.addObject("memberRecommend", memberRecommend);
 		mav.addObject("joins", joins);
 		mav.addObject("recommends", recommends);
 		mav.addObject("host", host);

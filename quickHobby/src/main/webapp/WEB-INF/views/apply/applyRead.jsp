@@ -113,6 +113,9 @@
                 	<span><i class="glyphicon glyphicon-user"></i> ${joins} Joins</span>&nbsp;&nbsp;
                 	<span><i class="glyphicon glyphicon-heart"></i> ${recommends} Likes</span>&nbsp;&nbsp;
                 	<span><i class="glyphicon glyphicon-book"></i> ${applyDto.apply_readcount} Reads</span>
+                	<span>여기 좋아요 했는지(1 보다 크면 함) : ${memberRecommend}</span>
+                	<span>그룹 몇개 가입했는지 : ${memberGroups}</span>
+                	<span>여기에 이미 가입했는지(1 보다 크면 함) : ${isJoin}</span>
               	</div>
             </div>
         </div>
