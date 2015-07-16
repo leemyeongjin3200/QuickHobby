@@ -2,135 +2,97 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dao.boardMapper"> 
-
-
-
-<resultMap type="com.quickHobby.member.dto.MemberDto" id="memberDto">
-		<result property="memberNum" column="member_num"/>
-		<result property="memberId" column="member_id"/>
-		<result property="memberPassword" column="member_password"/>
-		<result property="memberNickName" column="member_nickname"/>
-		<result property="memberLevel" column="member_level"/>
-		<result property="memberSNS" column="member_sns"/>
-		<result property="memberReport" column="member_report"/>
-		<result property="memberFileName" column="member_filename"/>
-		<result property="memberFilePath" column="member_filepath"/>
-		<result property="memberFileSize" column="member_filesize"/>
+<mapper namespace="dao.boardMapper">
+	<resultMap type="com.quickHobby.member.dto.MemberDto" id="memberDto">
+		<result property="memberNum" column="member_num" />
+		<result property="memberId" column="member_id" />
+		<result property="memberPassword" column="member_password" />
+		<result property="memberNickName" column="member_nickname" />
+		<result property="memberLevel" column="member_level" />
+		<result property="memberSNS" column="member_sns" />
+		<result property="memberReport" column="member_report" />
+		<result property="memberFileName" column="member_filename" />
+		<result property="memberFilePath" column="member_filepath" />
+		<result property="memberFileSize" column="member_filesize" />
+	</resultMap>
+	
+	<resultMap type="com.quickHobby.board.dto.BoardDto" id="boardDto">
+		<result property="boardNum" column="BOARD_NUM"/>
+		<result property="boardWriter" column="BOARD_WRITER"/>
+		<result property="boardSubject" column="BOARD_SUBJECT"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
+		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
+		
+		<result property="boardVisible" column="BOARD_VISIBLE"/>
+		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
+		<result property="boardReadCount" column="BOARD_READCOUNT"/>
+		
+		<result property="boardSection" column="BOARD_SECTION"/>
 	</resultMap>
 
-<select id="boardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-select * from board where board_writer=#{board_writer}
-</select>
-<select id="groupboardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-<![CDATA[
-	select * from groupboard where groupboard_writer=#{groupboard_writer}
-]]>
-
-</select>
-		<select id="boardCount" resultType="int">
-	select count(*) from board
-	
+	<select id="boardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+		select * from board where board_writer=#{board_writer}
 	</select>
-		
-		<select id="groupCount" resultType="int">
+	
+	<select id="groupboardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
 		<![CDATA[
-	select count(*) from groupboard
-	]]>
+			select * from groupboard where groupboard_writer=#{groupboard_writer}
+		]]>
 	</select>
+	
+	<select id="boardCount" resultType="int">
+		select count(*) from board
+	</select>
+
+	<select id="groupCount" resultType="int">
+		<![CDATA[
+		select count(*) from groupboard
+		]]>
+	</select>
+	
 	<select id="boardList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-	
-
-	<![CDATA[
-select * from board where board_writer=#{board_writer}
-
-	]]>
+		<![CDATA[
+			select * from board where board_writer=#{board_writer}
+		]]>
 	</select>
-	
+
 	<select id="groupList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-	
-
-	<![CDATA[
-select * from groupboard where groupboard_writer=#{groupboard_writer}
-
-	]]>
-	</select>
-	
-	<!--  <select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-	
-
-	<![CDATA[
-	select board_writer,board_subject,board_createdate from board where board_writer=#{board_writer}
-union all 
-select groupboard_writer,groupboard_subject,groupboard_createdate from groupboard where groupboard_writer=#{groupboard_writer}
-order by 2 desc
-	
-	]]>
-	</select>
-	 -->
-	 <select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-	
-
-	<![CDATA[
-	select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{board_writer} and m.member_num=#{board_writer}
-	union all
-  select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{groupboard_writer} and g.groupboard_writer=#{groupboard_writer}
-order by 2 desc
-
-	
-	]]>
+		<![CDATA[
+			select * from groupboard where groupboard_writer=#{groupboard_writer}
+		]]>
 	</select>
 
-	 	<select id="getn" parameterType="String" resultType="int">
-	
+	<select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
+		<![CDATA[
+			select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{board_writer} and m.member_num=#{board_writer}
+			union all
+  			select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{groupboard_writer} and g.groupboard_writer=#{groupboard_writer}
+			order by 2 desc
+		]]>
+	</select>
 
-	<![CDATA[
-select member_num from member where member_nickname=#{memberNickName}
+	<select id="getn" parameterType="String" resultType="int">
+		<![CDATA[
+			select member_num from member where member_nickname=#{memberNickName}
+		]]>
+	</select>
 
-	]]>
+	<select id="getnn" parameterType="String" resultMap="memberDto">
+		<![CDATA[
+			select member_num from member where member_nickname=#{memberNickName}
+		]]>
+	</select>
+
+	<select id="skyList" parameterType="int" resultMap="boardDto">
+		<![CDATA[
+			SELECT * FROM BOARD WHERE BOARD_WRITER=#{memberNum} ORDER BY BOARD_CREATEDATE DESC 
+		]]>
 	</select>
 	
-	
-	 	<select id="getnn" parameterType="String" resultMap="memberDto">
-	
-
-	<![CDATA[
-select member_num from member where member_nickname=#{memberNickName}
-
-	]]>
+	<select id="getNextList" parameterType="java.util.HashMap" resultMap="boardDto">
+		<![CDATA[
+			SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT * FROM BOARD WHERE BOARD_WRITER=#{memberNum} ORDER BY BOARD_CREATEDATE DESC) A) B WHERE RNUM > #{current} AND RNUM <=#{current+2}
+		]]>
 	</select>
-	
-	
-		 <select id="ssList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-	
-
-	<![CDATA[
-	select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{member_num} and m.member_num=#{member_num}
-	union all
-select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{member_num} and g.groupboard_writer=#{member_num}
-
-order by 2 desc
-
-	
-	]]>
-	</select>
-	
-		 <select id="skyList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-	
-
-	<![CDATA[
-select b.board_subject,b.board_filename,b.board_filepath,b.board_filesize,b.board_content,TO_CHAR(b.board_createdate,'YYYY-MM-DD') as board_date from board b,member m where b.board_writer=#{memberNum} and m.member_num=#{memberNum}
-	union all
-select g.groupboard_subject,g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,TO_CHAR(g.groupboard_createdate,'YYYY-MM-DD') as group_date from member m, groupboard g where m.member_num=#{memberNum} and g.groupboard_writer=#{memberNum}
-
-order by 6 desc
-
-	
-	]]>
-	</select>
-	 
-	 
-
-	 
-
 </mapper>

@@ -140,11 +140,7 @@ function removeChar(event) {
 		
 		<form name="applyCreateForm" class="form-horizontal" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 			<div class="col-md-6">
-<<<<<<< HEAD
 				<input type="hidden" name="apply_host" value="${session.member.memberNum}"/>
-=======
-				<input type="hidden" name="apply_host" value="${groupHost}"/>
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 				
 				<div id="category" class="form-group">
 					<label for=""><span class="glyphicon glyphicon-list-alt"></span> Category  /  Indoor & Outdoor</label>
@@ -440,11 +436,8 @@ function removeChar(event) {
 		dropImage.getElementByTag("img").setAttribute("height", "100");
 	}, true)
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 </html>
