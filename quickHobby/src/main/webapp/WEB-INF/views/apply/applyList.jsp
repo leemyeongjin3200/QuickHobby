@@ -18,6 +18,44 @@ body {
 <jsp:include page="../template/header.jsp"></jsp:include>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
+<script>
+$(document).ready(function(){
+		var userLat="";
+		var userLng="";
+		$(document).ready(function geoLocation()
+		{
+		     if (navigator.geolocation)
+		          navigator.geolocation.getCurrentPosition(showPosition,showError);
+		     else
+		          alert("Geolocation is not supported by this browser.");
+		});
+
+		function showPosition(position){
+		    userLat = position.coords.latitude;
+		    userLng = position.coords.longitude;
+		    
+		    $("#userLat").val(userLat);
+		    $("#userLng").val(userLng);
+		}
+
+		function showError(error){
+		     switch (error.code){
+		          case error.PERMISSION_DENIED:
+		               alert("User denied the request for Geolocation.");
+		               break;
+		          case error.POSITION_UNAVAILABLE:
+		               alert("Location information is unavailable.");
+		               break;
+		          case error.TIMEOUT:
+		               alert("The request to get user location timed out.");
+		               break;
+		          case error.UNKNOWN_ERROR:
+		               alert("An unknown error occurred.");
+		               break;
+		     }
+		}
+});
+</script>
 <body>
 <!-- Navigation bar//-->
  <div class="container" >
@@ -44,7 +82,7 @@ body {
       <ul class="nav navbar-nav">
        <li id="" data-filter="*"><a href="#">ALL</a></li>
   	   <li id="" data-filter=".best"><a href="#">BEST</a></li>
-       <li id="" data-filter=".location"><a href="#">LOCATION</a></li>
+       <li id="" data-filter=".location3"><a href="#">LOCATION</a></li>
        <li id="" data-filter=".time"><a href="#">TIME</a></li>
        <li id="" data-filter=".eye"><a href="#">EYE</a></li>
        <li id="" data-filter=".mouth"><a href="#">MOUTH</a></li>
@@ -57,9 +95,11 @@ body {
 <!-- //Navigation bar -->
 
 <div class="container">
-<div class="grid no-gutter">
+<div class="grid no-gutter point">
 	<c:forEach var="board" items="${applyDtoList}">
-		<script>
+		<input type="hidden" name="groupLocation" value="${board.apply_location}"/>
+		<div class="col-md-4 ${board.apply_category} ${board.apply_inout} ${board.apply_num}" id="board">
+			<script>
 			var geocoder = new google.maps.Geocoder();
 			var addr='${board.apply_location}';
 			
@@ -76,13 +116,39 @@ body {
 		 
 		                lat=location.lat();
 		                lng=location.lng();
+		                var dist=distance(lat, lng);
+		                
+		                var className="";
+				    	if(dist>0 && dist <= 5){
+				    		className="location1";
+				    	}else if(dist <= 10){
+				    		className="location2";
+				    	}else if(dist <= 20){
+				    		className="location3";
+				    	}else if(dist <= 30){
+				    		className="location4";
+				    	}else if(dist <= 40){
+				    		className="location5";
+				    	}else if(dist <= 50){
+				    		className="location6";
+				    	}else if(dist <= 100){
+				    		className="location7";
+				    	}else if(dist <= 150){
+				    		className="location8";
+				    	}else if(dist <= 200){
+				    		className="location9";
+				    	}else if(dist <= 300){
+				    		className="location10";
+				    	}else{
+				    		className="location11";
+				    	}
+				    	$("." + '${board.apply_num}').addClass(className);
 		            }
 		    });
-		    
-		    var dist=distance(lat, lng);
-		    alert(dist);
-		    
+
 		    function distance(lat, lng){
+				var userLat=Number($("#userLat").val());
+				var userLng=Number($("#userLng").val());
 		    	var theta=userLng-lng;
 		    	var dist=Math.sin(deg2rad(userLat)) * Math.sin(deg2rad(lat)) + Math.cos(deg2rad(userLat))
 		    			* Math.cos(deg2rad(lat)) * Math.cos(deg2rad(theta));
@@ -90,8 +156,8 @@ body {
 		    	dist=rad2deg(dist);
 		    	dist=dist*60*1.1515;
 		    	dist=dist*1.609344;
-		    	
-		    	return Number(dist*1000).toFixed(2);
+		    	dist=Number(dist).toFixed(2);
+		    	return dist;
 		    }
 
 		    function deg2rad(deg){
@@ -100,10 +166,8 @@ body {
 
 		    function rad2deg(rad){
 		    	return (rad*180/Math.PI);
-		    }
+		    }  
 		</script>
-		<input type="hidden" name="groupLocation" value="${board.apply_location}"/>
-		<div class="col-md-4 ${board.apply_category} ${board.apply_inout}" id="board">
 			<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
 				<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive" style="width:400px; height:250px;">
 				<div class="apply-box-caption">
@@ -119,7 +183,8 @@ body {
    </div>
 </div>
 <!-- //Content2 -->
-<c:set var="i" value="${0}"/>
+<input type="hidden" id="userLat" value=""/>
+<input type="hidden" id="userLng" value=""/>
 </body>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
