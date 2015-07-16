@@ -34,8 +34,8 @@ function init_masonry(){
               }
         });
     });
-}*/
-
+}
+*/ 
 
 
 /* ---------- Template Functions ---------- */		

@@ -30,11 +30,14 @@ public class MemberBoardController {
 	private MemberBoardService memberBoardService;
 	
 	@RequestMapping(value="/memberBoard/check.do", method=RequestMethod.GET)
-	public ModelAndView check(HttpServletRequest request, HttpServletResponse response,MemberDto memberDto){
-		logger.info("selfCheck-----------------");
+	public ModelAndView check(HttpServletRequest request){
+		logger.info("check-----------------");
+		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
+		
 		memberBoardService.boardWrite(mav);
+		
 		return mav;
 		
 		

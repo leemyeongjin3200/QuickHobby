@@ -14,18 +14,19 @@
 		
 		<result property="groupBoardVisible" column="GROUPBOARD_VISIBLE"/>
 		<result property="groupBoardReadCount" column="GROUPBOARD_READCOUNT"/>
+		<result property="groupBoardWriterNick" column="member_nickname"/>
 	</resultMap>
 
-	<select id="groupBoardCount" resultType="int">
-			<![CDATA[select count(*) from groupboard where GROUPBOARD_VISIBLE=1]]>
+	<select id="groupBoardCount" resultType="int" parameterType="int">
+			<![CDATA[select count(*) from groupboard where GROUPBOARD_VISIBLE=1 and groupboard_groupnum=#{groupNum}]]>
 	</select>
 	
-	<select id="groupBoardList" parameterType="java.util.Map" resultMap="groupBoardDto">
+	<select id="groupBoardList" parameterType="java.util.HashMap" resultMap="groupBoardDto">
 			<![CDATA[select * from
- 			(select rownum rnum, a.* from 
-			(select * from groupboard where GROUPBOARD_VISIBLE=1 and GROUPBOARD_GROUPNUM=5 
-			order by GROUPBOARD_CREATEDATE desc)a) 
- 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+ 			(select rownum rnum, a.*, b.member_nickname from 
+			(select * from groupboard where GROUPBOARD_VISIBLE=1 and GROUPBOARD_GROUPNUM=#{groupNum}
+			order by GROUPBOARD_CREATEDATE desc)a, member b where a.groupboard_writer=b.member_num) 
+ 			]]> 
 	</select>
 	
 	<insert id="groupBoardInsert" parameterType="com.quickHobby.groupBoard.dto.GroupBoardDto">

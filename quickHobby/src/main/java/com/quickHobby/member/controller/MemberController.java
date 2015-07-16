@@ -39,7 +39,7 @@ public class MemberController {
 		
 		mav.addObject("request", req);
 		//mav.addObject("abc", "/quickHobby/main_hyeran.jsp");
-		mav.setViewName("redirect:main_hyeran.jsp");
+		mav.setViewName("redirect:main.jsp");
 		return mav;
 	}
 	

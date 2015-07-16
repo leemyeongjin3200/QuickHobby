@@ -15,6 +15,8 @@ public class GroupBoardDto {
 	private long groupBoardFileSize;
 	private int groupBoardVisible;
 	private int groupBoardReadCount;
+	private String groupBoardWriterNick;
+	private int groupBoardReplyCount;
 	
 	public int getGroupBoardNum() {
 		return groupBoardNum;
@@ -88,5 +90,16 @@ public class GroupBoardDto {
 	public void setGroupBoardReadCount(int groupBoardReadCount) {
 		this.groupBoardReadCount = groupBoardReadCount;
 	}
-
+	public String getGroupBoardWriterNick() {
+		return groupBoardWriterNick;
+	}
+	public void setGroupBoardWriterNick(String groupBoardWriterNick) {
+		this.groupBoardWriterNick = groupBoardWriterNick;
+	}
+	public int getGroupBoardReplyCount() {
+		return groupBoardReplyCount;
+	}
+	public void setGroupBoardReplyCount(int groupBoardreplyCount) {
+		this.groupBoardReplyCount = groupBoardreplyCount;
+	}
 }

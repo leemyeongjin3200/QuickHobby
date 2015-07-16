@@ -52,7 +52,7 @@ public class ApplyServiceImpl implements ApplyService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-		String groupHost=member.getMemberId();
+		int groupHost=member.getMemberNum();
 
 		logger.info("groupHost:"+groupHost);
 		
@@ -117,6 +117,7 @@ public class ApplyServiceImpl implements ApplyService {
 		}
 		
 		int check=0;
+		
 		if(applyDto.getApply_filename() != null){
 			check=applyDao.insertFile(applyDto);
 			groupDao.createGroupFile(applyDto);

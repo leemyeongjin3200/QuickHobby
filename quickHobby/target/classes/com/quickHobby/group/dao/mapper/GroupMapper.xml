@@ -18,6 +18,7 @@
 		<result property="groupFileName" column="GROUP_FILENAME"/>
 		<result property="groupFilePath" column="GROUP_FILEPATH"/>
 		<result property="groupFileSize" column="GROUP_FILESIZE"/>
+		<result property="groupRecommend" column="APPLY_RECOMMEND"/>
 	</resultMap>
 	
 	<insert id="createGroup" parameterType="com.quickHobby.apply.dto.ApplyDto">
@@ -33,7 +34,7 @@
 	</insert>
 	<select id="myGroupList" parameterType="int" resultMap="groupDto">
 		<![CDATA[
-			select a.* from ggroup a, join b where a.group_num=b.join_groupnum and b.join_membernum=#{memberNum} order by group_date asc
+			select a.* from ggroup a, join b where a.group_num=b.join_groupnum and b.join_membernum=#{memberNum} and a.group_date > sysdate order by group_date asc
 		]]>
 	</select>
 	
@@ -45,7 +46,7 @@
 	
 	<select id="getGroupDto" parameterType="int" resultMap="groupDto">
 		<![CDATA[
-			select * from ggroup where group_num=#{groupNum}
+			select a.*, b.apply_recommend from ggroup a, apply b where a.group_num=#{groupNumber} and b.apply_num=a.group_num
 		]]>
 	</select>
 

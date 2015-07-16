@@ -17,6 +17,8 @@ public class GroupDto {
 	private String groupFilePath;
 	private long groupFileSize;
 	
+	private int groupRecommend;
+	
 	public int getGroupNum() {
 		return groupNum;
 	}
@@ -89,5 +91,11 @@ public class GroupDto {
 	}
 	public void setGroupFileSize(long groupFileSize) {
 		this.groupFileSize = groupFileSize;
+	}
+	public int getGroupRecommend() {
+		return groupRecommend;
+	}
+	public void setGroupRecommend(int groupRecommend) {
+		this.groupRecommend = groupRecommend;
 	}
 }
