@@ -173,6 +173,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		if(member != null){
 			req.getSession().setAttribute("member", member);
+			memberDao.checkJoin(member.getMemberNum());
 		}
 		
 		mav.setViewName("member/loginOk");
