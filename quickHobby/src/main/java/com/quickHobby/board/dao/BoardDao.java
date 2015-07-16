@@ -18,11 +18,11 @@ public interface BoardDao {
 
 	int boardUpdate(BoardDto boardDto);
 
-	List<BoardDto> getTipBoardList(int startRow, int endRow);
-
-	List<BoardDto> getReviewBoardList(int startRow, int endRow);
-
-	int getTipBoardCount();
-
-	int getReviewBoardCount();
+//	List<BoardDto> getTipBoardList(int startRow, int endRow);
+//
+//	List<BoardDto> getReviewBoardList(int startRow, int endRow);
+//
+//	int getTipBoardCount();
+//
+//	int getReviewBoardCount();
 }

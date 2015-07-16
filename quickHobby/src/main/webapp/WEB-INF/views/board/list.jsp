@@ -75,7 +75,7 @@
 										<c:if test="${board.boardVisible==1}">
 											<div class="gTableCell number">${board.boardNum}</div>
 											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-												<a href="#">${board.boardWriter}</a></div>
+												<a href="#">${board.memberNickName}</a></div>
 											<div class="gTableCell titlec">
 											
 											<!-- tip/review 구분하기 -->
@@ -161,7 +161,7 @@
 			                	<!-- prev Page 버튼 생성 관련 -->
 			                	<c:if test="${startPage>pageBlock}">
 				                    <li>
-				                        <a href="#">&laquo;</a>
+				                        <a href="${root}/board/list.do?pageNumber=${startPage-pageBlock}">&laquo;</a>
 				                    </li>
 			                    </c:if>
 			                    <!-- prev Page 버튼 생성 관련 -->
@@ -184,7 +184,7 @@
 								<!-- next Page 버튼 생성 관련 -->
 								<c:if test="${endPage<pageCount}">
 				                    <li>
-				                        <a href="#">&raquo;</a>
+				                        <a href="${root}/board/list.do?pageNumber=${startPage+pageBlock}">&raquo;</a>
 				                    </li>
 			                    </c:if>
 			                    <!-- next Page 버튼 생성 관련 -->
@@ -198,332 +198,332 @@
    	</div><!-- #menu1 끝 -->
    	
    	<!-- menu2 Tip 게시판 시작 -->
-    <div id="menu2" class="tab-pane fade"> 
-    	<section class="panel">
-           <!--menu2 Tip 게시판 list/album선택하기-->
-               <header class="panel-heading tab-bg-default tab-right">
-                   <ul class="nav nav-pills pull-right">
-                       <li class="active">
-                           <a data-toggle="pill" href="#list2">
-                               <i class="glyphicon glyphicon-th-list"></i>
-                           </a>
-                       </li>
-                       <li class="">
-                           <a data-toggle="pill" href="#album2">
-                               <i class="glyphicon glyphicon-th-large"></i>
-                           </a>
-                       </li>
-                   </ul>
-               </header>
-               <!-- menu2 Tip 게시판 body -->
-               <div class="panel-body">
-                   <div class="tab-content">
-                   <!-- menu2 Tip 게시판 list2 시작--> 
-                       <div id="list2" class="tab-pane active">
-                       	<div class="row-fluid">
-						<div id="tipList" class="gTable">
-							<!-- list2 header -->
-							<div id="tipgTableRow1" class="gTableRow">
-								<div class="gTableHead number"><strong>#</strong></div>
-								<div class="gTableHead nickname"><strong>NickName</strong></div>
-								<div class="gTableHead title"><strong>Title</strong></div>
-								<div class="gTableHead date"><i class="glyphicon glyphicon-calendar"></i><strong> Date</strong></div>
-								<div class="gTableHead count"><strong>Views</strong></div>
-								<div class="gTableHead good"><i class="glyphicon glyphicon-heart"></i><strong> Good</strong></div>
-							</div>
+<!--     <div id="menu2" class="tab-pane fade">  -->
+<!--     	<section class="panel"> -->
+<!--            menu2 Tip 게시판 list/album선택하기 -->
+<!--                <header class="panel-heading tab-bg-default tab-right"> -->
+<!--                    <ul class="nav nav-pills pull-right"> -->
+<!--                        <li class="active"> -->
+<!--                            <a data-toggle="pill" href="#list2"> -->
+<!--                                <i class="glyphicon glyphicon-th-list"></i> -->
+<!--                            </a> -->
+<!--                        </li> -->
+<!--                        <li class=""> -->
+<!--                            <a data-toggle="pill" href="#album2"> -->
+<!--                                <i class="glyphicon glyphicon-th-large"></i> -->
+<!--                            </a> -->
+<!--                        </li> -->
+<!--                    </ul> -->
+<!--                </header> -->
+<!--                menu2 Tip 게시판 body -->
+<!--                <div class="panel-body"> -->
+<!--                    <div class="tab-content"> -->
+<!--                    menu2 Tip 게시판 list2 시작  -->
+<!--                        <div id="list2" class="tab-pane active"> -->
+<!--                        	<div class="row-fluid"> -->
+<!-- 						<div id="tipList" class="gTable"> -->
+<!-- 							list2 header -->
+<!-- 							<div id="tipgTableRow1" class="gTableRow"> -->
+<!-- 								<div class="gTableHead number"><strong>#</strong></div> -->
+<!-- 								<div class="gTableHead nickname"><strong>NickName</strong></div> -->
+<!-- 								<div class="gTableHead title"><strong>Title</strong></div> -->
+<!-- 								<div class="gTableHead date"><i class="glyphicon glyphicon-calendar"></i><strong> Date</strong></div> -->
+<!-- 								<div class="gTableHead count"><strong>Views</strong></div> -->
+<!-- 								<div class="gTableHead good"><i class="glyphicon glyphicon-heart"></i><strong> Good</strong></div> -->
+<!-- 							</div> -->
 							
-							<!-- list2 contents -->
-							<div id="tipgTableRow2" class="gTableRow">
+<!-- 							list2 contents -->
+<!-- 							<div id="tipgTableRow2" class="gTableRow"> -->
 									
-									<c:forEach var="tipBoard" items="${tipBoardList}">
+<%-- 									<c:forEach var="tipBoard" items="${tipBoardList}"> --%>
 									
-										<c:if test="${tipBoard.boardVisible==1&&tipBoard.boardSection=='t'}">
-											<div class="gTableCell number">${tipBoard.boardNum}</div>
-											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-												<a href="#">${tipBoard.boardWriter}</a></div>
-											<div class="gTableCell titlec">
+<%-- 										<c:if test="${tipBoard.boardVisible==1&&tipBoard.boardSection=='t'}"> --%>
+<%-- 											<div class="gTableCell number">${tipBoard.boardNum}</div> --%>
+<!-- 											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i> -->
+<%-- 												<a href="#">${tipBoard.boardWriter}</a></div> --%>
+<!-- 											<div class="gTableCell titlec"> -->
 											
-											<!-- tip/review 구분하기 -->
-												<c:if test="${tipBoard.boardSection=='t'}"><span class="label label-default">Tip</span></c:if>
-												<c:if test="${tipBoard.boardSection=='r'}"><span class="label label-default">Review</span></c:if>
-											<!-- tip/review 구분하기 -->
+<!-- 											tip/review 구분하기 -->
+<%-- 												<c:if test="${tipBoard.boardSection=='t'}"><span class="label label-default">Tip</span></c:if> --%>
+<%-- 												<c:if test="${tipBoard.boardSection=='r'}"><span class="label label-default">Review</span></c:if> --%>
+<!-- 											tip/review 구분하기 -->
 											
-												&nbsp;<a href="${root}/board/read.do?boardNum=${tipBoard.boardNum}&pageNumber=${currentPage}">${tipBoard.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${tipBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${tipBoard.boardReplyCount}</b></a></div>
-											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${tipBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
-											<div class="gTableCell count">${tipBoard.boardReadCount}</div>
-											<div class="gTableCell good">${tipBoard.boardRecommand}</div>
-										</c:if>
-									<!-- boardVisible 값이 1인 글들만 출력 -->
-									</c:forEach>
+<%-- 												&nbsp;<a href="${root}/board/read.do?boardNum=${tipBoard.boardNum}&pageNumber=${currentPage}">${tipBoard.boardSubject}&nbsp;</a> --%>
+<%-- 												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${tipBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${tipBoard.boardReplyCount}</b></a></div> --%>
+<%-- 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${tipBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></div> --%>
+<%-- 											<div class="gTableCell count">${tipBoard.boardReadCount}</div> --%>
+<%-- 											<div class="gTableCell good">${tipBoard.boardRecommand}</div> --%>
+<%-- 										</c:if> --%>
+<!-- 									boardVisible 값이 1인 글들만 출력 -->
+<%-- 									</c:forEach> --%>
 									
-								</div><!-- .gTableRow 끝-->
-						</div> <!-- .gTable 끝  -->
-					</div><!-- .row-fluid 끝 -->
-                  </div><!-- #list2 끝 -->
+<!-- 								</div>.gTableRow 끝 -->
+<!-- 						</div> .gTable 끝  -->
+<!-- 					</div>.row-fluid 끝 -->
+<!--                   </div>#list2 끝 -->
 
-                  <!-- menu2 Tip게시판 album2 시작--> 
-                  <div id="album2" class="tab-pane">
-			        <div class="row-fluid">
-			        	<div class="gAlbum">
-				        	<c:forEach var="tipBoard" items="${tipBoardList}">
-								<!-- boardVisible 값이 1인 글들만 출력 -->
-								<c:if test="${tipBoard.boardVisible==1&&tipBoard.boardSection=='t'}">
-					        		<!-- album1 contents -->
-					        	 	<div class="col-md-4">
-					        	 	  <div class="gAlbum-img">
-					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-					        	 	  </div>
-							          <div class="gAlbum-date-wrapper">
-							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${tipBoard.boardWriter}</span>
-							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${tipBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
-							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${tipBoard.boardRecommand}</span>
-							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${tipBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${tipBoard.boardReplyCount}</b></a></span>
-							            <span class="clearboth"> &nbsp; </span>
-							          </div>
-							          <div class="gAlbum-container">
-							            <h4>
-							            	<!-- tip/review 구분하기 -->
-							            	<c:if test="${tipBoard.boardSection=='t'}">[Tip]</c:if>
-							            	<c:if test="${tipBoard.boardSection=='r'}">[Review]</c:if>
-							            	<!-- tip/review 구분하기 -->
-							            <a href="#">${tipBoard.boardSubject}</a></h4>
-							            <p>${tipBoard.boardContent}</p>
-							            <a href="#" >read more <i>&raquo;</i></a>
-							          </div>
-							        </div><!-- .col-md-4 끝 -->
-								</c:if>
-						    </c:forEach>    
-			        	</div><!-- .gAlbum 끝 -->
-                       </div><!-- .row-fluid 끝 -->
-                   </div><!-- #album2 끝 -->
-               </div>
+<!--                   menu2 Tip게시판 album2 시작  -->
+<!--                   <div id="album2" class="tab-pane"> -->
+<!-- 			        <div class="row-fluid"> -->
+<!-- 			        	<div class="gAlbum"> -->
+<%-- 				        	<c:forEach var="tipBoard" items="${tipBoardList}"> --%>
+<!-- 								boardVisible 값이 1인 글들만 출력 -->
+<%-- 								<c:if test="${tipBoard.boardVisible==1&&tipBoard.boardSection=='t'}"> --%>
+<!-- 					        		album1 contents -->
+<!-- 					        	 	<div class="col-md-4"> -->
+<!-- 					        	 	  <div class="gAlbum-img"> -->
+<%-- 					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/> --%>
+<!-- 					        	 	  </div> -->
+<!-- 							          <div class="gAlbum-date-wrapper"> -->
+<%-- 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${tipBoard.boardWriter}</span> --%>
+<%-- 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${tipBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></span> --%>
+<%-- 							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${tipBoard.boardRecommand}</span> --%>
+<%-- 							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${tipBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${tipBoard.boardReplyCount}</b></a></span> --%>
+<!-- 							            <span class="clearboth"> &nbsp; </span> -->
+<!-- 							          </div> -->
+<!-- 							          <div class="gAlbum-container"> -->
+<!-- 							            <h4> -->
+<!-- 							            	tip/review 구분하기 -->
+<%-- 							            	<c:if test="${tipBoard.boardSection=='t'}">[Tip]</c:if> --%>
+<%-- 							            	<c:if test="${tipBoard.boardSection=='r'}">[Review]</c:if> --%>
+<!-- 							            	tip/review 구분하기 -->
+<%-- 							            <a href="#">${tipBoard.boardSubject}</a></h4> --%>
+<%-- 							            <p>${tipBoard.boardContent}</p> --%>
+<!-- 							            <a href="#" >read more <i>&raquo;</i></a> -->
+<!-- 							          </div> -->
+<!-- 							        </div>.col-md-4 끝 -->
+<%-- 								</c:if> --%>
+<%-- 						    </c:forEach>     --%>
+<!-- 			        	</div>.gAlbum 끝 -->
+<!--                        </div>.row-fluid 끝 -->
+<!--                    </div>#album2 끝 -->
+<!--                </div> -->
               
-	        <!-- menu2 Tip게시판 page넘기기 -->   
-	         <!-- Page 설정에 관련한 변수들 설정 -->
-				<c:if test="${tipCount>0}">
+<!-- 	        menu2 Tip게시판 page넘기기    -->
+<!-- 	         Page 설정에 관련한 변수들 설정 -->
+<%-- 				<c:if test="${tipCount>0}"> --%>
 				
-				<c:set var="pageBlock" value="${3}"/>
-				<c:set var="pageCount" value="${tipCount/boardSize+(tipCount%boardSize==0 ? 0:1)}"/>
+<%-- 				<c:set var="pageBlock" value="${3}"/> --%>
+<%-- 				<c:set var="pageCount" value="${tipCount/boardSize+(tipCount%boardSize==0 ? 0:1)}"/> --%>
 				
-				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+<%-- 				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/> --%>
 				
-				<c:set var="startPage" value="${rs*pageBlock+1}"/>
-				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+<%-- 				<c:set var="startPage" value="${rs*pageBlock+1}"/> --%>
+<%-- 				<c:set var="endPage" value="${startPage+pageBlock-1}"/> --%>
 				
-				<c:if test="${endPage>pageCount}">
-					<c:set var="endPage" value="${pageCount}"/>
-				</c:if>
-				<!-- Page 설정에 관련한 변수들 설정 -->
-				<form id="boardPage" name="boardPage">
+<%-- 				<c:if test="${endPage>pageCount}"> --%>
+<%-- 					<c:set var="endPage" value="${pageCount}"/> --%>
+<%-- 				</c:if> --%>
+<!-- 				Page 설정에 관련한 변수들 설정 -->
+<!-- 				<form id="boardPage" name="boardPage"> -->
 				
-				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
-			        <div class="row text-center">
-			            <div class="col-lg-12">
-			                <ul class="pagination">
+<%-- 				<input type="hidden" name="pageNumber" value="${pageNumber}"/> --%>
+<!-- 			        <div class="row text-center"> -->
+<!-- 			            <div class="col-lg-12"> -->
+<!-- 			                <ul class="pagination"> -->
 			                	
-			                	<!-- prev Page 버튼 생성 관련 -->
-			                	<c:if test="${startPage>pageBlock}">
-				                    <li>
-				                        <a href="#">&laquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- prev Page 버튼 생성 관련 -->
+<!-- 			                	prev Page 버튼 생성 관련 -->
+<%-- 			                	<c:if test="${startPage>pageBlock}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&laquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    prev Page 버튼 생성 관련 -->
 			                    
-			                    <!-- 각 Page 버튼 생성 관련 -->
-			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
-					                <c:if test="${currentPage!=i}">
-							            <li> 
-				                       		<a id="messagePage" style='cursor:pointer;' onclick="moveTipPage('${i}')" data-filter="${i}">${i}</a> 
-					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
-					                </c:if>
-					                <c:if test="${currentPage==i}">
-						                <li class="active">
-							                   	<a id="currentP">${i}</a>
-							            </li>  
-						            </c:if>  
-			                    </c:forEach>
-			                    <!-- 각 Page 버튼 생성 관련 -->
+<!-- 			                    각 Page 버튼 생성 관련 -->
+<%-- 			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status"> --%>
+<%-- 					                <c:if test="${currentPage!=i}"> --%>
+<!-- 							            <li>  -->
+<%-- 				                       		<a id="messagePage" style='cursor:pointer;' onclick="moveTipPage('${i}')" data-filter="${i}">${i}</a>  --%>
+<!-- 					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                    -->
+<%-- 					                </c:if> --%>
+<%-- 					                <c:if test="${currentPage==i}"> --%>
+<!-- 						                <li class="active"> -->
+<%-- 							                   	<a id="currentP">${i}</a> --%>
+<!-- 							            </li>   -->
+<%-- 						            </c:if>   --%>
+<%-- 			                    </c:forEach> --%>
+<!-- 			                    각 Page 버튼 생성 관련 -->
 			                    
-								<!-- next Page 버튼 생성 관련 -->
-								<c:if test="${endPage<pageCount}">
-				                    <li>
-				                        <a href="#">&raquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- next Page 버튼 생성 관련 -->
-			                </ul>
-			            </div>
-			        </div>
-			    </form>
+<!-- 								next Page 버튼 생성 관련 -->
+<%-- 								<c:if test="${endPage<pageCount}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&raquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    next Page 버튼 생성 관련 -->
+<!-- 			                </ul> -->
+<!-- 			            </div> -->
+<!-- 			        </div> -->
+<!-- 			    </form> -->
 			        
-				</c:if>
-     	</section><!-- .panel 끝 -->
-    </div><!-- #menu2 끝 -->
+<%-- 				</c:if> --%>
+<!--      	</section>.panel 끝 -->
+<!--     </div>#menu2 끝 -->
     
-    <!-- menu3 Review 게시판 시작 -->
-    <div id="menu3" class="tab-pane fade">
-    <section class="panel">
-           <!--menu3 Review 게시판 list/album선택하기-->
-               <header class="panel-heading tab-bg-default tab-right">
-                   <ul class="nav nav-pills pull-right">
-                       <li class="active">
-                           <a data-toggle="pill" href="#list3">
-                               <i class="glyphicon glyphicon-th-list"></i>
-                           </a>
-                       </li>
-                       <li class="">
-                           <a data-toggle="pill" href="#album3">
-                               <i class="glyphicon glyphicon-th-large"></i>
-                           </a>
-                       </li>
-                   </ul>
-               </header>
-               <!-- menu3 Review 게시판 body -->
-               <div class="panel-body">
-                   <div class="tab-content">
-                   <!-- menu3 REview게시판 list3 시작--> 
-                       <div id="list3" class="tab-pane active">
-                       	<div class="row-fluid">
-						<div class="gTable">
-							<!-- list3 header -->
-							<div class="gTableRow">
-								<div class="gTableHead number"><strong>#</strong></div>
-								<div class="gTableHead nickname"><strong>NickName</strong></div>
-								<div class="gTableHead title"><strong>Title</strong></div>
-								<div class="gTableHead date"><i class="glyphicon glyphicon-calendar"></i><strong> Date</strong></div>
-								<div class="gTableHead count"><strong>Views</strong></div>
-								<div class="gTableHead good"><i class="glyphicon glyphicon-heart"></i><strong> Good</strong></div>
-							</div>
+<!--     menu3 Review 게시판 시작 -->
+<!--     <div id="menu3" class="tab-pane fade"> -->
+<!--     <section class="panel"> -->
+<!--            menu3 Review 게시판 list/album선택하기 -->
+<!--                <header class="panel-heading tab-bg-default tab-right"> -->
+<!--                    <ul class="nav nav-pills pull-right"> -->
+<!--                        <li class="active"> -->
+<!--                            <a data-toggle="pill" href="#list3"> -->
+<!--                                <i class="glyphicon glyphicon-th-list"></i> -->
+<!--                            </a> -->
+<!--                        </li> -->
+<!--                        <li class=""> -->
+<!--                            <a data-toggle="pill" href="#album3"> -->
+<!--                                <i class="glyphicon glyphicon-th-large"></i> -->
+<!--                            </a> -->
+<!--                        </li> -->
+<!--                    </ul> -->
+<!--                </header> -->
+<!--                menu3 Review 게시판 body -->
+<!--                <div class="panel-body"> -->
+<!--                    <div class="tab-content"> -->
+<!--                    menu3 REview게시판 list3 시작  -->
+<!--                        <div id="list3" class="tab-pane active"> -->
+<!--                        	<div class="row-fluid"> -->
+<!-- 						<div class="gTable"> -->
+<!-- 							list3 header -->
+<!-- 							<div class="gTableRow"> -->
+<!-- 								<div class="gTableHead number"><strong>#</strong></div> -->
+<!-- 								<div class="gTableHead nickname"><strong>NickName</strong></div> -->
+<!-- 								<div class="gTableHead title"><strong>Title</strong></div> -->
+<!-- 								<div class="gTableHead date"><i class="glyphicon glyphicon-calendar"></i><strong> Date</strong></div> -->
+<!-- 								<div class="gTableHead count"><strong>Views</strong></div> -->
+<!-- 								<div class="gTableHead good"><i class="glyphicon glyphicon-heart"></i><strong> Good</strong></div> -->
+<!-- 							</div> -->
 							
-							<!-- list3 contents -->
-							<div class="gTableRow">
+<!-- 							list3 contents -->
+<!-- 							<div class="gTableRow"> -->
 								
-									<c:forEach var="reviewBoard" items="${reviewBoardList}">
-									<!-- boardVisible 값이 1인 글들만 출력 -->
-										<c:if test="${reviewBoard.boardVisible==1&&reviewBoard.boardSection=='r'}">
-											<div class="gTableCell number">${reviewBoard.boardNum}</div>
-											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-												<a href="#">${reviewBoard.boardWriter}</a></div>
-											<div class="gTableCell titlec">
+<%-- 									<c:forEach var="reviewBoard" items="${reviewBoardList}"> --%>
+<!-- 									boardVisible 값이 1인 글들만 출력 -->
+<%-- 										<c:if test="${reviewBoard.boardVisible==1&&reviewBoard.boardSection=='r'}"> --%>
+<%-- 											<div class="gTableCell number">${reviewBoard.boardNum}</div> --%>
+<!-- 											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i> -->
+<%-- 												<a href="#">${reviewBoard.boardWriter}</a></div> --%>
+<!-- 											<div class="gTableCell titlec"> -->
 											
-											<!-- tip/review 구분하기 -->
-												<c:if test="${reviewBoard.boardSection=='t'}"><span class="label label-default">Tip</span></c:if>
-												<c:if test="${reviewBoard.boardSection=='r'}"><span class="label label-default">Review</span></c:if>
-											<!-- tip/review 구분하기 -->
+<!-- 											tip/review 구분하기 -->
+<%-- 												<c:if test="${reviewBoard.boardSection=='t'}"><span class="label label-default">Tip</span></c:if> --%>
+<%-- 												<c:if test="${reviewBoard.boardSection=='r'}"><span class="label label-default">Review</span></c:if> --%>
+<!-- 											tip/review 구분하기 -->
 											
-												&nbsp;<a href="${root}/board/read.do?boardNum=${reviewBoard.boardNum}&pageNumber=${currentPage}">${reviewBoard.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${reviewBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${reviewBoard.boardReplyCount}</b></a></div>
-											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${reviewBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
-											<div class="gTableCell count">${reviewBoard.boardReadCount}</div>
-											<div class="gTableCell good">${reviewBoard.boardRecommand}</div>
-										</c:if>
-									<!-- boardVisible 값이 1인 글들만 출력 -->
-									</c:forEach>
+<%-- 												&nbsp;<a href="${root}/board/read.do?boardNum=${reviewBoard.boardNum}&pageNumber=${currentPage}">${reviewBoard.boardSubject}&nbsp;</a> --%>
+<%-- 												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${reviewBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${reviewBoard.boardReplyCount}</b></a></div> --%>
+<%-- 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${reviewBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></div> --%>
+<%-- 											<div class="gTableCell count">${reviewBoard.boardReadCount}</div> --%>
+<%-- 											<div class="gTableCell good">${reviewBoard.boardRecommand}</div> --%>
+<%-- 										</c:if> --%>
+<!-- 									boardVisible 값이 1인 글들만 출력 -->
+<%-- 									</c:forEach> --%>
 									
-								</div><!-- .gTableRow 끝-->
-						</div> <!-- .gTable 끝  -->
-					</div><!-- .row-fluid 끝 -->
-                  </div><!-- #list3 끝 -->
+<!-- 								</div>.gTableRow 끝 -->
+<!-- 						</div> .gTable 끝  -->
+<!-- 					</div>.row-fluid 끝 -->
+<!--                   </div>#list3 끝 -->
 
-                  <!-- menu3 Review게시판 album3 시작--> 
-                  <div id="album3" class="tab-pane">
-			        <div class="row-fluid">
-			        	<div class="gAlbum">
-				        	<c:forEach var="reviewBoard" items="${reviewBoardList}">
-								<!-- boardVisible 값이 1인 글들만 출력 -->
-								<c:if test="${reviewBoard.boardVisible==1&&reviewBoard.boardSection=='r'}">
-					        		<!-- album1 contents -->
-					        	 	<div class="col-md-4">
-					        	 	  <div class="gAlbum-img">
-					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-					        	 	  </div>
-							          <div class="gAlbum-date-wrapper">
-							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${reviewBoard.boardWriter}</span>
-							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${reviewBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
-							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${reviewBoard.boardRecommand}</span>
-							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${reviewBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${reviewBoard.boardReplyCount}</b></a></span>
-							            <span class="clearboth"> &nbsp; </span>
-							          </div>
-							          <div class="gAlbum-container">
-							            <h4>
-							            	<!-- tip/review 구분하기 -->
-							            	<c:if test="${reviewBoard.boardSection=='t'}">[Tip]</c:if>
-							            	<c:if test="${reviewBoard.boardSection=='r'}">[Review]</c:if>
-							            	<!-- tip/review 구분하기 -->
-							            <a href="#">${reviewBoard.boardSubject}</a></h4>
-							            <p>${reviewBoard.boardContent}</p>
-							            <a href="#" >read more <i>&raquo;</i></a>
-							          </div>
-							        </div><!-- .col-md-4 끝 -->
-								</c:if>
-						    </c:forEach>    
-			        	</div><!-- .gAlbum 끝 -->
-                       </div><!-- .row-fluid 끝 -->
-                   </div><!-- #album3 끝 -->
-               </div>
+<!--                   menu3 Review게시판 album3 시작  -->
+<!--                   <div id="album3" class="tab-pane"> -->
+<!-- 			        <div class="row-fluid"> -->
+<!-- 			        	<div class="gAlbum"> -->
+<%-- 				        	<c:forEach var="reviewBoard" items="${reviewBoardList}"> --%>
+<!-- 								boardVisible 값이 1인 글들만 출력 -->
+<%-- 								<c:if test="${reviewBoard.boardVisible==1&&reviewBoard.boardSection=='r'}"> --%>
+<!-- 					        		album1 contents -->
+<!-- 					        	 	<div class="col-md-4"> -->
+<!-- 					        	 	  <div class="gAlbum-img"> -->
+<%-- 					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/> --%>
+<!-- 					        	 	  </div> -->
+<!-- 							          <div class="gAlbum-date-wrapper"> -->
+<%-- 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${reviewBoard.boardWriter}</span> --%>
+<%-- 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${reviewBoard.boardModifyDate}" pattern="E M/d, KK:mm a"/></span> --%>
+<%-- 							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${reviewBoard.boardRecommand}</span> --%>
+<%-- 							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${reviewBoard.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${reviewBoard.boardReplyCount}</b></a></span> --%>
+<!-- 							            <span class="clearboth"> &nbsp; </span> -->
+<!-- 							          </div> -->
+<!-- 							          <div class="gAlbum-container"> -->
+<!-- 							            <h4> -->
+<!-- 							            	tip/review 구분하기 -->
+<%-- 							            	<c:if test="${reviewBoard.boardSection=='t'}">[Tip]</c:if> --%>
+<%-- 							            	<c:if test="${reviewBoard.boardSection=='r'}">[Review]</c:if> --%>
+<!-- 							            	tip/review 구분하기 -->
+<%-- 							            <a href="#">${reviewBoard.boardSubject}</a></h4> --%>
+<%-- 							            <p>${reviewBoard.boardContent}</p> --%>
+<!-- 							            <a href="#" >read more <i>&raquo;</i></a> -->
+<!-- 							          </div> -->
+<!-- 							        </div>.col-md-4 끝 -->
+<%-- 								</c:if> --%>
+<%-- 						    </c:forEach>     --%>
+<!-- 			        	</div>.gAlbum 끝 -->
+<!--                        </div>.row-fluid 끝 -->
+<!--                    </div>#album3 끝 -->
+<!--                </div> -->
               
-	        <!-- menu3 Review게시판 page넘기기 -->   
-	          <!-- Page 설정에 관련한 변수들 설정 -->
-				<c:if test="${reviewCount>0}">
+<!-- 	        menu3 Review게시판 page넘기기    -->
+<!-- 	          Page 설정에 관련한 변수들 설정 -->
+<%-- 				<c:if test="${reviewCount>0}"> --%>
 				
-				<c:set var="pageBlock" value="${3}"/>
-				<c:set var="pageCount" value="${reviewCount/boardSize+(reviewCount%boardSize==0 ? 0:1)}"/>
+<%-- 				<c:set var="pageBlock" value="${3}"/> --%>
+<%-- 				<c:set var="pageCount" value="${reviewCount/boardSize+(reviewCount%boardSize==0 ? 0:1)}"/> --%>
 				
-				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+<%-- 				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/> --%>
 				
-				<c:set var="startPage" value="${rs*pageBlock+1}"/>
-				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+<%-- 				<c:set var="startPage" value="${rs*pageBlock+1}"/> --%>
+<%-- 				<c:set var="endPage" value="${startPage+pageBlock-1}"/> --%>
 				
-				<c:if test="${endPage>pageCount}">
-					<c:set var="endPage" value="${pageCount}"/>
-				</c:if>
-				<!-- Page 설정에 관련한 변수들 설정 -->
-				<form id="boardPage" name="boardPage">
+<%-- 				<c:if test="${endPage>pageCount}"> --%>
+<%-- 					<c:set var="endPage" value="${pageCount}"/> --%>
+<%-- 				</c:if> --%>
+<!-- 				Page 설정에 관련한 변수들 설정 -->
+<!-- 				<form id="boardPage" name="boardPage"> -->
 				
-				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
-			        <div class="row text-center">
-			            <div class="col-lg-12">
-			                <ul class="pagination">
+<%-- 				<input type="hidden" name="pageNumber" value="${pageNumber}"/> --%>
+<!-- 			        <div class="row text-center"> -->
+<!-- 			            <div class="col-lg-12"> -->
+<!-- 			                <ul class="pagination"> -->
 			                	
-			                	<!-- prev Page 버튼 생성 관련 -->
-			                	<c:if test="${startPage>pageBlock}">
-				                    <li>
-				                        <a href="#">&laquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- prev Page 버튼 생성 관련 -->
+<!-- 			                	prev Page 버튼 생성 관련 -->
+<%-- 			                	<c:if test="${startPage>pageBlock}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&laquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    prev Page 버튼 생성 관련 -->
 			                    
-			                    <!-- 각 Page 버튼 생성 관련 -->
-			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
-					                <c:if test="${currentPage!=i}">
-							            <li> 
-				                       		<a id="messagePage" style='cursor:pointer;' onclick="movePage('${i}')" data-filter="${i}">${i}</a> 
-					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
-					                </c:if>
-					                <c:if test="${currentPage==i}">
-						                <li class="active">
-							                   	<a id="currentP">${i}</a>
-							            </li>  
-						            </c:if>  
-			                    </c:forEach>
-			                    <!-- 각 Page 버튼 생성 관련 -->
+<!-- 			                    각 Page 버튼 생성 관련 -->
+<%-- 			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status"> --%>
+<%-- 					                <c:if test="${currentPage!=i}"> --%>
+<!-- 							            <li>  -->
+<%-- 				                       		<a id="messagePage" style='cursor:pointer;' onclick="movePage('${i}')" data-filter="${i}">${i}</a>  --%>
+<!-- 					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                    -->
+<%-- 					                </c:if> --%>
+<%-- 					                <c:if test="${currentPage==i}"> --%>
+<!-- 						                <li class="active"> -->
+<%-- 							                   	<a id="currentP">${i}</a> --%>
+<!-- 							            </li>   -->
+<%-- 						            </c:if>   --%>
+<%-- 			                    </c:forEach> --%>
+<!-- 			                    각 Page 버튼 생성 관련 -->
 			                    
-								<!-- next Page 버튼 생성 관련 -->
-								<c:if test="${endPage<pageCount}">
-				                    <li>
-				                        <a href="#">&raquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- next Page 버튼 생성 관련 -->
-			                </ul>
-			            </div>
-			        </div>
-			    </form>
+<!-- 								next Page 버튼 생성 관련 -->
+<%-- 								<c:if test="${endPage<pageCount}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&raquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    next Page 버튼 생성 관련 -->
+<!-- 			                </ul> -->
+<!-- 			            </div> -->
+<!-- 			        </div> -->
+<!-- 			    </form> -->
 			        
-				</c:if>
-     	</section><!-- .panel 끝 -->
-    </div><!-- #menu3 끝 -->
+<%-- 				</c:if> --%>
+<!--      	</section>.panel 끝 -->
+<!--     </div>#menu3 끝 -->
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
 </body>

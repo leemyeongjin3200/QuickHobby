@@ -100,13 +100,16 @@
 					<span class="reply_content">${reply.boardReplyContent}</span>
 					<span class="reply_date"><small><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd hh:mm:ss"/></small></span>
 					
-<%-- 					<c:if test="${reply.boardReplyWriter==member}"> --%>
+<!-- 					세션값 받아오기 -->
+					<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
+					
+					<c:if test="${reply.boardReplyWriter==member.memberNum}">
 					<span class="reply_btns" >
 						<a class="modifyBtn" style='cursor:pointer;'>수정</a>
 						&nbsp;/&nbsp;
 						<a class="deleteBtn" style='cursor:pointer;'>삭제</a>						
 					</span>
-<%-- 					</c:if> --%>
+					</c:if>
 				</div>
 			</c:forEach>
 			</div>

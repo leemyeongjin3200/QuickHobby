@@ -60,14 +60,14 @@ function triggerEditReply(e){
 
 function writeReply(e){
 	//alert("hahaha");
-	console.log(e);
+	// console.log(e);
 	var target = $(e.target)
 	var replySection =target.parents('.board-reply'); 
 	boardNum = replySection.data('num'),
 	text = replySection.find('.form-control').val();
 	var replyWrap = replySection.find('.replyDiv-wrap');
-	console.log(replySection);
-	console.log(replyWrap);
+	// console.log(replySection);
+	// console.log(replyWrap);
 	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
 	var root=getContextPath();
 	var callUrl=root+"/boardReply/boardReplyWrite.do";
@@ -79,7 +79,7 @@ function writeReply(e){
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
-			console.log(decodeURIComponent(data));
+			// console.log(decodeURIComponent(data));
 			var replyList = JSON.parse(decodeURIComponent(data));
 			replyWrap.html(getReplyList(replyList));
 			replySection.find('.form-control').val('');
@@ -101,14 +101,14 @@ function getReplyList(replyList){
 
 function makeReplyDiv(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
-	console.log(d);
+	// console.log(d);
 	var dateStr = padStr(d.getFullYear()) +
 	padStr(1 + d.getMonth()) +
 	padStr(d.getDate()) +
 	padStr(d.getHours()) +
 	padStr(d.getMinutes()) +
 	padStr(d.getSeconds());
-	console.log(dateStr);
+	// console.log(dateStr);
 	
 	var year=dateStr.substring(0,4);
 	var month=dateStr.substring(4,6);
@@ -117,17 +117,27 @@ function makeReplyDiv(reply) {
 	var minute=dateStr.substring(10,12);
 	var second=dateStr.substring(12,14);
 	var replyTime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
-	console.log(replyTime);
+	// console.log(replyTime);
+	
+	// 세션값 받아오기
+	var session=document.getElementById("sessionNum").value;
+	console.log(session);
 	
 	var text = '<div class="replyDiv" data-replynum="' + reply.boardReplyNum + '">';
 	text += '<span class="reply_member">' + reply.memberNickName+" " + '</span>';
 	text += '<span class="reply_content">' + reply.boardReplyContent+" " + '</span>';
 	text += '<span class="reply_date"><small>'+replyTime+" "+ '</small></span>';
+	text += '<input id="sessionNum" type="hidden" value="'+session+'"/>';
 	
-//	if (parseInt(window.config.member, 10) === reply.boardReplyWriter) {
+	if (parseInt(session) == reply.boardReplyWriter) {
 		text += '<span class="reply_btns">'
 				+ '<a class="modifyBtn" style="cursor:pointer;">수정</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class="deleteBtn" style="cursor:pointer;">삭제</a></span></div>';
-//	}
+		return text;
+	}
+	if (parseInt(session) != reply.boardReplyWriter) {
+		text += '</div>';
+		return text;
+	}
 	return text;	
 }
 function clickModifyBtn(e){
