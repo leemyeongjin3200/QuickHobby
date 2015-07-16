@@ -60,11 +60,14 @@ function triggerEditReply(e){
 
 function writeReply(e){
 	//alert("hahaha");
+	console.log(e);
 	var target = $(e.target)
-	var replaySection =target.parents('.board-reply'); 
-	boardNum = replaySection.data('num'),
-	text = replaySection.find('.form-control').val();
-	var replyWrap = replaySection.find('.replyDiv-wrap');
+	var replySection =target.parents('.board-reply'); 
+	boardNum = replySection.data('num'),
+	text = replySection.find('.form-control').val();
+	var replyWrap = replySection.find('.replyDiv-wrap');
+	console.log(replySection);
+	console.log(replyWrap);
 	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
 	var root=getContextPath();
 	var callUrl=root+"/boardReply/boardReplyWrite.do";
@@ -79,7 +82,7 @@ function writeReply(e){
 			console.log(decodeURIComponent(data));
 			var replyList = JSON.parse(decodeURIComponent(data));
 			replyWrap.html(getReplyList(replyList));
-			replaySection.find('.form-control').val('');
+			replySection.find('.form-control').val('');
 		},
 		error:function(xhr, status, error){
 			alert(xhr+","+status+","+error);

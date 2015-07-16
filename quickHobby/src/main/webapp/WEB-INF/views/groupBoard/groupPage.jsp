@@ -98,7 +98,6 @@
 	</section><!--===========group board Information 끝=================-->
 
 	<!--=========== group board List Table================-->
-	<c:set var="currentPage" value="${currentPage}"/>
 	<section id="gTableList">
 	<div class="container">
 		<div class="row">
@@ -158,7 +157,8 @@
 			<!-- #list 끝 -->
 	
 			<!--list table page넘기기 -->
-			
+			<c:set var="boardSize" value="${10}"/>
+			<c:set var="currentPage" value="${1}"/>
 			<div class="row text-center">
 				<div class="col-lg-1"></div>
 				<div class="col-lg-10">

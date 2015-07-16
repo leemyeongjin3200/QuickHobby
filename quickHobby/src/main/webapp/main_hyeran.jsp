@@ -6,11 +6,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+=======
+<meta name="viewport" content="width=device-width, initial-scale=1">
+>>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="root1" value="${pageContext.request.requestURI }"/>
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <title>HYERAN</title>
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
@@ -127,6 +134,38 @@
    </div>
 </div>
 </body>
+<script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
+<script>
+$(function() {
+  // init Isotope
+  var $grid = $('.grid').isotope({
+    layoutMode: 'fitRows',
+    itemSelector: '.col-md-4'
+  });
+  // filter functions
+  var filterFns = {
+
+  };
+  // bind filter button click
+  $('.navbar-nav').on('click', 'li', function() {
+    var filterValue = $(this).attr('data-filter');
+    // use filterFn if matches value
+    filterValue = filterFns[filterValue] || filterValue;
+    $grid.isotope({
+      filter: filterValue
+    });
+  });
+  // change is-checked class on buttons
+  $('.nav').each(function(i, filterGroup) {
+    var $filterGroup = $(filterGroup);
+    $filterGroup.on('click', 'li', function() {
+      $filterGroup.find('.is-checked').removeClass('is-checked');
+      $(this).addClass('is-checked');
+    });
+  });
+
+});
+</script>
 <jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
 <script>

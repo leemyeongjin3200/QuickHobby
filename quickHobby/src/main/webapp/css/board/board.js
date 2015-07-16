@@ -1,64 +1,84 @@
 /**
  * 
  */
-
-//tab넘기기
-$(document).ready(function(){
-  $(".nav-tabs a").click(function(){
-      $(this).tab('show');
-  });
-});
-
-//Reply 팝업창
-function replyCheck(boardNum){
-	$(function(e){
-		var target = $(e.target)
-		var replaySection =target.parents('.modal-Reply-body'); 
-		var replyWrap = replaySection.find('.reply-box');
-		console.log(boardNum);
-		var root=getContextPath();
-		var callUrl=root+"/boardReply/boardReplyList.do";
-		var sendData="boardNum="+boardNum;
-		$.ajax({
-			url:callUrl,
-			type:"post",
-			data:sendData,
-			contentType:"application/x-www-form-urlencoded;charset=utf-8",
-			dataType:"text",
-			success:function(data){
-				//console.log(decodeURIComponent(data));
-				var replyList = JSON.parse(decodeURIComponent(data));
-				replyWrap.html(getReplyList(replyList));
-				console.log(getReplyList(replyList));
-				
-				replaySection.find("strong").html(getReplyList(replyList));
-				replaySection.find("small").html(getReplyList(replyList));
-				replaySection.find("p").html(getReplyList(replyList));
-				
-				
-//				replaySection.find('.form-control').val('');
-//				$("strong").val($(data).find("strong").val());
-//				if($("input[name='serverCode']").val()==-1){
-//					$("#emailModal").modal("toggle");
-//					alert("이미 사용중인 이메일입니다.");
-//				}
-				console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
-			}
-		});
-		$("#myModalReply").modal();
+function movePage(pageNumber){
+	console.log(pageNumber);
+	var root=getContextPath();
+	var callUrl=root+"/board/list.do?pageNumber="+pageNumber;
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			$(location).attr("href", callUrl);
+		}
 	});
 }
 
-function getReplyList(replyList){
-	var length = replyList.length;
-	var result='';
-	for(var i=0; i<length; i++){
-		result += makeReplyDiv(replyList[i])
-	}
-	return result;
+
+
+//tab넘기기
+$(document).ready(function(){
+	 $(".nav-tabs a").click(function(e){
+		 var menu2 = document.getElementById("menu2");
+		 menu2.addEventListener("click", menu2ClickHandler);
+	      $(this).tab('show');
+	 });
+});
+
+function menu2ClickHandler(){
+	alert("hahahahaha");
 }
 
-function makeReplyDiv(reply) {
+//Reply 팝업창
+function replyCheck(boardNum, currentPage){
+	console.log(boardNum);
+	var root=getContextPath();
+	var callUrl=root+"/boardReply/getBoardReplyList.do";
+	var sendData="boardNum="+boardNum;
+	$.ajax({
+		url:callUrl,
+		type:"post",
+		data:sendData,
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
+		dataType:"html",
+		success:function(data){
+			console.log(data);
+			console.log(JSON.parse(decodeURIComponent(data)));
+			var replyList = JSON.parse(decodeURIComponent(data));
+			var length=replyList.length;
+			// console.log("length:"+length);
+			var result='';
+			var strong='';
+			for(var i=0;i<length;i++){
+				result += makeReplyDiv2(replyList[i]);
+			}
+			console.log(result);
+			$(".reply-box").html(result);
+		}
+	});
+	
+	$("#myModalReply").modal();
+	
+	$("#toContent").click(function(){
+		console.log(boardNum);
+		console.log(currentPage);
+		var root=getContextPath();
+		var callUrl=root+"/board/read.do?boardNum="+boardNum+"&pageNumber="+currentPage;
+		
+		$.ajax({
+			url:callUrl,
+			type:"get",
+			dataType:"html",
+			success:function(data){
+				$(location).attr("href", callUrl);
+			}
+		});
+	});
+
+}
+
+function makeReplyDiv2(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
 	console.log(d);
 	var dateStr = padStr(d.getFullYear()) +
@@ -78,22 +98,47 @@ function makeReplyDiv(reply) {
 	var replyTime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 	console.log(replyTime);
 	
-	var text = '<strong><i class="glyphicon glyphicon-user"></i>'+ reply.memberNickName + '</strong>';
+	var text = '<li class="left clearfix"><div class="reply-body"> <strong><i class="glyphicon glyphicon-user"></i>'+ reply.memberNickName + '</strong>';
 	text += '<small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>' + replyTime +" " + '</small>';
-	text += '<p>' + reply.boardReplyContent+" " + '</p>';
-
+	text += '<p>' + reply.boardReplyContent+" " + '</p></div></li>';
+	text += '<input type="hidden" name="boardReplyBoardNum" value="'+reply.boardReplyBoardNum+'"/>'
+	
+	console.log(text);
 	return text;	
 }
 
-// Modal 버튼들
+// 해당 글로 이동
+function toContent(boardNum){
+	console.log(boardNum);
+	var root=getContextPath();
+	var callUrl=root+"/board/read.do?="+boardNum;
+	console.log(callUrl);
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			console.log(data);
+			console.log(JSON.parse(decodeURIComponent(data)));
+			var replyList = JSON.parse(decodeURIComponent(data));
+			var length=replyList.length;
+			// console.log("length:"+length);
+			var result='';
+			var strong='';
+			for(var i=0;i<length;i++){
+				result += makeReplyDiv(replyList[i]);
+			}
+			console.log(result);
+			$(".reply-box").html(result);
+		}
+	});
+}
+
+// 목록으로 되돌아가기
 $(document).ready(function(){
     $("a[name='toList']").click(function(){
     	$("#myModalReply").modal("toggle");
 		// location.reload();
-    });
-    
-    $("a[name='toContent']").click(function(){
-    	alert("mamamamamama");
     });
 });
 

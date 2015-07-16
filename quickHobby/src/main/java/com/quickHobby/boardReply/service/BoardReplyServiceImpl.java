@@ -87,7 +87,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 		List<BoardReplyDto> boardReplyList=new ArrayList<BoardReplyDto>();
 		
 		boardReplyList = boardReplyDao.getBoardReplyList(boardNum);
-		logger.info("replySize:"+boardReplyList.size());
+		logger.info("boardReplyListSize:"+boardReplyList.size());
 		ObjectMapper obj = new ObjectMapper();
 		String encode="";
 		try {

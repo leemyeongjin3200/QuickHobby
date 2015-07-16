@@ -186,18 +186,6 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		int groupNum=Integer.parseInt(req.getParameter("groupNum"));
 		logger.info("groupNum:" + groupNum);
-		String pageNumber="1";
-		
-		int boardSize=3;
-		
-		int currentPage=Integer.parseInt(pageNumber);
-		int startRow=(currentPage-1)*boardSize+1;
-		int endRow=currentPage*boardSize;
-		
-		HashMap<String, Integer> hMap=new HashMap<String, Integer>();
-		hMap.put("startRow", startRow);
-		hMap.put("endRow", endRow);
-		hMap.put("groupNum", groupNum);
 		
 		GroupDto group=groupDao.getGroupDto(groupNum);
 		
@@ -206,7 +194,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		List<GroupBoardDto> groupBoard=null;
 		
 		if(count>0){
-			groupBoard=groupBoardDao.getGroupBoardList(hMap);
+			groupBoard=groupBoardDao.getGroupBoardList(groupNum);
 			for(int i=0; i<groupBoard.size(); i++){
 				int boardNum=groupBoard.get(i).getGroupBoardNum();
 				int replyCount=groupReplyDao.getReplyCount(boardNum);
@@ -232,8 +220,6 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		mav.addObject("groupBoardList", groupBoard);
 		mav.addObject("weather", weather);
 		mav.addObject("count", count);
-		mav.addObject("boardSize", boardSize);
-		mav.addObject("currentPage", currentPage);
 		mav.setViewName("groupBoard/groupPage");
 	}
 }

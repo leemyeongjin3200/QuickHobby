@@ -9,7 +9,7 @@ public interface GroupBoardDao {
 
 	int getGroupBoardCount(int groupNum);
 
-	List<GroupBoardDto> getGroupBoardList(HashMap<String, Integer> hMap);
+	List<GroupBoardDto> getGroupBoardList(int groupNum);
 
 	int groupBoardWrite(GroupBoardDto groupBoardDto);
 

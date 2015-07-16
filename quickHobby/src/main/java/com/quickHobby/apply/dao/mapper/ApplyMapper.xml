@@ -28,6 +28,13 @@
 		]]>
 	</insert>
 	
+	<insert id="hostJoin" parameterType="com.quickHobby.apply.dto.ApplyDto">
+		<![CDATA[
+			insert into join values(apply_num_seq.currval, #{apply_host})
+		]]>
+		
+	</insert>
+	
 	<select id="getListByCreateDate" resultType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
 			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE >= SYSDATE ORDER BY APPLY_CREATEDATE DESC

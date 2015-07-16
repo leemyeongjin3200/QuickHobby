@@ -26,7 +26,7 @@
  			(select rownum rnum, a.*, b.member_nickname from 
 			(select * from groupboard where GROUPBOARD_VISIBLE=1 and GROUPBOARD_GROUPNUM=#{groupNum}
 			order by GROUPBOARD_CREATEDATE desc)a, member b where a.groupboard_writer=b.member_num) 
- 			where rnum>=#{startRow} and rnum <= #{endRow}]]> 
+ 			]]> 
 	</select>
 	
 	<insert id="groupBoardInsert" parameterType="com.quickHobby.groupBoard.dto.GroupBoardDto">
