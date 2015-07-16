@@ -2,12 +2,12 @@ package com.quickHobby.memberBoard.dao;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.quickHobby.board.dto.BoardDto;
 import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.memberBoard.dto.MemberBoardDto;
 
@@ -63,54 +63,25 @@ public class MemberBoardDaoImpl implements MemberBoardDao {
 		return sqlSession.selectList("dao.boardMapper.groupList",groupboard_writer);
 	}
 
-
-	/*@Override
-	public List<MemberBoardDto> getSumlist(String board_writer, String groupboard_writer) {
-	System.out.println("board_writer:"+board_writer);
-	System.out.println("groupboard_writer"+groupboard_writer);
-
-		Map<String,String>hMap=new HashMap<String,String>();
-	hMap.put("board_writer",board_writer);
-	hMap.put("groupboard_writer",groupboard_writer);
-		return  sqlSession.selectList("dao.boardMapper.sumList",hMap);
-
-	}*/
-
 	@Override
 	public int getNum(String memberNickName) {
-
-
 		return sqlSession.selectOne("dao.boardMapper.getn",memberNickName);
 	}
 
 	@Override
 	public MemberDto getNumm(String memberNickName) {
-
-
-
 		return sqlSession.selectOne("dao.boardMapper.getnn",memberNickName);
 	}
-
-	/*@Override
-	public List<MemberBoardDto> getSumlistt(int member_num) {
-
-		return sqlSession.selectList("dao.boardMapper.gList",member_num);
-	}
-	 */
-	/*	@Override
-	public MemberBoardDto selectOk(int member_num) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("dao.boardMapper.okselect", member_num);
-	}*/
-
-
+	
 	@Override
-	public List<MemberBoardDto> getSumlist(int memberNum) {
+	public List<BoardDto> getSumlist(int memberNum) {
 		return sqlSession.selectList("dao.boardMapper.skyList",memberNum);
 
 	}
 
-
+	public List<BoardDto>getNextList(HashMap<String, String> map){
+		return sqlSession.selectList("getNextList", map);
+	}
 
 
 }

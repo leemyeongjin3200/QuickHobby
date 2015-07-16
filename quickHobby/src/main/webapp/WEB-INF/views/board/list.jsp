@@ -53,7 +53,7 @@
                <div class="panel-body">
                    <div class="tab-content">
                    <!-- menu1 전체의 list1 시작--> 
-                       <div id="list1" class="tab-pane active">
+                       <div id="list1" class="tab-pane active" >
                        	<div class="row-fluid">
 							<div class="gTable">
 								<!-- list1 header -->
@@ -70,7 +70,7 @@
 		
 								<div class="gTableRow">
 								
-									<c:forEach var="board" items="${boardList}">
+									<c:forEach var="board" items="${boardList}" begin="${startRow-1}" end="${startRow+8}" >
 									<!-- boardVisible 값이 1인 글들만 출력 -->
 										<c:if test="${board.boardVisible==1}">
 											<div class="gTableCell number">${board.boardNum}</div>
@@ -84,7 +84,7 @@
 											<!-- tip/review 구분하기 -->
 											
 												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}')" class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></div>
+												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
 											<div class="gTableCell good">${board.boardRecommand}</div>
@@ -101,7 +101,7 @@
                    <div id="album1" class="tab-pane">
 			        <div class="row-fluid">
 			        	<div class="gAlbum">
-				        	<c:forEach var="board" items="${boardList}">
+				        	<c:forEach var="board" items="${boardList}" begin="${startRow-1}" end="${startRow+8}">
 								<!-- boardVisible 값이 1인 글들만 출력 -->
 								<c:if test="${board.boardVisible==1}">
 					        		<!-- album1 contents -->
@@ -113,7 +113,7 @@
 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
 							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
-							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><b class="myReply">${board.boardReplyCount}</b></span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></span>
 							            <span class="clearboth"> &nbsp; </span>
 							          </div>
 							          <div class="gAlbum-container">
@@ -170,7 +170,7 @@
 			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
 					                <c:if test="${currentPage!=i}">
 							            <li> 
-				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
+				                       		<a id="messagePage" style='cursor:pointer;' onclick="movePage('${i}')" data-filter="${i}">${i}</a> 
 					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
 					                </c:if>
 					                <c:if test="${currentPage==i}">
@@ -234,59 +234,34 @@
 							
 							<!-- list2 contents -->
 							<div class="gTableRow">
-								<div class="gTableCell number">5</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">4</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">3</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">2</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">1</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Tip] ㅇㅇㅇ관련 정보입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
+									
+									<c:forEach var="board" items="${boardList}" begin="${startRow-1}" end="${startRow+8}">
+									<!-- boardVisible 값이 1인 글들만 출력 -->
+<%-- 										<c:if test="${board.boardSection=='t'}"> --%>
+<%-- 											<c:set var="endk" scope="session" value="${startRow+1}"/> --%>
+<%-- 										</c:if> --%>
+									
+										<c:if test="${board.boardVisible==1&&board.boardSection=='t'}">
+											<div class="gTableCell number">${board.boardNum}</div>
+											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
+												<a href="#">${board.boardWriter}</a></div>
+											<div class="gTableCell titlec">
+											
+											<!-- tip/review 구분하기 -->
+												<c:if test="${board.boardSection=='t'}"><span class="label label-default">Tip</span></c:if>
+												<c:if test="${board.boardSection=='r'}"><span class="label label-default">Review</span></c:if>
+											<!-- tip/review 구분하기 -->
+											
+												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
+												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></div>
+											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
+											<div class="gTableCell count">${board.boardReadCount}</div>
+											<div class="gTableCell good">${board.boardRecommand}</div>
+										</c:if>
+									<!-- boardVisible 값이 1인 글들만 출력 -->
+									</c:forEach>
+									
+								</div><!-- .gTableRow 끝-->
 						</div> <!-- .gTable 끝  -->
 					</div><!-- .row-fluid 끝 -->
                   </div><!-- #list2 끝 -->
@@ -295,79 +270,98 @@
                   <div id="album2" class="tab-pane">
 			        <div class="row-fluid">
 			        	<div class="gAlbum">
-			        		<!-- album2 contents -->
-			        	 	<div class="col-md-4">
-			        	 	  <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Tip]<a href="#">ㅇㅇㅇ관련 정보입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
-					        </div><!-- .col-md-4 끝 -->
-					        
-					        <div class="col-md-4">
-			        	 	  <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Tip]<a href="#">ㅇㅇㅇ관련 정보입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
-					        </div><!-- .col-md-4 끝 -->
-     
-						    <div class="col-md-4" style="position:relative; top:-8px;"> <!--style (padding or margin 8px 어디인지 확인 필요!!!!!!) -->
-						      <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Tip]<a href="#">ㅇㅇㅇ관련 정보입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
- 							</div><!-- .col-md-4 끝 -->
+				        	<c:forEach var="board" items="${boardList}" begin="${startRow-1}" end="${startRow+8}">
+								<!-- boardVisible 값이 1인 글들만 출력 -->
+								<c:if test="${board.boardVisible==1&&board.boardSection=='t'}">
+					        		<!-- album1 contents -->
+					        	 	<div class="col-md-4">
+					        	 	  <div class="gAlbum-img">
+					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  </div>
+							          <div class="gAlbum-date-wrapper">
+							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
+							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
+							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></span>
+							            <span class="clearboth"> &nbsp; </span>
+							          </div>
+							          <div class="gAlbum-container">
+							            <h4>
+							            	<!-- tip/review 구분하기 -->
+							            	<c:if test="${board.boardSection=='t'}">[Tip]</c:if>
+							            	<c:if test="${board.boardSection=='r'}">[Review]</c:if>
+							            	<!-- tip/review 구분하기 -->
+							            <a href="#">${board.boardSubject}</a></h4>
+							            <p>${board.boardContent}</p>
+							            <a href="#" >read more <i>&raquo;</i></a>
+							          </div>
+							        </div><!-- .col-md-4 끝 -->
+								</c:if>
+						    </c:forEach>    
 			        	</div><!-- .gAlbum 끝 -->
                        </div><!-- .row-fluid 끝 -->
                    </div><!-- #album2 끝 -->
                </div>
               
 	        <!-- menu2 Tip게시판 page넘기기 -->   
-	        <div class="row text-center">
-	            <div class="col-lg-12">
-	                <ul class="pagination">
-	                    <li><a href="#">&laquo;</a></li>
-	                    <li class="active"><a href="#">1</a></li>
-	                    <li><a href="#">2</a></li>
-	                    <li><a href="#">3</a></li>
-	                    <li><a href="#">4</a></li>
-	                    <li><a href="#">5</a></li>
-	                    <li><a href="#">&raquo;</a></li>
-	                </ul>
-	            </div><!-- .col-lg-12 끝 -->
-	        </div><!-- .row text-center 끝 -->
+	         <!-- Page 설정에 관련한 변수들 설정 -->
+				<c:if test="${count>0}">
+				
+				<c:set var="pageBlock" value="${3}"/>
+				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+				
+				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+				
+				<c:set var="startPage" value="${rs*pageBlock+1}"/>
+				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+				
+				<c:if test="${endPage>pageCount}">
+					<c:set var="endPage" value="${pageCount}"/>
+				</c:if>
+				<!-- Page 설정에 관련한 변수들 설정 -->
+				<form id="boardPage" name="boardPage">
+				
+				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
+			        <div class="row text-center">
+			            <div class="col-lg-12">
+			                <ul class="pagination">
+			                	
+			                	<!-- prev Page 버튼 생성 관련 -->
+			                	<c:if test="${startPage>pageBlock}">
+				                    <li>
+				                        <a href="#">&laquo;</a>
+				                    </li>
+			                    </c:if>
+			                    <!-- prev Page 버튼 생성 관련 -->
+			                    
+			                    <!-- 각 Page 버튼 생성 관련 -->
+			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
+					                <c:if test="${currentPage!=i}">
+							            <li> 
+				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
+					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
+					                </c:if>
+					                <c:if test="${currentPage==i}">
+						                <li class="active">
+							                   	<a href="" id="currentP">${i}</a>
+							            </li>  
+						            </c:if>  
+			                    </c:forEach>
+			                    <!-- 각 Page 버튼 생성 관련 -->
+			                    
+								<!-- next Page 버튼 생성 관련 -->
+								<c:if test="${endPage<pageCount}">
+				                    <li>
+				                        <a href="#">&raquo;</a>
+				                    </li>
+			                    </c:if>
+			                    <!-- next Page 버튼 생성 관련 -->
+			                </ul>
+			            </div>
+			        </div>
+			    </form>
+			        
+				</c:if>
      	</section><!-- .panel 끝 -->
     </div><!-- #menu2 끝 -->
     
@@ -408,59 +402,30 @@
 							
 							<!-- list3 contents -->
 							<div class="gTableRow">
-								<div class="gTableCell number">5</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">4</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">3</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">2</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
-							
-							<div class="gTableRow">
-								<div class="gTableCell number">1</div>
-								<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-									<a href="#">leemyeongjin</a></div>
-								<div class="gTableCell titlec"><a href="#">[Review] ㅇㅇㅇ모임 후기입니다. &nbsp;</a>
-									<i class="glyphicon glyphicon-comment"></i><a href="#"><b> 3</b></a></div>
-								<div class="gTableCell date"> 13:48 </div>
-								<div class="gTableCell count">45</div>
-								<div class="gTableCell good">1</div>
-							</div><!-- .gTableRow 끝-->
+								
+									<c:forEach var="board" items="${boardList}" begin="${startRow-1}" end="${startRow+8}">
+									<!-- boardVisible 값이 1인 글들만 출력 -->
+										<c:if test="${board.boardVisible==1&&board.boardSection=='r'}">
+											<div class="gTableCell number">${board.boardNum}</div>
+											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
+												<a href="#">${board.boardWriter}</a></div>
+											<div class="gTableCell titlec">
+											
+											<!-- tip/review 구분하기 -->
+												<c:if test="${board.boardSection=='t'}"><span class="label label-default">Tip</span></c:if>
+												<c:if test="${board.boardSection=='r'}"><span class="label label-default">Review</span></c:if>
+											<!-- tip/review 구분하기 -->
+											
+												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
+												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></div>
+											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
+											<div class="gTableCell count">${board.boardReadCount}</div>
+											<div class="gTableCell good">${board.boardRecommand}</div>
+										</c:if>
+									<!-- boardVisible 값이 1인 글들만 출력 -->
+									</c:forEach>
+									
+								</div><!-- .gTableRow 끝-->
 						</div> <!-- .gTable 끝  -->
 					</div><!-- .row-fluid 끝 -->
                   </div><!-- #list3 끝 -->
@@ -469,123 +434,104 @@
                   <div id="album3" class="tab-pane">
 			        <div class="row-fluid">
 			        	<div class="gAlbum">
-			        		<!-- album3 contents -->
-			        	 	<div class="col-md-4">
-			        	 	  <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Review]<a href="#">ㅇㅇㅇ모임 후기입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
-					        </div><!-- .col-md-4 끝 -->
-					        
-					        <div class="col-md-4">
-			        	 	  <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Review]<a href="#">ㅇㅇㅇ모임 후기입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
-					        </div><!-- .col-md-4 끝 -->
-     
-						    <div class="col-md-4" style="position:relative; top:-8px;"> <!--style (padding or margin 8px 어디인지 확인 필요!!!!!!) -->
-						      <div class="gAlbum-img">
-			        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
-			        	 	  </div>
-					          <div class="gAlbum-date-wrapper">
-					          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i> leemyeongjin </span>
-					            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i>13:00</span>
-					            <span class="floatright"><i class="glyphicon glyphicon-heart"></i> 3 </span>
-					            <span class="floatright"><i class="glyphicon glyphicon-comment"></i> 2 </span>
-					            <span class="clearboth"> &nbsp; </span>
-					          </div>
-					          <div class="gAlbum-container">
-					            <h4>[Review]<a href="#">ㅇㅇㅇ모임 후기입니다.</a></h4>
-					            <p>Tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniamTempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam</p>
-					            <a href="#" >read more <i>&raquo;</i></a>
-					          </div>
- 							</div><!-- .col-md-4 끝 -->
+				        	<c:forEach var="board" items="${boardList}" begin="${startRow-1}" end="${startRow+8}">
+								<!-- boardVisible 값이 1인 글들만 출력 -->
+								<c:if test="${board.boardVisible==1&&board.boardSection=='r'}">
+					        		<!-- album1 contents -->
+					        	 	<div class="col-md-4">
+					        	 	  <div class="gAlbum-img">
+					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  </div>
+							          <div class="gAlbum-date-wrapper">
+							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
+							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
+							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></span>
+							            <span class="clearboth"> &nbsp; </span>
+							          </div>
+							          <div class="gAlbum-container">
+							            <h4>
+							            	<!-- tip/review 구분하기 -->
+							            	<c:if test="${board.boardSection=='t'}">[Tip]</c:if>
+							            	<c:if test="${board.boardSection=='r'}">[Review]</c:if>
+							            	<!-- tip/review 구분하기 -->
+							            <a href="#">${board.boardSubject}</a></h4>
+							            <p>${board.boardContent}</p>
+							            <a href="#" >read more <i>&raquo;</i></a>
+							          </div>
+							        </div><!-- .col-md-4 끝 -->
+								</c:if>
+						    </c:forEach>    
 			        	</div><!-- .gAlbum 끝 -->
                        </div><!-- .row-fluid 끝 -->
                    </div><!-- #album3 끝 -->
                </div>
               
 	        <!-- menu3 Review게시판 page넘기기 -->   
-	        <div class="row text-center">
-	            <div class="col-lg-12">
-	                <ul class="pagination">
-	                    <li><a href="#">&laquo;</a></li>
-	                    <li class="active"><a href="#">1</a></li>
-	                    <li><a href="#">2</a></li>
-	                    <li><a href="#">3</a></li>
-	                    <li><a href="#">4</a></li>
-	                    <li><a href="#">5</a></li>
-	                    <li><a href="#">&raquo;</a></li>
-	                </ul>
-	            </div><!-- .col-lg-12 끝 -->
-	        </div><!-- .row text-center 끝 -->
+	          <!-- Page 설정에 관련한 변수들 설정 -->
+				<c:if test="${count>0}">
+				
+				<c:set var="pageBlock" value="${3}"/>
+				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+				
+				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+				
+				<c:set var="startPage" value="${rs*pageBlock+1}"/>
+				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+				
+				<c:if test="${endPage>pageCount}">
+					<c:set var="endPage" value="${pageCount}"/>
+				</c:if>
+				<!-- Page 설정에 관련한 변수들 설정 -->
+				<form id="boardPage" name="boardPage">
+				
+				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
+			        <div class="row text-center">
+			            <div class="col-lg-12">
+			                <ul class="pagination">
+			                	
+			                	<!-- prev Page 버튼 생성 관련 -->
+			                	<c:if test="${startPage>pageBlock}">
+				                    <li>
+				                        <a href="#">&laquo;</a>
+				                    </li>
+			                    </c:if>
+			                    <!-- prev Page 버튼 생성 관련 -->
+			                    
+			                    <!-- 각 Page 버튼 생성 관련 -->
+			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
+					                <c:if test="${currentPage!=i}">
+							            <li> 
+				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
+					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
+					                </c:if>
+					                <c:if test="${currentPage==i}">
+						                <li class="active">
+							                   	<a href="" id="currentP">${i}</a>
+							            </li>  
+						            </c:if>  
+			                    </c:forEach>
+			                    <!-- 각 Page 버튼 생성 관련 -->
+			                    
+								<!-- next Page 버튼 생성 관련 -->
+								<c:if test="${endPage<pageCount}">
+				                    <li>
+				                        <a href="#">&raquo;</a>
+				                    </li>
+			                    </c:if>
+			                    <!-- next Page 버튼 생성 관련 -->
+			                </ul>
+			            </div>
+			        </div>
+			    </form>
+			        
+				</c:if>
      	</section><!-- .panel 끝 -->
     </div><!-- #menu3 끝 -->
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
- 
- <!-- Reply Pop-Up// -->
-<!--  <div class="container"> -->
-<!--  <!-- Modal --> -->
-<!--   <div class="modal fade" id="myModalReply" role="dialog"> -->
-<!--     <div class="modal-dialog modal-lg"> -->
-<!--       <div class="modal-content"> -->
-<!--         <div class="modal-header"> -->
-<!--           <button type="button" class="close" data-dismiss="modal">&times;</button> -->
-<!--           <h4 class="modal-title"><span class="glyphicon glyphicon-comment" style="color:white !important"></span> Comments</h4> -->
-<!--         </div> -->
-        
-       
-<!--         <div class="modal-Reply-body"> -->
-<!--           <ul class="reply-box"> -->
-<%--           	 <c:forEach var="reply" items="${board.boardReplyList}"> --%>
-<!--                <li class="left clearfix"> -->
-<!--                    <div class="reply-body">                                         -->
-<%--                        <strong ><i class="glyphicon glyphicon-user"></i>${reply.memberNickName}</strong> --%>
-<%--                        <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>${reply.boardReplyModifyDate}</small>                                       --%>
-<!--                        <p> -->
-<%--                            ${reply.boardReplyContent} --%>
-<!--                        </p> -->
-<!--                    </div> -->
-<!--                </li> -->
-<%--            	 </c:forEach>    --%>
-<!--            </ul> -->
-<!--         </div> -->
-       
-        
-<!--         <div class="modal-footer" style="font-color:white"> -->
-<!--         	<a href="#" class="btn btn-primary" name="toContent" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a> -->
-<!--             <a href="#" class="btn btn-primary" name="toList" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a> -->
-<!--         </div> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-<!-- //Reply Pop-Up -->
 </body>
+<%-- <jsp:include page="replyCheckModal.jsp"></jsp:include> --%>
 <jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>

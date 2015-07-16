@@ -27,12 +27,17 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne("board.dao.mapper.boardCount");
 	}
 
+//	@Override
+//	public List<BoardDto> getBoardList(int startRow, int endRow) {
+//		Map<String,Integer>map=new HashMap<String, Integer>();
+//		map.put("startRow", startRow);
+//		map.put("endRow", endRow);
+//		return sqlSession.selectList("board.dao.mapper.boardList", map);
+//	}
+	
 	@Override
-	public List<BoardDto> getBoardList(int startRow, int endRow) {
-		Map<String,Integer>map=new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		return sqlSession.selectList("board.dao.mapper.boardList", map);
+	public List<BoardDto> getBoardList() {
+		return sqlSession.selectList("board.dao.mapper.boardList");
 	}
 
 	@Override
