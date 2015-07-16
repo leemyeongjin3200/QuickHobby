@@ -16,9 +16,11 @@ body {
 <title>Apply</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
 <body>
 <!-- Navigation bar//-->
- <div class="container">
+ <div class="container" >
  	<!-- Page Title// -->
 	        <div class="row">
 	            <div class="col-lg-12">
@@ -57,6 +59,50 @@ body {
 <div class="container">
 <div class="grid no-gutter">
 	<c:forEach var="board" items="${applyDtoList}">
+		<script>
+			var geocoder = new google.maps.Geocoder();
+			var addr='${board.apply_location}';
+			
+			var lat="";
+		    var lng="";
+		 
+		    geocoder.geocode({'address':addr},
+		 
+		        function(results, status){
+		 
+		            if(results!=""){
+		 
+		                var location=results[0].geometry.location;
+		 
+		                lat=location.lat();
+		                lng=location.lng();
+		            }
+		    });
+		    
+		    var dist=distance(lat, lng);
+		    alert(dist);
+		    
+		    function distance(lat, lng){
+		    	var theta=userLng-lng;
+		    	var dist=Math.sin(deg2rad(userLat)) * Math.sin(deg2rad(lat)) + Math.cos(deg2rad(userLat))
+		    			* Math.cos(deg2rad(lat)) * Math.cos(deg2rad(theta));
+		    	dist=Math.acos(dist);
+		    	dist=rad2deg(dist);
+		    	dist=dist*60*1.1515;
+		    	dist=dist*1.609344;
+		    	
+		    	return Number(dist*1000).toFixed(2);
+		    }
+
+		    function deg2rad(deg){
+		    	return (deg * Math.PI / 180);
+		    }
+
+		    function rad2deg(rad){
+		    	return (rad*180/Math.PI);
+		    }
+		</script>
+		<input type="hidden" name="groupLocation" value="${board.apply_location}"/>
 		<div class="col-md-4 ${board.apply_category} ${board.apply_inout}" id="board">
 			<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
 				<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive" style="width:400px; height:250px;">
@@ -73,6 +119,7 @@ body {
    </div>
 </div>
 <!-- //Content2 -->
+<c:set var="i" value="${0}"/>
 </body>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
