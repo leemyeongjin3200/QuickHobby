@@ -1,22 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Tip & Review</title>
-<c:set var="root" value="${pageContext.request.contextPath }"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<c:set var="root" value="${pageContext.request.contextPath}"/>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/board/board.css"/>
-</head>
-<jsp:include page="../template/header.jsp"></jsp:include>
-<body>
-	<div class="container">
-		
-	</div>
+<title>Tip / Review Board</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="${root}/css/boardReply/boardReply.js"></script>
+<script type="text/javascript">
+//  	수정 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
+	function boardUpdate(boardNum) {
+		var boardUD = document.getElementById("boardUD");	
+		boardUD.action="${root}/board/updateForm.do";
+		boardUD.method="post";		
+		var input=document.getElementById("boardNum");
+		input.value=boardNum;
+		boardUD.submit(); 
+	}
 	
-	<div style="width:598px; height:15px; border-width:2px; text-align:right; padding:15px 0px 0px 0px; border-bottom-width:0px;">
+	function boardDelete(boardNum) {
+// 		삭제 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+			var boardUD = document.getElementById("boardUD");	
+			boardUD.action="${root}/board/delete.do";
+			boardUD.method="post";			
+			var input1=document.getElementById("boardNum");
+			input1.value=boardNum;
+			boardUD.submit();
+		}else{   //취소
+		    return;
+		}
+	}
+</script>
+</head>
+<body>
+		<div style="width:598px; height:15px; border-width:2px; text-align:right; padding:15px 0px 0px 0px; border-bottom-width:0px;">
 				<a href="${root}/board/list.do">List</a>
 		</div>
 			
@@ -91,33 +116,14 @@
 			</c:forEach>
 			</div>
 		</div>
-</body>
-<jsp:include page="../template/footer.jsp"></jsp:include>
+		
+<jsp:include page="../../../WEB-INF/views/template/loginModal.jsp"></jsp:include>
+<jsp:include page="../../../WEB-INF/views/template/footer.jsp"></jsp:include>
+
+<script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>
-<script type="text/javascript" src="${root}/css/boardReply/boardReply.js"></script>
-<script type="text/javascript">
-//  	수정 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
-	function boardUpdate(boardNum) {
-		var boardUD = document.getElementById("boardUD");	
-		boardUD.action="${root}/board/updateForm.do";
-		boardUD.method="post";		
-		var input=document.getElementById("boardNum");
-		input.value=boardNum;
-		boardUD.submit(); 
-	}
-	
-	function boardDelete(boardNum) {
-// 		삭제 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
-		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
-			var boardUD = document.getElementById("boardUD");	
-			boardUD.action="${root}/board/delete.do";
-			boardUD.method="post";			
-			var input1=document.getElementById("boardNum");
-			input1.value=boardNum;
-			boardUD.submit();
-		}else{   //취소
-		    return;
-		}
-	}
-</script>
+<script type="text/javascript" src="${root}/css/main/main.js"></script>
+<script type="text/javascript" src="${root}/css/member/member.js"></script>
+</body>
 </html>

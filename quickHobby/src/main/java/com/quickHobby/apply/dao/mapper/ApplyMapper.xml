@@ -30,7 +30,7 @@
 	
 	<insert id="hostJoin" parameterType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
-			insert into join values(apply_num_seq.currval, #{apply_host})
+			insert into join values((select group_num from ggroup where group_applyNum=apply_num_seq.currval), #{apply_host})
 		]]>
 		
 	</insert>
