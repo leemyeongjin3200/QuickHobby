@@ -1,6 +1,7 @@
 /**
  * 
  */
+// 페이지 이동
 function movePage(pageNumber){
 	console.log(pageNumber);
 	var root=getContextPath();
@@ -15,22 +16,14 @@ function movePage(pageNumber){
 	});
 }
 
-
-
 //tab넘기기
 $(document).ready(function(){
 	 $(".nav-tabs a").click(function(e){
-		 var menu2 = document.getElementById("menu2");
-		 menu2.addEventListener("click", menu2ClickHandler);
 	      $(this).tab('show');
 	 });
 });
 
-function menu2ClickHandler(){
-	alert("hahahahaha");
-}
-
-//Reply 팝업창
+//Reply Modal
 function replyCheck(boardNum, currentPage){
 	console.log(boardNum);
 	var root=getContextPath();
@@ -78,6 +71,7 @@ function replyCheck(boardNum, currentPage){
 
 }
 
+// reply list div 그리기
 function makeReplyDiv2(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
 	console.log(d);
@@ -105,33 +99,6 @@ function makeReplyDiv2(reply) {
 	
 	console.log(text);
 	return text;	
-}
-
-// 해당 글로 이동
-function toContent(boardNum){
-	console.log(boardNum);
-	var root=getContextPath();
-	var callUrl=root+"/board/read.do?="+boardNum;
-	console.log(callUrl);
-	$.ajax({
-		url:callUrl,
-		type:"get",
-		dataType:"html",
-		success:function(data){
-			console.log(data);
-			console.log(JSON.parse(decodeURIComponent(data)));
-			var replyList = JSON.parse(decodeURIComponent(data));
-			var length=replyList.length;
-			// console.log("length:"+length);
-			var result='';
-			var strong='';
-			for(var i=0;i<length;i++){
-				result += makeReplyDiv(replyList[i]);
-			}
-			console.log(result);
-			$(".reply-box").html(result);
-		}
-	});
 }
 
 // 목록으로 되돌아가기

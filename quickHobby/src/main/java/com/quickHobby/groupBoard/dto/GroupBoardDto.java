@@ -3,6 +3,7 @@ package com.quickHobby.groupBoard.dto;
 import java.util.Date;
 
 public class GroupBoardDto {
+	private int groupRowNum;
 	private int groupBoardNum;
 	private int groupBoardGroupNum;
 	private int groupBoardWriter;
@@ -18,6 +19,12 @@ public class GroupBoardDto {
 	private String groupBoardWriterNick;
 	private int groupBoardReplyCount;
 	
+	public int getGroupRowNum() {
+		return groupRowNum;
+	}
+	public void setGroupRowNum(int groupRowNum) {
+		this.groupRowNum = groupRowNum;
+	}
 	public int getGroupBoardNum() {
 		return groupBoardNum;
 	}

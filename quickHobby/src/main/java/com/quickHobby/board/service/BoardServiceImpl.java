@@ -48,18 +48,29 @@ public class BoardServiceImpl implements BoardService {
 		String pageNumber=request.getParameter("pageNumber");
 		if(pageNumber==null)pageNumber="1";
 		
-		int boardSize=10;
+		int boardSize=9;
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
 		
 		int count=boardDao.getBoardCount();
-		logger.info("count:"+count);
+		
+		// Tip / Review Board 각각의 게시물 수 구하기
+//		int tipCount=boardDao.getTipBoardCount();
+//		int reviewCount=boardDao.getReviewBoardCount();
+//		logger.info("tipCount:"+tipCount);
+//		logger.info("reviewCount:"+reviewCount);
 		
 		List<BoardDto> boardList=new ArrayList<BoardDto>();
+//		List<BoardDto> tipBoardList=new ArrayList<BoardDto>();
+//		List<BoardDto> reviewBoardList=new ArrayList<BoardDto>();
 		
 		if(count>0){
-			boardList=boardDao.getBoardList();
+			boardList=boardDao.getBoardList(startRow, endRow);
+			
+			// Tip / Review List를 따로 DB에서 가져온다.
+//			tipBoardList=boardDao.getTipBoardList(startRow, endRow);
+//			reviewBoardList=boardDao.getReviewBoardList(startRow, endRow);
 		}
 		
 		int boardListSize=boardList.size();
@@ -67,22 +78,21 @@ public class BoardServiceImpl implements BoardService {
 		
 		// reply count 추가
 		for(int i=0;i<boardListSize;i++){
-//			logger.info("boardList:"+boardList.get(i));
-//			logger.info("boardNum:"+boardList.get(i).getBoardNum());
 			int boardNum=boardList.get(i).getBoardNum();
 			int boardReplyCount=boardReplyDao.getBoardReplyCount(boardNum);
 			
 			boardList.get(i).setBoardReplyCount(boardReplyCount);
 //			boardList.set(i, boardDto);
-//			logger.info("boardDtogetBoardReplyCount:"+boardList.get(i).getBoardReplyCount());
+			logger.info("boardDtogetBoardReplyCount:"+boardReplyCount);
+			logger.info("memberNickName:"+boardList.get(i).getMemberNickName());
 		}
 		
-		logger.info("startRow:"+startRow);
-		
-		mav.addObject("startRow", startRow);
-		mav.addObject("endRow", endRow);
 		mav.addObject("boardList", boardList);
+//		mav.addObject("tipBoardList", tipBoardList);
+//		mav.addObject("reviewBoardList", reviewBoardList);
 		mav.addObject("count", count);
+//		mav.addObject("tipCount", tipCount);
+//		mav.addObject("reviewCount", reviewCount);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("board", boardDto);
