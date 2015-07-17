@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.member.dto.MemberDto;
+import com.quickHobby.report.dto.ReportDto;
 
 /*
  * @name        : ApplyDaoImpl
@@ -144,5 +145,9 @@ public class ApplyDaoImpl implements ApplyDao {
 	
 	public int getReports(int apply_num){
 		return sqlSession.selectOne("getReports", apply_num);
+	}
+	
+	public int insertReport(ReportDto reportDto){
+		return sqlSession.insert("insertReport", reportDto);
 	}
 }

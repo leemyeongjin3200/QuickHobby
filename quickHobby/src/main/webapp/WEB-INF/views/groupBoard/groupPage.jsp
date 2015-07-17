@@ -141,7 +141,7 @@
 											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.groupBoardWriterNick}</a>
 										</div>
 										<div class="gTableCell titlec">
-											<a href="#">${groupBoard.groupBoardSubject} &nbsp;</a> <i
+											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i
 												class="glyphicon glyphicon-comment"></i><a href="#"><b
 												class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b></a>
 										</div>

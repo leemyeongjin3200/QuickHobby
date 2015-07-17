@@ -134,10 +134,10 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	}
 	
 	@RequestMapping(value="/groupBoard/groupPage.do", method=RequestMethod.GET)
-	public ModelAndView groupPage(HttpServletRequest req){
+	public ModelAndView groupPage(HttpServletRequest request){
 		ModelAndView mav=new ModelAndView();
 		
-		mav.addObject("request", req);
+		mav.addObject("request", request);
 		groupBoardService.groupPage(mav);
 		
 		return mav;

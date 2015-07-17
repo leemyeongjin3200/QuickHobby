@@ -198,4 +198,16 @@ public class ApplyController {
 		
 		return null;
 	}
+	
+	@RequestMapping(value="apply/report.do", method=RequestMethod.POST)
+	public ModelAndView report(HttpServletRequest request){
+		logger.info("report======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.report(mav);
+		
+		return null;
+	}
 }

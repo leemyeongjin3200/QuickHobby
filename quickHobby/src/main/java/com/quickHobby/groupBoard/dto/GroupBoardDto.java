@@ -1,6 +1,10 @@
 package com.quickHobby.groupBoard.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import com.quickHobby.groupReply.dto.GroupReplyDto;
 
 public class GroupBoardDto {
 	private int groupRowNum;
@@ -16,8 +20,10 @@ public class GroupBoardDto {
 	private long groupBoardFileSize;
 	private int groupBoardVisible;
 	private int groupBoardReadCount;
-	private String groupBoardWriterNick;
-	private int groupBoardReplyCount;
+	
+	private List<GroupReplyDto> groupReplyList = new ArrayList<GroupReplyDto>();
+	private int groupReplyCount;
+	private String memberNickName;
 	
 	public int getGroupRowNum() {
 		return groupRowNum;
@@ -97,16 +103,22 @@ public class GroupBoardDto {
 	public void setGroupBoardReadCount(int groupBoardReadCount) {
 		this.groupBoardReadCount = groupBoardReadCount;
 	}
-	public String getGroupBoardWriterNick() {
-		return groupBoardWriterNick;
+	public List<GroupReplyDto> getGroupReplyList() {
+		return groupReplyList;
 	}
-	public void setGroupBoardWriterNick(String groupBoardWriterNick) {
-		this.groupBoardWriterNick = groupBoardWriterNick;
+	public void setGroupReplyList(List<GroupReplyDto> groupReplyList) {
+		this.groupReplyList = groupReplyList;
 	}
-	public int getGroupBoardReplyCount() {
-		return groupBoardReplyCount;
+	public int getGroupReplyCount() {
+		return groupReplyCount;
 	}
-	public void setGroupBoardReplyCount(int groupBoardreplyCount) {
-		this.groupBoardReplyCount = groupBoardreplyCount;
+	public void setGroupReplyCount(int groupReplyCount) {
+		this.groupReplyCount = groupReplyCount;
+	}
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 }

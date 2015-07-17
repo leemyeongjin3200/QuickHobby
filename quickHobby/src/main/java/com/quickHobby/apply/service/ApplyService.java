@@ -14,4 +14,5 @@ public interface ApplyService {
 	public void main(ModelAndView mav);
 	public void incrementRecommend(ModelAndView mav);
 	public void decrementRecommend(ModelAndView mav);
+	public void report(ModelAndView mav);
 }

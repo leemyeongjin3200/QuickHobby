@@ -21,6 +21,7 @@ import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.group.dao.GroupDao;
 import com.quickHobby.member.dto.MemberDto;
+import com.quickHobby.report.dto.ReportDto;
 import com.quickHobby.weather.Weather;
 import com.quickHobby.weather.WeatherDTO;
 
@@ -401,11 +402,39 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		int firstCheck=applyDao.removeRecommend(hMap);
 		int secondCheck=0;
-		System.out.println("firstCheck : " + firstCheck);
+//		System.out.println("firstCheck : " + firstCheck);
 		
 		if(firstCheck > 0 && recommend_type.equals("A")){
 			secondCheck=applyDao.decrementRecommend(board_num);
 		}
-		System.out.println("secondCheck : " + secondCheck);
+//		System.out.println("secondCheck : " + secondCheck);
+	}
+	
+	public void report(ModelAndView mav){
+		logger.info("report service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int report_sender=Integer.parseInt(request.getParameter("report_sender"));
+		int report_receiver=Integer.parseInt(request.getParameter("report_receiver"));
+		String report_content=request.getParameter("report_content");
+		int report_boardnum=Integer.parseInt(request.getParameter("report_boardnum"));
+		String report_boardtype=request.getParameter("report_boardtype");
+		
+//		System.out.println(report_sender);
+//		System.out.println(report_receiver);
+//		System.out.println(report_content);
+//		System.out.println(report_boardnum);
+//		System.out.println(report_boardtype);
+		
+		ReportDto reportDto=new ReportDto();
+		reportDto.setReport_sender(report_sender);
+		reportDto.setReport_receiver(report_receiver);
+		reportDto.setReport_content(report_content);
+		reportDto.setReport_boardnum(report_boardnum);
+		reportDto.setReport_boardtype(report_boardtype);
+		
+		int check=applyDao.insertReport(reportDto);
+//		System.out.println("check : " + check);
 	}
 }
