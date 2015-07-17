@@ -204,6 +204,10 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		List<MemberDto> member=memberDao.getMemberList(groupNum);
 		
+		logger.info("date:"+group.getGroupDate());
+		logger.info("location:"+group.getGroupLocation());
+		
+		
 		Weather w=new Weather(group.getGroupLocation(), group.getGroupDate());
 		WeatherDTO weather=w.getWeather();
 		
