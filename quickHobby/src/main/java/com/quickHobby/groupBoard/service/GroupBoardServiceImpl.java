@@ -53,15 +53,15 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-		int groupBoardGroupNum=0;
+		int groupNum=0;
 		
-		if(request.getParameter("groupBoardGroupNum")!=null){
-			groupBoardGroupNum=Integer.parseInt(request.getParameter("groupBoardGroupNum"));
+		if(request.getParameter("groupNum")!=null){
+			groupNum=Integer.parseInt(request.getParameter("groupNum"));
 		}
 		
-		logger.info("groupBoardGroupNum:"+groupBoardGroupNum);
+		logger.info("groupNum:"+groupNum);
 		
-		mav.addObject("groupBoardGroupNum", groupBoardGroupNum);
+		mav.addObject("groupNum", groupNum);
 		
 		mav.setViewName("groupBoard/writeForm");
 	}

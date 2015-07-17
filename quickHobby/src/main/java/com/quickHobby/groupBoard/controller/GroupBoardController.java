@@ -41,7 +41,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @author : 차건강
 	* @description : Group Board 글쓰기 페이지 이동 method
 	 */
-	@RequestMapping(value="/groupBoard/writeForm.do",  method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/groupBoard/writeForm.do",  method = RequestMethod.GET)
 	public ModelAndView groupBoardWriteForm(HttpServletRequest request, HttpServletResponse response){
 		logger.info("groupBoardWriteForm---------------------------");
 		

@@ -223,7 +223,8 @@ function moveLeft(boardSize, pageBlock, pageCount){
 		$(".row" + i).css("display", "none");
 	}
 	
-	var startRow=(currentPage-2)*boardSize+1;
+	var temp=(currentPage%pageBlock);
+	var startRow=(currentPage-(1+temp))*boardSize+1;
 	var endRow=startRow+boardSize-1;
 	for(var i=startRow; i<=endRow; i++){
 		$(".row" + i).css("display", "table-row");

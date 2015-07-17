@@ -195,7 +195,7 @@
 				<!-- 글쓰기 버튼 -->
 				<div class="col-lg-1 btns">
 					<div class="clearfix" style="margin-top: 20px">
-						<a href="#" class="btn btn-primary  btn-sm btn-block">글쓰기</a>
+						<a href="${root}/groupBoard/writeForm.do?groupNum=${group.groupNum}" class="btn btn-primary  btn-sm btn-block">글쓰기</a>
 					</div>
 				</div><!-- .col-lg-1 btns 끝 -->
 			</div> <!-- .row text-center 끝 -->
