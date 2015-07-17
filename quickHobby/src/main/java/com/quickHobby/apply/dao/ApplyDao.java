@@ -25,4 +25,5 @@ public interface ApplyDao {
 	public int incrementRecommend(int board_num);
 	public int removeRecommend(HashMap<String, Object> hMap);
 	public int decrementRecommend(int board_num);
+	public int getReports(int apply_num);
 }
