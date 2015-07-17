@@ -120,10 +120,26 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		if(applyDto.getApply_filename() != null){
 			check=applyDao.insertFile(applyDto);
-			groupDao.createGroupFile(applyDto);
+			if(check!=0){
+				groupDao.createGroupFile(applyDto);
+				int groupNum=groupDao.getGroupNumber();
+				int applyHost=applyDto.getApply_host();
+				HashMap<String, Integer> hMap=new HashMap<String, Integer>();
+				hMap.put("groupNum", groupNum);
+				hMap.put("applyHost", applyHost);
+				groupDao.hostJoin(hMap);
+			}
 		}else{
 			check=applyDao.insert(applyDto);
-			groupDao.createGroup(applyDto);
+			if(check!=0){
+				groupDao.createGroupFile(applyDto);
+				int groupNum=groupDao.getGroupNumber();
+				int applyHost=applyDto.getApply_host();
+				HashMap<String, Integer> hMap=new HashMap<String, Integer>();
+				hMap.put("groupNum", groupNum);
+				hMap.put("applyHost", applyHost);
+				groupDao.hostJoin(hMap);
+			}
 		}
 		
 		logger.info("check : " + check);

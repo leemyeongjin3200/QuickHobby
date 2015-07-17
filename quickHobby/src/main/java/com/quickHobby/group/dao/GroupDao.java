@@ -14,4 +14,6 @@ public interface GroupDao {
 	public int createGroupFile(ApplyDto groupDto);
 	public int updateGroup(ApplyDto groupDto);
 	public int joinMember(HashMap<String, Integer> map);
+	public int getGroupNumber();
+	public int hostJoin(HashMap<String, Integer> map);
 }

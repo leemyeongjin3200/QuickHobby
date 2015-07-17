@@ -28,11 +28,15 @@
                     	<img src="${root}/pds/default.PNG" alt="img">
                     </div>
                    <ul class="list-unstyled groupApply-list" style="text-align:left;">
-	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span><a href="#"> ${member.memberNickName}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span>${member.memberNickName}</span></li>
 	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level : </b><span> ${member.memberLevel}</span></li>
-	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="#"> ${member.memberSNS}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="${member.memberSNS}"> ${member.memberSNS}</a></span></li>
                 </ul>
-                <a href="#" class="btn btn-primary btn-block" style="">send a Message</a>                    
+                
+                <!-- 자신에게는 message를 보낼 수 없게 하기 -->
+                <c:if test="${member.memberNum!=memberNum}">
+                	<a style='cursor:pointer;' onclick="replyMessage('${member.memberNum}', '${member.memberNickName}')" class="btn btn-primary btn-block">send a Message</a>   
+                </c:if>             
              </div>
         </div>
       </div>
@@ -144,5 +148,8 @@
 		});
 	});
 </script>
+<script type="text/javascript" src="${root}/css/message/message.js"></script>
+<jsp:include page="../message/messageModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+<script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
 </html>

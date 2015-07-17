@@ -28,8 +28,7 @@ public class ApplyDaoImpl implements ApplyDao {
 	 * @description : 사진이 포함된 신청게시물을 DB에 저장
 	 */
 	public int insertFile(ApplyDto applyDto){
-		sqlSession.insert("applyInsertFile", applyDto);
-		return sqlSession.insert("hostJoin", applyDto);
+		return sqlSession.insert("applyInsertFile", applyDto);
 	}
 	
 	/*
@@ -39,8 +38,7 @@ public class ApplyDaoImpl implements ApplyDao {
 	 * @description : 사진이 포함되지 않은 신청 게시물을 DB에 저장
 	 */
 	public int insert(ApplyDto applyDto){
-		sqlSession.insert("applyInsert", applyDto);
-		return sqlSession.insert("hostJoin", applyDto);
+		return sqlSession.insert("applyInsert", applyDto);
 	}
 	
 	/*
