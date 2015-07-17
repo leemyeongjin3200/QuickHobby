@@ -1,43 +1,8 @@
 /**
  * 
  */
-
-
-$(".board-reply").on('click', 'button[name="replyBtn"]', writeReply);
-$(".board-reply").on('click', '.modifyBtn', clickModifyBtn);
-$(".board-reply").on('keydown', '.form-control', triggerWriteReply);
-$(".board-reply").on('click', '.deleteBtn', deleteReply);
-$(".board-reply").on('click', '.edit_ok', modifyReply);
-$(".board-reply").on('click', '.edit_cancel', cancelReply);
-$(".board-reply").on('keydown', '.edit_text', triggerEditReply);
-
+// mouse click, keyboard input event
 $(document).ready(function(){
-//	$('button[name="replyBtn"]').click(function(e){
-//		writeReply(e);
-//	});
-//	
-//	$('.modifyBtn').click(function(e){
-//		clickModifyBtn(e);
-//		$('.edit_ok').click(function(e){
-//			modifyReply(e);
-//		});
-//		
-//		$('.edit_cancel').click(function(e){
-//			cancelReply(e);
-//		});
-//	});
-//	
-//	$('.deleteBtn').click(function(e){
-//		deleteReply(e);
-//	});
-//	
-//	$('.form-control').keydown(function(e){
-//		triggerWriteReply(e);
-//	});
-//	
-//	$('.edit_text').keydown(function(e){
-//		triggerEditReply(e);
-//	});
 	$(".board-reply").on('click', 'button[name="replyBtn"]', writeReply);
 	$(".board-reply").on('click', '.modifyBtn', clickModifyBtn);
 	$(".board-reply").on('keydown', '.form-control', triggerWriteReply);
@@ -58,6 +23,7 @@ function triggerEditReply(e){
 	}
 }
 
+// reply 작성내용 컨트롤러로 보내고 list들 담을 div 그리기
 function writeReply(e){
 	//alert("hahaha");
 	// console.log(e);
@@ -99,6 +65,7 @@ function getReplyList(replyList){
 	return result;
 }
 
+// list div 그리기
 function makeReplyDiv(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
 	// console.log(d);
@@ -140,6 +107,8 @@ function makeReplyDiv(reply) {
 	}
 	return text;	
 }
+
+// 수정 버튼 클릭
 function clickModifyBtn(e){
 	console.log("clickModifyBtn");
 	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
@@ -149,6 +118,7 @@ function clickModifyBtn(e){
 	replayDiv.find('.reply_content').hide();
 }
 
+// 수정 기능 
 function modifyReply(e){
 	console.log("modifyReply");
 	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
@@ -176,6 +146,8 @@ function modifyReply(e){
 		}
 	});
 }
+
+// 수정 취소 기능
 function cancelReply(e){
 	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
 	var replaySection =target.parents('.board-reply');
@@ -183,6 +155,8 @@ function cancelReply(e){
 	replayDiv.find('.reply_btns').show();
 	replayDiv.find('.reply_edit').remove();
 }
+
+// 삭제 기능
 function deleteReply(e){
 	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
 	var replaySection =target.parents('.board-reply');

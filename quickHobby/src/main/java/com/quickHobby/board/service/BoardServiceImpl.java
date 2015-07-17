@@ -1,8 +1,5 @@
 package com.quickHobby.board.service;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +7,6 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,7 +54,6 @@ public class BoardServiceImpl implements BoardService {
 		int endRow=currentPage*boardSize;
 		
 		int count=boardDao.getBoardCount();
-//		logger.info("count:"+count);
 		
 		// Tip / Review Board 각각의 게시물 수 구하기
 //		int tipCount=boardDao.getTipBoardCount();
@@ -85,8 +78,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		// reply count 추가
 		for(int i=0;i<boardListSize;i++){
-//			logger.info("boardList:"+boardList.get(i));
-//			logger.info("boardNum:"+boardList.get(i).getBoardNum());
 			int boardNum=boardList.get(i).getBoardNum();
 			int boardReplyCount=boardReplyDao.getBoardReplyCount(boardNum);
 			
@@ -96,30 +87,6 @@ public class BoardServiceImpl implements BoardService {
 			logger.info("memberNickName:"+boardList.get(i).getMemberNickName());
 		}
 		
-		
-//		
-//		String allEncode="";
-//		String tipEncode="";
-//		String reviewEncode="";
-//		
-//		ObjectMapper obj = new ObjectMapper();
-//		try {
-//			allEncode=URLEncoder.encode(obj.writeValueAsString(boardList), "UTF-8");
-//			tipEncode=URLEncoder.encode(obj.writeValueAsString(tipBoardList), "UTF-8");
-//			reviewEncode=URLEncoder.encode(obj.writeValueAsString(reviewBoardList), "UTF-8");
-//		} catch (JsonGenerationException e) {
-//			e.printStackTrace();
-//		} catch (JsonMappingException e) {
-//			e.printStackTrace();
-//		} catch (UnsupportedEncodingException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}	
-//		
-//		mav.addObject("allEncode", allEncode);
-//		mav.addObject("tipEncode", tipEncode);
-//		mav.addObject("reviewEncode", reviewEncode);
 		mav.addObject("boardList", boardList);
 //		mav.addObject("tipBoardList", tipBoardList);
 //		mav.addObject("reviewBoardList", reviewBoardList);

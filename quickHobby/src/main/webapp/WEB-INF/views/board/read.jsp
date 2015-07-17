@@ -92,16 +92,18 @@
 		      </span>
 		    </div>
 		    <br/>
+		    
+		    <!-- 세션값 받아와서 스크립트로 보내기 -->
+			<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
 			
 			<div class="replyDiv-wrap" >
 			<c:forEach var="reply" items="${board.boardReplyList}">
 				<div class="replyDiv" data-replynum="${reply.boardReplyNum}">
 					<span class="reply_member">${reply.memberNickName}</span>
 					<span class="reply_content">${reply.boardReplyContent}</span>
-					<span class="reply_date"><small><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd hh:mm:ss"/></small></span>
+					<span class="reply_date"><small><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/></small></span>
 					
-<!-- 					세션값 받아오기 -->
-					<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
+					
 					
 					<c:if test="${reply.boardReplyWriter==member.memberNum}">
 					<span class="reply_btns" >
