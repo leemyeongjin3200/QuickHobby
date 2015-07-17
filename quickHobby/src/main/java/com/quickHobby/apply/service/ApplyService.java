@@ -1,5 +1,7 @@
 package com.quickHobby.apply.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.servlet.ModelAndView;
 
 public interface ApplyService {
@@ -12,4 +14,5 @@ public interface ApplyService {
 	public void applyUpdateOk(ModelAndView mav);
 	public void applyOk(ModelAndView mav);
 	public void main(ModelAndView mav);
+	public void incrementRecommend(ModelAndView mav);
 }

@@ -110,12 +110,12 @@
                      <img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
                  </div>
                  <div class="post-meta">
-                	<span><i class="glyphicon glyphicon-user"></i> ${joins} Joins</span>&nbsp;&nbsp;
-                	<span><i class="glyphicon glyphicon-heart"></i> ${recommends} Likes</span>&nbsp;&nbsp;
-                	<span><i class="glyphicon glyphicon-book"></i> ${applyDto.apply_readcount} Reads</span>
-                	<span>여기 좋아요 했는지(1 보다 크면 함) : ${memberRecommend}</span>
+                	<i class="glyphicon glyphicon-user"></i><span> ${joins} Joins</span>&nbsp;&nbsp;
+                	<i class="glyphicon glyphicon-heart"></i><span id="likes"> ${recommends} Likes</span>&nbsp;&nbsp;
+                	<i class="glyphicon glyphicon-book"></i><span> ${applyDto.apply_readcount} Reads</span>
                 	<span>그룹 몇개 가입했는지 : ${memberGroups}</span>
                 	<span>여기에 이미 가입했는지(1 보다 크면 함) : ${isJoin}</span>
+                	<img src="${root}/icon/heart.png" style="cursor:pointer" id="recommendBtn">
               	</div>
             </div>
         </div>
@@ -200,6 +200,31 @@
 			var fileName="${host.memberFileName}";
 			var url="${root}/pds/" + fileName + ".jpg";
 		}
+		
+		$("#recommendBtn").click(function(){
+//			if("${memberRecommend}" == 0){
+				sendData="board_num=${applyDto.apply_num}&recommend_type=A";
+				
+				$.ajax({
+					url:"${root}/apply/incrementRecommend.do",
+					type:"post",
+					data:sendData,
+					contentType:"application/x-www-form-urlencoded;charset=utf-8",
+					dataType:"text",
+					success:function(data){
+						$("#likes").html(" ${recommends + 1} Likes");
+					},
+					error:function(xhr, status, error){
+						// xhr:XHRHttpRequest, status 4 20, error
+						var arr=new Array();
+						arr.push("xhr : " + xhr);
+						arr.push("status : " + status);
+						arr.push("error : " + error);
+						alert(arr);
+					}
+				});
+//			}
+		});
 	});
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>

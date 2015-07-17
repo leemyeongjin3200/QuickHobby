@@ -174,4 +174,16 @@ public class ApplyController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="apply/incrementRecommend.do", method=RequestMethod.POST)
+	public ModelAndView incrementRecommend(HttpServletRequest request){
+		logger.info("incerementRecommend======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.incrementRecommend(mav);
+		
+		return mav;
+	}
 }

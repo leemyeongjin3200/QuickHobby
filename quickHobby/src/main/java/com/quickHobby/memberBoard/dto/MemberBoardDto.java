@@ -13,11 +13,8 @@ public class MemberBoardDto {
 	private String board_filepath;
 	private String board_filesize;
 	private int board_visible;
-	
 	private int board_readcount;
-
 	private String board_date;
-	
 	
 	public String getBoard_date() {
 		return board_date;

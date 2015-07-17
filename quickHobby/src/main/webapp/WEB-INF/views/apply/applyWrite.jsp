@@ -29,7 +29,7 @@
 		
 		<form name="applyCreateForm" class="form-horizontal" action="${root}/apply/applyWriteOk.do"  method="post" onsubmit="return checkForm(this)" enctype="multipart/form-data">	
 			<div class="col-md-6">
-				<input type="hidden" name="apply_host" value="${session.member.memberNum}"/>
+				<input type="hidden" name="apply_host" value="1"/>
 				
 				<div id="category" class="form-group">
 					<label for=""><span class="glyphicon glyphicon-list-alt"></span> Category  /  Indoor & Outdoor</label>
