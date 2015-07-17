@@ -72,13 +72,20 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map=mav.getModelMap();
 		MultipartHttpServletRequest request=(MultipartHttpServletRequest) map.get("request");
 		ApplyDto applyDto=(ApplyDto) map.get("applyDto");
-		int cost=Integer.parseInt(request.getParameter("groupCost"));
+		
+		String groupCost=request.getParameter("groupCost");
+		
+		if(groupCost.equals(null)||groupCost.equals("")){
+			applyDto.setApply_cost(0);
+		}else{
+			int cost=Integer.parseInt(request.getParameter("groupCost"));
+			applyDto.setApply_cost(cost);
+		}
 		
 		applyDto.setApply_createdate(new Date());
 		applyDto.setApply_modifydate(applyDto.getApply_createdate());
 		applyDto.setApply_recommend(0);
 		applyDto.setApply_readcount(0);
-		applyDto.setApply_cost(cost);
 		
 		Date closeDate=null;
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
