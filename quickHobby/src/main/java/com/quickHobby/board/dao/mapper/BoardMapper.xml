@@ -16,24 +16,45 @@
 		<result property="boardReadCount" column="BOARD_READCOUNT"/>
 		
 		<result property="boardSection" column="BOARD_SECTION"/>
+		<result property="memberNickName" column="MEMBER_NICKNAME"/>
 	</resultMap>
 	
 	<select id="boardCount" resultType="int">
 			select count(*) from board where BOARD_VISIBLE=1
 	</select>
 	
-	<select id="boardList" resultMap="boardDto">
-<!-- 	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto"> -->
-<!-- 			<![CDATA[select * from -->
-<!--  			(select rownum rnum, a.* from  -->
-<!-- 			(select * from board where BOARD_VISIBLE=1  -->
-<!-- 			order by BOARD_CREATEDATE desc)a)  -->
-<!--  			where rnum>=#{startRow} and rnum <= #{endRow}]]>  -->
- 			<![CDATA[select * from
- 			(select rownum rnum, a.* from 
-			(select * from board where BOARD_VISIBLE=1 
-			order by BOARD_CREATEDATE desc)a)]]>
+<!-- 	<select id="getTipBoardCount" resultType="int"> -->
+<!-- 			select count(*) from board where BOARD_VISIBLE=1 and BOARD_SECTION='t' -->
+<!-- 	</select> -->
+	
+<!-- 	<select id="getReviewBoardCount" resultType="int"> -->
+<!-- 			select count(*) from board where BOARD_VISIBLE=1 and BOARD_SECTION='r' -->
+<!-- 	</select> -->
+	
+	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
+			<![CDATA[select * from
+  			(select rownum rnum, a.* from  
+ 			(select  b.*, m.member_nickname as member_nickname from board b 
+ 			inner join member m on m.member_num = b.board_writer where BOARD_VISIBLE=1  
+ 			order by BOARD_CREATEDATE desc)a)  
+  			where rnum>=#{startRow} and rnum <= #{endRow}]]>  
 	</select>
+	
+<!-- 	<select id="getTipBoardList" parameterType="java.util.Map" resultMap="boardDto"> -->
+<!-- 		<![CDATA[select * from -->
+<!--   			(select rownum rnum, a.* from   -->
+<!--  			(select * from board where BOARD_VISIBLE=1 and BOARD_SECTION='t'   -->
+<!--  			order by BOARD_CREATEDATE desc)a)   -->
+<!--   			where rnum>=#{startRow} and rnum <= #{endRow}]]> -->
+<!--   	</select>   -->
+  	
+<!--   	<select id="getReviewBoardList" parameterType="java.util.Map" resultMap="boardDto"> -->
+<!-- 		<![CDATA[select * from -->
+<!--   			(select rownum rnum, a.* from   -->
+<!--  			(select * from board where BOARD_VISIBLE=1 and BOARD_SECTION='r'   -->
+<!--  			order by BOARD_CREATEDATE desc)a)   -->
+<!--   			where rnum>=#{startRow} and rnum <= #{endRow}]]> -->
+<!--   	</select>   -->
 	
 	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
 		<![CDATA[insert into board(BOARD_NUM, BOARD_WRITER, BOARD_SUBJECT, 

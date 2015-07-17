@@ -88,4 +88,22 @@
 			SELECT * FROM MEMBER WHERE (SELECT APPLY_HOST FROM APPLY WHERE APPLY_NUM=#{apply_num})=MEMBER_NUM
 		]]>
 	</select>
+	
+	<select id="memberRecommend" resultType="int" parameterType="java.util.HashMap">
+		<![CDATA[
+			SELECT COUNT(*) FROM RECOMMEND WHERE RECOMMEND_BOARDNUM=#{apply_num} AND RECOMMEND_TYPE='A' AND RECOMMEND_MEMBERNUM=#{memberNum}
+		]]>
+	</select>
+	
+	<select id="memberGroups" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM JOIN WHERE JOIN_MEMBERNUM=#{memberNum}
+		]]>
+	</select>
+	
+	<select id="isJoinGroup" resultType="int" parameterType="java.util.HashMap">
+		<![CDATA[
+			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}) AND JOIN_MEMBERNUM=#{memberNum}
+		]]>
+	</select>
 </mapper>

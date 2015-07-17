@@ -13,11 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.message.dto.MessageDto;
 import com.quickHobby.message.service.MessageService;
 
-/*
- * @name        : MessageController
- * @date        : 2015. 6. 25.
- * @author      : ���α�
- * @description : ���� ���� ������ ��û�� service Ŭ������ ����.
+/**
+* @name : MessageController
+* @date : 2015. 6. 25.
+* @author : 서인구
+* @description : message Controller
  */
 @Controller
 public class MessageController {

@@ -27,6 +27,8 @@ public class BoardDto {
 	
 	private int boardReplyCount;
 	
+	private String memberNickName;
+	
 	public int getBoardNum() {
 		return boardNum;
 	}
@@ -116,5 +118,11 @@ public class BoardDto {
 	}
 	public void setBoardReplyCount(int boardReplyCount) {
 		this.boardReplyCount = boardReplyCount;
+	}
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 }
