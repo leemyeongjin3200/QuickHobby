@@ -27,9 +27,9 @@
 	
 	<!-- Tab1 설정// -->
 	  <ul class="nav nav-tabs">
-	    <li class="active"><a href="#menu1">전체</a></li>
-	    <li><a href="#menu2">수신</a></li>
-	    <li><a href="#menu3">발신</a></li>
+	    <li class="active"><a href="#menu1">All</a></li>
+	    <li><a href="#menu2">Receive</a></li>
+	    <li><a href="#menu3">Send</a></li>
 	  </ul>
 
 	  <div class="tab-content">
@@ -44,47 +44,52 @@
 						</li>
 						<!-- messageList foreach로 불러오기 -->
 						<c:forEach var="messageList" items="${messageList}">
-							<li>
-								<!-- message 선택하기 -->
-								<c:if test="${member.memberNum==messageList.message_sender}">
-									<span class="from label label-info" style="text-align:left; font-size:14px"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> Send</span>
-								</c:if>
-								<c:if test="${member.memberNum==messageList.message_receiver}">
-									<span class="from label label-info" style="text-align:left; font-size:14px"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> Reception</span>
-								</c:if>	
-								<!-- message 선택하기 -->
-								<span class="title">
-									<a href="#" style="font-size:14px; padding-left:30px" onclick="readMessage('${messageList.message_num}', '${member.memberNum}', '${messageList.message_receiver}')">${messageList.message_content} </a>
-									<c:if test="${messageList.message_read=='no' && member.memberNum==messageList.message_receiver}">
-										<span class="label label-default">new </span>&nbsp;
+							<!-- 수신, 발신 메세지 세션 member에게만 보이기 -->
+							<c:if test="${member.memberNum==messageList.message_receiver||member.memberNum==messageList.message_sender}">
+							
+								<li>
+									<!-- message 선택하기 -->
+									<c:if test="${member.memberNum==messageList.message_sender}">
+										<span class="from label label-info" style="text-align:left; font-size:14px"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> Send</span>
 									</c:if>
-									<c:if test="${messageList.message_read=='no' && member.memberNum==messageList.message_sender}">
-										<span class="label label-default">상대방 확인X</span>&nbsp;
-									</c:if>
-								</span>
-									<span class="date" style="text-align:center;"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
-									<div class="${messageList.message_num}" style="display:none"><br/>
-										<span class="from"></span>
-										<span class="title">
-											<c:if test="${member.memberNum==messageList.message_receiver}">
-												<span class=""><b> From: ${messageList.message_senderNick}</b></span><br/>
-												<div align="center">
-													<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_sender}', '${messageList.message_senderNick}')">답장</a></span>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">삭제</a></span>
-												</div>
-											</c:if>
-											<c:if test="${member.memberNum==messageList.message_sender}">
-												<span class=""><b> To: ${messageList.message_receiverNick}</b></span><br/>
-												<div align="center">
-													<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_receiver}', '${messageList.message_receiverNick}')">답장</a></span>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">삭제</a></span>
-												</div>
-											</c:if>
-										</span>
-									</div>
-							</li>
+									<c:if test="${member.memberNum==messageList.message_receiver}">
+										<span class="from label label-info" style="text-align:left; font-size:14px"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> Receive</span>
+									</c:if>	
+									<!-- message 선택하기 -->
+									<span class="title">
+										<a href="#" style="font-size:14px; padding-left:30px" onclick="readMessage('${messageList.message_num}', '${member.memberNum}', '${messageList.message_receiver}')">${messageList.message_content} </a>
+										<c:if test="${messageList.message_read=='no' && member.memberNum==messageList.message_receiver}">
+											<span class="label label-default">new </span>&nbsp;
+										</c:if>
+										<c:if test="${messageList.message_read=='no' && member.memberNum==messageList.message_sender}">
+											<span class="label label-default">Unread</span>&nbsp;
+										</c:if>
+									</span>
+										<span class="date" style="text-align:center;"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
+										<div class="${messageList.message_num}" style="display:none"><br/>
+											<span class="from"></span>
+											<span class="title">
+												<c:if test="${member.memberNum==messageList.message_receiver}">
+													<span class=""><b> From: ${messageList.message_senderNick}</b></span><br/>
+													<div align="center">
+														<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
+														
+														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_sender}', '${messageList.message_senderNick}')">Send</a></span>
+														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">Delete</a></span>
+													</div>
+												</c:if>
+												<c:if test="${member.memberNum==messageList.message_sender}">
+													<span class=""><b> To: ${messageList.message_receiverNick}</b></span><br/>
+													<div align="center">
+														<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
+														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_receiver}', '${messageList.message_receiverNick}')">Send</a></span>
+														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">Delete</a></span>
+													</div>
+												</c:if>
+											</span>
+										</div>
+								</li>
+							</c:if>
 						</c:forEach>
 						<!-- messageList foreach로 불러오기 -->
 					</ul>	
@@ -194,8 +199,8 @@
 												</c:if>
 												<div align="center">
 													<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_sender}', '${messageList.message_senderNick}')">답장</a></span>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">삭제</a></span>
+													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_sender}', '${messageList.message_senderNick}')">Send</a></span>
+													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">Delete</a></span>
 												</div>
 											</span>
 										</div>
@@ -297,7 +302,7 @@
 										<!-- message 선택하기 -->
 										<span class="from label label-info" style="text-align:left; font-size:14px"><input type="checkbox" name="checkedMsg" value="${messageList.message_num}"> ${messageList.message_receiverNick}</span>
 										<!-- message 선택하기 -->
-										<span class="title"><a href="#" style="font-size:14px; padding-left:30px" onclick="readMessage('${messageList.message_num}')"> ${messageList.message_content} </a><c:if test="${messageList.message_read=='no'}"><span class="label label-default">상대방 확인X</span></c:if></span>
+										<span class="title"><a href="#" style="font-size:14px; padding-left:30px" onclick="readMessage('${messageList.message_num}')"> ${messageList.message_content} </a><c:if test="${messageList.message_read=='no'}"><span class="label label-default">Unread</span></c:if></span>
 										<span class="date" style="text-align:center;"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
 										<div class="${messageList.message_num}" style="display:none"><br/>
 											<span class="from"></span>
@@ -310,8 +315,8 @@
 												</c:if>
 												<div align="center">
 													<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_receiver}', '${messageList.message_receiverNick}')">답장</a></span>
-													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">삭제</a></span>
+													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_receiver}', '${messageList.message_receiverNick}')">Send</a></span>
+													<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">Delete</a></span>
 												</div>
 											</span>
 										</div>
