@@ -139,7 +139,7 @@ public class ApplyServiceImpl implements ApplyService {
 		}else{
 			check=applyDao.insert(applyDto);
 			if(check!=0){
-				groupDao.createGroupFile(applyDto);
+				groupDao.createGroup(applyDto);
 				int groupNum=groupDao.getGroupNumber();
 				int applyHost=applyDto.getApply_host();
 				HashMap<String, Integer> hMap=new HashMap<String, Integer>();

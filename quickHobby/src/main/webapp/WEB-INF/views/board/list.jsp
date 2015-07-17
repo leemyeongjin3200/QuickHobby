@@ -92,6 +92,11 @@
 									
 								</div><!-- .gTableRow 끝-->
 							</div> <!-- .gTable 끝  -->
+							<div class="col-lg-1 btns" style="float:right">
+								<div class="clearfix" style="margin-top: 20px; text-align:right">
+									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">글쓰기</a>
+								</div>
+							</div>
 					</div><!-- .row-fluid 끝 -->
                    </div><!-- #list1 끝 -->
 
@@ -198,6 +203,7 @@
  </div><!-- .container 끝 -->
 </body>
 <%-- <jsp:include page="replyCheckModal.jsp"></jsp:include> --%>
+<jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>

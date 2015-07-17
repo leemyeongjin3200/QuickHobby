@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.board.dao.BoardDao;
@@ -109,17 +110,7 @@ public class BoardServiceImpl implements BoardService {
 	public void boardWriteForm(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		
-		int boardNum=0;
-		
-		if(request.getParameter("boardNum")!=null){
-			boardNum=Integer.parseInt(request.getParameter("boardNum"));
-		}
-		
-		logger.info("boardNum:"+boardNum);
-		
-		mav.addObject("boardNum", boardNum);
-		
+
 		mav.setViewName("board/writeForm");
 	}
 
@@ -132,11 +123,17 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardWrite(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
-		BoardDto BoardDto=(BoardDto)map.get("BoardDto");
+		MultipartHttpServletRequest req=(MultipartHttpServletRequest)map.get("request");
+		BoardDto boardDto=(BoardDto)map.get("BoardDto");
 		
-		BoardDto.setBoardReadCount(0);
+		int boardWriter=Integer.parseInt(req.getParameter("boardWriter"));
+		boardDto.setBoardWriter(boardWriter);
+		boardDto.setBoardReadCount(0);
+		boardDto.setBoardRecommand(0);
+		boardDto.setBoardVisible(1);
 		
-		int check=boardDao.boardWrite(BoardDto);
+		System.out.println(boardDto.getBoardWriter());
+		int check=boardDao.boardWrite(boardDto);
 		logger.info("check:"+check);
 		
 		mav.addObject("check", check);
