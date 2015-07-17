@@ -87,6 +87,23 @@ $(document).ready(function(){
 	)
 });
 
+function toReadPage(groupBoardNum){
+	var pageNumber=Number($(".active").text());
+	console.log(groupBoardNum);
+	console.log(pageNumber);
+	
+	var root=getContextPath();
+	var callUrl=root+"/groupBoard/read.do?groupBoardNum="+groupBoardNum+"&pageNumber="+pageNumber;
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			$(location).attr("href", callUrl);
+		}
+	});
+}
+
 //Reply 팝업창
 $(document).ready(function(){
     $(".myInGroupReply").click(function(){
@@ -233,4 +250,16 @@ function moveLeft(boardSize, pageBlock, pageCount){
 	if(endPage < pageCount){
 		$(".right").css("display", "initial");
 	}
+}
+
+//root값 받아오는 함수
+function getContextPath(){
+    var offset=location.href.indexOf(location.host)+location.host.length;
+    var ctxPath=location.href.substring(offset,location.href.indexOf('/',offset+1));
+    return ctxPath;
+}
+
+//시간값 자리수 맞춰주는 함수
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
 }
