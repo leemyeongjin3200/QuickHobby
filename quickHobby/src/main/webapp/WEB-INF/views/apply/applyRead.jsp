@@ -191,7 +191,7 @@
 		</div>
 		
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
+  <div class="modal fade" id="reportModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
@@ -202,18 +202,15 @@
         </div>
         <div class="modal-body" style="padding:40px 50px;">
           <form role="form">
+          	<input type="hidden" name="report_sender" value="">
+          	<input type="hidden" name="report_receiver" value="">
+          	<input type="hidden" name="report_boardnum" value="">
+          	<input type="hidden" name="report_boardtype" value="">
             <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <label for="usrname"><span class="glyphicon glyphicon-pencil"></span> Content</label>
               <input type="text" class="form-control" id="usrname" placeholder="Enter email">
             </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password">
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button type="submit" class="btn btn-success btn-block">Report</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -274,7 +271,7 @@
 	
 	function reportfun(){
 		$("#reportBtn").click(function(){
-			$("#myModal").modal();
+			$("#reportModal").modal();
 		});
 	}
 	
