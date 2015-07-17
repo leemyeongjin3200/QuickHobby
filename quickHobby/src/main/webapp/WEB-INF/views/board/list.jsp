@@ -122,7 +122,7 @@
 							            	<c:if test="${board.boardSection=='t'}">[Tip]</c:if>
 							            	<c:if test="${board.boardSection=='r'}">[Review]</c:if>
 							            	<!-- tip/review 구분하기 -->
-							            <a href="#">${board.boardSubject}</a></h4>
+							            <a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a></h4>
 							            <p>${board.boardContent}</p>
 							            <a href="#" >read more <i>&raquo;</i></a>
 							          </div>

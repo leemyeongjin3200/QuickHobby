@@ -67,7 +67,7 @@ function deleteMessage(messageNum){
 
 // 체크한 message들 한번에 delete 컨트롤러로 보내기
 $(document).ready(function(){
-	$("#messageDel").click(function(e){
+	$(".text-right:first-child").click(function(e){
 		var checkedMsg="";
 		$("input:checkbox:checked").each(function(){
 			checkedMsg += $(this).val() + ","; 
@@ -117,6 +117,13 @@ $(document).ready(function(){
 			}
 		});
 	});
+});
+
+$(document).ready(function(){
+    $("#closeMsg").click(function(){
+    	$("#messageModal").modal("toggle");
+		// location.reload();
+    });
 });
 
 // root값 받아오는 함수
