@@ -190,54 +190,8 @@
         	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
 		
-  <!-- Modal -->
-  <div class="modal fade" id="reportModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> Report</h4>
-        </div>
-        <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
-          	<input type="hidden" name="report_sender" value="">
-          	<input type="hidden" name="report_receiver" value="">
-          	<input type="hidden" name="report_boardnum" value="">
-          	<input type="hidden" name="report_boardtype" value="">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-pencil"></span> Content</label>
-              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
-            </div>
-              <button type="submit" class="btn btn-success btn-block">Report</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-        </div>
-      </div>
-      
-    </div>
-  </div> 
+
 </body>
-<script type="text/javascript">
-	function checkJoin(root, apply_num){
-		if("${memberGroups}" > 8){
-			alert("8개 이상의 그룹을 가입할 수 없습니다.");
-			return false;
-		}
-		
-		if("${isJoin}" > 0){
-			alert("이미 가입한 그룹입니다.");
-			return false;
-		}
-		
-		var url=root + "/apply/applyOk.do?apply_num=" + apply_num;
-		location.href=url;
-	}
-	
-</script>
 <script type="text/javascript">
 	var recommends=${recommends};
 	var reports=${reports};
@@ -272,6 +226,38 @@
 	function reportfun(){
 		$("#reportBtn").click(function(){
 			$("#reportModal").modal();
+		});
+	}
+	
+	function reportForm(form){
+		var report_sender=form.report_sender.value;
+		var report_receiver=form.report_receiver.value;
+		var report_content=form.report_content.value;
+		var report_boardnum=form.report_boardnum.value;
+		var report_boardtype=form.report_boardtype.value;
+		
+		sendData="report_sender=" + report_sender + "&report_receiver=" + report_receiver + "&report_content=" + report_content + "&report_boardnum=" + report_boardnum + "&report_boardtype=" + report_boardtype;
+//		alert(sendData);
+		
+		$.ajax({
+			url:"${root}/apply/report.do",
+			type:"post",
+			data:sendData,
+			contentType:"application/x-www-form-urlencoded;charset=utf-8",
+			dataType:"text",
+			success:function(data){
+				location.href="${root}/apply/applyRead.do?apply_num=${applyDto.apply_num}";
+				alert("신고가 접수되었습니다.");
+				$("#reportModal").modal("toggle");
+			},
+			error:function(xhr, status, error){
+				// xhr:XHRHttpRequest, status 4 20, error
+				var arr=new Array();
+				arr.push("xhr : " + xhr);
+				arr.push("status : " + status);
+				arr.push("error : " + error);
+				alert(arr);
+			}
 		});
 	}
 	
@@ -329,5 +315,23 @@
 		});
 	}
 </script>
+<script type="text/javascript">
+	function checkJoin(root, apply_num){
+		if("${memberGroups}" > 8){
+			alert("8개 이상의 그룹을 가입할 수 없습니다.");
+			return false;
+		}
+		
+		if("${isJoin}" > 0){
+			alert("이미 가입한 그룹입니다.");
+			return false;
+		}
+		
+		var url=root + "/apply/applyOk.do?apply_num=" + apply_num;
+		location.href=url;
+	}
+	
+</script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+<jsp:include page="report.jsp"></jsp:include>
 </html>

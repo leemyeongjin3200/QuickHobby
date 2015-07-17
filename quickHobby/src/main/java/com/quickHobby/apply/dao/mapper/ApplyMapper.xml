@@ -129,4 +129,10 @@
 			SELECT COUNT(*) FROM REPORT WHERE REPORT_BOARDNUM=#{apply_num} AND REPORT_BOARDTYPE='A'
 		]]>
 	</select>
+	
+	<insert id="insertReport" parameterType="com.quickHobby.report.dto.ReportDto">
+		<![CDATA[
+			INSERT INTO REPORT VALUES(REPORT_NUM_SEQ.NEXTVAL, #{report_sender}, #{report_receiver}, #{report_content}, #{report_boardnum}, #{report_boardtype})
+		]]>
+	</insert>
 </mapper>
