@@ -110,13 +110,14 @@
                      <img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
                  </div>
                  <div class="post-meta">
-                 	<div class="col-lg-6" style="text-align:left">
-	                	<i class="glyphicon glyphicon-user"></i><span> ${joins} Joins</span>&nbsp;&nbsp;
-	                	<i class="glyphicon glyphicon-heart"></i> <span id="likes"></span> Likes&nbsp;&nbsp;
-	                	<i class="glyphicon glyphicon-book"></i><span> ${applyDto.apply_readcount} Reads</span>
+                 	<div class="col-lg-6" style="text-align:left; margin-top:10px;">
+	                	<i class="glyphicon glyphicon-heart"></i> <span id="likes"></span> Likes&nbsp;&nbsp;&nbsp;
+	                	<i class="glyphicon glyphicon-remove-sign"></i> <span id="reports"></span> Reports&nbsp;&nbsp;&nbsp;
+	                	<i class="glyphicon glyphicon-book"></i><span> ${applyDto.apply_readcount} Reads</span>&nbsp;&nbsp;&nbsp;
+	                	<i class="glyphicon glyphicon-user"></i><span> ${joins} Joins</span>
                 	</div>
                 	
-                	<div class="col-lg-6 likes" style="text-align:right">
+                	<div class="col-lg-6 likes" style="text-align:right; margin-top:10px;">
 	                	
 	                </div>
               	</div>
@@ -188,6 +189,40 @@
         <div class="col-lg-12">
         	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
+		
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span> Report</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+              <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+              <input type="text" class="form-control" id="psw" placeholder="Enter password">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
 </body>
 <script type="text/javascript">
 	function checkJoin(root, apply_num){
@@ -207,7 +242,8 @@
 	
 </script>
 <script type="text/javascript">
-	var recommends=${memberRecommend};
+	var recommends=${recommends};
+	var reports=${reports};
 	
 	$(document).ready(function(){
 		if("${weather.wf}" != ""){
@@ -224,14 +260,24 @@
 		}
 		
 		$("#likes").html(recommends);
-		
+		$("#reports").html(reports);
+
+		$(".likes").append('<img onclick="reportfun()" src="${root}/icon/report.png" style="cursor:pointer; width:25px; height:25px;" id="reportBtn">&nbsp;&nbsp;&nbsp;&nbsp;');
 		if("${memberRecommend}" > 0){
-			$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:30px; height:30px;" id="recommendBtn">');
+			$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 		}
 		if("${memberRecommend}" == 0){
-			$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:30px; height:30px;" id="recommendBtn">');
+			$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 		}
+		
 	});
+	
+	function reportfun(){
+		$("#reportBtn").click(function(){
+			$("#myModal").modal();
+		});
+	}
+	
 	function nonclickfun(){
 		sendData="board_num=${applyDto.apply_num}&recommend_type=A";
 		
@@ -244,7 +290,7 @@
 			success:function(data){
 				alert("이 게시물을 좋아합니다.")
 				$("#recommendBtn").remove();
-				$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:30px; height:30px;" id="recommendBtn">');
+				$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 				recommends++;
 				$("#likes").html(recommends);
 			},
@@ -271,7 +317,7 @@
 			success:function(data){
 				alert("좋아요를 취소합니다.")
 				$("#recommendBtn").remove();
-				$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:30px; height:30px;" id="recommendBtn">');
+				$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 				recommends--;
 				$("#likes").html(recommends);
 			},

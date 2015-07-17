@@ -73,7 +73,7 @@
 	
 	<select id="getJoins" resultType="int" parameterType="int">
 		<![CDATA[
-			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=#{applyNum}
+			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{applyNum})
 		]]>
 	</select>
 	
@@ -130,4 +130,10 @@
 			UPDATE APPLY SET APPLY_RECOMMEND=APPLY_RECOMMEND-1 WHERE APPLY_NUM=#{board_num}
 		]]>
 	</update>
+	
+	<select id="getReports" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM REPORT WHERE REPORT_BOARDNUM=#{apply_num} AND REPORT_BOARDTYPE='A'
+		]]>
+	</select>
 </mapper>

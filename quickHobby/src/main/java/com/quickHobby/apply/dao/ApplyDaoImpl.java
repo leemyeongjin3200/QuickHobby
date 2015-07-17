@@ -143,4 +143,8 @@ public class ApplyDaoImpl implements ApplyDao {
 	public int decrementRecommend(int board_num){
 		return sqlSession.update("decrementRecommend", board_num);
 	}
+	
+	public int getReports(int apply_num){
+		return sqlSession.selectOne("getReports", apply_num);
+	}
 }

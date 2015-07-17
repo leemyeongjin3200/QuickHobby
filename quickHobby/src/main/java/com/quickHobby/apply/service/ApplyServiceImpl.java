@@ -185,6 +185,9 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		int isJoin=applyDao.isJoinGroup(memberMap);
 		
+		int reports=applyDao.getReports(apply_num);
+		
+		mav.addObject("reports", reports);
 		mav.addObject("isJoin", isJoin);
 		mav.addObject("memberGroups", memberGroups);
 		mav.addObject("memberRecommend", memberRecommend);
