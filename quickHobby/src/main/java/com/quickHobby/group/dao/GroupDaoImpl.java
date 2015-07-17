@@ -47,4 +47,16 @@ public class GroupDaoImpl implements GroupDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("getGroupDto", groupNumber);
 	}
+
+	@Override
+	public int getGroupNumber() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("group.dao.mapper.getGroupNumber");
+	}
+
+	@Override
+	public int hostJoin(HashMap<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("group.dao.mapper.hostJoin", map);
+	}
 }
