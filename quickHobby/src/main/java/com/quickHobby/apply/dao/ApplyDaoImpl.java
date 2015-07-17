@@ -133,6 +133,14 @@ public class ApplyDaoImpl implements ApplyDao {
 	}
 	
 	public int incrementRecommend(int board_num){
-		return sqlSession.selectOne("incrementRecommend", board_num);
+		return sqlSession.update("incrementRecommend", board_num);
+	}
+	
+	public int removeRecommend(HashMap<String, Object> hMap){
+		return sqlSession.delete("removeRecommend", hMap);
+	}
+	
+	public int decrementRecommend(int board_num){
+		return sqlSession.update("decrementRecommend", board_num);
 	}
 }

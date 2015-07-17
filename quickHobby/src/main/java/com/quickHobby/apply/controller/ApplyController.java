@@ -184,6 +184,18 @@ public class ApplyController {
 		
 		applyService.incrementRecommend(mav);
 		
-		return mav;
+		return null;
+	}
+	
+	@RequestMapping(value="apply/decrementRecommend.do", method=RequestMethod.POST)
+	public ModelAndView decrementRecommend(HttpServletRequest request){
+		logger.info("decerementRecommend======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.decrementRecommend(mav);
+		
+		return null;
 	}
 }

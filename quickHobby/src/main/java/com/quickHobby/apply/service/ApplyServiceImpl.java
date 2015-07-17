@@ -351,8 +351,34 @@ public class ApplyServiceImpl implements ApplyService {
 		int secondCheck=0;
 		System.out.println("firstCheck : " + firstCheck);
 		
-		if(firstCheck > 1 && recommend_type.equals("A")){
+		if(firstCheck > 0 && recommend_type.equals("A")){
 			secondCheck=applyDao.incrementRecommend(board_num);
+		}
+		System.out.println("secondCheck : " + secondCheck);
+	}
+	
+	public void decrementRecommend(ModelAndView mav){
+		logger.info("decrementRecommend service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+
+		MemberDto member=(MemberDto) request.getSession().getAttribute("member");
+		int board_num=Integer.parseInt(request.getParameter("board_num"));
+		System.out.println(board_num);
+		String recommend_type=request.getParameter("recommend_type");
+//		System.out.println(recommend_type);
+		
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("board_num", board_num);
+		hMap.put("memberNum", member.getMemberNum());
+		hMap.put("recommend_type", recommend_type);
+		
+		int firstCheck=applyDao.removeRecommend(hMap);
+		int secondCheck=0;
+		System.out.println("firstCheck : " + firstCheck);
+		
+		if(firstCheck > 0 && recommend_type.equals("A")){
+			secondCheck=applyDao.decrementRecommend(board_num);
 		}
 		System.out.println("secondCheck : " + secondCheck);
 	}
