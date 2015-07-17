@@ -6,18 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<<<<<<< HEAD
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-=======
-<meta name="viewport" content="width=device-width, initial-scale=1">
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="root1" value="${pageContext.request.requestURI }"/>
-<<<<<<< HEAD
-
-=======
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <title>HYERAN</title>
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
