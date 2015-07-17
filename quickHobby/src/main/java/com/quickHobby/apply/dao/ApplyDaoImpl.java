@@ -127,4 +127,20 @@ public class ApplyDaoImpl implements ApplyDao {
 	public int isJoinGroup(HashMap<String, Integer> memberMap){
 		return sqlSession.selectOne("isJoinGroup", memberMap);
 	}
+	
+	public int addRecommend(HashMap<String, Object> hMap){
+		return sqlSession.insert("addRecommend", hMap);
+	}
+	
+	public int incrementRecommend(int board_num){
+		return sqlSession.update("incrementRecommend", board_num);
+	}
+	
+	public int removeRecommend(HashMap<String, Object> hMap){
+		return sqlSession.delete("removeRecommend", hMap);
+	}
+	
+	public int decrementRecommend(int board_num){
+		return sqlSession.update("decrementRecommend", board_num);
+	}
 }

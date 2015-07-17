@@ -106,4 +106,28 @@
 			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}) AND JOIN_MEMBERNUM=#{memberNum}
 		]]>
 	</select>
+	
+	<insert id="addRecommend" parameterType="java.util.HashMap">
+		<![CDATA[
+			INSERT INTO RECOMMEND VALUES(#{memberNum}, #{board_num}, #{recommend_type})
+		]]>
+	</insert>
+	
+	<update id="incrementRecommend" parameterType="int">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_RECOMMEND=APPLY_RECOMMEND+1 WHERE APPLY_NUM=#{board_num}
+		]]>
+	</update>
+	
+	<delete id="removeRecommend" parameterType="java.util.HashMap">
+		<![CDATA[
+			DELETE RECOMMEND WHERE RECOMMEND_MEMBERNUM=#{memberNum} AND RECOMMEND_BOARDNUM=#{board_num} AND RECOMMEND_TYPE=#{recommend_type}
+		]]>
+	</delete>
+	
+	<update id="decrementRecommend" parameterType="int">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_RECOMMEND=APPLY_RECOMMEND-1 WHERE APPLY_NUM=#{board_num}
+		]]>
+	</update>
 </mapper>

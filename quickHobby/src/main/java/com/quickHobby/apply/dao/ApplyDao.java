@@ -21,4 +21,8 @@ public interface ApplyDao {
 	public int memberRecommend(HashMap<String, Integer> memberMap);
 	public int memberGroups(int memberNum);
 	public int isJoinGroup(HashMap<String, Integer> memberMap);
+	public int addRecommend(HashMap<String, Object> hMap);
+	public int incrementRecommend(int board_num);
+	public int removeRecommend(HashMap<String, Object> hMap);
+	public int decrementRecommend(int board_num);
 }

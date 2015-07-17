@@ -86,7 +86,7 @@
 
 	<select id="skyList" parameterType="int" resultMap="boardDto">
 		<![CDATA[
-			SELECT * FROM BOARD WHERE BOARD_WRITER=#{memberNum} ORDER BY BOARD_CREATEDATE DESC 
+			SELECT ROWNUM AS RNUM, A.* FROM (SELECT * FROM BOARD WHERE BOARD_WRITER=#{memberNum} ORDER BY BOARD_CREATEDATE DESC) A 
 		]]>
 	</select>
 	
