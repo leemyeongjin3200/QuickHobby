@@ -1,6 +1,6 @@
 package com.quickHobby.groupBoard.service;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -53,15 +53,15 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-		int groupBoardGroupNum=0;
+		int groupNum=0;
 		
-		if(request.getParameter("groupBoardGroupNum")!=null){
-			groupBoardGroupNum=Integer.parseInt(request.getParameter("groupBoardGroupNum"));
+		if(request.getParameter("groupNum")!=null){
+			groupNum=Integer.parseInt(request.getParameter("groupNum"));
 		}
 		
-		logger.info("groupBoardGroupNum:"+groupBoardGroupNum);
+		logger.info("groupNum:"+groupNum);
 		
-		mav.addObject("groupBoardGroupNum", groupBoardGroupNum);
+		mav.addObject("groupNum", groupNum);
 		
 		mav.setViewName("groupBoard/writeForm");
 	}
@@ -104,7 +104,9 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		logger.info("groupBoardNum:"+groupBoardNum);
 		logger.info("pageNumber:"+pageNumber);
 		
+//		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
+		groupBoardDto.setGroupReplyList(groupReplyDao.getGroupReplyList(groupBoardNum));
 		logger.info("groupBoardDto:"+groupBoardDto);
 		
 		mav.addObject("groupBoard", groupBoardDto);
@@ -182,27 +184,31 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	
 	public void groupPage(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest req=(HttpServletRequest)map.get("request");
+		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-		int groupNum=Integer.parseInt(req.getParameter("groupNum"));
+		int groupNum=Integer.parseInt(request.getParameter("groupNum"));
 		logger.info("groupNum:" + groupNum);
 		
 		GroupDto group=groupDao.getGroupDto(groupNum);
 		
 		int count=groupBoardDao.getGroupBoardCount(groupNum);
 		
-		List<GroupBoardDto> groupBoard=null;
+		List<GroupBoardDto> groupBoardList=new ArrayList<GroupBoardDto>();
 		
 		if(count>0){
-			groupBoard=groupBoardDao.getGroupBoardList(groupNum);
-			for(int i=0; i<groupBoard.size(); i++){
-				int boardNum=groupBoard.get(i).getGroupBoardNum();
+			groupBoardList=groupBoardDao.getGroupBoardList(groupNum);
+			for(int i=0; i<groupBoardList.size(); i++){
+				int boardNum=groupBoardList.get(i).getGroupBoardNum();
 				int replyCount=groupReplyDao.getReplyCount(boardNum);
-				groupBoard.get(i).setGroupBoardReplyCount(replyCount);
+				groupBoardList.get(i).setGroupReplyCount(replyCount);
 			}
 		}
 		
 		List<MemberDto> member=memberDao.getMemberList(groupNum);
+		
+		logger.info("date:"+group.getGroupDate());
+		logger.info("location:"+group.getGroupLocation());
+		
 		
 		Weather w=new Weather(group.getGroupLocation(), group.getGroupDate());
 		WeatherDTO weather=w.getWeather();
@@ -217,7 +223,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	
 		mav.addObject("memberList", member);
 		mav.addObject("group", group);
-		mav.addObject("groupBoardList", groupBoard);
+		mav.addObject("groupBoardList", groupBoardList);
 		mav.addObject("weather", weather);
 		mav.addObject("count", count);
 		mav.setViewName("groupBoard/groupPage");

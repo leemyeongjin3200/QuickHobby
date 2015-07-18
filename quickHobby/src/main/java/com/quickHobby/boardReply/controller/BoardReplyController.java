@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.boardReply.dto.BoardReplyDto;
 import com.quickHobby.boardReply.service.BoardReplyService;
@@ -145,16 +144,5 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	@RequestMapping(value = "/boardReply/boardReplyList.do", method = RequestMethod.POST)
-	public ModelAndView boardReplyList(HttpServletRequest request){
-		logger.info("boardReplyList---------------------------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		boardReplyService.boardReplyList(mav);
-		
-		return mav;
 	}
 }

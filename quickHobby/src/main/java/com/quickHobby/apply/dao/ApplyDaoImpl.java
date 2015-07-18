@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.member.dto.MemberDto;
+import com.quickHobby.report.dto.ReportDto;
 
 /*
  * @name        : ApplyDaoImpl
@@ -28,8 +29,7 @@ public class ApplyDaoImpl implements ApplyDao {
 	 * @description : 사진이 포함된 신청게시물을 DB에 저장
 	 */
 	public int insertFile(ApplyDto applyDto){
-		sqlSession.insert("applyInsertFile", applyDto);
-		return sqlSession.insert("hostJoin", applyDto);
+		return sqlSession.insert("applyInsertFile", applyDto);
 	}
 	
 	/*
@@ -39,8 +39,7 @@ public class ApplyDaoImpl implements ApplyDao {
 	 * @description : 사진이 포함되지 않은 신청 게시물을 DB에 저장
 	 */
 	public int insert(ApplyDto applyDto){
-		sqlSession.insert("applyInsert", applyDto);
-		return sqlSession.insert("hostJoin", applyDto);
+		return sqlSession.insert("applyInsert", applyDto);
 	}
 	
 	/*
@@ -126,5 +125,29 @@ public class ApplyDaoImpl implements ApplyDao {
 	
 	public int isJoinGroup(HashMap<String, Integer> memberMap){
 		return sqlSession.selectOne("isJoinGroup", memberMap);
+	}
+	
+	public int addRecommend(HashMap<String, Object> hMap){
+		return sqlSession.insert("addRecommend", hMap);
+	}
+	
+	public int incrementRecommend(int board_num){
+		return sqlSession.update("incrementRecommend", board_num);
+	}
+	
+	public int removeRecommend(HashMap<String, Object> hMap){
+		return sqlSession.delete("removeRecommend", hMap);
+	}
+	
+	public int decrementRecommend(int board_num){
+		return sqlSession.update("decrementRecommend", board_num);
+	}
+	
+	public int getReports(int apply_num){
+		return sqlSession.selectOne("getReports", apply_num);
+	}
+	
+	public int insertReport(ReportDto reportDto){
+		return sqlSession.insert("insertReport", reportDto);
 	}
 }

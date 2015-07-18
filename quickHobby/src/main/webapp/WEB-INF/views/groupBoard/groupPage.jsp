@@ -98,7 +98,7 @@
 	</section><!--===========group board Information 끝=================-->
 
 	<!--=========== group board List Table================-->
-	<section id="gTableList">
+	<section id="gTableList point">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12">
@@ -135,20 +135,25 @@
 							<!-- list table contents -->
 							<c:if test="${count > 0}">
 								<c:forEach var="groupBoard" items="${groupBoardList}">
-									<div class="gTableRow">
-											<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
-											<div class="gTableCell nickname">
-												<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.groupBoardWriterNick}</a>
-											</div>
-											<div class="gTableCell titlec">
-												<a href="#">${groupBoard.groupBoardSubject} &nbsp;</a> <i
-													class="glyphicon glyphicon-comment"></i><a href="#"><b
-													class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b></a>
-											</div>
-											<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
-											<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
+									<div class="gTableRow row${groupBoard.groupRowNum}" style="display:none">
+										<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
+										<div class="gTableCell nickname">
+											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.groupBoardWriterNick}</a>
+										</div>
+										<div class="gTableCell titlec">
+											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i
+												class="glyphicon glyphicon-comment"></i><a href="#"><b
+												class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b></a>
+										</div>
+										<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
+										<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
 									</div>
 								</c:forEach>
+								<script>
+									for(var i=1; i<=10; i++){
+										$(".row" + i).css("display", "table-row");
+									}
+								</script>
 								<!-- .gTableRow 끝-->
 							</c:if>
 						</div><!-- .gTable 끝  -->
@@ -158,39 +163,39 @@
 	
 			<!--list table page넘기기 -->
 			<c:set var="boardSize" value="${10}"/>
+			<c:set var="pageBlock" value="${5}"/>
+			<fmt:parseNumber var="temp" value="${count/boardSize}" integerOnly="true"/>
+			<c:set var="pageCount" value="${temp+(count%boardSize==0 ? 0 : 1)}"/>
 			<c:set var="currentPage" value="${1}"/>
+			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+			<c:set var="startPage" value="${(rs*pageBlock)+1}"/>
+			<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+			<c:if test="${endPage > pageCount}">
+				<c:set var="endPage" value="${pageCount}"/>
+			</c:if>
 			<div class="row text-center">
 				<div class="col-lg-1"></div>
 				<div class="col-lg-10">
-					<c:set var="pageBlock" value="${5}"/>
-					<c:set var="pageCount" value="${(count/boardSize) + (count%boardSize==0?0:1)}"/>
-					<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
-					<c:set var="startPage" value="${(rs*pageBlock)+1}"/>
-					<c:set var="endPage" value="${startPage+pageBlock-1}"/>
-					<c:if test="${endPage > pageCount}">
-						<c:set var="endPage" value="${pageCount}"/>
-					</c:if>
+					
 					<ul class="pagination">
-						<c:if test="${startPage > pageBlock}">
-							<li><a href="">&laquo;</a></li>
-						</c:if>
+						<li class="left" style="display:none"><a href="#point" onclick="moveLeft('${boardSize}', '${pageBlock}', '${pageCount}')">&laquo;</a></li>
 						<c:forEach var="i" begin="${startPage}" end="${endPage}">
 							<c:if test="${i==startPage}">
-								<li class="${i} active"><a href="" onclick="movePage('${root}', '${i}', '${group.groupNum}')">${i}</a></li>
+								<li class="page${i} active"><a href="#point" onclick="movePage('${i}', '${boardSize}', '${pageBlock}')">${i}</a></li>
 							</c:if>
 							<c:if test="${i!=1}">
-								<li class="${i}"><a href="" onclick="movePage('${root}', '${i}', '${group.groupNum}')">${i}</a></li>
+								<li class="page${i}"><a href="#point" onclick="movePage('${i}', '${boardSize}', '${pageBlock}')">${i}</a></li>
 							</c:if>
 						</c:forEach>
-						<c:if test="${endPage<pageCount}">
-							<li><a href="">&raquo;</a></li>
+						<c:if test="${endPage < pageCount}">
+							<li class="right"><a href="#point" onclick="moveRight('${boardSize}', '${pageBlock}', '${pageCount}')">&raquo;</a></li>
 						</c:if>
 					</ul>
 				</div><!-- .col-lg-10 끝 -->
 				<!-- 글쓰기 버튼 -->
 				<div class="col-lg-1 btns">
 					<div class="clearfix" style="margin-top: 20px">
-						<a href="#" class="btn btn-primary  btn-sm btn-block">글쓰기</a>
+						<a href="${root}/groupBoard/writeForm.do?groupNum=${group.groupNum}" class="btn btn-primary  btn-sm btn-block">글쓰기</a>
 					</div>
 				</div><!-- .col-lg-1 btns 끝 -->
 			</div> <!-- .row text-center 끝 -->

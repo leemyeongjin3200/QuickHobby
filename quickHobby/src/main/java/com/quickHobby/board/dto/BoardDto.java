@@ -7,8 +7,9 @@ import java.util.List;
 import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 public class BoardDto {
+	private int rnum;
 	private int boardNum;
-	private String boardWriter;
+	private int boardWriter;
 	private String boardSubject;
 	private String boardContent;
 	private Date boardCreateDate;
@@ -23,9 +24,18 @@ public class BoardDto {
 	
 	private String boardSection;
 	
+	
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
 	private List<BoardReplyDto> boardReplyList = new ArrayList<BoardReplyDto>();
 	
 	private int boardReplyCount;
+	
+	private String memberNickName;
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -33,10 +43,10 @@ public class BoardDto {
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;
 	}
-	public String getBoardWriter() {
+	public int getBoardWriter() {
 		return boardWriter;
 	}
-	public void setBoardWriter(String boardWriter) {
+	public void setBoardWriter(int boardWriter) {
 		this.boardWriter = boardWriter;
 	}
 	public String getBoardSubject() {
@@ -116,5 +126,11 @@ public class BoardDto {
 	}
 	public void setBoardReplyCount(int boardReplyCount) {
 		this.boardReplyCount = boardReplyCount;
+	}
+	public String getMemberNickName() {
+		return memberNickName;
+	}
+	public void setMemberNickName(String memberNickName) {
+		this.memberNickName = memberNickName;
 	}
 }

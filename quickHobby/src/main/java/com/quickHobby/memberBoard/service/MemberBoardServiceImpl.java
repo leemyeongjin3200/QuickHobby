@@ -38,6 +38,7 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
+		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
 
 		List<BoardDto> memberBoardList=null;
 		memberBoardList=memberBoardDao.getSumlist(member.getMemberNum());
@@ -45,6 +46,7 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		logger.info("memberBoardList:"+memberBoardList.size());
 		
 		mav.addObject("member", member);
+		mav.addObject("memberNum", memberNum);
 		mav.addObject("memberBoardList",memberBoardList);
 
 		mav.setViewName("memberBoard/list");		

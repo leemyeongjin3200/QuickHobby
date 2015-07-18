@@ -21,6 +21,7 @@ import com.quickHobby.apply.dao.ApplyDao;
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.group.dao.GroupDao;
 import com.quickHobby.member.dto.MemberDto;
+import com.quickHobby.report.dto.ReportDto;
 import com.quickHobby.weather.Weather;
 import com.quickHobby.weather.WeatherDTO;
 
@@ -72,13 +73,20 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map=mav.getModelMap();
 		MultipartHttpServletRequest request=(MultipartHttpServletRequest) map.get("request");
 		ApplyDto applyDto=(ApplyDto) map.get("applyDto");
-		int cost=Integer.parseInt(request.getParameter("groupCost"));
+		
+		String groupCost=request.getParameter("groupCost");
+		
+		if(groupCost.equals(null)||groupCost.equals("")){
+			applyDto.setApply_cost(0);
+		}else{
+			int cost=Integer.parseInt(request.getParameter("groupCost"));
+			applyDto.setApply_cost(cost);
+		}
 		
 		applyDto.setApply_createdate(new Date());
 		applyDto.setApply_modifydate(applyDto.getApply_createdate());
 		applyDto.setApply_recommend(0);
 		applyDto.setApply_readcount(0);
-		applyDto.setApply_cost(cost);
 		
 		Date closeDate=null;
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
@@ -120,10 +128,26 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		if(applyDto.getApply_filename() != null){
 			check=applyDao.insertFile(applyDto);
-			groupDao.createGroupFile(applyDto);
+			if(check!=0){
+				groupDao.createGroupFile(applyDto);
+				int groupNum=groupDao.getGroupNumber();
+				int applyHost=applyDto.getApply_host();
+				HashMap<String, Integer> hMap=new HashMap<String, Integer>();
+				hMap.put("groupNum", groupNum);
+				hMap.put("applyHost", applyHost);
+				groupDao.hostJoin(hMap);
+			}
 		}else{
 			check=applyDao.insert(applyDto);
-			groupDao.createGroup(applyDto);
+			if(check!=0){
+				groupDao.createGroup(applyDto);
+				int groupNum=groupDao.getGroupNumber();
+				int applyHost=applyDto.getApply_host();
+				HashMap<String, Integer> hMap=new HashMap<String, Integer>();
+				hMap.put("groupNum", groupNum);
+				hMap.put("applyHost", applyHost);
+				groupDao.hostJoin(hMap);
+			}
 		}
 		
 		logger.info("check : " + check);
@@ -185,6 +209,9 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		int isJoin=applyDao.isJoinGroup(memberMap);
 		
+		int reports=applyDao.getReports(apply_num);
+		
+		mav.addObject("reports", reports);
 		mav.addObject("isJoin", isJoin);
 		mav.addObject("memberGroups", memberGroups);
 		mav.addObject("memberRecommend", memberRecommend);
@@ -329,5 +356,85 @@ public class ApplyServiceImpl implements ApplyService {
 		
 		mav.addObject("applyDtoList", applyDtoList);
 		mav.setViewName("forward:main_hyeran.jsp");
+	}
+	
+	public void incrementRecommend(ModelAndView mav){
+		logger.info("incrementRecommend service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+
+		MemberDto member=(MemberDto) request.getSession().getAttribute("member");
+		int board_num=Integer.parseInt(request.getParameter("board_num"));
+//		System.out.println(board_num);
+		String recommend_type=request.getParameter("recommend_type");
+//		System.out.println(recommend_type);
+		
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("board_num", board_num);
+		hMap.put("memberNum", member.getMemberNum());
+		hMap.put("recommend_type", recommend_type);
+		
+		int firstCheck=applyDao.addRecommend(hMap);
+		int secondCheck=0;
+		System.out.println("firstCheck : " + firstCheck);
+		
+		if(firstCheck > 0 && recommend_type.equals("A")){
+			secondCheck=applyDao.incrementRecommend(board_num);
+		}
+		System.out.println("secondCheck : " + secondCheck);
+	}
+	
+	public void decrementRecommend(ModelAndView mav){
+		logger.info("decrementRecommend service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+
+		MemberDto member=(MemberDto) request.getSession().getAttribute("member");
+		int board_num=Integer.parseInt(request.getParameter("board_num"));
+		System.out.println(board_num);
+		String recommend_type=request.getParameter("recommend_type");
+//		System.out.println(recommend_type);
+		
+		HashMap<String, Object> hMap=new HashMap<String, Object>();
+		hMap.put("board_num", board_num);
+		hMap.put("memberNum", member.getMemberNum());
+		hMap.put("recommend_type", recommend_type);
+		
+		int firstCheck=applyDao.removeRecommend(hMap);
+		int secondCheck=0;
+//		System.out.println("firstCheck : " + firstCheck);
+		
+		if(firstCheck > 0 && recommend_type.equals("A")){
+			secondCheck=applyDao.decrementRecommend(board_num);
+		}
+//		System.out.println("secondCheck : " + secondCheck);
+	}
+	
+	public void report(ModelAndView mav){
+		logger.info("report service======");
+		Map<String, Object> map=mav.getModelMap();
+		HttpServletRequest request=(HttpServletRequest) map.get("request");
+		
+		int report_sender=Integer.parseInt(request.getParameter("report_sender"));
+		int report_receiver=Integer.parseInt(request.getParameter("report_receiver"));
+		String report_content=request.getParameter("report_content");
+		int report_boardnum=Integer.parseInt(request.getParameter("report_boardnum"));
+		String report_boardtype=request.getParameter("report_boardtype");
+		
+//		System.out.println(report_sender);
+//		System.out.println(report_receiver);
+//		System.out.println(report_content);
+//		System.out.println(report_boardnum);
+//		System.out.println(report_boardtype);
+		
+		ReportDto reportDto=new ReportDto();
+		reportDto.setReport_sender(report_sender);
+		reportDto.setReport_receiver(report_receiver);
+		reportDto.setReport_content(report_content);
+		reportDto.setReport_boardnum(report_boardnum);
+		reportDto.setReport_boardtype(report_boardtype);
+		
+		int check=applyDao.insertReport(reportDto);
+//		System.out.println("check : " + check);
 	}
 }

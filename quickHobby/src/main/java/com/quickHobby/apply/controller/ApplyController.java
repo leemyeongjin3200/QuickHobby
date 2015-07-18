@@ -174,4 +174,40 @@ public class ApplyController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="apply/incrementRecommend.do", method=RequestMethod.POST)
+	public ModelAndView incrementRecommend(HttpServletRequest request){
+		logger.info("incerementRecommend======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.incrementRecommend(mav);
+		
+		return null;
+	}
+	
+	@RequestMapping(value="apply/decrementRecommend.do", method=RequestMethod.POST)
+	public ModelAndView decrementRecommend(HttpServletRequest request){
+		logger.info("decerementRecommend======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.decrementRecommend(mav);
+		
+		return null;
+	}
+	
+	@RequestMapping(value="apply/report.do", method=RequestMethod.POST)
+	public ModelAndView report(HttpServletRequest request){
+		logger.info("report======");
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		
+		applyService.report(mav);
+		
+		return null;
+	}
 }

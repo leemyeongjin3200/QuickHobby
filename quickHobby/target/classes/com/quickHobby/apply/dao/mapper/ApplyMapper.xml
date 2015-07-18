@@ -28,13 +28,6 @@
 		]]>
 	</insert>
 	
-	<insert id="hostJoin" parameterType="com.quickHobby.apply.dto.ApplyDto">
-		<![CDATA[
-			insert into join values(apply_num_seq.currval, #{apply_host})
-		]]>
-		
-	</insert>
-	
 	<select id="getListByCreateDate" resultType="com.quickHobby.apply.dto.ApplyDto">
 		<![CDATA[
 			SELECT * FROM APPLY WHERE APPLY_CLOSEDATE >= SYSDATE ORDER BY APPLY_CREATEDATE DESC
@@ -73,7 +66,7 @@
 	
 	<select id="getJoins" resultType="int" parameterType="int">
 		<![CDATA[
-			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=#{applyNum}
+			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{applyNum})
 		]]>
 	</select>
 	
@@ -106,4 +99,40 @@
 			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}) AND JOIN_MEMBERNUM=#{memberNum}
 		]]>
 	</select>
+	
+	<insert id="addRecommend" parameterType="java.util.HashMap">
+		<![CDATA[
+			INSERT INTO RECOMMEND VALUES(#{memberNum}, #{board_num}, #{recommend_type})
+		]]>
+	</insert>
+	
+	<update id="incrementRecommend" parameterType="int">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_RECOMMEND=APPLY_RECOMMEND+1 WHERE APPLY_NUM=#{board_num}
+		]]>
+	</update>
+	
+	<delete id="removeRecommend" parameterType="java.util.HashMap">
+		<![CDATA[
+			DELETE RECOMMEND WHERE RECOMMEND_MEMBERNUM=#{memberNum} AND RECOMMEND_BOARDNUM=#{board_num} AND RECOMMEND_TYPE=#{recommend_type}
+		]]>
+	</delete>
+	
+	<update id="decrementRecommend" parameterType="int">
+		<![CDATA[
+			UPDATE APPLY SET APPLY_RECOMMEND=APPLY_RECOMMEND-1 WHERE APPLY_NUM=#{board_num}
+		]]>
+	</update>
+	
+	<select id="getReports" resultType="int" parameterType="int">
+		<![CDATA[
+			SELECT COUNT(*) FROM REPORT WHERE REPORT_BOARDNUM=#{apply_num} AND REPORT_BOARDTYPE='A'
+		]]>
+	</select>
+	
+	<insert id="insertReport" parameterType="com.quickHobby.report.dto.ReportDto">
+		<![CDATA[
+			INSERT INTO REPORT VALUES(REPORT_NUM_SEQ.NEXTVAL, #{report_sender}, #{report_receiver}, #{report_content}, #{report_boardnum}, #{report_boardtype})
+		]]>
+	</insert>
 </mapper>

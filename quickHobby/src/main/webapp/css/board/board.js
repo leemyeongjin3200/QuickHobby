@@ -16,70 +16,6 @@ function movePage(pageNumber){
 	});
 }
 
-function moveTipPage(tipPageNumber){
-//	var temp=$("#tipgTableRow1").clone().html();
-//	temp += $("#tipgTableRow2").clone().html();
-//	console.log(temp);
-//	console.log(tipPageNumber);
-//	$("#tipList").children().remove();
-	var root=getContextPath();
-	var callUrl=root+"/board/list.do?pageNumber="+tipPageNumber;
-	$.ajax({
-		url:callUrl,
-		type:"get",
-		dataType:"html",
-		success:function(data){
-			
-			//$('.tabMenu2').trigger('click');
-			$(function(){
-				$(location).attr("href", callUrl);
-				var cnt=0;
-				cnt=1;
-				if(cnt==1){
-					$('.tabMenu2').trigger('click');
-					alert("클릭 이벤트 발생");
-					
-				}
-			});
-			
-			
-//			$(".tabMenu2").bind("trigger", function(){
-//	            alert("클릭 이벤트 발생");
-//	            $('.tabMenu2').click();
-//	        });
-			
-//			console.log(data);
-			//console.log(JSON.parse(decodeURIComponent(data)));
-//			$("#tipList").html(temp);
-			
-			
-			//$(location).attr("href", callUrl+"#menu2");
-			
-			
-//			$(function(){
-//				$(location).attr("href", callUrl);
-//				$('.tabMenu2').trigger('click');
-//				$('.tabMenu2').attr('class', 'active');
-//			});
-			
-//			$("#menu2").addClass("active");
-//			$(document).ready(function(){
-//				$("#menu2").trigger("click");
-//			});
-		}
-	});
-}
-
-//$(function() {
-////  $("#tabs").tabs();
-//	  $(".nav-tabs a").tabs({
-//	   cookie: {
-//	    // store cookie for a day, without, it would be a session cookie
-//	    expires: 1
-//	   }
-//	  });
-//});
-
 //tab넘기기
 $(document).ready(function(){
 	 $(".nav-tabs a").click(function(e){
@@ -87,7 +23,7 @@ $(document).ready(function(){
 	 });
 });
 
-//Reply 팝업창
+//Reply Modal
 function replyCheck(boardNum, currentPage){
 	console.log(boardNum);
 	var root=getContextPath();
@@ -134,6 +70,7 @@ function replyCheck(boardNum, currentPage){
 	});
 
 }
+// reply list div 그리기
 
 function makeReplyDiv2(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
@@ -164,33 +101,6 @@ function makeReplyDiv2(reply) {
 	return text;	
 }
 
-// 해당 글로 이동
-function toContent(boardNum){
-	console.log(boardNum);
-	var root=getContextPath();
-	var callUrl=root+"/board/read.do?="+boardNum;
-	console.log(callUrl);
-	$.ajax({
-		url:callUrl,
-		type:"get",
-		dataType:"html",
-		success:function(data){
-			console.log(data);
-			console.log(JSON.parse(decodeURIComponent(data)));
-			var replyList = JSON.parse(decodeURIComponent(data));
-			var length=replyList.length;
-			// console.log("length:"+length);
-			var result='';
-			var strong='';
-			for(var i=0;i<length;i++){
-				result += makeReplyDiv(replyList[i]);
-			}
-			console.log(result);
-			$(".reply-box").html(result);
-		}
-	});
-}
-
 // 목록으로 되돌아가기
 $(document).ready(function(){
     $("a[name='toList']").click(function(){
@@ -209,4 +119,12 @@ function getContextPath(){
 //시간값 자리수 맞춰주는 함수
 function padStr(i) {
     return (i < 10) ? "0" + i : "" + i;
+}
+
+function writeBoard(memberNum){
+	$("#writeBoardModal").modal();
+}
+
+function boardCheck(form){
+	
 }

@@ -52,7 +52,19 @@
 
 	<insert id="joinMember" parameterType="java.util.HashMap">
 		<![CDATA[
-			INSERT INTO JOIN VALUES((SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}), #{member_num}) 
+			INSERT INTO JOIN VALUES((SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{apply_num}), #{member_num}) 
  		]]>
+	</insert>
+	
+	<select id="getGroupNumber" resultType="int">
+		<![CDATA[
+			select group_num from ggroup where group_applyNum=(select max(apply_num) from apply)
+		]]>
+	</select>
+	
+	<insert id="hostJoin" parameterType="java.util.HashMap">
+		<![CDATA[
+			insert into join values(#{groupNum}, #{applyHost})
+		]]>
 	</insert>
 </mapper>

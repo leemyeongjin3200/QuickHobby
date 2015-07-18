@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.quickHobby.apply.dto.ApplyDto;
 import com.quickHobby.member.dto.MemberDto;
+import com.quickHobby.report.dto.ReportDto;
 
 public interface ApplyDao {
 	public int insertFile(ApplyDto applyDto);
@@ -21,4 +22,10 @@ public interface ApplyDao {
 	public int memberRecommend(HashMap<String, Integer> memberMap);
 	public int memberGroups(int memberNum);
 	public int isJoinGroup(HashMap<String, Integer> memberMap);
+	public int addRecommend(HashMap<String, Object> hMap);
+	public int incrementRecommend(int board_num);
+	public int removeRecommend(HashMap<String, Object> hMap);
+	public int decrementRecommend(int board_num);
+	public int getReports(int apply_num);
+	public int insertReport(ReportDto reportDto);
 }

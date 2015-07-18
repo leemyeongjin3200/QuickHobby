@@ -110,12 +110,16 @@
                      <img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
                  </div>
                  <div class="post-meta">
-                	<span><i class="glyphicon glyphicon-user"></i> ${joins} Joins</span>&nbsp;&nbsp;
-                	<span><i class="glyphicon glyphicon-heart"></i> ${recommends} Likes</span>&nbsp;&nbsp;
-                	<span><i class="glyphicon glyphicon-book"></i> ${applyDto.apply_readcount} Reads</span>
-                	<span>여기 좋아요 했는지(1 보다 크면 함) : ${memberRecommend}</span>
-                	<span>그룹 몇개 가입했는지 : ${memberGroups}</span>
-                	<span>여기에 이미 가입했는지(1 보다 크면 함) : ${isJoin}</span>
+                 	<div class="col-lg-6" style="text-align:left; margin-top:10px;">
+	                	<i class="glyphicon glyphicon-heart"></i> <span id="likes"></span> Likes&nbsp;&nbsp;&nbsp;
+	                	<i class="glyphicon glyphicon-remove-sign"></i> <span id="reports"></span> Reports&nbsp;&nbsp;&nbsp;
+	                	<i class="glyphicon glyphicon-book"></i><span> ${applyDto.apply_readcount} Reads</span>&nbsp;&nbsp;&nbsp;
+	                	<i class="glyphicon glyphicon-user"></i><span> ${joins} Joins</span>
+                	</div>
+                	
+                	<div class="col-lg-6 likes" style="text-align:right; margin-top:10px;">
+	                	
+	                </div>
               	</div>
             </div>
         </div>
@@ -183,10 +187,15 @@
         </div>
 
         <div class="col-lg-12">
-        	<p onclick="location.href='${root}/apply/applyOk.do?apply_num=${applyDto.apply_num}'"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
+        	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
+		
+
 </body>
 <script type="text/javascript">
+	var recommends=${recommends};
+	var reports=${reports};
+	
 	$(document).ready(function(){
 		if("${weather.wf}" != ""){
 		
@@ -200,7 +209,129 @@
 			var fileName="${host.memberFileName}";
 			var url="${root}/pds/" + fileName + ".jpg";
 		}
+		
+		$("#likes").html(recommends);
+		$("#reports").html(reports);
+
+		$(".likes").append('<img onclick="reportfun()" src="${root}/icon/report.png" style="cursor:pointer; width:25px; height:25px;" id="reportBtn">&nbsp;&nbsp;&nbsp;&nbsp;');
+		if("${memberRecommend}" > 0){
+			$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+		}
+		if("${memberRecommend}" == 0){
+			$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+		}
+		
 	});
+	
+	function reportfun(){
+		$("#reportBtn").click(function(){
+			$("#reportModal").modal();
+		});
+	}
+	
+	function reportForm(form){
+		var report_sender=form.report_sender.value;
+		var report_receiver=form.report_receiver.value;
+		var report_content=form.report_content.value;
+		var report_boardnum=form.report_boardnum.value;
+		var report_boardtype=form.report_boardtype.value;
+		
+		sendData="report_sender=" + report_sender + "&report_receiver=" + report_receiver + "&report_content=" + report_content + "&report_boardnum=" + report_boardnum + "&report_boardtype=" + report_boardtype;
+//		alert(sendData);
+		
+		$.ajax({
+			url:"${root}/apply/report.do",
+			type:"post",
+			data:sendData,
+			contentType:"application/x-www-form-urlencoded;charset=utf-8",
+			dataType:"text",
+			success:function(data){
+				location.href="${root}/apply/applyRead.do?apply_num=${applyDto.apply_num}";
+				alert("신고가 접수되었습니다.");
+				$("#reportModal").modal("toggle");
+			},
+			error:function(xhr, status, error){
+				// xhr:XHRHttpRequest, status 4 20, error
+				var arr=new Array();
+				arr.push("xhr : " + xhr);
+				arr.push("status : " + status);
+				arr.push("error : " + error);
+				alert(arr);
+			}
+		});
+	}
+	
+	function nonclickfun(){
+		sendData="board_num=${applyDto.apply_num}&recommend_type=A";
+		
+		$.ajax({
+			url:"${root}/apply/incrementRecommend.do",
+			type:"post",
+			data:sendData,
+			contentType:"application/x-www-form-urlencoded;charset=utf-8",
+			dataType:"text",
+			success:function(data){
+				alert("이 게시물을 좋아합니다.")
+				$("#recommendBtn").remove();
+				$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+				recommends++;
+				$("#likes").html(recommends);
+			},
+			error:function(xhr, status, error){
+				// xhr:XHRHttpRequest, status 4 20, error
+				var arr=new Array();
+				arr.push("xhr : " + xhr);
+				arr.push("status : " + status);
+				arr.push("error : " + error);
+				alert(arr);
+			}
+		});
+	}
+	
+	function clickfun(){
+		sendData="board_num=${applyDto.apply_num}&recommend_type=A";
+		
+		$.ajax({
+			url:"${root}/apply/decrementRecommend.do",
+			type:"post",
+			data:sendData,
+			contentType:"application/x-www-form-urlencoded;charset=utf-8",
+			dataType:"text",
+			success:function(data){
+				alert("좋아요를 취소합니다.")
+				$("#recommendBtn").remove();
+				$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+				recommends--;
+				$("#likes").html(recommends);
+			},
+			error:function(xhr, status, error){
+				// xhr:XHRHttpRequest, status 4 20, error
+				var arr=new Array();
+				arr.push("xhr : " + xhr);
+				arr.push("status : " + status);
+				arr.push("error : " + error);
+				alert(arr);
+			}
+		});
+	}
+</script>
+<script type="text/javascript">
+	function checkJoin(root, apply_num){
+		if("${memberGroups}" > 8){
+			alert("8개 이상의 그룹을 가입할 수 없습니다.");
+			return false;
+		}
+		
+		if("${isJoin}" > 0){
+			alert("이미 가입한 그룹입니다.");
+			return false;
+		}
+		
+		var url=root + "/apply/applyOk.do?apply_num=" + apply_num;
+		location.href=url;
+	}
+	
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+<jsp:include page="report.jsp"></jsp:include>
 </html>

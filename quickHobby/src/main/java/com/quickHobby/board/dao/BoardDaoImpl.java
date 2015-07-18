@@ -27,15 +27,15 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectOne("board.dao.mapper.boardCount");
 	}
 	
-	@Override
-	public int getTipBoardCount() {
-		return sqlSession.selectOne("board.dao.mapper.getTipBoardCount");
-	}
-
-	@Override
-	public int getReviewBoardCount() {
-		return sqlSession.selectOne("board.dao.mapper.getReviewBoardCount");
-	}
+//	@Override
+//	public int getTipBoardCount() {
+//		return sqlSession.selectOne("board.dao.mapper.getTipBoardCount");
+//	}
+//
+//	@Override
+//	public int getReviewBoardCount() {
+//		return sqlSession.selectOne("board.dao.mapper.getReviewBoardCount");
+//	}
 
 	@Override
 	public List<BoardDto> getBoardList(int startRow, int endRow) {
@@ -45,21 +45,21 @@ public class BoardDaoImpl implements BoardDao {
 		return sqlSession.selectList("board.dao.mapper.boardList", map);
 	}
 	
-	@Override
-	public List<BoardDto> getTipBoardList(int startRow, int endRow) {
-		Map<String,Integer>map=new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		return sqlSession.selectList("board.dao.mapper.getTipBoardList", map);
-	}
-
-	@Override
-	public List<BoardDto> getReviewBoardList(int startRow, int endRow) {
-		Map<String,Integer>map=new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		return sqlSession.selectList("board.dao.mapper.getReviewBoardList", map);
-	}
+//	@Override
+//	public List<BoardDto> getTipBoardList(int startRow, int endRow) {
+//		Map<String,Integer>map=new HashMap<String, Integer>();
+//		map.put("startRow", startRow);
+//		map.put("endRow", endRow);
+//		return sqlSession.selectList("board.dao.mapper.getTipBoardList", map);
+//	}
+//
+//	@Override
+//	public List<BoardDto> getReviewBoardList(int startRow, int endRow) {
+//		Map<String,Integer>map=new HashMap<String, Integer>();
+//		map.put("startRow", startRow);
+//		map.put("endRow", endRow);
+//		return sqlSession.selectList("board.dao.mapper.getReviewBoardList", map);
+//	}
 	
 	@Override
 	public int boardWrite(BoardDto boardDto) {

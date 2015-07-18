@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -104,11 +105,45 @@
 			</div>
 		</div>
 	</div>
-
+	
+	
+		<div class="board-reply" data-num="${groupBoard.groupBoardNum}">
+		
+			<div class="input-group">
+		      <input type="text" name="writeReply" class="form-control" placeholder="Comment...">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default" name="replyBtn" type="button">Reply</button>
+		      </span>
+		    </div>
+		    <br/>
+		    
+		    <!-- 세션값 받아와서 스크립트로 보내기 -->
+			<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
+			
+			<div class="replyDiv-wrap" >
+			<c:forEach var="reply" items="${board.boardReplyList}">
+				<div class="replyDiv" data-replynum="${reply.boardReplyNum}">
+					<span class="reply_member">${reply.memberNickName}</span>
+					<span class="reply_content">${reply.boardReplyContent}</span>
+					<span class="reply_date"><small><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/></small></span>
+					
+					
+					
+					<c:if test="${reply.boardReplyWriter==member.memberNum}">
+					<span class="reply_btns" >
+						<a class="modifyBtn" style='cursor:pointer;'>수정</a>
+						&nbsp;/&nbsp;
+						<a class="deleteBtn" style='cursor:pointer;'>삭제</a>						
+					</span>
+					</c:if>
+				</div>
+			</c:forEach>
+			</div>
+		</div>
+</body>
 <jsp:include page="../template/loginModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>
-</body>
 </html>
