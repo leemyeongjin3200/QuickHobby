@@ -1,5 +1,6 @@
 package com.quickHobby.apply.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -113,5 +114,17 @@ public class ApplyDaoImpl implements ApplyDao {
 	
 	public MemberDto getHost(int apply_num){
 		return sqlSession.selectOne("getHost", apply_num);
+	}
+	
+	public int memberRecommend(HashMap<String, Integer> memberMap){
+		return sqlSession.selectOne("memberRecommend", memberMap);
+	}
+	
+	public int memberGroups(int memberNum){
+		return sqlSession.selectOne("memberGroups", memberNum);
+	}
+	
+	public int isJoinGroup(HashMap<String, Integer> memberMap){
+		return sqlSession.selectOne("isJoinGroup", memberMap);
 	}
 }

@@ -1,5 +1,8 @@
 package com.quickHobby.board.service;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +10,9 @@ import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,18 +54,30 @@ public class BoardServiceImpl implements BoardService {
 		String pageNumber=request.getParameter("pageNumber");
 		if(pageNumber==null)pageNumber="1";
 		
-		int boardSize=10;
+		int boardSize=9;
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
 		
 		int count=boardDao.getBoardCount();
-		logger.info("count:"+count);
+//		logger.info("count:"+count);
+		
+		// Tip / Review Board 각각의 게시물 수 구하기
+		int tipCount=boardDao.getTipBoardCount();
+		int reviewCount=boardDao.getReviewBoardCount();
+//		logger.info("tipCount:"+tipCount);
+//		logger.info("reviewCount:"+reviewCount);
 		
 		List<BoardDto> boardList=new ArrayList<BoardDto>();
+		List<BoardDto> tipBoardList=new ArrayList<BoardDto>();
+		List<BoardDto> reviewBoardList=new ArrayList<BoardDto>();
 		
 		if(count>0){
-			boardList=boardDao.getBoardList();
+			boardList=boardDao.getBoardList(startRow, endRow);
+			
+			// Tip / Review List를 따로 DB에서 가져온다.
+			tipBoardList=boardDao.getTipBoardList(startRow, endRow);
+			reviewBoardList=boardDao.getReviewBoardList(startRow, endRow);
 		}
 		
 		int boardListSize=boardList.size();
@@ -78,11 +96,35 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		logger.info("startRow:"+startRow);
-		
-		mav.addObject("startRow", startRow);
-		mav.addObject("endRow", endRow);
+//		
+//		String allEncode="";
+//		String tipEncode="";
+//		String reviewEncode="";
+//		
+//		ObjectMapper obj = new ObjectMapper();
+//		try {
+//			allEncode=URLEncoder.encode(obj.writeValueAsString(boardList), "UTF-8");
+//			tipEncode=URLEncoder.encode(obj.writeValueAsString(tipBoardList), "UTF-8");
+//			reviewEncode=URLEncoder.encode(obj.writeValueAsString(reviewBoardList), "UTF-8");
+//		} catch (JsonGenerationException e) {
+//			e.printStackTrace();
+//		} catch (JsonMappingException e) {
+//			e.printStackTrace();
+//		} catch (UnsupportedEncodingException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}	
+//		
+//		mav.addObject("allEncode", allEncode);
+//		mav.addObject("tipEncode", tipEncode);
+//		mav.addObject("reviewEncode", reviewEncode);
 		mav.addObject("boardList", boardList);
+		mav.addObject("tipBoardList", tipBoardList);
+		mav.addObject("reviewBoardList", reviewBoardList);
 		mav.addObject("count", count);
+		mav.addObject("tipCount", tipCount);
+		mav.addObject("reviewCount", reviewCount);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("board", boardDto);

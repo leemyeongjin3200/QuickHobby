@@ -1,6 +1,7 @@
 /**
  * 
  */
+// 페이지 이동
 function movePage(pageNumber){
 	console.log(pageNumber);
 	var root=getContextPath();
@@ -15,20 +16,76 @@ function movePage(pageNumber){
 	});
 }
 
+function moveTipPage(tipPageNumber){
+//	var temp=$("#tipgTableRow1").clone().html();
+//	temp += $("#tipgTableRow2").clone().html();
+//	console.log(temp);
+//	console.log(tipPageNumber);
+//	$("#tipList").children().remove();
+	var root=getContextPath();
+	var callUrl=root+"/board/list.do?pageNumber="+tipPageNumber;
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			
+			//$('.tabMenu2').trigger('click');
+			$(function(){
+				$(location).attr("href", callUrl);
+				var cnt=0;
+				cnt=1;
+				if(cnt==1){
+					$('.tabMenu2').trigger('click');
+					alert("클릭 이벤트 발생");
+					
+				}
+			});
+			
+			
+//			$(".tabMenu2").bind("trigger", function(){
+//	            alert("클릭 이벤트 발생");
+//	            $('.tabMenu2').click();
+//	        });
+			
+//			console.log(data);
+			//console.log(JSON.parse(decodeURIComponent(data)));
+//			$("#tipList").html(temp);
+			
+			
+			//$(location).attr("href", callUrl+"#menu2");
+			
+			
+//			$(function(){
+//				$(location).attr("href", callUrl);
+//				$('.tabMenu2').trigger('click');
+//				$('.tabMenu2').attr('class', 'active');
+//			});
+			
+//			$("#menu2").addClass("active");
+//			$(document).ready(function(){
+//				$("#menu2").trigger("click");
+//			});
+		}
+	});
+}
 
+//$(function() {
+////  $("#tabs").tabs();
+//	  $(".nav-tabs a").tabs({
+//	   cookie: {
+//	    // store cookie for a day, without, it would be a session cookie
+//	    expires: 1
+//	   }
+//	  });
+//});
 
 //tab넘기기
 $(document).ready(function(){
 	 $(".nav-tabs a").click(function(e){
-		 var menu2 = document.getElementById("menu2");
-		 menu2.addEventListener("click", menu2ClickHandler);
 	      $(this).tab('show');
 	 });
 });
-
-function menu2ClickHandler(){
-	alert("hahahahaha");
-}
 
 //Reply 팝업창
 function replyCheck(boardNum, currentPage){

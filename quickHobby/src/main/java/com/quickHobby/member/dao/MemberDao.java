@@ -15,4 +15,5 @@ public interface MemberDao {
 	public String checkEmail(String email);
 	public String findPassword(String email);
 	public List<MemberDto> getMemberList(int groupNum);
+	public int checkJoin(int memberNum);
 }

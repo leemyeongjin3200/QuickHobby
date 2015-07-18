@@ -112,4 +112,10 @@ public class MemberDaoImpl implements MemberDao {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.dao.mapper.getMemberList", groupNum);
 	}
+
+	@Override
+	public int checkJoin(int memberNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("member.dao.mapper.checkJoin", memberNum);
+	}
 }

@@ -1,7 +1,9 @@
 package com.quickHobby.memberBoard.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
+import com.quickHobby.board.dto.BoardDto;
 import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.memberBoard.dto.MemberBoardDto;
 
@@ -27,7 +29,9 @@ public interface MemberBoardDao {
     
     public MemberDto getNumm(String memberNickName);
     
-    public List<MemberBoardDto>getSumlist(int memberNum);
+    public List<BoardDto>getSumlist(int memberNum);
+    
+    public List<BoardDto>getNextList(HashMap<String, String> map);
     
     
 	//public MemberBoardDto selectOk(int member_num);

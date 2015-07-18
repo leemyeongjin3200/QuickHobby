@@ -134,21 +134,21 @@
 						
 							<!-- list table contents -->
 							<c:if test="${count > 0}">
-								<div class="gTableRow">
-									<c:forEach var="groupBoard" items="${groupBoardList}">
-										<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
-										<div class="gTableCell nickname">
-											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.groupBoardWriterNick}</a>
-										</div>
-										<div class="gTableCell titlec">
-											<a href="#">${groupBoard.groupBoardSubject} &nbsp;</a> <i
-												class="glyphicon glyphicon-comment"></i><a href="#"><b
-												class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b></a>
-										</div>
-										<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
-										<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
-									</c:forEach>
-								</div>
+								<c:forEach var="groupBoard" items="${groupBoardList}">
+									<div class="gTableRow">
+											<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
+											<div class="gTableCell nickname">
+												<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.groupBoardWriterNick}</a>
+											</div>
+											<div class="gTableCell titlec">
+												<a href="#">${groupBoard.groupBoardSubject} &nbsp;</a> <i
+													class="glyphicon glyphicon-comment"></i><a href="#"><b
+													class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b></a>
+											</div>
+											<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
+											<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
+									</div>
+								</c:forEach>
 								<!-- .gTableRow 끝-->
 							</c:if>
 						</div><!-- .gTable 끝  -->

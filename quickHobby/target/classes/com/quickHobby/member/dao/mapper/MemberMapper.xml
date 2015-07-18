@@ -83,4 +83,10 @@
 			select a.* from member a, join b where a.member_num=b.join_membernum and b.join_groupnum=#{groupNum}
 		]]>	
 	</select>
+	
+	<delete id="checkJoin" parameterType="int">
+		<![CDATA[
+			delete (select * from (select group_num from ggroup where group_date < sysdate) a, join b where a.group_num=b.join_groupnum) where join_membernum=#{memberNum}
+		]]>
+	</delete>
 </mapper>

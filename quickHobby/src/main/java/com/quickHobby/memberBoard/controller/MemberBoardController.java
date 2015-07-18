@@ -39,8 +39,19 @@ public class MemberBoardController {
 		memberBoardService.boardWrite(mav);
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/load.do", method=RequestMethod.GET)
+	public ModelAndView load(HttpServletRequest request, HttpServletResponse response) throws Throwable{
+		logger.info("load======");
 		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("request", request);
+		mav.addObject("response", response);
 		
+		memberBoardService.load(mav);
+		
+		return mav;
 	}
 	
 
