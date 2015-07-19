@@ -30,7 +30,7 @@
                    <ul class="list-unstyled groupApply-list" style="text-align:left;">
 	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span>${member.memberNickName}</span></li>
 	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level : </b><span> ${member.memberLevel}</span></li>
-	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="${member.memberSNS}"> ${member.memberSNS}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="http://${member.memberSNS}"> ${member.memberSNS}</a></span></li>
                 </ul>
                 
                 <!-- 자신에게는 message를 보낼 수 없게 하기 -->

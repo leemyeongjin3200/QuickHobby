@@ -63,52 +63,63 @@ $(document).ready(function(){
 });
 </script>
 <body>
-<div class="container-fluid filterMenu" style="display: block;">
+	<div class="container-fluid filterMenu" style="display: block;">
 		<div class="collapse out" id="demo">
 			<div class="row filterStart">
 				<div class="col-md-12">
 					<div class="well filtering01">
-						<ul class="button-group filterAllBest filterGroup" data-filter-group="all">
-  							<li data-filter="*"><a href="#" class="button">All</a></li>
-  							<li data-filter=".best"><a href="#" class="button">BEST</a></li>
+						<ul class="button-group filterAllBest filterGroup"
+							data-filter-group="all">
+							<li data-filter="*"><a href="#" class="button">All</a></li>
+							<li data-filter=".best"><a href="#" class="button">BEST</a></li>
 						</ul>
+
 					</div>
 				</div>
 			</div>
-		
+
 			<div class="row">
 				<div class="col-md-4">
-					<div class="filtering02 well" style="height:80px">
+					<div class="filtering02 well" style="height: 80px">
 						<ul class="button-group filterGroup" data-filter-group="inOut">
-  							<li data-filter=".in"><a href="#" class="button">INDOOR</a></li>
-  							<li data-filter=".out"><a href="#" class="button">OUTDOOR</a></li>
+							<li data-filter=".in"><a href="#" class="button">INDOOR</a></li>
+							<li data-filter=".out"><a href="#" class="button">OUTDOOR</a></li>
 						</ul>
-						<ul class="button-group filterGroup" data-filter-group="applicationFee">
-  							<li data-filter=".fee"><a href="#" class="button">APPLICATION FEE</a></li>
-  							<li data-filter=".free"><a href="#" class="button">FREE</a></li>
+						<ul class="button-group filterGroup"
+							data-filter-group="applicationFee">
+							<li data-filter=".fee"><a href="#" class="button">APPLICATION
+									FEE</a></li>
+							<li data-filter=".free"><a href="#" class="button">FREE</a></li>
 						</ul>
-						
+
 					</div>
 				</div>
 				<div class="col-md-4">
-					<div class="filtering well" style="height:80px">
+					<div class="filtering well" style="height: 80px">
 						<ul class="date filterGroup" data-filter-group="date">
-							<input type="text" id="datepicker" size="12"> - <input type="text" id="datepicker2"  size="12">
-							<li data-filter=".date"><a href="#" class="button">날짜 선택 완료</a></li>
+							<input type="text" id="datepicker" size="12"> -
+							<input type="text" id="datepicker2" size="12">
+							<li data-filter=".date"><a href="#" class="button">날짜 선택
+									완료</a></li>
 						</ul>
 					</div>
 				</div>
-	
+
 				<div class="col-md-4">
-					<div class="filtering well" style="height:80px">
-					    <div class="category navbar-inverse">
-					      <ul class="nav navbar-nav filterGroup" data-filter-group="category">
-					        <li id="" data-filter=".eye"><a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></li>
-					        <li id="" data-filter=".hand"><a href="#"><span class="glyphicon glyphicon-hand-right"></span></a></li>
-					        <li id="" data-filter=".mouth"><a href="#"><span class="glyphicon glyphicon-cutlery"></span></a></li> 
-					        <li id="" data-filter=".legs"><a href="#"><span class="glyphicon glyphicon-user"></span></a></li> 
-					      </ul>
-					    </div>
+					<div class="filtering well" style="height: 80px">
+						<div class="category navbar-inverse">
+							<ul class="nav navbar-nav filterGroup"
+								data-filter-group="category">
+								<li id="" data-filter=".eye"><a href="#"><span
+										class="glyphicon glyphicon-eye-open"></span></a></li>
+								<li id="" data-filter=".hand"><a href="#"><span
+										class="glyphicon glyphicon-hand-right"></span></a></li>
+								<li id="" data-filter=".mouth"><a href="#"><span
+										class="glyphicon glyphicon-cutlery"></span></a></li>
+								<li id="" data-filter=".legs"><a href="#"><span
+										class="glyphicon glyphicon-user"></span></a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -119,8 +130,10 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
-		</div><!-- .filterMenu 끝 -->
-	</div><!-- #demo 끝 -->
+		</div>
+		<!-- .filterMenu 끝 -->
+	</div>
+	<!-- #demo 끝 -->
 		
 <div class="container-fluid">
 	<div class="open" data-toggle="collapse" data-target="#demo">

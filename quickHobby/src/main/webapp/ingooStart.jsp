@@ -17,7 +17,8 @@
 	<a href="${root}/message/messageReceiveList.do">수신함</a><br/><br/>
 	<a href="${root}/groupBoard/writeForm.do">그룹 게시물 작성</a>
 	<a href="${root}/groupBoard/list.do">그룹 게시판</a><br/><br/>
-	<a href="${root}/apply/writeForm.do">파일테스트</a>
+	<a href="${root}/apply/writeForm.do">파일테스트</a><br/><br/>
+	<a href="${root}/report/reportList.do">신고 목록</a>
 	
 </body>
 </html>
