@@ -143,7 +143,7 @@
 										<div class="gTableCell titlec">
 											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i
 												class="glyphicon glyphicon-comment"></i><a href="#">
-												<!--<b class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b>--></a>
+												<b class="myInGroupReply"> ${groupBoard.groupReplyCount}</b></a>
 										</div>
 										<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
 										<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>

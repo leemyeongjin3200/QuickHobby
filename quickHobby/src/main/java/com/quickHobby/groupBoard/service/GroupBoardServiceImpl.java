@@ -80,6 +80,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		Map<String, Object> map=mav.getModelMap();
 		MultipartHttpServletRequest req=(MultipartHttpServletRequest) map.get("request");
 		GroupBoardDto groupBoardDto=(GroupBoardDto)map.get("groupBoardDto");
+		int groupNum=groupBoardDto.getGroupBoardGroupNum();
 		
 		MultipartFile userFile=req.getFile("file");
 		String fileName=userFile.getOriginalFilename();
@@ -106,6 +107,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		logger.info("check:"+check);
 		
 		mav.addObject("check", check);
+		mav.addObject("groupNum", groupNum);
 		mav.setViewName("groupBoard/writeOk");
 		
 	}
