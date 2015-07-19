@@ -206,12 +206,9 @@
 				</div><!--/span-->
 			</div><!--/.row-fluid sortable-->
 		</div><!-- end: Content -->
-	
 	</div><!--/#content.span12-->
 
 		
-<div class="clearfix"></div>
-</div>
 
 
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
