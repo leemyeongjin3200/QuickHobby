@@ -172,9 +172,9 @@ $(document).ready(function(){
 				<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive" style="width:400px; height:250px;">
 				<div class="apply-box-caption">
 					<div class="apply-box-caption-content">
-						<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date"/> </p>
-						<p> TITLE : ${board.apply_subject} </p>
-						<p> SUBTITLE : ${board.apply_subtitle} </p>
+						<p> <fmt:formatDate value="${board.apply_closedate}" type="date"/> </p>
+						<p> ${board.apply_subject} </p>
+						<p> ${board.apply_subtitle} </p>
 					</div>
 				</div>
 			</a>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="report.dao.mapper">
+	<insert id="messageSend" parameterType="com.quickHobby.message.dto.MessageDto">
+		<![CDATA[
+			INSERT INTO MESSAGE VALUES(MESSAGE_NUM_SEQ.NEXTVAL, #{message_sender}, #{message_receiver}, #{message_content}, sysdate, 'no')
+		]]>
+	</insert>
+	
+	<select id="getMessageDto" parameterType="int" resultType="com.quickHobby.message.dto.MessageDto">
+		<![CDATA[
+			SELECT * FROM MESSAGE WHERE MESSAGE_NUM=#{message_num}
+		]]>
+	</select>
+	
+	<delete id="messageDelete" parameterType="int">
+		<![CDATA[
+			DELETE MESSAGE WHERE MESSAGE_NUM=#{message_num}
+		]]>
+	</delete>
+	
+	<select id="getReportCount" resultType="int">
+			select count(*) from report
+	</select>
+	
+	<select id="getReportList" parameterType="java.util.Map" resultType="com.quickHobby.report.dto.ReportDto">
+		<![CDATA[
+			select * from (select rownum rnum, a.* from report a) where rnum >= #{startRow} and rnum <= #{endRow} order by report_num desc
+		]]> 
+	</select>
+	
+	<select id="getNewMessage" parameterType="int" resultType="int">
+		<![CDATA[
+			select count(*) from message where message_receiver=#{memberNum} and message_read='no'
+		]]>
+	</select>
+	
+	<update id="readChange" parameterType="int">
+		<![CDATA[
+			update message set message_read='yes'
+			where message_num=#{message_num}
+		]]>
+	</update>
+</mapper>
