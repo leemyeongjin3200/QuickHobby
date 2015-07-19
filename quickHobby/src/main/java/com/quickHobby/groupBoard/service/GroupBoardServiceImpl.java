@@ -1,5 +1,6 @@
 package com.quickHobby.groupBoard.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.group.dao.GroupDao;
@@ -75,11 +78,31 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	@Override
 	public void groupBoardWrite(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
-		GroupBoardDto GroupBoardDto=(GroupBoardDto)map.get("GroupBoardDto");
+		MultipartHttpServletRequest req=(MultipartHttpServletRequest) map.get("request");
+		GroupBoardDto groupBoardDto=(GroupBoardDto)map.get("groupBoardDto");
 		
-		GroupBoardDto.setGroupBoardReadCount(0);
+		MultipartFile userFile=req.getFile("file");
+		String fileName=userFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=userFile.getSize();
 		
-		int check=groupBoardDao.groupBoardWrite(GroupBoardDto);
+		if(fileSize != 0){
+			try{
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				File file=new File(dir, timeName);
+				userFile.transferTo(file);
+				
+				groupBoardDto.setGroupBoardFileName(timeName);
+				groupBoardDto.setGroupBoardFilePath(file.getAbsolutePath());
+				groupBoardDto.setGroupBoardFileSize(fileSize);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		groupBoardDto.setGroupBoardReadCount(0);
+		
+		int check=groupBoardDao.groupBoardWrite(groupBoardDto);
 		logger.info("check:"+check);
 		
 		mav.addObject("check", check);

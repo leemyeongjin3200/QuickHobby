@@ -263,3 +263,7 @@ function getContextPath(){
 function padStr(i) {
     return (i < 10) ? "0" + i : "" + i;
 }
+
+function groupBoardWrite(){
+	$("#groupBoardModal").modal();
+}

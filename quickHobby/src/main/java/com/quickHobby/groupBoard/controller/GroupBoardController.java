@@ -58,12 +58,12 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @description : Group Board 글쓰기 정보 db에 저장
 	 */
 	@RequestMapping(value="/groupBoard/write.do", method=RequestMethod.POST)
-	public ModelAndView groupBoardWrite(MultipartHttpServletRequest request, GroupBoardDto GroupBoardDto){
+	public ModelAndView groupBoardWrite(MultipartHttpServletRequest request, GroupBoardDto groupBoardDto){
 		logger.info("groupBoardWrite-------------------------------");
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request",request);
-		mav.addObject("GroupBoardDto",GroupBoardDto);
+		mav.addObject("groupBoardDto", groupBoardDto);
 		groupBoardService.groupBoardWrite(mav);
 		
 		return mav;

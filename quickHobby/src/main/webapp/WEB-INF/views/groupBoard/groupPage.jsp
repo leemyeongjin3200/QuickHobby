@@ -138,12 +138,12 @@
 									<div class="gTableRow row${groupBoard.groupRowNum}" style="display:none">
 										<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
 										<div class="gTableCell nickname">
-											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.groupBoardWriterNick}</a>
+											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.memberNickName}</a>
 										</div>
 										<div class="gTableCell titlec">
 											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i
-												class="glyphicon glyphicon-comment"></i><a href="#"><b
-												class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b></a>
+												class="glyphicon glyphicon-comment"></i><a href="#">
+												<!--<b class="myInGroupReply"> ${groupBoard.groupBoardReplyCount}</b>--></a>
 										</div>
 										<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
 										<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
@@ -195,7 +195,7 @@
 				<!-- 글쓰기 버튼 -->
 				<div class="col-lg-1 btns">
 					<div class="clearfix" style="margin-top: 20px">
-						<a href="${root}/groupBoard/writeForm.do?groupNum=${group.groupNum}" class="btn btn-primary  btn-sm btn-block">글쓰기</a>
+						<a href="#point" class="btn btn-primary  btn-sm btn-block" onclick="groupBoardWrite()">글쓰기</a>
 					</div>
 				</div><!-- .col-lg-1 btns 끝 -->
 			</div> <!-- .row text-center 끝 -->
@@ -332,5 +332,6 @@ $(document).ready(function(){
 });
 </script>
 </body>
+<jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 </html>
