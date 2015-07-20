@@ -138,7 +138,7 @@
 					<span class="badge">#${applyDto.apply_section}</span>&nbsp;&nbsp;
 					<c:if test="${member.memberNum == applyDto.apply_host}">
 						<a href="${root}/apply/applyUpdate.do?apply_num=${applyDto.apply_num}">수정</a>
-						<a href="${root}/apply/applyDelete.do?apply_num=${applyDto.apply_num}">삭제</a>
+						<a onclick="return deleteConfirm('${root}', '${applyDto.apply_num}')" style="cursor:pointer;">삭제</a>
 					</c:if>
                     <h2>${applyDto.apply_subject}</h2>
                 	&nbsp;&nbsp;&nbsp;&nbsp;<b>${applyDto.apply_subtitle}</b>
@@ -161,9 +161,9 @@
                     	<img src="${root}/pds/default.PNG" alt="img">
                     </div>
                     <ul class="list-unstyled groupApply-list" style="text-align:left;">
-	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span><a href="#"> ${host.memberNickName}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span><a href="${root}/memberBoard/check.do?memberNum=${host.memberNum}"> ${host.memberNickName}</a></span></li>
 	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level : </b><span> ${host.memberLevel}</span></li>
-	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="#"> ${host.memberSNS}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="http://${host.memberSNS}"> ${host.memberSNS}</a></span></li>
                     </ul>                  
              	</div>   
              	
@@ -331,6 +331,13 @@
 		location.href=url;
 	}
 	
+	function deleteConfirm(root, applyNum){
+		var url=root + "/apply/applyDelete.do?apply_num="+ applyNum;
+		
+		if(confirm("정말로 삭제하시겠습니까?")){
+			location.href=url;
+		}
+	}
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <jsp:include page="report.jsp"></jsp:include>

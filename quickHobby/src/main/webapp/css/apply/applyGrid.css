@@ -30,13 +30,13 @@ a:active{text-decoration:none !important;}
 }
 
 .open {
-	position: relative;
+	position: fixed;
 	border-radius: 5px 5px 5px 5px;
 	width:45px;
 	height:45px;
 	padding: 11px 13px;
 	font-size: 20px;
-	margin: 40px 0px 0px 40px;
+	margin: 40px 0px 0px 30px;
 	cursor: pointer;
 	color: rgb(221, 221, 221);
 	background: #353535;
@@ -134,10 +134,10 @@ a:active{text-decoration:none !important;}
 */
 .grayscale {
     filter: none;
-    -webkit-filter: grayscale(20%);
-    -moz-filter:    grayscale(20%);
-    -ms-filter:     grayscale(20%);
-    -o-filter:      grayscale(20%);
+    -webkit-filter: grayscale(60%);
+    -moz-filter:    grayscale(60%);
+    -ms-filter:     grayscale(60%);
+    -o-filter:      grayscale(60%);
     cursor: pointer;
 }
 
@@ -147,7 +147,7 @@ a:active{text-decoration:none !important;}
 }
 
 .grid img{
-	width: 260px;
+	width: 265px;
 	margin-bottom: 10px;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
@@ -155,6 +155,8 @@ a:active{text-decoration:none !important;}
 	transition: all 0.5s;
 	margin-left: 10px;
 }
+
+/**********************************/
 .button-group{
 	 list-style: none;
  	 margin: 0;
@@ -176,3 +178,5 @@ a:active{text-decoration:none !important;}
 .inout{
 	margin-top:-8px;
 }
+
+

@@ -1,0 +1,165 @@
+/*body 상단부 여백 */
+body {
+    padding-top: 20px;
+}
+
+/* a태그 효과없음 */
+a:link{text-decoration:none !important;}
+a:visited{text-decoration:none !important;}
+a:hover{text-decoration:none !important;}
+a:active{text-decoration:none !important;}
+
+/* MENU CONF*/
+.container-fluid {
+ 	  text-align: center;
+}
+
+.filterMenu {
+  display: none;
+  background-color: #353535;
+  border-top: 2px solid #ffffff;
+  padding-top: 0px;
+  margin-bottom:0px;
+  position: relative;
+  height:auto;
+  padding-bottom:-10px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.open {
+	position: fixed;
+	border-radius: 5px 5px 5px 5px;
+	width:45px;
+	height:45px;
+	padding: 11px 13px;
+	font-size: 20px;
+	margin: 40px 0px 0px 30px;
+	cursor: pointer;
+	color: rgb(221, 221, 221);
+	background: #353535;
+}
+
+
+
+.locationFilter{
+	border:2px solid #fff;
+	margin-bottom:0px;
+}
+.datepicker{
+	font-size: 8px;
+}
+
+.category span{
+	font-size:40px;
+	padding:5px;
+}
+.category{
+	margin:-18px 0px 0px 30px;
+}
+.well{
+	background: rgba(0, 0, 0, 0.1) !important;
+	padding:5px;
+}
+.filterStart{
+	padding-top:40px;
+}
+.slider{
+	margin-left:40px;
+	margin-right:40px;
+}
+
+/**                                */
+#content {
+	filter: none;
+	min-height: 100%;
+	padding: 5px 5px;
+	position: relative;
+
+}
+
+.box {
+	float: center;
+	width: 100%;
+	border: 0px solid #eee;
+	background: #fff !important;
+	margin-bottom: 28px;	
+}
+
+.box-header {
+	height: 16px;
+	font-size: 16px;
+	line-height: 16px;
+  	padding: 10px;
+  	background: #eee;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+	overflow: hidden;
+}
+.box-header h2{
+	float: center;
+	margin-top: 0px;
+	font-weight: 300;
+}
+/*
+.box-content {
+	position: relative;
+	z-index: 50;
+  	margin-top: -1px;
+	padding: 10px;
+	background: #fff !important;
+}
+*/
+.box-content {
+
+	width: 100%;
+	position: relative;
+	z-index: 50;
+  	margin-top: -1px;
+	padding: 10px;
+}
+/* Grid Images
+=================================================================== 
+.masonry-thumb {
+  	display: inline-block;
+  	vertical-align: top;
+  	margin-bottom: 6px;
+}
+*/
+.grayscale {
+    filter: none;
+    -webkit-filter: grayscale(60%);
+    -moz-filter:    grayscale(60%);
+    -ms-filter:     grayscale(60%);
+    -o-filter:      grayscale(60%);
+    cursor: pointer;
+}
+
+.grid{
+	float: center;
+	width: 100%;
+}
+
+.grid img{
+	width: 265px;
+	margin-bottom: 10px;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	transition: all 0.5s;
+	margin-left: 10px;
+}
+
+/**********************************/
+
+.applicationFee{
+	padding-top:10px;
+}
+.inout{
+	margin-top:-8px;
+}
+
+

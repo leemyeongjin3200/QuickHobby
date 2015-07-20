@@ -27,6 +27,7 @@ body {
     position: relative;
     margin: 0 auto;
     max-width: 650px;
+    
 }
 
 /** 박스 레이어 속성*/
@@ -34,13 +35,17 @@ body {
     display: block;
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 265px;
     height: 100%;
     text-align: center;
     color: #fff;
     opacity: 0;
-    background: rgba(33,33,33,.9);
+    background: rgba(33,33,33,.7);
+    border: 0px solid #aaa;
+    margin-left:10px;
 }
+
+
 
 /** 텍스트 가운데 정렬*/
 .apply-box .apply-box-caption .apply-box-caption-content {
@@ -56,13 +61,13 @@ body {
     opacity: 1;
 }
 
-/** 여백없음 */
-.no-gutter > [class*=col-] {
+/** 여백없음
+.no-gutter > [class*=] {
     padding-right: 1%;
     padding-left: 1%;
     Padding-top: 1%;
     Padding-bottom: 1%;
-}
+} */
 
 /**Content1-메인슬라이드 이미지==================================
 ======================================================= */
@@ -86,4 +91,3 @@ body {
       background-color: #f9f9f9;
       text-align: center;
   }
-

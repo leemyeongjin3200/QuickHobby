@@ -19,7 +19,7 @@
 		]]>
 	</select>
 	
-	<select id="getGroupReplyList" resultMap="groupReplyDto" parameterType="int" >
+	<select id="getBoardReplyList" resultMap="groupReplyDto" parameterType="int" >
 		<![CDATA[select g.groupreply_num as groupreply_num, 
 		g.groupreply_writer as groupreply_writer,
 		g.groupreply_boardnum as groupreply_boardnum, 

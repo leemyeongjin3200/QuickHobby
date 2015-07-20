@@ -15,9 +15,44 @@
 
 <link rel="stylesheet" href="${root}/css/apply/jquery-ui-1.8.21.custom.css">
 <link rel="stylesheet" href="${root}/css/apply/jquery-ui-slider-pips.css">
-<link rel="stylesheet" href="${root}/css/apply/applyGrid.css">
+<link rel="stylesheet" href="${root}/css/apply/applyGrid00.css">
  
 <style>
+.filtering ul li a:hover{
+	background: #363940 !important;
+	color: #fff !important;
+}
+
+
+.filtering{
+	border:2px solid #fff;
+	padding:5px;
+	text-align: center;
+	overflow: hidden;
+	margin-top:22px;
+	margin-bottom:48px;
+}
+
+.filtering ul{
+	list-style: none outside none;
+    text-align: center;
+}
+.filtering ul li{
+	display: inline-block;
+
+}
+
+.filtering ul li a{
+	color: #363940;
+	background: #D5D5D5;
+    display: inline-block;
+    margin: 4px;
+    padding: 8px 10px;
+    text-decoration: none;
+    text-transform: uppercase;
+    border:2px solid #363940; 
+}
+
 
 </style>
 
@@ -29,8 +64,8 @@
 		<div class="collapse out" id="demo">
 			<div class="row filterStart">
 				<div class="col-md-12">
-					<div class="well filtering01">
-						<ul class="button-group">
+					<div class="well filtering">
+						<ul>
   							<li data-filter="*"><a href="#" class="button">All</a></li>
   							<li data-filter=".best"><a href="#" class="button">BEST</a></li>
 						</ul>
@@ -39,21 +74,21 @@
 			</div>
 		
 			<div class="row">
-				<div class="col-md-4">
-					<div class="filtering02 well" style="height:80px">
-						<ul class="button-group inout">
+				<div class="col-md-4 filtering1">
+					<div class="well" style="height:80px">
+						<ul class="inout">
   							<li data-filter=".indoor"><a href="#" class="button">INDOOR</a></li>
   							<li data-filter=".outdoor"><a href="#" class="button">OUTDOOR</a></li>
 						</ul>
 	
-						<ul class="button-group applicationFee">
+						<ul class="applicationFee">
   							<li data-filter=".fee"><a href="#" class="button">APPLICATION FEE</a></li>
   							<li data-filter=".free"><a href="#" class="button">FREE</a></li>
 						</ul>
 						
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 filtering2">
 					<div class="filtering well" style="height:80px">
 						<div class="date">
 						<input type="text" id="datepicker" size="12"> -  <input type="text" id="datepicker2"  size="12">
@@ -62,7 +97,7 @@
 				</div>
 	
 				<div class="col-md-4">
-					<div class="filtering well" style="height:80px">
+					<div class="filtering3 well" style="height:80px">
 					    <div class="category navbar-inverse">
 					      <ul class="nav navbar-nav">
 					        <li id="" data-filter=".eye"><a href="#"><span class="glyphicon glyphicon-eye-open"></span></a></li>
@@ -90,7 +125,7 @@
 	</div>
 </div>
 
-<div class="container" style="overflow:auto;"><!-- slider 없애야 함!!! -->
+<div class="container" style="overflow:auto hidden;"><!-- slider 없애야 함!!! -->
 	<!-- Page Header -->
      <div class="row">
          <div class="col-lg-12">
@@ -107,111 +142,260 @@
 					<div class="box-content">
 						<div class="grid" id="">
 							<div id="image-1" class="grid-item location best eye indoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEar01.jpg" alt="Sample Image 1">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEar01.jpg" alt="Sample Image 1">
+											 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-2" class="grid-item eye time best outdoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEar02.jpg" alt="Sample Image 2">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEar02.jpg" alt="Sample Image 2">
+										 <div class="apply-box-caption">
+					                         <div class="apply-box-caption-content">
+					                             <p> DATE: </p>
+					                             <p> TITLE: </p>
+					                        </div>
+					                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-3" class="grid-item eye best time indoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEar03.jpg" alt="Sample Image 3">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEar03.jpg" alt="Sample Image 3">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-4" class="grid-item location eye outdoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye01.jpg" alt="Sample Image 4">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye01.jpg" alt="Sample Image 4">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>	
 							</div>
 							<div id="image-5" class="grid-item eye location best indoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye02.jpg" alt="Sample Image 5">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye02.jpg" alt="Sample Image 5">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-6" class="grid-item time best eye outdoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye03.jpg" alt="Sample Image 7">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye03.jpg" alt="Sample Image 7">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-7" class="grid-item location best eye indoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye04.JPG" alt="Sample Image 8">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupEye04.JPG" alt="Sample Image 8">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-8" class="grid-item hand time indoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupHand01.jpg" alt="Sample Image 9">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupHand01.jpg" alt="Sample Image 9">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-9" class="grid-item hand best outdoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupHand02.jpg" alt="Sample Image 10">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupHand02.jpg" alt="Sample Image 10">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-10" class="grid-item hand location indoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupHand03.jpg" alt="Sample Image 11">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupHand03.jpg" alt="Sample Image 11">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-11" class="grid-item legs location outdoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs01.jpg" alt="Sample Image 12">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs01.jpg" alt="Sample Image 12">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-12" class="grid-item legs best indoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs02.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs02.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-13" class="grid-item legs location time indoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs03.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs03.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-14" class="grid-item legs location best indoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs04.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs04.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-15" class="grid-item legs time outdoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs05.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs05.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-16" class="grid-item legs location time outdoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs06.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs06.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-17" class="grid-item legs best time indoor fee">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs07.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupLegs07.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-18" class="grid-item mouth location time outdoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupMouth01.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupMouth01.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 							<div id="image-19" class="grid-item mouth best outdoor free">
-								<a title="applyGroup01" href="#">
-									<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupMouth02.jpg" alt="Sample Image 13">
-								</a>
+								<div class="apply-box">
+									<a title="applyGroup01" href="#">
+										<img class="grayscale img-responsive" src="${root}/img/groupCategory/groupMouth02.jpg" alt="Sample Image 13">
+										 <div class="apply-box-caption">
+						                         <div class="apply-box-caption-content">
+						                             <p> DATE: </p>
+						                             <p> TITLE: </p>
+						                        </div>
+						                	</div>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div><!--/span-->
 			</div><!--/.row-fluid sortable-->
 		</div><!-- end: Content -->
-	
 	</div><!--/#content.span12-->
 
 		
-<div class="clearfix"></div>
-</div>
 
 
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>

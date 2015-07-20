@@ -144,8 +144,6 @@
 											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i
 												class="glyphicon glyphicon-comment"></i><a class="myInGroupReply" onclick="replyCheck('${groupBoard.groupBoardNum}')" style='cursor:pointer;'>
 												<b> ${groupBoard.groupReplyCount}</b></a>
-												
-												
 										</div>
 										<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
 										<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
@@ -197,7 +195,7 @@
 				<!-- 글쓰기 버튼 -->
 				<div class="col-lg-1 btns">
 					<div class="clearfix" style="margin-top: 20px">
-						<a href="${root}/groupBoard/writeForm.do?groupNum=${group.groupNum}" class="btn btn-primary  btn-sm btn-block">글쓰기</a>
+						<a href="#point" class="btn btn-primary  btn-sm btn-block" onclick="groupBoardWrite()">글쓰기</a>
 					</div>
 				</div><!-- .col-lg-1 btns 끝 -->
 			</div> <!-- .row text-center 끝 -->
@@ -276,5 +274,6 @@ $(document).ready(function(){
 </script>
 </body>
 <jsp:include page="groupReplyCheckModal.jsp"></jsp:include>
+<jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 </html>

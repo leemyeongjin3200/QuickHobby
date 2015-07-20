@@ -14,7 +14,7 @@
 	<c:if test="${check>0}">
 		<script type="text/javascript">
 			alert("Completed.");
-			location.href="${root}/board/list.do";
+			location.href="${root}/groupBoard/groupPage.do?groupNum=${groupNum}";
 		</script>
 	</c:if>
 	
@@ -22,7 +22,7 @@
 	<c:if test="${check==0}">
 		<script type="text/javascript">
 			alert("Failed.");
-			location.href="${root}/board/writeForm.do";
+			location.href="${root}/groupBoard/groupPage.do?groupNum=${groupNum}";
 		</script>
 	</c:if>
 </body>

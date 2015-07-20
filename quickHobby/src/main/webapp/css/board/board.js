@@ -70,8 +70,8 @@ function replyCheck(boardNum, currentPage){
 	});
 
 }
-
 // reply list div 그리기
+
 function makeReplyDiv2(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
 	console.log(d);
@@ -119,4 +119,12 @@ function getContextPath(){
 //시간값 자리수 맞춰주는 함수
 function padStr(i) {
     return (i < 10) ? "0" + i : "" + i;
+}
+
+function writeBoard(memberNum){
+	$("#writeBoardModal").modal();
+}
+
+function boardCheck(form){
+	
 }

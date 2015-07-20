@@ -121,4 +121,5 @@ public class GroupBoardDto {
 	public void setMemberNickName(String memberNickName) {
 		this.memberNickName = memberNickName;
 	}
+	
 }

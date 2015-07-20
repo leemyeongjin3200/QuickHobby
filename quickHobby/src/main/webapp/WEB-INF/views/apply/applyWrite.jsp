@@ -207,6 +207,12 @@ function checkForm(form){
 // 	alert(form.groupInout.value);
 // 	console.log(form.groupDate.value);
 // 	console.log(form.groupSubject.value);
+
+	if(form.apply_subject.value.length > 20){
+		alert("The title is too long.");
+		form.apply_subject.focus();
+		return false;
+	}
 	
 	if(form.apply_category.value==""){
 		alert("You have to check at least a category.");
@@ -217,12 +223,6 @@ function checkForm(form){
 	if(form.apply_inout.value==""){
 		alert("You have to choose indoor or outdoor.");
 		form.apply_inout[0].focus();
-		return false;
-	}
-	
-	if(form.apply_date.value==""){
-		alert("You have to choose the closing date.");
-		form.apply_date.focus();
 		return false;
 	}
 	
@@ -238,9 +238,33 @@ function checkForm(form){
 		return false;
 	}
 	
+	if(form.apply_section.value==""){
+		alert("You have to input the section.");
+		form.apply_section.focus();
+		return false;
+	}
+
+	if(form.groupCost.value==""){
+		alert("You have to input the cost.");
+		form.groupCost.focus();
+		return false;
+	}
+	
 	if(form.apply_content.value==""){
 		alert("You have to input the content.");
 		form.apply_content.focus();
+		return false;
+	}
+	
+	if(form.apply_date.value==""){
+		alert("You have to choose the date.");
+		form.apply_date.focus();
+		return false;
+	}
+	
+	if(form.apply_location.value==""){
+		alert("You have to choose the location.");
+		form.apply_location.focus();
 		return false;
 	}
 }
