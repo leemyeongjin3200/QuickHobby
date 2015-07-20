@@ -24,7 +24,15 @@
                           </p>
                           <p class="clearfix pull-right"><i class="glyphicon glyphicon-comment"></i> ${groupBoard.groupReplyCount}</p>
                       </div>
-                      <p><img src="${root}/groupImage/1437372698884_bunji drop.jpg" width="100%" alt="" /></p>
+                      <p>
+                      	<c:if test="${groupBoard.groupBoardFileName!=null}">
+                      		<img src="${root}/groupBoardImage/${groupBoard.groupBoardFileName}" width="100%" alt="" />
+                      	</c:if>
+                      	<c:if test="${groupBoard.groupBoardFileName==null}">
+                      		<img src="${root}/groupImage/1437372698884_bunji drop.jpg" width="100%" alt="" />
+                      	</c:if>
+                      
+                      </p>
                       <p class="textArea">
                       	${groupBoard.groupBoardContent}
                       </p>
@@ -72,9 +80,11 @@
    <!--  버튼 줄 시작-->
    <div class="row">
 	<div class="col-12-lg" style="text-align:center">
-		<a href="#" class="btn btn-primary" >previous</a>
-        <a href="#" class="btn btn-primary" >to List</a>
-        <a href="#" class="btn btn-primary" >next</a>
+		<c:if test="${member.memberNum == groupBoard.groupBoardWriter}">
+			<a href="#" class="btn btn-primary" >Update</a>
+        	<a href="#" class="btn btn-primary" onclick="deleteFunction('${groupBoard.groupBoardNum}')">Delete</a>
+		</c:if>
+        <a href="#" class="btn btn-primary" onclick="moveList()">List</a>
 	</div>
   </div><!-- 버튼 줄.row 끝 -->
 </div><!-- .container 끝 -->

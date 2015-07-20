@@ -348,3 +348,24 @@ function padStr(i) {
 function groupBoardWrite(){
 	$("#groupBoardModal").modal();
 }
+
+function moveList(){
+	$("#gRead").css("display", "none");
+	$(".boardPoint").css("display", "initial");
+}
+
+function deleteFunction(groupBoardNum){
+	var root=getContextPath();
+	var callUrl=root + "/groupBoard/delete.do?groupBoardNum=" + groupBoardNum;
+	
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			alert("삭제완료");
+			location.reload();
+			moveList();
+		}
+	});
+}

@@ -102,8 +102,13 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		}
 		
 		groupBoardDto.setGroupBoardReadCount(0);
+		int check=0;
+		if(fileSize != 0){
+			check=groupBoardDao.groupBoardWriteFile(groupBoardDto);
+		}else{
+			check=groupBoardDao.groupBoardWrite(groupBoardDto);
+		}
 		
-		int check=groupBoardDao.groupBoardWrite(groupBoardDto);
 		logger.info("check:"+check);
 		
 		mav.addObject("check", check);
@@ -158,13 +163,10 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
-		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
 		int check=groupBoardDao.boardDelete(groupBoardNum);
 		
 		mav.addObject("check", check);
-		mav.addObject("pageNumber", pageNumber);
-		mav.addObject("groupBoardNum", groupBoardNum);
 		mav.setViewName("groupBoard/deleteOk");
 	}
 

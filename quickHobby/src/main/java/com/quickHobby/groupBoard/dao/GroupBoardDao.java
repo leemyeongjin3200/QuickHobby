@@ -11,6 +11,7 @@ public interface GroupBoardDao {
 	List<GroupBoardDto> getGroupBoardList(int groupNum);
 
 	int groupBoardWrite(GroupBoardDto groupBoardDto);
+	int groupBoardWriteFile(GroupBoardDto groupBoardDto);
 
 	GroupBoardDto groupBoardRead(int groupBoardNum);
 

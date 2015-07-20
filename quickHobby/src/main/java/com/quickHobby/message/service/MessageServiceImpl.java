@@ -73,13 +73,12 @@ public class MessageServiceImpl implements MessageService {
 		if(count>0){
 			messageList=messageDao.getMessageList();
 			logger.info("messageList:"+messageList.size());
-		}
-		
-		for(int i=0;i<messageList.size();i++){
-			int sender=messageList.get(i).getMessage_sender();
-			int messageNum=messageList.get(i).getMessage_num();
-			logger.info("sender:"+sender);
-			logger.info("messageNum:"+messageNum);
+			for(int i=0;i<messageList.size();i++){
+				int sender=messageList.get(i).getMessage_sender();
+				int messageNum=messageList.get(i).getMessage_num();
+				logger.info("sender:"+sender);
+				logger.info("messageNum:"+messageNum);
+			}
 		}
 		
 		mav.addObject("messageList", messageList);
