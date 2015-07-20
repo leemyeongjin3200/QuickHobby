@@ -82,9 +82,9 @@
 					
 					<c:if test="${reply.boardReplyWriter==member.memberNum}">
 					<span class="reply_btns" >
-						<a class="modifyBtn" style='cursor:pointer;'>수정</a>
+						<a class="modifyBtn" style='cursor:pointer;'>Modify</a>
 						&nbsp;/&nbsp;
-						<a class="deleteBtn" style='cursor:pointer;'>삭제</a>						
+						<a class="deleteBtn" style='cursor:pointer;'>Delete</a>						
 					</span>
 					</c:if>
 				</div>

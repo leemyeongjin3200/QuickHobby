@@ -41,7 +41,7 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
 
 		List<BoardDto> memberBoardList=null;
-		memberBoardList=memberBoardDao.getSumlist(member.getMemberNum());
+		memberBoardList=memberBoardDao.getSumlist(memberNum);
 
 		logger.info("memberBoardList:"+memberBoardList.size());
 		

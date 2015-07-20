@@ -29,13 +29,6 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	private GroupBoardService groupBoardService;
 	
 	/**
-	* @name : groupBoardList
-	* @date : 2015. 6. 25.
-	* @author : 차건강
-	* @description : Group Board 리스트를 불러오는 method
-	 */
-	
-	/**
 	* @name : groupBoardWriteForm
 	* @date : 2015. 6. 25.
 	* @author : 차건강
@@ -91,7 +84,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @name : boardDelete
 	* @date : 2015. 6. 25.
 	* @author : 차건강
-	* @description : Tip & Review Board 글의 visible 값 0으로 바꿔서 화면상에서 delete
+	* @description : Group Board 글의 visible 값 0으로 바꿔서 화면상에서 delete
 	 */
 	@RequestMapping(value="/groupBoard/delete.do", method=RequestMethod.POST)
 	public ModelAndView groupBoardDelete(HttpServletRequest request, HttpServletResponse response){		
@@ -121,6 +114,12 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		return mav;
 	}
 	
+	/**
+	* @name : groupBoardUpdate
+	* @date : 2015. 6. 25.
+	* @author : 차건강
+	* @description : Group Board 게시물 수정하기
+	 */
 	@RequestMapping(value="/groupBoard/update.do", method=RequestMethod.POST)
 	public ModelAndView groupBoardUpdate(GroupBoardDto groupBoardDto, MultipartHttpServletRequest request){
 		logger.info("groupBoardUpdate------------------------------------------");
@@ -133,6 +132,12 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		return mav;
 	}
 	
+	/**
+	* @name : groupPage
+	* @date : 2015. 6. 25.
+	* @author : 차건강
+	* @description : Group Board 리스트를 불러오는 method
+	 */
 	@RequestMapping(value="/groupBoard/groupPage.do", method=RequestMethod.GET)
 	public ModelAndView groupPage(HttpServletRequest request){
 		ModelAndView mav=new ModelAndView();

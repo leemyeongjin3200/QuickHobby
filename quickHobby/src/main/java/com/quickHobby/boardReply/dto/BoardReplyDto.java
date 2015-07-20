@@ -10,6 +10,7 @@ public class BoardReplyDto {
 	private Date boardReplyCreateDate;
 	private Date boardReplyModifyDate;
 	private String memberNickName;
+	
 	public int getBoardReplyNum() {
 		return boardReplyNum;
 	}

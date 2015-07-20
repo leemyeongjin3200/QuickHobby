@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
 		String pageNumber=request.getParameter("pageNumber");
 		if(pageNumber==null)pageNumber="1";
 		
-		int boardSize=10;
+		int boardSize=9;
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
@@ -110,11 +110,7 @@ public class BoardServiceImpl implements BoardService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
-		int boardNum=0;
-		
-		if(request.getParameter("boardNum")!=null){
-			boardNum=Integer.parseInt(request.getParameter("boardNum"));
-		}
+		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
 		
 		logger.info("boardNum:"+boardNum);
 		
@@ -160,7 +156,7 @@ public class BoardServiceImpl implements BoardService {
 		logger.info("boardNum:"+boardNum);
 		logger.info("pageNumber:"+pageNumber);
 		
-//		boardReply와 연결중
+//		boardReply와 연결
 		BoardDto boardDto=boardDao.boardRead(boardNum);
 		boardDto.setBoardReplyList(boardReplyDao.getBoardReplyList(boardNum));
 		
@@ -226,7 +222,6 @@ public class BoardServiceImpl implements BoardService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		BoardDto boardDto=(BoardDto)map.get("BoardDto");
-		// logger.info("boardSubject:"+request.getParameter("boardSubject"));
 
 		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));

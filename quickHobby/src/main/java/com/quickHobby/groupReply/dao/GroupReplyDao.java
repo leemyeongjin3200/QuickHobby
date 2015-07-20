@@ -5,7 +5,13 @@ import java.util.List;
 import com.quickHobby.groupReply.dto.GroupReplyDto;
 
 public interface GroupReplyDao {
-	public int getReplyCount(int boardNum);
-
 	List<GroupReplyDto> getGroupReplyList(int groupBoardNum);
+
+	int getGroupReplyCount(int groupBoardNum);
+
+	int groupReplyWrite(GroupReplyDto groupReplyDto);
+
+	int groupReplyModify(GroupReplyDto groupReplyDto);
+
+	int groupReplyDelete(GroupReplyDto groupReplyDto);
 }

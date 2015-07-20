@@ -56,14 +56,14 @@ public class MessageServiceImpl implements MessageService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
-		String pageNumber=request.getParameter("pageNumber");
-		logger.info("pageNumber:"+pageNumber);
-		if(pageNumber==null)pageNumber="1";
-		
-		int boardSize=10;
-		int currentPage=Integer.parseInt(pageNumber);
-		int startRow=(currentPage-1)*boardSize+1;
-		int endRow=currentPage*boardSize;
+//		String pageNumber=request.getParameter("pageNumber");
+//		logger.info("pageNumber:"+pageNumber);
+//		if(pageNumber==null)pageNumber="1";
+//		
+//		int boardSize=10;
+//		int currentPage=Integer.parseInt(pageNumber);
+//		int startRow=(currentPage-1)*boardSize+1;
+//		int endRow=currentPage*boardSize;
 		
 		int count=messageDao.getMessageCount();
 		logger.info("count:"+count);
@@ -71,15 +71,21 @@ public class MessageServiceImpl implements MessageService {
 		List<MessageDto> messageList=null;
 		
 		if(count>0){
-			messageList=messageDao.getMessageList(startRow, endRow);
+			messageList=messageDao.getMessageList();
 			logger.info("messageList:"+messageList.size());
 		}
 		
+		for(int i=0;i<messageList.size();i++){
+			int sender=messageList.get(i).getMessage_sender();
+			int messageNum=messageList.get(i).getMessage_num();
+			logger.info("sender:"+sender);
+			logger.info("messageNum:"+messageNum);
+		}
 		
 		mav.addObject("messageList", messageList);
 		mav.addObject("count", count);
-		mav.addObject("boardSize", boardSize);
-		mav.addObject("currentPage", currentPage);
+//		mav.addObject("boardSize", boardSize);
+//		mav.addObject("currentPage", currentPage);
 		mav.setViewName("message/messageList");
 	}
 	
@@ -117,7 +123,6 @@ public class MessageServiceImpl implements MessageService {
 		}
 		
 		String[] messageNumArr = checkedMsg.split(",");
-		
 		
 		if(messageNumArr !=null && messageNumArr.length>0){
     		for(int i=0; i<messageNumArr.length;i++){

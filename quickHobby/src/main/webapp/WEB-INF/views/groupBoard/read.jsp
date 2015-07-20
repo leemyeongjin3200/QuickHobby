@@ -107,7 +107,7 @@
 	</div>
 	
 	
-		<div class="board-reply" data-num="${groupBoard.groupBoardNum}">
+		<div class="group-reply" data-num="${groupBoard.groupBoardNum}">
 		
 			<div class="input-group">
 		      <input type="text" name="writeReply" class="form-control" placeholder="Comment...">
@@ -121,19 +121,19 @@
 			<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
 			
 			<div class="replyDiv-wrap" >
-			<c:forEach var="reply" items="${board.boardReplyList}">
-				<div class="replyDiv" data-replynum="${reply.boardReplyNum}">
+			<c:forEach var="reply" items="${groupBoard.groupReplyList}">
+				<div class="replyDiv" data-replynum="${reply.groupReplyNum}">
 					<span class="reply_member">${reply.memberNickName}</span>
-					<span class="reply_content">${reply.boardReplyContent}</span>
-					<span class="reply_date"><small><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/></small></span>
+					<span class="reply_content">${reply.groupReplyContent}</span>
+					<span class="reply_date"><small><fmt:formatDate value="${reply.groupReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/></small></span>
 					
 					
 					
-					<c:if test="${reply.boardReplyWriter==member.memberNum}">
+					<c:if test="${reply.groupReplyWriter==member.memberNum}">
 					<span class="reply_btns" >
-						<a class="modifyBtn" style='cursor:pointer;'>수정</a>
+						<a class="modifyBtn" style='cursor:pointer;'>Modify</a>
 						&nbsp;/&nbsp;
-						<a class="deleteBtn" style='cursor:pointer;'>삭제</a>						
+						<a class="deleteBtn" style='cursor:pointer;'>Delete</a>						
 					</span>
 					</c:if>
 				</div>
@@ -143,6 +143,7 @@
 </body>
 <jsp:include page="../template/loginModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+<script type="text/javascript" src="${root}/css/groupReply/groupReply.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>

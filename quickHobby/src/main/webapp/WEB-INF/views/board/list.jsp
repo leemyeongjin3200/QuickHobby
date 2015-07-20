@@ -25,7 +25,7 @@
      </div><!-- .row 끝 -->
 	<!-- Tab 선택하기 전체/tip/review -->
 	<ul class="nav nav-tabs">
-	    <li class="active"><a href="#menu1">전체</a></li>
+	    <li class="active"><a>Tip & Review</a></li>
 	</ul>
 
   	<div class="tab-content">
@@ -73,7 +73,7 @@
 										<c:if test="${board.boardVisible==1}">
 											<div class="gTableCell number">${board.boardNum}</div>
 											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-												<a href="#">${board.memberNickName}</a></div>
+												<a href="${root}/memberBoard/check.do?memberNum=${board.boardWriter}">${board.memberNickName}</a></div>
 											<div class="gTableCell titlec">
 											
 											<!-- tip/review 구분하기 -->
@@ -122,7 +122,7 @@
 							            	<!-- tip/review 구분하기 -->
 							            <a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a></h4>
 							            <p>${board.boardContent}</p>
-							            <a href="#" >read more <i>&raquo;</i></a>
+							            <a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}" >read more <i>&raquo;</i></a>
 							          </div>
 							        </div><!-- .col-md-4 끝 -->
 								</c:if>
@@ -197,7 +197,6 @@
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
 </body>
-<%-- <jsp:include page="replyCheckModal.jsp"></jsp:include> --%>
 <jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>

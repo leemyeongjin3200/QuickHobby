@@ -15,7 +15,7 @@
 		
 		<result property="groupBoardVisible" column="GROUPBOARD_VISIBLE"/>
 		<result property="groupBoardReadCount" column="GROUPBOARD_READCOUNT"/>
-		<result property="groupBoardWriterNick" column="member_nickname"/>
+		<result property="memberNickName" column="member_nickname"/>
 	</resultMap>
 
 	<select id="groupBoardCount" resultType="int" parameterType="int">

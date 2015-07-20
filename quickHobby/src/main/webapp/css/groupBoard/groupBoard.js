@@ -104,13 +104,6 @@ function toReadPage(groupBoardNum){
 	});
 }
 
-//Reply 팝업창
-$(document).ready(function(){
-    $(".myInGroupReply").click(function(){
-        $("#myModalReply").modal();
-    });
-});
-
 function movePage(pageNumber, boardSize, pageBlock){
 	var pageNumber=Number(pageNumber);
 	var boardSize=Number(boardSize);
@@ -251,6 +244,93 @@ function moveLeft(boardSize, pageBlock, pageCount){
 		$(".right").css("display", "initial");
 	}
 }
+
+// groupReply Modal
+function replyCheck(groupBoardNum){
+	console.log(groupBoardNum);
+	var root=getContextPath();
+	var callUrl=root+"/groupReply/getGroupReplyList.do";
+	var sendData="groupBoardNum="+groupBoardNum;
+	$.ajax({
+		url:callUrl,
+		type:"post",
+		data:sendData,
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
+		dataType:"html",
+		success:function(data){
+			console.log(data);
+			console.log(JSON.parse(decodeURIComponent(data)));
+			var replyList = JSON.parse(decodeURIComponent(data));
+			var length=replyList.length;
+			// console.log("length:"+length);
+			var result='';
+			var strong='';
+			for(var i=0;i<length;i++){
+				result += makeReplyDiv2(replyList[i]);
+			}
+			console.log(result);
+			$(".reply-box").html(result);
+		}
+	});
+	
+	$("#myModalGroupReply").modal();
+	
+	$("#toContent").click(function(){
+		console.log(groupBoardNum);
+		var currentPage=Number($(".active").text());
+		console.log(currentPage);
+		var root=getContextPath();
+		var callUrl=root+"/groupBoard/read.do?groupBoardNum="+groupBoardNum+"&pageNumber="+currentPage;
+		
+		$.ajax({
+			url:callUrl,
+			type:"get",
+			dataType:"html",
+			success:function(data){
+				$(location).attr("href", callUrl);
+			}
+		});
+	});
+
+}
+
+// reply list div 그리기
+function makeReplyDiv2(reply) {
+	var d = new Date(reply.groupReplyModifyDate);
+	console.log(d);
+	var dateStr = padStr(d.getFullYear()) +
+	padStr(1 + d.getMonth()) +
+	padStr(d.getDate()) +
+	padStr(d.getHours()) +
+	padStr(d.getMinutes()) +
+	padStr(d.getSeconds());
+	console.log(dateStr);
+	
+	var year=dateStr.substring(0,4);
+	var month=dateStr.substring(4,6);
+	var day=dateStr.substring(6,8);
+	var hour=dateStr.substring(8,10);
+	var minute=dateStr.substring(10,12);
+	var second=dateStr.substring(12,14);
+	var replyTime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+	console.log(replyTime);
+	
+	var text = '<li class="left clearfix"><div class="reply-body"> <strong><i class="glyphicon glyphicon-user"></i>'+ reply.memberNickName + '</strong>';
+	text += '<small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>' + replyTime +" " + '</small>';
+	text += '<p>' + reply.groupReplyContent+" " + '</p></div></li>';
+	text += '<input type="hidden" name="boardReplyBoardNum" value="'+reply.groupReplyBoardNum+'"/>'
+	
+	console.log(text);
+	return text;	
+}
+
+// 목록으로 되돌아가기
+$(document).ready(function(){
+    $("a[name='toList']").click(function(){
+    	$("#myModalGroupReply").modal("toggle");
+		// location.reload();
+    });
+});
 
 //root값 받아오는 함수
 function getContextPath(){

@@ -37,11 +37,11 @@ public class MessageDaoImpl implements MessageDao {
 	}
 
 	@Override
-	public List<MessageDto> getMessageList(int startRow, int endRow) {
-		Map<String,Integer>map=new HashMap<String, Integer>();
-		map.put("startRow", startRow);
-		map.put("endRow", endRow);
-		return sqlSession.selectList("getMessageList", map);
+	public List<MessageDto> getMessageList() {
+//		Map<String,Integer>map=new HashMap<String, Integer>();
+//		map.put("startRow", startRow);
+//		map.put("endRow", endRow);
+		return sqlSession.selectList("getMessageList");
 	}
 	
 	@Override

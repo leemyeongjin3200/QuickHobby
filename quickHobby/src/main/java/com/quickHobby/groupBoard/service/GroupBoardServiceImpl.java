@@ -181,7 +181,12 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/updateOk");
 	}
-	
+	/**
+	* @name : groupPage
+	* @date : 2015. 6. 25.
+	* @author : 차건강
+	* @description : Group Board List 불러오기
+	 */
 	public void groupPage(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
@@ -198,9 +203,9 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		if(count>0){
 			groupBoardList=groupBoardDao.getGroupBoardList(groupNum);
 			for(int i=0; i<groupBoardList.size(); i++){
-				int boardNum=groupBoardList.get(i).getGroupBoardNum();
-				int replyCount=groupReplyDao.getReplyCount(boardNum);
-				groupBoardList.get(i).setGroupReplyCount(replyCount);
+				int groupBoardNum=groupBoardList.get(i).getGroupBoardNum();
+				int groupReplyCount=groupReplyDao.getGroupReplyCount(groupBoardNum);
+				groupBoardList.get(i).setGroupReplyCount(groupReplyCount);
 			}
 		}
 		
@@ -223,7 +228,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	
 		mav.addObject("memberList", member);
 		mav.addObject("group", group);
-		mav.addObject("groupBoardList", groupBoard);
+		mav.addObject("groupBoardList", groupBoardList);
 		mav.addObject("weather", weather);
 		mav.addObject("count", count);
 		mav.setViewName("groupBoard/groupPage");
