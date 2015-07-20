@@ -18,6 +18,8 @@ public interface BoardDao {
 
 	int boardUpdate(BoardDto boardDto);
 
+	int boardWriteFile(BoardDto boardDto);
+
 //	List<BoardDto> getTipBoardList(int startRow, int endRow);
 //
 //	List<BoardDto> getReviewBoardList(int startRow, int endRow);

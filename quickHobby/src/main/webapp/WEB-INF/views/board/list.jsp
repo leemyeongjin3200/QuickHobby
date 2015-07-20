@@ -94,7 +94,7 @@
 							</div> <!-- .gTable 끝  -->
 							<div class="col-lg-1 btns" style="float:right">
 								<div class="clearfix" style="margin-top: 20px; text-align:right">
-									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">글쓰기</a>
+									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">Write</a>
 								</div>
 							</div>
 					</div><!-- .row-fluid 끝 -->
@@ -110,7 +110,13 @@
 					        		<!-- album1 contents -->
 					        	 	<div class="col-md-4">
 					        	 	  <div class="gAlbum-img">
-					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  	<c:if test="${board.boardFileName==null}">
+					        	 	  		<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  	</c:if>
+					        	 	  		<img class="img-responsive" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
+					        	 	  	<c:if test="${board.boardFileName!=null}">
+					        	 	  	
+					        	 	  	</c:if>
 					        	 	  </div>
 							          <div class="gAlbum-date-wrapper">
 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>

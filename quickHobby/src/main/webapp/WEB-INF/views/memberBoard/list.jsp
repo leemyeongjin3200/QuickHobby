@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
@@ -28,15 +29,15 @@
                     	<img src="${root}/pds/default.PNG" alt="img">
                     </div>
                    <ul class="list-unstyled groupApply-list" style="text-align:left;">
-	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span>${member.memberNickName}</span></li>
-	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level : </b><span> ${member.memberLevel}</span></li>
-	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="http://${member.memberSNS}"> ${member.memberSNS}</a></span></li>
+	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span>${host.memberNickName}</span></li>
+	                    <li><i class="glyphicon glyphicon-star"></i><b> Member Level : </b><span> ${host.memberLevel}</span></li>
+	                    <li><i class="glyphicon glyphicon-zoom-in"></i><b> SNS : </b><span><a href="http://${host.memberSNS}"> ${host.memberSNS}</a></span></li>
                 </ul>
                 
                 <!-- 자신에게는 message를 보낼 수 없게 하기 -->
-                <c:if test="${member.memberNum!=memberNum}">
-                	<a style='cursor:pointer;' onclick="replyMessage('${member.memberNum}', '${member.memberNickName}')" class="btn btn-primary btn-block">send a Message</a>   
-                </c:if>             
+                <c:if test="${member.memberNum != host.memberNum}">
+                	<a style='cursor:pointer;' onclick="replyMessage('${host.memberNum}', '${host.memberNickName}')" class="btn btn-primary btn-block">send a Message</a>   
+                </c:if>
              </div>
         </div>
       </div>
@@ -52,9 +53,9 @@
                         <h4><strong>${board.boardSubject}</strong></h4>
                         <div class="clearfix myBoard-underline">
                             <p class="pull-left">
-                              <i class="glyphicon glyphicon-user"></i> by <a href="#">${member.memberNickName}</a> | <i class="glyphicon glyphicon-tag"></i> Category <a href="#">TIP</a> | <i class="glyphicon glyphicon-calendar">${board.boardCreateDate}</i>
+                              <i class="glyphicon glyphicon-user"></i> by ${host.memberNickName}&nbsp; | &nbsp;<i class="glyphicon glyphicon-tag"></i> Category <c:if test="${board.boardSection == 't'}">Tip</c:if><c:if test="${board.boardSection == 'r'}">Review</c:if>&nbsp; | &nbsp;<i class="glyphicon glyphicon-calendar"> <fmt:formatDate value="${board.boardModifyDate}" pattern="yyyy.MM.dd. hh:mm:ss"/></i>
                               
-                          <p class="pull-right"><i class="glyphicon glyphicon-comment"></i> 3 Comments</p>    
+                          <p class="pull-right"><i class="glyphicon glyphicon-comment"></i> ${board.boardReplyCount} Comments</p>    
                       </div>
 
                       <p class="img"><img src="${root}/img/Koala.jpg" width="100%" alt="" /></p>
@@ -62,55 +63,32 @@
                       <p>${board.boardContent}
                       </p>
 			          
-			          <!-- 리플 패널 시작 -->
-			          <div class="myBoardReply-panel panel panel-default" >
-                        <div class="panel-body">
-                            <ul class="myBoardReply-box">
-                            	<!-- 리플1 시작-->
-                                <li class="clearfix myBoardReplyItem">
-                                    <div class="col-sm-1 myBoardReply-img">
-                                        <img src="${root}/img/Penguins.jpg" alt="User" class="img-circle" />
-                                    </div>
-                                    <div class="col-sm-11 myBoardReply-body">                                        
-                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a></strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>13:00:00
-                                            </small>                                      
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                            Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li><!-- 리플1 끝-->
-                                
-                                <!-- 리플2 시작-->
-                                <li class="clearfix myBoardReplyItem">
-                                    <div class="col-sm-1 myBoardReply-img">
-                                        <img src="${root}/img/Penguins.jpg" alt="User" class="img-circle" />
-                                    </div>
-                                    <div class="col-sm-11 myBoardReply-body">                                        
-                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a></strong>
-                                            <small class="pull-right text-muted">
-                                                <i class="glyphicon glyphicon-time"></i>13:00:00
-                                            </small>                                      
-                                        <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                                            Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                        </p>
-                                    </div>
-                                </li><!-- 리플2 끝-->
-                            </ul>
-                        </div><!-- .panel-body 끝 -->
-
-                        <div class="panel-footer">
-                            <div class="input-group">
-                                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message to send..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-warning btn-sm">  Send </button>
-                                </span>
-                            </div>
-                        </div><!-- .panel-footer 끝 -->
-                    </div><!-- .myBoardReply-panel 끝 -->
+					  <c:forEach var="reply" items="${board.boardReplyList}">
+				          <!-- 리플 패널 시작 -->
+				          <div class="myBoardReply-panel panel panel-default" >
+	                        <div class="panel-body">
+	                            <ul class="myBoardReply-box">
+	                            	<!-- 리플1 시작-->
+	                                <li class="clearfix myBoardReplyItem">
+	                                    <div class="col-sm-1 myBoardReply-img">
+	                                        <img src="${root}/img/Penguins.jpg" alt="User" class="img-circle" />
+	                                    </div>
+	                                    <div class="col-sm-11 myBoardReply-body">                                        
+	                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.boardReplyWriter}</a></strong>
+	                                            <small class="pull-right text-muted">
+	                                                <i class="glyphicon glyphicon-time"></i><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="MM.dd. hh:mm:ss"/>
+	                                            </small>                                      
+	                                        <p>
+	                                            ${reply.boardReplyContent}
+	                                        </p>
+	                                    </div>
+	                                </li><!-- 리플1 끝-->
+	                                
+	                            </ul>
+	                        </div><!-- .panel-body 끝 -->
+	
+	                    </div><!-- .myBoardReply-panel 끝 -->
+                    </c:forEach>
        		 	</div><!-- .myBoard-item 끝 -->
 			</div><!-- .myBoard  01끝 -->
 		</c:forEach>

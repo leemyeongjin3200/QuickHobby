@@ -14,6 +14,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.board.dto.BoardDto;
+import com.quickHobby.boardReply.dao.BoardReplyDao;
+import com.quickHobby.boardReply.dto.BoardReplyDto;
+import com.quickHobby.member.dao.MemberDao;
 import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.memberBoard.dao.MemberBoardDao;
 
@@ -31,6 +34,10 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	private final Logger logger=Logger.getLogger(this.getClass().getName());
 	@Autowired
 	private MemberBoardDao memberBoardDao;
+	@Autowired
+	private MemberDao memberDao;
+	@Autowired
+	private BoardReplyDao boardReplyDao;
 	
 	@Override
 	public void boardWrite(ModelAndView mav) {
@@ -39,14 +46,22 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
 		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
+		MemberDto host=memberDao.getMember(memberNum);
 
 		List<BoardDto> memberBoardList=null;
 		memberBoardList=memberBoardDao.getSumlist(memberNum);
+		
+		for(int i=0; i<memberBoardList.size(); i++){
+			int comments=boardReplyDao.getBoardReplyCount(memberBoardList.get(i).getBoardNum());
+			memberBoardList.get(i).setBoardReplyCount(comments);
+			List<BoardReplyDto> boardReplyList=boardReplyDao.getBoardReplyList(memberBoardList.get(i).getBoardNum());
+			memberBoardList.get(i).setBoardReplyList(boardReplyList);
+		}
 
 		logger.info("memberBoardList:"+memberBoardList.size());
 		
 		mav.addObject("member", member);
-		mav.addObject("memberNum", memberNum);
+		mav.addObject("host", host);
 		mav.addObject("memberBoardList",memberBoardList);
 
 		mav.setViewName("memberBoard/list");		

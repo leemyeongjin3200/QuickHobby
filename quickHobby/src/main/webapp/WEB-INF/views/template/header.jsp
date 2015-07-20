@@ -71,11 +71,11 @@ ${param.root1} --%>
 </nav>
 </header>
 <!-- //Header -->
-</body>
-<jsp:include page="loginModal.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/jquery.js"></script>
 <script type="text/javascript" src="${root}/css/jquery.cookie.js"></script>
 <script type="text/javascript" src="${root}/css/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>
+<jsp:include page="loginModal.jsp"></jsp:include>
+</body>
 </html>
