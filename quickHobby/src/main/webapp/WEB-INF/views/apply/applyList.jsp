@@ -129,7 +129,12 @@ body {
 									<input type="hidden" id="groupDate" value="${closeDate}"/>
 									<div class="apply-box">
 										<a title="" href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
-											<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+											<c:if test="${board.apply_filename == null }">
+												<img class="grayscale img-responsive" src="${root}/groupImage/default.jpg">
+											</c:if>
+											<c:if test="${board.apply_filename != null }">
+												<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+											</c:if>
 											<div class="apply-box-caption">
 												<div class="apply-box-caption-content">
 													<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyyMMdd"/> </p>
