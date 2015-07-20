@@ -46,7 +46,7 @@
 	</update>
 	
 	<select id="groupBoardRead" resultMap="groupBoardDto" parameterType="int">
-		<![CDATA[select * from groupboard where groupboard_num=#{groupBoardNum}]]>
+		<![CDATA[select a.*, b.member_nickname as memberNickName from groupboard a, member b where a.groupboard_num=#{groupBoardNum} and a.groupboard_writer=b.member_num]]>
 	</select>
 	
 	<update id="groupBoardDelete" parameterType="int">

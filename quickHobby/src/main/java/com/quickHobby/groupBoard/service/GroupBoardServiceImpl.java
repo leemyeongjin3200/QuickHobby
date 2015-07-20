@@ -129,8 +129,18 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 //		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
 		groupBoardDto.setGroupReplyList(groupReplyDao.getGroupReplyList(groupBoardNum));
-		logger.info("groupBoardDto:"+groupBoardDto);
 		
+		String filePath=memberDao.getFile(groupBoardDto.getGroupBoardWriter());
+		String fileName=null;
+		
+		if(filePath!=null){
+			fileName=filePath.split("\\\\")[10];
+		}else{
+			fileName="default.PNG";
+			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+		}
+		
+		mav.addObject("fileName", fileName);
 		mav.addObject("groupBoard", groupBoardDto);
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/read");

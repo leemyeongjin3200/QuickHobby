@@ -92,12 +92,15 @@ function toReadPage(groupBoardNum){
 	
 	var root=getContextPath();
 	var callUrl=root+"/groupBoard/read.do?groupBoardNum="+groupBoardNum+"&pageNumber="+pageNumber;
+
 	$.ajax({
 		url:callUrl,
 		type:"get",
 		dataType:"html",
 		success:function(data){
-			$(location).attr("href", callUrl);
+			$(".boardPoint").css("display", "none");
+			$("#gRead").html(data);
+			$("#gRead").css("display", "block");
 		}
 	});
 }
