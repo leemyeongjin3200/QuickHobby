@@ -11,13 +11,10 @@
 <title>모임 신청하기</title>
 
 <c:set var="root" value="${pageContext.request.contextPath}"/>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="${root}/css/apply/jquery-ui-1.8.21.custom.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
@@ -149,7 +146,7 @@
 		</form>
 	</div>
 </body>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -287,7 +284,7 @@ function removeChar(event) {
 }
 </script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
 <script type="text/javascript" src="${root}/css/main/main.js"></script>
 <script type="text/javascript" src="${root}/css/member/member.js"></script>
 </body>

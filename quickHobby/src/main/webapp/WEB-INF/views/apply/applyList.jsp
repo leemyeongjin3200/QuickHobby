@@ -24,7 +24,7 @@ body {
 <jsp:include page="../template/header.jsp"></jsp:include>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
 <script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
 		var userLat="";
 		var userLng="";
@@ -163,21 +163,21 @@ $(document).ready(function(){
 								<fmt:formatDate var="closeDate" value="${board.apply_closedate}" pattern="yyyyMMdd"/>
 								<input type="hidden" id="groupDate" value="${closeDate}"/>
 									<c:if test="${board.apply_readcount>100}">
-										<script>
+										<script type="text/javascript">
 											$("." + '${board.apply_num}').addClass("best");
 										</script>
 									</c:if>
 									<c:if test="${board.apply_cost>0}">
-										<script>
+										<script type="text/javascript">
 											$("." + '${board.apply_num}').addClass("fee")
 										</script>
 									</c:if>
 									<c:if test="${board.apply_cost==0 || board.apply_cost==null}">
-										<script>
+										<script type="text/javascript">
 											$("." + '${board.apply_num}').addClass("free")
 										</script>
 									</c:if>
-										<script>
+										<script type="text/javascript">
 										var geocoder = new google.maps.Geocoder();
 										var addr='${board.apply_location}';
 										
@@ -248,7 +248,12 @@ $(document).ready(function(){
 									</script>
 									<div class="apply-box">
 										<a title="" href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
-											<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+											<c:if test="${board.apply_filename == null }">
+												<img class="grayscale img-responsive" src="${root}/groupImage/default.jpg">
+											</c:if>
+											<c:if test="${board.apply_filename != null }">
+												<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+											</c:if>
 											<div class="apply-box-caption">
 												<div class="apply-box-caption-content">
 													<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyyMMdd"/> </p>

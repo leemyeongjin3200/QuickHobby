@@ -10,7 +10,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="${root}/css/jquery.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -107,7 +107,13 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="groupApply-img post-thumb">
-                     <img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
+                	<c:if test="${applyDto.apply_filename == null }">
+						<img class="img-responsive" src="${root}/groupImage/default.jpg"/>
+					</c:if>
+					<c:if test="${applyDto.apply_filename != null }">
+						<img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
+					</c:if>
+                     
                  </div>
                  <div class="post-meta">
                  	<div class="col-lg-6" style="text-align:left; margin-top:10px;">

@@ -163,7 +163,12 @@
 		</c:if>
 			<div class="apply-box">
 				<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
-					<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive grayscale">
+					<c:if test="${board.apply_filename != null }">
+						<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive grayscale">
+					</c:if>
+					<c:if test="${board.apply_filename == null}">
+						<img alt="" src="${root}/groupImage/default.jpg" class="img-responsive grayscale">
+					</c:if>
 					<div class="apply-box-caption">
 						<div class="apply-box-caption-content">
 							<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyyMMdd"/> </p>
