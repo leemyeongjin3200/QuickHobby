@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
@@ -57,40 +58,49 @@
         </div><!--.span8 끝 -->
         
         <aside class="span4">
-           <div id="board-reply" data-num="${board.boardNum} class="boardReply well1">
+           <div id="boardReply" data-num="${board.boardNum}" class="boardReply well1">
                 <h4>Comments</h4> <!-- 새로고침???? -->
                 <!-- 답글목록 boardReply-list 시작  -->
+                
+                <!-- 세션값 받아와서 스크립트로 보내기 -->
+				<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
+				
                 <div class="boardReply-list">
                 <div></div><!--  지우지 마세요!! -->
                 	<!-- 리플 01 시작 -->
-                    <div class="boardReply media">
+                	<c:forEach var="reply" items="${board.boardReplyList}">
+                	
+                    <div class="boardReply media" data-replynum="${reply.boardReplyNum}">
                        <div class="span2 pull-left boardReply-img">
-                           <img class="img-circle" src="${root}/img/Penguins.jpg" alt="" />     
+                           <img class="img-circle" src="${root}/pds/${reply.memberFileName}" alt="" />     
                        </div>
 
                        <div class="span10 media-body boardReply-icon">
-                           <i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a><br/>
-                           <i class="glyphicon glyphicon-time"></i> 13:00:00
+                           <i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.memberNickName}</a><br/>
+                           <i class="glyphicon glyphicon-time"></i> <fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
                        </div>
                        <div class="pull-left ReplyContent">
-                       <p>하하하하하 리플01 입니다. 리플01 입니다. 리플01 입니다. 리플01 입니다.</p>
+                       <p>${reply.boardReplyContent}</p>
                        </div>
-                   </div><!-- 리플 01 끝 -->
-
+                    </div><!-- 리플 01 끝 -->
+                    
+                    </c:forEach>
 
              </div><!-- 답글목록 .boardReply-list 끝  -->
              
  			 <!--답글달기 .boardReply-form 시작  -->
              <div class="boardReply-form">
                  <h4>Leave a Comment</h4>
-                 <form name="boardReply-form" id="boardReply-form">
-                     <textarea rows="4" name="message" id="message" required="required" class="input-block-level" placeholder="Message"></textarea>
-                     <input type="submit" value="Submit Comment" class="btn btn-block btn-primary" />
-                 </form>
+<!--                  <form name="boardReply-form" id="boardReply-form"> -->
+                     <input type="text" rows="4" name="message" id="message" required="required" class="input-block-level" placeholder="Message"/>
+                     <span class="input-group-btn">
+                     	<button type="button" name="replyBtn" class="btn btn-block btn-primary">Submit Comment</button>
+                     </span>
+<!--                  </form> -->
              </div><!--답글달기 .board-reply 끝  -->
-         	</div><!-- 답글 #boardReply 끝-->
-        </aside>
-    </div><!--.row-fluid 끝  -->
+         </div><!-- 답글 #boardReply 끝-->
+      </aside>
+   </div><!--.row-fluid 끝  -->
     
    <!--  버튼 줄 시작-->
    <div class="row">
@@ -102,11 +112,37 @@
   </div><!-- 버튼 줄.row 끝 -->
 </div><!-- .container 끝 -->
 
-<script src="${root}/css/apply/default.js"></script>
+<%-- <script src="${root}/css/apply/default.js"></script> --%>
 <script type="text/javascript">
 
 </script>
 </body>
 <jsp:include page="../template/footer.jsp"></jsp:include>
-
+<script type="text/javascript" src="${root}/css/board/board.js"></script>
+<script type="text/javascript" src="${root}/css/boardReply/boardReply.js"></script>
+<script type="text/javascript">
+//  	수정 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
+	function boardUpdate(boardNum) {
+		var boardUD = document.getElementById("boardUD");	
+		boardUD.action="${root}/board/updateForm.do";
+		boardUD.method="post";		
+		var input=document.getElementById("boardNum");
+		input.value=boardNum;
+		boardUD.submit(); 
+	}
+	
+	function boardDelete(boardNum) {
+// 		삭제 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
+		if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+			var boardUD = document.getElementById("boardUD");	
+			boardUD.action="${root}/board/delete.do";
+			boardUD.method="post";			
+			var input1=document.getElementById("boardNum");
+			input1.value=boardNum;
+			boardUD.submit();
+		}else{   //취소
+		    return;
+		}
+	}
+</script>
 </html>

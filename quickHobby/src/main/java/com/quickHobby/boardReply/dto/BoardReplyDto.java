@@ -10,6 +10,7 @@ public class BoardReplyDto {
 	private Date boardReplyCreateDate;
 	private Date boardReplyModifyDate;
 	private String memberNickName;
+	private String memberFileName;
 	
 	public int getBoardReplyNum() {
 		return boardReplyNum;
@@ -52,5 +53,11 @@ public class BoardReplyDto {
 	}
 	public void setMemberNickName(String memberNickName) {
 		this.memberNickName = memberNickName;
+	}
+	public String getMemberFileName() {
+		return memberFileName;
+	}
+	public void setMemberFileName(String memberFileName) {
+		this.memberFileName = memberFileName;
 	}
 }
