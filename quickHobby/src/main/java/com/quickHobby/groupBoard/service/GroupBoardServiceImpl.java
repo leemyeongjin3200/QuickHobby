@@ -89,7 +89,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		if(fileSize != 0){
 			try{
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupBoardImage";
 				File file=new File(dir, timeName);
 				userFile.transferTo(file);
 				
@@ -125,9 +125,6 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
-		
-		logger.info("groupBoardNum:"+groupBoardNum);
-		logger.info("pageNumber:"+pageNumber);
 		
 //		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);

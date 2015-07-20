@@ -55,16 +55,6 @@
 								<span><i class="glyphicon glyphicon-heart"></i> ${group.groupRecommend} Likes</span>
 							</div>
 							
-							<!-- 카테고리 정보 받아오기 (눈,코,입,다리 등등)-->
-							<div class="col-sm-6 category_item">
-								<div class="clearfix pull-right">
-									<span class="eye"><i class="glyphicon glyphicon-comment"></i></span>
-									<span class="hand"><i class="glyphicon glyphicon-user"></i></span>
-									<span class="mouth"><i class="glyphicon glyphicon-calendar"></i></span> 
-									<span class="legs"><i class="glyphicon glyphicon-heart"></i></span>
-								</div>
-							</div>
-							
 							<!-- 날짜, 날씨, 주소 받아오기 -->
 							<div class="col-sm-12 gElement-item">
 								<div class="col-sm-3 group_date"><!-- 날짜 -->
@@ -135,9 +125,9 @@
 							<c:if test="${count > 0}">
 								<c:forEach var="groupBoard" items="${groupBoardList}">
 									<div class="gTableRow row${groupBoard.groupRowNum}" style="display:none">
-										<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
+										<div class="gTableCell number">${groupBoard.groupRowNum}</div>
 										<div class="gTableCell nickname">
-											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.memberNickName}</a>
+											<i class="glyphicon glyphicon-user"></i> <a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}">${groupBoard.memberNickName}</a>
 										</div>
 										<div class="gTableCell titlec">
 											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i

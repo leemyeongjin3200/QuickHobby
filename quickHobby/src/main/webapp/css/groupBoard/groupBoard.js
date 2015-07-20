@@ -89,8 +89,6 @@ $(document).ready(function(){
 
 function toReadPage(groupBoardNum){
 	var pageNumber=Number($(".active").text());
-	console.log(groupBoardNum);
-	console.log(pageNumber);
 	
 	var root=getContextPath();
 	var callUrl=root+"/groupBoard/read.do?groupBoardNum="+groupBoardNum+"&pageNumber="+pageNumber;

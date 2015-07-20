@@ -69,12 +69,11 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @description : Group Board 글 제목 눌렀을 때 글 내용 보기
 	 */
 	@RequestMapping(value="/groupBoard/read.do", method=RequestMethod.GET)
-	public ModelAndView groupBoardRead(HttpServletRequest request, HttpServletResponse response, GroupBoardDto groupBoardDto){
+	public ModelAndView groupBoardRead(HttpServletRequest request, HttpServletResponse response){
 		logger.info("groupBoardRead-----------------------------------");
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
-		mav.addObject("GroupBoardDto", groupBoardDto);
 		groupBoardService.groupBoardRead(mav);
 		
 		return mav;

@@ -30,13 +30,13 @@
 		m.member_filename as member_filename
 		from groupreply g	
 		inner join member m on m.member_num = g.groupreply_writer
-		where  g.groupreply_boardnum=#{groupReplyBoardNum}
+		where  g.groupreply_boardnum=#{groupBoardNum}
 		order by groupreply_createdate desc]]>
 	</select>
 	
 	<insert id="groupReplyWrite" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
 		INSERT INTO GROUPREPLY VALUES(groupreply_num_seq.nextval, #{groupReplyWriter}, 
-		#{groupReplyBoardNum}, #{groupReplyContent}, SYSDATE, SYSDATE)
+		#{groupBoardNum}, #{groupReplyContent}, SYSDATE, SYSDATE)
 	</insert>
 	
 	<update id="groupReplyModify" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
