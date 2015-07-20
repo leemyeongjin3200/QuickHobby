@@ -3,9 +3,9 @@
  */
 // mouse click, keyboard input event
 $(document).ready(function(){
-	$(".board-reply").on('click', 'button[name="replyBtn"]', writeReply);
+	$("#boardReply").on('click', 'button[name="replyBtn"]', writeReply);
 	$(".board-reply").on('click', '.modifyBtn', clickModifyBtn);
-	$(".board-reply").on('keydown', '.form-control', triggerWriteReply);
+	$("#boardReply").on('keydown', '.input-block-level', triggerWriteReply);
 	$(".board-reply").on('click', '.deleteBtn', deleteReply);
 	$(".board-reply").on('click', '.edit_ok', modifyReply);
 	$(".board-reply").on('click', '.edit_cancel', cancelReply);
@@ -25,11 +25,14 @@ function triggerEditReply(e){
 
 // reply 작성내용 컨트롤러로 보내고 list들 담을 div 그리기
 function writeReply(e){
+	console.log("passsss");
 	var target = $(e.target)
-	var replySection =target.parents('.board-reply'); 
+	var replySection =target.parents('#boardReply'); 
 	boardNum = replySection.data('num'),
-	text = replySection.find('.form-control').val();
-	var replyWrap = replySection.find('.replyDiv-wrap');
+	text = replySection.find('.input-block-level').val();
+	console.log(boardNum);
+	console.log(text);
+	var replyWrap = replySection.find('.boardReply-list');
 	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
 	var root=getContextPath();
 	var callUrl=root+"/boardReply/boardReplyWrite.do";
@@ -43,7 +46,7 @@ function writeReply(e){
 		success:function(data){
 			var replyList = JSON.parse(decodeURIComponent(data));
 			replyWrap.html(getReplyList(replyList));
-			replySection.find('.form-control').val('');
+			replySection.find('.input-block-level').val('');
 		},
 		error:function(xhr, status, error){
 			alert(xhr+","+status+","+error);
@@ -83,11 +86,33 @@ function makeReplyDiv(reply) {
 	var session=document.getElementById("sessionNum").value;
 	console.log(session);
 	
-	var text = '<div class="replyDiv" data-replynum="' + reply.boardReplyNum + '">';
-	text += '<span class="reply_member">' + reply.memberNickName+" " + '</span>';
-	text += '<span class="reply_content">' + reply.boardReplyContent+" " + '</span>';
-	text += '<span class="reply_date"><small>'+replyTime+" "+ '</small></span>';
-	text += '<input id="sessionNum" type="hidden" value="'+session+'"/>';
+	var text = '<div class="boardReply media" data-replynum="' + reply.boardReplyNum + '">';
+	text += '<div class="span2 pull-left boardReply-img"><img class="img-circle" src="${root}/pds/'+reply.memberFileName+'" alt="" /></div>';
+	text += '<div class="span10 media-body boardReply-icon"><i class="glyphicon glyphicon-user"></i> by <a href="#">';
+	text += reply.memberNickName+'</a><br/>';
+	text += '<i class="glyphicon glyphicon-time"></i>'+replyTime+'</div>';
+	text += '<div class="pull-left ReplyContent"><p>'+reply.boardReplyContent+'</p></div></div>';
+	
+	
+//	text += '<span class="reply_member">' + reply.memberNickName+" " + '</span>';
+//	text += '<span class="reply_content">' + reply.boardReplyContent+" " + '</span>';
+//	text += '<span class="reply_date"><small>'+replyTime+" "+ '</small></span>';
+//	text += '<input id="sessionNum" type="hidden" value="'+session+'"/>';
+//	
+//	
+//	<div class="boardReply media" data-replynum="${reply.boardReplyNum}">
+//	    <div class="span2 pull-left boardReply-img">
+//	        <img class="img-circle" src="${root}/img/Penguins.jpg" alt="" />     
+//	    </div>
+//	
+//	    <div class="span10 media-body boardReply-icon">
+//	        <i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.memberNickName}</a><br/>
+//	        <i class="glyphicon glyphicon-time"></i> <fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+//	    </div>
+//	    <div class="pull-left ReplyContent">
+//	    <p>${reply.boardReplyContent}</p>
+//	    </div>
+//	 </div>
 	
 	if (parseInt(session) == reply.boardReplyWriter) {
 		text += '<span class="reply_btns">'
