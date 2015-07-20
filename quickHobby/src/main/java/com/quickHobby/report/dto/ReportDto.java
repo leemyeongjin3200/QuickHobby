@@ -7,7 +7,21 @@ public class ReportDto {
 	private String report_content;
 	private int report_boardnum;
 	private String report_boardtype;
+	private String sender_name;
+	private String receiver_name;
 	
+	public String getSender_name() {
+		return sender_name;
+	}
+	public void setSender_name(String sender_name) {
+		this.sender_name = sender_name;
+	}
+	public String getReceiver_name() {
+		return receiver_name;
+	}
+	public void setReceiver_name(String receiver_name) {
+		this.receiver_name = receiver_name;
+	}
 	public int getReport_num() {
 		return report_num;
 	}

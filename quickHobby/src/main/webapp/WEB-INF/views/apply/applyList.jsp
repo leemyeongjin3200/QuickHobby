@@ -22,47 +22,12 @@ body {
 <link rel="stylesheet" href="${root}/css/apply/applyGrid.css">
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
-<script>
-$(document).ready(function(){
-		var userLat="";
-		var userLng="";
-		$(document).ready(function geoLocation()
-		{
-		     if (navigator.geolocation)
-		          navigator.geolocation.getCurrentPosition(showPosition,showError);
-		     else
-		          alert("Geolocation is not supported by this browser.");
-		});
-
-		function showPosition(position){
-		    userLat = position.coords.latitude;
-		    userLng = position.coords.longitude;
-		    
-		    $("#userLat").val(userLat);
-		    $("#userLng").val(userLng);
-		}
-
-		function showError(error){
-		     switch (error.code){
-		          case error.PERMISSION_DENIED:
-		               alert("User denied the request for Geolocation.");
-		               break;
-		          case error.POSITION_UNAVAILABLE:
-		               alert("Location information is unavailable.");
-		               break;
-		          case error.TIMEOUT:
-		               alert("The request to get user location timed out.");
-		               break;
-		          case error.UNKNOWN_ERROR:
-		               alert("An unknown error occurred.");
-		               break;
-		     }
-		}
-});
-</script>
 <body>
+	<c:if test="${error==1}">
+		<script>
+			alert("이미 가입그룹이 꽉 찼습니다.");
+		</script>
+	</c:if>
 	<div class="container-fluid filterMenu" style="display: block;">
 		<div class="collapse out" id="demo">
 			<div class="row filterStart">
@@ -142,7 +107,7 @@ $(document).ready(function(){
 </div>
 <!-- Navigation bar//-->
 
-<div class="container" style="overflow:auto;">
+<div class="container" style="overflow:auto hidden;">
 <!-- Page Title// -->
        <div class="row">
            <div class="col-lg-12">
@@ -160,96 +125,41 @@ $(document).ready(function(){
 							<c:forEach var="board" items="${applyDtoList}">
 								<input type="hidden" name="groupLocation" value="${board.apply_location}"/>
 								<div id="board" class="grid-item ${board.apply_category} ${board.apply_inout} ${board.apply_num}">
-								<fmt:formatDate var="closeDate" value="${board.apply_closedate}" pattern="yyyyMMdd"/>
-								<input type="hidden" id="groupDate" value="${closeDate}"/>
-									<c:if test="${board.apply_readcount>100}">
-										<script>
-											$("." + '${board.apply_num}').addClass("best");
-										</script>
-									</c:if>
-									<c:if test="${board.apply_cost>0}">
-										<script>
-											$("." + '${board.apply_num}').addClass("fee")
-										</script>
-									</c:if>
-									<c:if test="${board.apply_cost==0 || board.apply_cost==null}">
-										<script>
-											$("." + '${board.apply_num}').addClass("free")
-										</script>
-									</c:if>
-										<script>
-										var geocoder = new google.maps.Geocoder();
-										var addr='${board.apply_location}';
-										
-										var lat="";
-									    var lng="";
-									 
-									    geocoder.geocode({'address':addr},
-									 
-									        function(results, status){
-									 
-									            if(results!=""){
-									 
-									                var location=results[0].geometry.location;
-									 
-									                lat=location.lat();
-									                lng=location.lng();
-									                var dist=distance(lat, lng);
-									                
-									                var className="";
-											    	if(dist>0 && dist <= 5){
-											    		className="location1";
-											    	}else if(dist <= 10){
-											    		className="location2";
-											    	}else if(dist <= 20){
-											    		className="location3";
-											    	}else if(dist <= 30){
-											    		className="location4";
-											    	}else if(dist <= 40){
-											    		className="location5";
-											    	}else if(dist <= 50){
-											    		className="location6";
-											    	}else if(dist <= 100){
-											    		className="location7";
-											    	}else if(dist <= 150){
-											    		className="location8";
-											    	}else if(dist <= 200){
-											    		className="location9";
-											    	}else if(dist <= 300){
-											    		className="location10";
-											    	}else{
-											    		className="location11";
-											    	}
-											    	$("." + '${board.apply_num}').addClass(className);
-									            }
-									    });
-							
-									    function distance(lat, lng){
-											var userLat=Number($("#userLat").val());
-											var userLng=Number($("#userLng").val());
-									    	var theta=userLng-lng;
-									    	var dist=Math.sin(deg2rad(userLat)) * Math.sin(deg2rad(lat)) + Math.cos(deg2rad(userLat))
-									    			* Math.cos(deg2rad(lat)) * Math.cos(deg2rad(theta));
-									    	dist=Math.acos(dist);
-									    	dist=rad2deg(dist);
-									    	dist=dist*60*1.1515;
-									    	dist=dist*1.609344;
-									    	dist=Number(dist).toFixed(2);
-									    	return dist;
-									    }
-							
-									    function deg2rad(deg){
-									    	return (deg * Math.PI / 180);
-									    }
-							
-									    function rad2deg(rad){
-									    	return (rad*180/Math.PI);
-									    }  
-									</script>
-									<a title="${board.apply_subject}" href="#">
-										<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
-									</a>
+									<fmt:formatDate var="closeDate" value="${board.apply_closedate}" pattern="yyyyMMdd"/>
+									<input type="hidden" id="groupDate" value="${closeDate}"/>
+									<div class="apply-box">
+										<a title="" href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
+											<c:if test="${board.apply_filename == null }">
+												<img class="grayscale img-responsive" src="${root}/groupImage/default.jpg">
+											</c:if>
+											<c:if test="${board.apply_filename != null }">
+												<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+											</c:if>
+											<div class="apply-box-caption">
+												<div class="apply-box-caption-content">
+													<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyyMMdd"/> </p>
+													<p> TITLE : ${board.apply_subject} </p>
+													<p> SUBTITLE : ${board.apply_subtitle} </p>
+												</div>
+											</div>
+										</a>
+									</div>
 								</div>
+								<c:if test="${board.apply_readcount>100}">
+									<script>
+										$("." + '${board.apply_num}').addClass("best");
+									</script>
+								</c:if>
+								<c:if test="${board.apply_cost>0}">
+									<script>
+										$("." + '${board.apply_num}').addClass("fee")
+									</script>
+								</c:if>
+								<c:if test="${board.apply_cost==0 || board.apply_cost==null}">
+									<script>
+										$("." + '${board.apply_num}').addClass("free")
+									</script>
+								</c:if>
 							</c:forEach>
 						</div>
 					</div>
@@ -261,14 +171,125 @@ $(document).ready(function(){
 <!-- //Content2 -->
 <input type="hidden" id="userLat" value=""/>
 <input type="hidden" id="userLng" value=""/>
-</body>
-<jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
 <script  type="text/javascript" src="${root}/css/apply/jquery-ui-slider-pips.js"></script>
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
 <script type="text/javascript" src="${root}/css/apply/apply-grid.js"></script>
 <script type="text/javascript" src="${root}/css/apply/isotope-docs.min.js"></script>
-<script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+		var userLat="";
+		var userLng="";
+		$(document).ready(function geoLocation()
+		{
+		     if (navigator.geolocation)
+		          navigator.geolocation.getCurrentPosition(showPosition,showError);
+		     else
+		          alert("Geolocation is not supported by this browser.");
+		});
+
+		function showPosition(position){
+		    userLat = position.coords.latitude;
+		    userLng = position.coords.longitude;
+		    
+		    $("#userLat").val(userLat);
+		    $("#userLng").val(userLng);
+		}
+
+		function showError(error){
+		     switch (error.code){
+		          case error.PERMISSION_DENIED:
+		               alert("User denied the request for Geolocation.");
+		               break;
+		          case error.POSITION_UNAVAILABLE:
+		               alert("Location information is unavailable.");
+		               break;
+		          case error.TIMEOUT:
+		               alert("The request to get user location timed out.");
+		               break;
+		          case error.UNKNOWN_ERROR:
+		               alert("An unknown error occurred.");
+		               break;
+		     }
+		}
+});
+</script>
+<c:forEach var="board" items="${applyDtoList}">
+<script type="text/javascript">
+	var geocoder = new google.maps.Geocoder();
+	var addr='${board.apply_location}';
+	
+	var lat="";
+    var lng="";
+ 
+    geocoder.geocode({'address':addr},
+ 
+        function(results, status){
+ 
+            if(status==google.maps.GeocoderStatus.OK){
+ 
+                var location=results[0].geometry.location;
+ 
+                lat=location.lat();
+                lng=location.lng();
+                var dist=distance(lat, lng);
+                
+                var className="";
+		    	if(dist>0 && dist <= 5){
+		    		className="location1";
+		    	}else if(dist <= 10){
+		    		className="location2";
+		    	}else if(dist <= 20){
+		    		className="location3";
+		    	}else if(dist <= 30){
+		    		className="location4";
+		    	}else if(dist <= 40){
+		    		className="location5";
+		    	}else if(dist <= 50){
+		    		className="location6";
+		    	}else if(dist <= 100){
+		    		className="location7";
+		    	}else if(dist <= 150){
+		    		className="location8";
+		    	}else if(dist <= 200){
+		    		className="location9";
+		    	}else if(dist <= 300){
+		    		className="location10";
+		    	}else{
+		    		className="location11";
+		    	}
+		    	$("." + '${board.apply_num}').addClass(className);
+            }else{
+            	alert("에러");
+            }
+    });
+
+    function distance(lat, lng){
+		var userLat=Number($("#userLat").val());
+		var userLng=Number($("#userLng").val());
+    	var theta=userLng-lng;
+    	var dist=Math.sin(deg2rad(userLat)) * Math.sin(deg2rad(lat)) + Math.cos(deg2rad(userLat))
+    			* Math.cos(deg2rad(lat)) * Math.cos(deg2rad(theta));
+    	dist=Math.acos(dist);
+    	dist=rad2deg(dist);
+    	dist=dist*60*1.1515;
+    	dist=dist*1.609344;
+    	dist=Number(dist).toFixed(2);
+    	return dist;
+    }
+
+    function deg2rad(deg){
+    	return (deg * Math.PI / 180);
+    }
+
+    function rad2deg(rad){
+    	return (rad*180/Math.PI);
+    }  
+</script>
+</c:forEach>
+<script type="text/javascript">
 // filter 설정
 $(function() {
 	  // init Isotope
@@ -410,4 +431,6 @@ function check_size(){
 check_size();
 });
 </script>
+<jsp:include page="../template/footer.jsp"></jsp:include>
+</body>
 </html>
