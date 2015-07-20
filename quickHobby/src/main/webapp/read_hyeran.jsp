@@ -69,6 +69,8 @@
                        <div class="span10 media-body boardReply-icon">
                            <i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a><br/>
                            <i class="glyphicon glyphicon-time"></i> 13:00:00
+                           <a class="pull-right" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                           <a class="pull-right" href="#"><i class="glyphicon glyphicon-refresh"></i></a> 
                        </div>
                        <div class="pull-left ReplyContent">
                        <p>하하하하하 리플01 입니다. 리플01 입니다. 리플01 입니다. 리플01 입니다.</p>
