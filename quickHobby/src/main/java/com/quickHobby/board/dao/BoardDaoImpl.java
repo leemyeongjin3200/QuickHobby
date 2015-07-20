@@ -65,6 +65,11 @@ public class BoardDaoImpl implements BoardDao {
 	public int boardWrite(BoardDto boardDto) {
 		return sqlSession.insert("board.dao.mapper.boardInsert", boardDto);
 	}
+	
+	@Override
+	public int boardWriteFile(BoardDto boardDto) {
+		return sqlSession.insert("board.dao.mapper.boardInsertFile", boardDto);
+	}
 
 	@Override
 	public BoardDto boardRead(int boardNum) {

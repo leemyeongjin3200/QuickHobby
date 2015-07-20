@@ -27,13 +27,19 @@
 						<form name="groupBoardWriteForm" action="${root}/board/write.do" method="post" onsubmit="return boardCheck(this)" enctype="multipart/form-data">
 							<input type="hidden" name="boardWriter" value="${member.memberNum}" />
 							<div class="form-group">
+								<label for=""><span class="glyphicon glyphicon-bookmark"></span> Section</label><br>
+								<input type="radio" name="boardSection" value="t"> Tip&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<input type="radio" name="boardSection" value="r"> Review <br>
+							</div>
+							
+							<div class="form-group">
 								<label for=""><span class="glyphicon glyphicon-pushpin"></span> Title</label>
 								<input class="form-control" type="text"	name="boardSubject" size="50" placeholder="Title" />
 							</div>
 							
-							<div class="form-group">
-								<label for=""><span class="glyphicon glyphicon-th"></span> </label>
-							</div>
+<!-- 							<div class="form-group"> -->
+<!-- 								<label for=""><span class="glyphicon glyphicon-th"></span> </label> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<label for="" class="title"><span class="glyphicon glyphicon-pencil"></span> Content</label>
 								<textarea class="form-control" rows="12" cols="58" name="boardContent" placeholder="Content"></textarea>
@@ -41,7 +47,7 @@
 
 							<div class="form-group">
 								<label for=""><span class="glyphicon glyphicon-camera"></span> Picture</label> 
-									<input class="btn btn-default" type="file" name="file" id="file" />
+									<input class="btn btn-default" type="file" name="board_file" id="board_file" />
 							</div>
 
 							<div class="form-group" style="text-align: center">
