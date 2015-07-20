@@ -27,7 +27,10 @@
 	
 	<select id="getReportList" parameterType="java.util.Map" resultType="com.quickHobby.report.dto.ReportDto">
 		<![CDATA[
-			select * from (select rownum rnum, a.* from report a) where rnum >= #{startRow} and rnum <= #{endRow} order by report_num desc
+			select * from 
+			(select rownum rnum, a.*, b.member_nickname as sender_name, c.member_nickname as receiver_name from 
+			report a, member b, member c where b.member_num=a.report_sender and c.member_num=a.report_receiver
+			order by report_num desc) where rnum >= #{startRow} and rnum <= #{endRow}
 		]]> 
 	</select>
 	

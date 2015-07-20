@@ -12,7 +12,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${root}/css/apply/jquery-ui-1.8.21.custom.css">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css">
+<link rel="stylesheet" href="${root}/css/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 
 </head>

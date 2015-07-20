@@ -7,6 +7,7 @@ import java.util.List;
 import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 public class BoardDto {
+	private int rnum;
 	private int boardNum;
 	private int boardWriter;
 	private String boardSubject;
@@ -31,6 +32,12 @@ public class BoardDto {
 	
 	public int getBoardNum() {
 		return boardNum;
+	}
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 	public void setBoardNum(int boardNum) {
 		this.boardNum = boardNum;

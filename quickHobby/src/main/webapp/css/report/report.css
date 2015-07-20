@@ -29,7 +29,7 @@ ul.messagesList {
 }
 
 ul.messagesList li {
-	background: #F6F6F6;
+	background: white;
 	border-radius: 4px;
 	padding: 5px 10px;
 }
@@ -87,4 +87,24 @@ ul.messagesList li span.date {
   .form-group {
 	padding:15px 15px;
 }
+
+/* unvisited link */
+a:link {
+    color: white;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+}
+
+/* mouse over link */
+a:hover {
+    color: green;
+}
+
+/* selected link */
+a:active {
+    color: white;
+} 
 

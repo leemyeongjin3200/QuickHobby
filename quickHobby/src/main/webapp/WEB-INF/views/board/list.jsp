@@ -208,7 +208,6 @@
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
 </body>
-
 <jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>

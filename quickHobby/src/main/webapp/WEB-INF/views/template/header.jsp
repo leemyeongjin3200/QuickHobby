@@ -55,6 +55,9 @@ ${param.root1} --%>
 	        <li><a href="${root}/board/list.do">Tip & Review</a></li>
 	        <li><a href="${root}/myGroup/myGroupList.do">My Group</a></li>
 	        <li><a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}">My Page</a></li>
+	        <c:if test="${member.memberLevel == 'Manager'}">
+	      		<li><a href="${root}/report/reportList.do">Report</a></li>
+	      	</c:if>
 	      </ul>
 	      <input type="hidden" name="newMessageNum" value="${newMessageNum}"/>
 	      <ul class="nav navbar-nav navbar-right">
