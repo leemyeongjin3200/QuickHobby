@@ -11,6 +11,10 @@
 		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
 		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
 		
+		<result property="boardFileName" column="BOARD_FILENAME"/>
+		<result property="boardFilePath" column="BOARD_FILEPATH"/>
+		<result property="boardFileSize" column="BOARD_FILESIZE"/>
+		
 		<result property="boardVisible" column="BOARD_VISIBLE"/>
 		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
 		<result property="boardReadCount" column="BOARD_READCOUNT"/>
@@ -58,11 +62,16 @@
 	
 	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
 		<![CDATA[insert into board(BOARD_NUM, BOARD_WRITER, BOARD_SUBJECT, 
-				BOARD_CONTENT,BOARD_CREATEDATE, BOARD_MODIFYDATE, 
+				BOARD_CONTENT, BOARD_CREATEDATE, BOARD_MODIFYDATE,
 				BOARD_VISIBLE, BOARD_RECOMMAND,	BOARD_READCOUNT, BOARD_SECTION)
  				values(board_num_seq.nextval, #{boardWriter},
  				#{boardSubject}, #{boardContent},
-				sysdate, sysdate, 1, #{boardRecommand}, #{boardReadCount}, #{boardSection})]]>
+				sysdate, sysdate,
+				1, #{boardRecommand}, #{boardReadCount}, #{boardSection})]]>
+	</insert>
+	
+	<insert id="boardInsertFile" parameterType="com.quickHobby.board.dto.BoardDto">
+		<![CDATA[insert into board values (board_num_seq.nextval, #{boardWriter}, #{boardSubject}, #{boardContent}, sysdate, sysdate, #{boardFileName}, #{boardFilePath}, #{boardFileSize}, 1, #{boardRecommand}, #{boardReadCount}, #{boardSection})]]>
 	</insert>
 	
 	<update id="readCount" parameterType="int">
