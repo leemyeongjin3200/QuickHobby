@@ -202,11 +202,7 @@
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
 </body>
-<<<<<<< HEAD
-=======
-<%-- <jsp:include page="replyCheckModal.jsp"></jsp:include> --%>
 <jsp:include page="writeModal.jsp"></jsp:include>
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
 <jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/board/board.js"></script>

@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="${root}/css/message/message.css"/>
+<link rel="stylesheet" type="text/css" href="${root}/css/report/report.css"/>
 <title>HYERAN</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					신고 목록 <small>Inbox</small>
+					신고 목록 <small>Report</small>
 				</h1>
 			</div>
 		</div>
@@ -35,53 +35,36 @@
 							<span class="from" style="text-align:center;"><b>Number</b></span>
 							<span class="from" style="text-align:center;"><b>Sender</b></span>
 							<span class="from" style="text-align:center;"><b>Receiver</b></span>
-							<span class="title" style="text-align:center;"><b>Content</b></span>
+							<span class="from" style="text-align:center;"><b>Board Number</b></span>
+							<span class="from" style="text-align:center;"><b>Board Type</b></span>
 						</li>
 						<!-- reportList foreach로 불러오기 -->
 						<c:forEach var="reportList" items="${reportList}">
 							
 								<li>
-									<!-- message 선택하기 -->
-									<span class="from label label-info" style="text-align:left; font-size:14px">${reportList.report_num}</span>
-									<span class="from label label-info" style="text-align:left; font-size:14px">${reportList.report_sender}</span>
-									<span class="from label label-info" style="text-align:left; font-size:14px">${reportList.report_receiver}</span>
-									
-									<!-- message 선택하기 -->
-									<span class="title">
-										<a href="#" style="font-size:14px; padding-left:30px" onclick="readMessage('${messageList.message_num}', '${member.memberNum}', '${messageList.message_receiver}')">${messageList.message_content} </a>
-										<c:if test="${messageList.message_read=='no' && member.memberNum==messageList.message_receiver}">
-											<span class="label label-default">new </span>&nbsp;
-										</c:if>
-										<c:if test="${messageList.message_read=='no' && member.memberNum==messageList.message_sender}">
-											<span class="label label-default">Unread</span>&nbsp;
-										</c:if>
-									</span>
-										<span class="date" style="text-align:center;"><b><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${messageList.message_date}" pattern="E M/d, KK:mm a"/></b></span>
-										<div class="${messageList.message_num}" style="display:none"><br/>
-											<span class="from"></span>
-											<span class="title">
-												<c:if test="${member.memberNum==messageList.message_receiver}">
-													<span class=""><b> From: ${messageList.message_senderNick}</b></span><br/>
-													<div align="center">
-														<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
-														
-														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_sender}', '${messageList.message_senderNick}')">Send</a></span>
-														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">Delete</a></span>
-													</div>
-												</c:if>
-												<c:if test="${member.memberNum==messageList.message_sender}">
-													<span class=""><b> To: ${messageList.message_receiverNick}</b></span><br/>
-													<div align="center">
-														<pre style="padding-top:20px; padding-bottom:20px; text-align:left">${messageList.message_content}</pre>
-														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="replyMessage('${messageList.message_receiver}', '${messageList.message_receiverNick}')">Send</a></span>
-														<span class="label label-default"><a href="#" class="btn" style="color:white" onclick="deleteMessage('${messageList.message_num}')">Delete</a></span>
-													</div>
-												</c:if>
-											</span>
-										</div>
+									<!-- report 선택하기 -->
+									<span class="from label label-info" style="text-align:center; font-size:14px">${reportList.report_num}</span>
+									<span class="from label label-info" style="text-align:center; font-size:14px"><a href="${root}/memberBoard/check.do?memberNum=${reportList.report_sender}">${reportList.sender_name}</a></span>
+									<span class="from label label-info" style="text-align:center; font-size:14px"><a href="${root}/memberBoard/check.do?memberNum=${reportList.report_receiver}">${reportList.receiver_name}</a></span>
+									<span class="from label label-info" style="text-align:center; font-size:14px">${reportList.report_boardnum}</span>
+									<c:if test="${reportList.report_boardtype == 'A'}">
+										<span class="from label label-info" style="text-align:center; font-size:14px">Apply</span>
+									</c:if>
+									<c:if test="${reportList.report_boardtype == 'T'}">
+										<span class="from label label-info" style="text-align:center; font-size:14px">Tip & Review</span>
+									</c:if>
+									<c:if test="${reportList.report_boardtype == 'G'}">
+										<span class="from label label-info" style="text-align:center; font-size:14px">Group</span>
+									</c:if>
 								</li>
+								
+								<!-- report 선택하기 -->
+								<span>
+									<textarea rows="8" cols="119" style="margin-left:10px; margin-bottom:30px; background-color:white;" disabled="disabled">${reportList.report_content}</textarea>
+								</span>
+								<hr>
 						</c:forEach>
-						<!-- messageList foreach로 불러오기 -->
+						<!-- reportList foreach로 불러오기 -->
 					</ul>	
 				</div> 
 		
@@ -90,7 +73,7 @@
 			<!-- Page 설정에 관련한 변수들 설정 -->
 			<c:if test="${count>0}">
 			
-			<c:set var="pageBlock" value="${3}"/>
+			<c:set var="pageBlock" value="${5}"/>
 			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
 			
 			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
@@ -112,7 +95,7 @@
 		                	<!-- prev Page 버튼 생성 관련 -->
 		                	<c:if test="${startPage>pageBlock}">
 			                    <li>
-			                        <a href="#">&laquo;</a>
+			                        <a href="${root}/report/reportList.do?pageNumber=${startPage-1}">&laquo;</a>
 			                    </li>
 		                    </c:if>
 		                    <!-- prev Page 버튼 생성 관련 -->
@@ -121,7 +104,7 @@
 		                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
 				                <c:if test="${currentPage!=i}">
 						            <li> 
-			                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
+			                       		<a id="messagePage" href="${root}/report/reportList.do?pageNumber=${i}">${i}</a> 
 				                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
 				                </c:if>
 				                <c:if test="${currentPage==i}">
@@ -135,7 +118,7 @@
 							<!-- next Page 버튼 생성 관련 -->
 							<c:if test="${endPage<pageCount}">
 			                    <li>
-			                        <a href="#">&raquo;</a>
+			                        <a href="${root}/report/reportList.do?pageNumber=${endPage+1}">&raquo;</a>
 			                    </li>
 		                    </c:if>
 		                    <!-- next Page 버튼 생성 관련 -->
@@ -155,7 +138,7 @@
 </div>
 <!-- //Content1 -->
 </body>
-<script type="text/javascript" src="${root}/css/message/message.js"></script>
+<script type="text/javascript" src="${root}/css/report/report.js"></script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
 </html>

@@ -256,9 +256,9 @@ $(document).ready(function(){
 											</c:if>
 											<div class="apply-box-caption">
 												<div class="apply-box-caption-content">
-													<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyyMMdd"/> </p>
-													<p> TITLE : ${board.apply_subject} </p>
-													<p> SUBTITLE : ${board.apply_subtitle} </p>
+													<p><fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyy. MM. dd"/> </p>
+													<p>${board.apply_subject} </p>
+													<p>${board.apply_subtitle} </p>
 												</div>
 											</div>
 										</a>
