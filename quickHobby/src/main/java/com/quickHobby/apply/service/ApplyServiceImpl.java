@@ -51,14 +51,25 @@ public class ApplyServiceImpl implements ApplyService {
 		logger.info("applyWrite service======");
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
 		int groupHost=member.getMemberNum();
-
-		logger.info("groupHost:"+groupHost);
+		int memberGroups=applyDao.memberGroups(groupHost);
 		
-		mav.addObject("groupHost", groupHost);
-		mav.setViewName("apply/applyWrite");
+		if(memberGroups < 8){
+			logger.info("groupHost:"+groupHost);
+			mav.addObject("groupHost", groupHost);
+			mav.addObject("error", 0);
+			mav.setViewName("apply/applyWrite");
+		}else{
+			List<ApplyDto> applyDtoList=applyDao.getListByCreateDate();
+			logger.info("list size : " + applyDtoList.size());
+			
+			mav.addObject("applyDtoList", applyDtoList);
+			mav.setViewName("apply/applyList");
+			mav.addObject("error", 1);
+			mav.setViewName("apply/applyList");
+		}
+		
 	}
 	
 	/*
@@ -110,7 +121,7 @@ public class ApplyServiceImpl implements ApplyService {
 		if(fileSize!=0){
 			try{
 
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
 
 				logger.info("dir : " + dir);
 				
@@ -302,7 +313,7 @@ public class ApplyServiceImpl implements ApplyService {
 		if(fileSize!=0){
 			try{
 
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
 
 				logger.info("dir : " + dir);
 				

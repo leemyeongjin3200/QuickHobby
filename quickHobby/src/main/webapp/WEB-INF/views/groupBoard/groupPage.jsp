@@ -24,7 +24,6 @@
 	height: 50%;
 }
 </style>
-
 <title>HYERAN</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -272,8 +271,8 @@ $(document).ready(function(){
 	}
 });
 </script>
-</body>
 <jsp:include page="groupReplyCheckModal.jsp"></jsp:include>
 <jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+</body>
 </html>
