@@ -89,7 +89,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		if(fileSize != 0){
 			try{
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupBoardImage";
 				File file=new File(dir, timeName);
 				userFile.transferTo(file);
 				
@@ -125,9 +125,6 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
-		
-		logger.info("groupBoardNum:"+groupBoardNum);
-		logger.info("pageNumber:"+pageNumber);
 		
 //		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
@@ -206,7 +203,12 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/updateOk");
 	}
-	
+	/**
+	* @name : groupPage
+	* @date : 2015. 6. 25.
+	* @author : 차건강
+	* @description : Group Board List 불러오기
+	 */
 	public void groupPage(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
@@ -223,9 +225,9 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		if(count>0){
 			groupBoardList=groupBoardDao.getGroupBoardList(groupNum);
 			for(int i=0; i<groupBoardList.size(); i++){
-				int boardNum=groupBoardList.get(i).getGroupBoardNum();
-				int replyCount=groupReplyDao.getReplyCount(boardNum);
-				groupBoardList.get(i).setGroupReplyCount(replyCount);
+				int groupBoardNum=groupBoardList.get(i).getGroupBoardNum();
+				int groupReplyCount=groupReplyDao.getGroupReplyCount(groupBoardNum);
+				groupBoardList.get(i).setGroupReplyCount(groupReplyCount);
 			}
 		}
 		

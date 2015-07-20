@@ -1,5 +1,6 @@
 package com.quickHobby.board.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,7 +51,7 @@ public class BoardServiceImpl implements BoardService {
 		String pageNumber=request.getParameter("pageNumber");
 		if(pageNumber==null)pageNumber="1";
 		
-		int boardSize=10;
+		int boardSize=9;
 		int currentPage=Integer.parseInt(pageNumber);
 		int startRow=(currentPage-1)*boardSize+1;
 		int endRow=currentPage*boardSize;
@@ -110,7 +112,12 @@ public class BoardServiceImpl implements BoardService {
 	public void boardWriteForm(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
-
+		
+		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
+		
+		logger.info("boardNum:"+boardNum);
+		
+		mav.addObject("boardNum", boardNum);
 		mav.setViewName("board/writeForm");
 	}
 
@@ -127,14 +134,51 @@ public class BoardServiceImpl implements BoardService {
 		BoardDto boardDto=(BoardDto)map.get("BoardDto");
 		
 		int boardWriter=Integer.parseInt(req.getParameter("boardWriter"));
+		String boardSection=req.getParameter("boardSection");
+		logger.info("boardSection:"+boardSection);
+		
 		boardDto.setBoardWriter(boardWriter);
 		boardDto.setBoardReadCount(0);
 		boardDto.setBoardRecommand(0);
 		boardDto.setBoardVisible(1);
+		boardDto.setBoardSection(boardSection);
 		
-		System.out.println(boardDto.getBoardWriter());
-		int check=boardDao.boardWrite(boardDto);
-		logger.info("check:"+check);
+		MultipartFile upFile=req.getFile("board_file");
+		String fileName=upFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=upFile.getSize();
+		
+		logger.info("file : " + fileName);
+		logger.info("timeName : " + timeName);
+		logger.info("size : " + fileSize);
+		
+		
+		int check=0;
+		if(fileSize!=0){
+			try{
+
+				String dir="C:\\Users\\KOSTA_08_025\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\boardImage";
+
+				logger.info("dir : " + dir);
+				
+				File file=new File(dir, timeName);
+				logger.info("passsssssssssssssssssssssssssssssssss");
+				upFile.transferTo(file);		
+				
+				boardDto.setBoardFilePath(file.getAbsolutePath());
+				boardDto.setBoardFileName(timeName);
+				boardDto.setBoardFileSize(String.valueOf(fileSize));
+				
+				check=boardDao.boardWriteFile(boardDto);
+				logger.info("check:"+check);
+			}catch(Exception e){
+				e.printStackTrace();
+				logger.info("File IO Error!");
+			}
+		}else{
+			check=boardDao.boardWrite(boardDto);
+			logger.info("check:"+check);
+		}
 		
 		mav.addObject("check", check);
 		mav.setViewName("board/writeOk");
@@ -157,7 +201,7 @@ public class BoardServiceImpl implements BoardService {
 		logger.info("boardNum:"+boardNum);
 		logger.info("pageNumber:"+pageNumber);
 		
-//		boardReply와 연결중
+//		boardReply와 연결
 		BoardDto boardDto=boardDao.boardRead(boardNum);
 		boardDto.setBoardReplyList(boardReplyDao.getBoardReplyList(boardNum));
 		
@@ -223,7 +267,6 @@ public class BoardServiceImpl implements BoardService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		BoardDto boardDto=(BoardDto)map.get("BoardDto");
-		// logger.info("boardSubject:"+request.getParameter("boardSubject"));
 
 		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));

@@ -26,7 +26,7 @@ import com.quickHobby.member.dto.MemberDto;
  */
 @Controller
 public class BoardReplyController {
-private final Logger logger=Logger.getLogger(this.getClass().getName());
+	private final Logger logger=Logger.getLogger(this.getClass().getName());
 	
 	@Autowired
 	private BoardReplyService boardReplyService;
@@ -35,7 +35,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @name : boardReplyWrite
 	* @date : 2015. 7. 8.
 	* @author : 차건강
-	* @description : boardReply 작성 부분
+	* @description : boardReply 작성
 	 */
 	@RequestMapping(value = "boardReply/boardReplyWrite.do", method = RequestMethod.POST)
 	public @ResponseBody String boardReplyWrite(BoardReplyDto boardReplyDto, HttpServletRequest request) {

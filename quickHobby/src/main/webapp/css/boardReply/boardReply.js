@@ -25,15 +25,11 @@ function triggerEditReply(e){
 
 // reply 작성내용 컨트롤러로 보내고 list들 담을 div 그리기
 function writeReply(e){
-	//alert("hahaha");
-	// console.log(e);
 	var target = $(e.target)
 	var replySection =target.parents('.board-reply'); 
 	boardNum = replySection.data('num'),
 	text = replySection.find('.form-control').val();
 	var replyWrap = replySection.find('.replyDiv-wrap');
-	// console.log(replySection);
-	// console.log(replyWrap);
 	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
 	var root=getContextPath();
 	var callUrl=root+"/boardReply/boardReplyWrite.do";
@@ -45,7 +41,6 @@ function writeReply(e){
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
-			// console.log(decodeURIComponent(data));
 			var replyList = JSON.parse(decodeURIComponent(data));
 			replyWrap.html(getReplyList(replyList));
 			replySection.find('.form-control').val('');
@@ -68,14 +63,12 @@ function getReplyList(replyList){
 // list div 그리기
 function makeReplyDiv(reply) {
 	var d = new Date(reply.boardReplyModifyDate);
-	// console.log(d);
 	var dateStr = padStr(d.getFullYear()) +
 	padStr(1 + d.getMonth()) +
 	padStr(d.getDate()) +
 	padStr(d.getHours()) +
 	padStr(d.getMinutes()) +
 	padStr(d.getSeconds());
-	// console.log(dateStr);
 	
 	var year=dateStr.substring(0,4);
 	var month=dateStr.substring(4,6);
@@ -98,7 +91,7 @@ function makeReplyDiv(reply) {
 	
 	if (parseInt(session) == reply.boardReplyWriter) {
 		text += '<span class="reply_btns">'
-				+ '<a class="modifyBtn" style="cursor:pointer;">수정</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class="deleteBtn" style="cursor:pointer;">삭제</a></span></div>';
+				+ '<a class="modifyBtn" style="cursor:pointer;">Modify</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class="deleteBtn" style="cursor:pointer;">Delete</a></span></div>';
 		return text;
 	}
 	if (parseInt(session) != reply.boardReplyWriter) {

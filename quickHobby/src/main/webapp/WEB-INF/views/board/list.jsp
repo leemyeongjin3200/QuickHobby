@@ -25,7 +25,7 @@
      </div><!-- .row 끝 -->
 	<!-- Tab 선택하기 전체/tip/review -->
 	<ul class="nav nav-tabs">
-	    <li class="active"><a href="#menu1">전체</a></li>
+	    <li class="active"><a>Tip & Review</a></li>
 	</ul>
 
   	<div class="tab-content">
@@ -73,7 +73,7 @@
 										<c:if test="${board.boardVisible==1}">
 											<div class="gTableCell number">${board.boardNum}</div>
 											<div class="gTableCell nickname"><i class="glyphicon glyphicon-user"></i>
-												<a href="#">${board.memberNickName}</a></div>
+												<a href="${root}/memberBoard/check.do?memberNum=${board.boardWriter}">${board.memberNickName}</a></div>
 											<div class="gTableCell titlec">
 											
 											<!-- tip/review 구분하기 -->
@@ -94,7 +94,7 @@
 							</div> <!-- .gTable 끝  -->
 							<div class="col-lg-1 btns" style="float:right">
 								<div class="clearfix" style="margin-top: 20px; text-align:right">
-									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">글쓰기</a>
+									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">Write</a>
 								</div>
 							</div>
 					</div><!-- .row-fluid 끝 -->
@@ -110,7 +110,13 @@
 					        		<!-- album1 contents -->
 					        	 	<div class="col-md-4">
 					        	 	  <div class="gAlbum-img">
-					        	 	  	<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  	<c:if test="${board.boardFileName==null}">
+					        	 	  		<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  	</c:if>
+					        	 	  		<img class="img-responsive" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
+					        	 	  	<c:if test="${board.boardFileName!=null}">
+					        	 	  	
+					        	 	  	</c:if>
 					        	 	  </div>
 							          <div class="gAlbum-date-wrapper">
 							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
@@ -127,7 +133,7 @@
 							            	<!-- tip/review 구분하기 -->
 							            <a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}</a></h4>
 							            <p>${board.boardContent}</p>
-							            <a href="#" >read more <i>&raquo;</i></a>
+							            <a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}" >read more <i>&raquo;</i></a>
 							          </div>
 							        </div><!-- .col-md-4 끝 -->
 								</c:if>
@@ -202,7 +208,7 @@
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
 </body>
-<%-- <jsp:include page="replyCheckModal.jsp"></jsp:include> --%>
+
 <jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="replyCheckModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>

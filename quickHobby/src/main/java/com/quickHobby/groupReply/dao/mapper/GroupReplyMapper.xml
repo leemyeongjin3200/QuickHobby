@@ -13,9 +13,9 @@
 		<result property="memberNickName" column="MEMBER_NICKNAME"/>
 	</resultMap>
 	
-	<select id="getReplyCount" parameterType="int" resultType="int">
+	<select id="getGroupReplyCount" parameterType="int" resultType="int">
 		<![CDATA[
-			select count(*) from groupreply where groupreply_boardnum=#{boardNum}
+			select count(*) from groupreply where groupreply_boardnum=#{groupReplyBoardNum}
 		]]>
 	</select>
 	
@@ -29,7 +29,21 @@
 		m.member_nickname as member_nickname
 		from groupreply g	
 		inner join member m on m.member_num = g.groupreply_writer
-		where  g.groupreply_boardnum=#{groupReplyBoardNum}
+		where  g.groupreply_boardnum=#{groupBoardNum}
 		order by groupreply_createdate desc]]>
 	</select>
+	
+	<insert id="groupReplyWrite" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
+		INSERT INTO GROUPREPLY VALUES(groupreply_num_seq.nextval, #{groupReplyWriter}, 
+		#{groupBoardNum}, #{groupReplyContent}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<update id="groupReplyModify" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
+		<![CDATA[update groupreply set GROUPREPLY_CONTENT=#{groupReplyContent}, GROUPREPLY_MODIFYDATE=sysdate
+		where GROUPREPLY_NUM=#{groupReplyNum}]]>
+	</update>
+	
+	<delete id="groupReplyDelete" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
+		<![CDATA[delete from groupreply where GROUPREPLY_NUM=#{groupReplyNum}]]>
+	</delete>
 </mapper>

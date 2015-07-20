@@ -106,63 +106,63 @@
 		<!-- Page 설정// -->
 		
 			<!-- Page 설정에 관련한 변수들 설정 -->
-			<c:if test="${count>0}">
+<%-- 			<c:if test="${count>0}"> --%>
 			
-			<c:set var="pageBlock" value="${3}"/>
-			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+<%-- 			<c:set var="pageBlock" value="${3}"/> --%>
+<%-- 			<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/> --%>
 			
-			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+<%-- 			<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/> --%>
 			
-			<c:set var="startPage" value="${rs*pageBlock+1}"/>
-			<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+<%-- 			<c:set var="startPage" value="${rs*pageBlock+1}"/> --%>
+<%-- 			<c:set var="endPage" value="${startPage+pageBlock-1}"/> --%>
 			
-			<c:if test="${endPage>pageCount}">
-				<c:set var="endPage" value="${pageCount}"/>
-			</c:if>
-			<!-- Page 설정에 관련한 변수들 설정 -->
-			<form id="messagePage" name="messagePage">
+<%-- 			<c:if test="${endPage>pageCount}"> --%>
+<%-- 				<c:set var="endPage" value="${pageCount}"/> --%>
+<%-- 			</c:if> --%>
+<!-- 			<!-- Page 설정에 관련한 변수들 설정 --> 
+<!-- 			<form id="messagePage" name="messagePage"> -->
 			
-			<input type="hidden" name="pageNumber" value="${pageNumber}"/>
-		        <div class="row text-center">
-		            <div class="col-lg-12">
-		                <ul class="pagination">
+<%-- 			<input type="hidden" name="pageNumber" value="${pageNumber}"/> --%>
+<!-- 		        <div class="row text-center"> -->
+<!-- 		            <div class="col-lg-12"> -->
+<!-- 		                <ul class="pagination"> -->
 		                	
-		                	<!-- prev Page 버튼 생성 관련 -->
-		                	<c:if test="${startPage>pageBlock}">
-			                    <li>
-			                        <a href="#">&laquo;</a>
-			                    </li>
-		                    </c:if>
-		                    <!-- prev Page 버튼 생성 관련 -->
+<!-- 		                	prev Page 버튼 생성 관련 -->
+<%-- 		                	<c:if test="${startPage>pageBlock}"> --%>
+<!-- 			                    <li> -->
+<!-- 			                        <a href="#">&laquo;</a> -->
+<!-- 			                    </li> -->
+<%-- 		                    </c:if> --%>
+<!-- 		                    prev Page 버튼 생성 관련 -->
 		                    
-		                    <!-- 각 Page 버튼 생성 관련 -->
-		                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
-				                <c:if test="${currentPage!=i}">
-						            <li> 
-			                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
-				                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
-				                </c:if>
-				                <c:if test="${currentPage==i}">
-					                <li class="active">
-						                   	<a href="" id="currentP">${i}</a>
-						            </li>  
-					            </c:if>  
-		                    </c:forEach>
-		                    <!-- 각 Page 버튼 생성 관련 -->
+<!-- 		                    각 Page 버튼 생성 관련 -->
+<%-- 		                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status"> --%>
+<%-- 				                <c:if test="${currentPage!=i}"> --%>
+<!-- 						            <li>  -->
+<%-- 			                       		<a id="messagePage" href="" data-filter="${i}">${i}</a>  --%>
+<!-- 				                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                    -->
+<%-- 				                </c:if> --%>
+<%-- 				                <c:if test="${currentPage==i}"> --%>
+<!-- 					                <li class="active"> -->
+<%-- 						                   	<a href="" id="currentP">${i}</a> --%>
+<!-- 						            </li>   -->
+<%-- 					            </c:if>   --%>
+<%-- 		                    </c:forEach> --%>
+<!-- 		                    각 Page 버튼 생성 관련 -->
 		                    
-							<!-- next Page 버튼 생성 관련 -->
-							<c:if test="${endPage<pageCount}">
-			                    <li>
-			                        <a href="#">&raquo;</a>
-			                    </li>
-		                    </c:if>
-		                    <!-- next Page 버튼 생성 관련 -->
-		                </ul>
-		            </div>
-		        </div>
-		    </form>
+<!-- 							next Page 버튼 생성 관련 -->
+<%-- 							<c:if test="${endPage<pageCount}"> --%>
+<!-- 			                    <li> -->
+<!-- 			                        <a href="#">&raquo;</a> -->
+<!-- 			                    </li> -->
+<%-- 		                    </c:if> --%>
+<!-- 		                    next Page 버튼 생성 관련 -->
+<!-- 		                </ul> -->
+<!-- 		            </div> -->
+<!-- 		        </div> -->
+<!-- 		    </form> -->
 		        
-			</c:if>
+<%-- 			</c:if> --%>
         <!-- //Page 설정 -->
 				
  		</div>
@@ -222,63 +222,63 @@
 			<!-- Page 설정// -->
 			
 				<!-- Page 설정에 관련한 변수들 설정 -->
-				<c:if test="${count>0}">
+<%-- 				<c:if test="${count>0}"> --%>
 				
-				<c:set var="pageBlock" value="${3}"/>
-				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+<%-- 				<c:set var="pageBlock" value="${3}"/> --%>
+<%-- 				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/> --%>
 				
-				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+<%-- 				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/> --%>
 				
-				<c:set var="startPage" value="${rs*pageBlock+1}"/>
-				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+<%-- 				<c:set var="startPage" value="${rs*pageBlock+1}"/> --%>
+<%-- 				<c:set var="endPage" value="${startPage+pageBlock-1}"/> --%>
 				
-				<c:if test="${endPage>pageCount}">
-					<c:set var="endPage" value="${pageCount}"/>
-				</c:if>
-				<!-- Page 설정에 관련한 변수들 설정 -->
-				<form id="messagePage" name="messagePage">
+<%-- 				<c:if test="${endPage>pageCount}"> --%>
+<%-- 					<c:set var="endPage" value="${pageCount}"/> --%>
+<%-- 				</c:if> --%>
+<!-- 				Page 설정에 관련한 변수들 설정 -->
+<!-- 				<form id="messagePage" name="messagePage"> -->
 				
-				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
-			        <div class="row text-center">
-			            <div class="col-lg-12">
-			                <ul class="pagination">
+<%-- 				<input type="hidden" name="pageNumber" value="${pageNumber}"/> --%>
+<!-- 			        <div class="row text-center"> -->
+<!-- 			            <div class="col-lg-12"> -->
+<!-- 			                <ul class="pagination"> -->
 			                	
-			                	<!-- prev Page 버튼 생성 관련 -->
-			                	<c:if test="${startPage>pageBlock}">
-				                    <li>
-				                        <a href="#">&laquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- prev Page 버튼 생성 관련 -->
+<!-- 			                	prev Page 버튼 생성 관련 -->
+<%-- 			                	<c:if test="${startPage>pageBlock}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&laquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    prev Page 버튼 생성 관련 -->
 			                    
-			                    <!-- 각 Page 버튼 생성 관련 -->
-			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
-					                <c:if test="${currentPage!=i}">
-							            <li> 
-				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
-					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
-					                </c:if>
-					                <c:if test="${currentPage==i}">
-						                <li class="active">
-							                   	<a href="" id="currentP">${i}</a>
-							            </li>  
-						            </c:if>  
-			                    </c:forEach>
-			                    <!-- 각 Page 버튼 생성 관련 -->
+<!-- 			                    각 Page 버튼 생성 관련 -->
+<%-- 			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status"> --%>
+<%-- 					                <c:if test="${currentPage!=i}"> --%>
+<!-- 							            <li>  -->
+<%-- 				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a>  --%>
+<!-- 					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                    -->
+<%-- 					                </c:if> --%>
+<%-- 					                <c:if test="${currentPage==i}"> --%>
+<!-- 						                <li class="active"> -->
+<%-- 							                   	<a href="" id="currentP">${i}</a> --%>
+<!-- 							            </li>   -->
+<%-- 						            </c:if>   --%>
+<%-- 			                    </c:forEach> --%>
+<!-- 			                    각 Page 버튼 생성 관련 -->
 			                    
-								<!-- next Page 버튼 생성 관련 -->
-								<c:if test="${endPage<pageCount}">
-				                    <li>
-				                        <a href="#">&raquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- next Page 버튼 생성 관련 -->
-			                </ul>
-			            </div>
-			        </div>
-			    </form>
+<!-- 								next Page 버튼 생성 관련 -->
+<%-- 								<c:if test="${endPage<pageCount}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&raquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    next Page 버튼 생성 관련 -->
+<!-- 			                </ul> -->
+<!-- 			            </div> -->
+<!-- 			        </div> -->
+<!-- 			    </form> -->
 			        
-				</c:if>
+<%-- 				</c:if> --%>
 	        <!-- //Page 설정 -->
 					
 	 		</div>
@@ -338,63 +338,63 @@
 			<!-- Page 설정// -->
 			
 				<!-- Page 설정에 관련한 변수들 설정 -->
-				<c:if test="${count>0}">
+<%-- 				<c:if test="${count>0}"> --%>
 				
-				<c:set var="pageBlock" value="${3}"/>
-				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/>
+<%-- 				<c:set var="pageBlock" value="${3}"/> --%>
+<%-- 				<c:set var="pageCount" value="${count/boardSize+(count%boardSize==0 ? 0:1)}"/> --%>
 				
-				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/>
+<%-- 				<fmt:parseNumber var="rs" value="${(currentPage-1)/pageBlock}" integerOnly="true"/> --%>
 				
-				<c:set var="startPage" value="${rs*pageBlock+1}"/>
-				<c:set var="endPage" value="${startPage+pageBlock-1}"/>
+<%-- 				<c:set var="startPage" value="${rs*pageBlock+1}"/> --%>
+<%-- 				<c:set var="endPage" value="${startPage+pageBlock-1}"/> --%>
 				
-				<c:if test="${endPage>pageCount}">
-					<c:set var="endPage" value="${pageCount}"/>
-				</c:if>
-				<!-- Page 설정에 관련한 변수들 설정 -->
-				<form id="messagePage" name="messagePage">
+<%-- 				<c:if test="${endPage>pageCount}"> --%>
+<%-- 					<c:set var="endPage" value="${pageCount}"/> --%>
+<%-- 				</c:if> --%>
+<!-- 				Page 설정에 관련한 변수들 설정 -->
+<!-- 				<form id="messagePage" name="messagePage"> -->
 				
-				<input type="hidden" name="pageNumber" value="${pageNumber}"/>
-			        <div class="row text-center">
-			            <div class="col-lg-12">
-			                <ul class="pagination">
+<%-- 				<input type="hidden" name="pageNumber" value="${pageNumber}"/> --%>
+<!-- 			        <div class="row text-center"> -->
+<!-- 			            <div class="col-lg-12"> -->
+<!-- 			                <ul class="pagination"> -->
 			                	
-			                	<!-- prev Page 버튼 생성 관련 -->
-			                	<c:if test="${startPage>pageBlock}">
-				                    <li>
-				                        <a href="#">&laquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- prev Page 버튼 생성 관련 -->
+<!-- 			                	prev Page 버튼 생성 관련 -->
+<%-- 			                	<c:if test="${startPage>pageBlock}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&laquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    prev Page 버튼 생성 관련 -->
 			                    
-			                    <!-- 각 Page 버튼 생성 관련 -->
-			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status">
-					                <c:if test="${currentPage!=i}">
-							            <li> 
-				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a> 
-					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                   
-					                </c:if>
-					                <c:if test="${currentPage==i}">
-						                <li class="active">
-							                   	<a href="" id="currentP">${i}</a>
-							            </li>  
-						            </c:if>  
-			                    </c:forEach>
-			                    <!-- 각 Page 버튼 생성 관련 -->
+<!-- 			                    각 Page 버튼 생성 관련 -->
+<%-- 			                    <c:forEach var="i" begin="${startPage}" end="${endPage}" varStatus="status"> --%>
+<%-- 					                <c:if test="${currentPage!=i}"> --%>
+<!-- 							            <li>  -->
+<%-- 				                       		<a id="messagePage" href="" data-filter="${i}">${i}</a>  --%>
+<!-- 					                    </li>    	                                                                                                                                                                                                                                                                                                                                                                                                                    -->
+<%-- 					                </c:if> --%>
+<%-- 					                <c:if test="${currentPage==i}"> --%>
+<!-- 						                <li class="active"> -->
+<%-- 							                   	<a href="" id="currentP">${i}</a> --%>
+<!-- 							            </li>   -->
+<%-- 						            </c:if>   --%>
+<%-- 			                    </c:forEach> --%>
+<!-- 			                    각 Page 버튼 생성 관련 -->
 			                    
-								<!-- next Page 버튼 생성 관련 -->
-								<c:if test="${endPage<pageCount}">
-				                    <li>
-				                        <a href="#">&raquo;</a>
-				                    </li>
-			                    </c:if>
-			                    <!-- next Page 버튼 생성 관련 -->
-			                </ul>
-			            </div>
-			        </div>
-			    </form>
+<!-- 								next Page 버튼 생성 관련 -->
+<%-- 								<c:if test="${endPage<pageCount}"> --%>
+<!-- 				                    <li> -->
+<!-- 				                        <a href="#">&raquo;</a> -->
+<!-- 				                    </li> -->
+<%-- 			                    </c:if> --%>
+<!-- 			                    next Page 버튼 생성 관련 -->
+<!-- 			                </ul> -->
+<!-- 			            </div> -->
+<!-- 			        </div> -->
+<!-- 			    </form> -->
 			        
-				</c:if>
+<%-- 				</c:if> --%>
 	        <!-- //Page 설정 -->
 					
 	 		</div>

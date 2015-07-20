@@ -24,7 +24,6 @@
 	height: 50%;
 }
 </style>
-
 <title>HYERAN</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -54,16 +53,6 @@
 								<span><i class="glyphicon glyphicon-user"></i> ${memberList.size()} Joins</span>
 								<!-- 좋아요 개수 받아오기 --> 
 								<span><i class="glyphicon glyphicon-heart"></i> ${group.groupRecommend} Likes</span>
-							</div>
-							
-							<!-- 카테고리 정보 받아오기 (눈,코,입,다리 등등)-->
-							<div class="col-sm-6 category_item">
-								<div class="clearfix pull-right">
-									<span class="eye"><i class="glyphicon glyphicon-comment"></i></span>
-									<span class="hand"><i class="glyphicon glyphicon-user"></i></span>
-									<span class="mouth"><i class="glyphicon glyphicon-calendar"></i></span> 
-									<span class="legs"><i class="glyphicon glyphicon-heart"></i></span>
-								</div>
 							</div>
 							
 							<!-- 날짜, 날씨, 주소 받아오기 -->
@@ -136,14 +125,14 @@
 							<c:if test="${count > 0}">
 								<c:forEach var="groupBoard" items="${groupBoardList}">
 									<div class="gTableRow row${groupBoard.groupRowNum}" style="display:none">
-										<div class="gTableCell number">${groupBoard.groupBoardNum}</div>
+										<div class="gTableCell number">${groupBoard.groupRowNum}</div>
 										<div class="gTableCell nickname">
-											<i class="glyphicon glyphicon-user"></i> <a href="#">${groupBoard.memberNickName}</a>
+											<i class="glyphicon glyphicon-user"></i> <a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}">${groupBoard.memberNickName}</a>
 										</div>
 										<div class="gTableCell titlec">
 											<a style='cursor:pointer;' onclick="toReadPage('${groupBoard.groupBoardNum}')">${groupBoard.groupBoardSubject} &nbsp;</a> <i
-												class="glyphicon glyphicon-comment"></i><a href="#">
-												<b class="myInGroupReply"> ${groupBoard.groupReplyCount}</b></a>
+												class="glyphicon glyphicon-comment"></i><a class="myInGroupReply" onclick="replyCheck('${groupBoard.groupBoardNum}')" style='cursor:pointer;'>
+												<b> ${groupBoard.groupReplyCount}</b></a>
 										</div>
 										<div class="gTableCell date"><fmt:formatDate value="${groupBoard.groupBoardModifyDate}" type="date"/></div>
 										<div class="gTableCell count">${groupBoard.groupBoardReadCount}</div>
@@ -245,65 +234,6 @@
 	</section>
 	<!--=========== GroupMember list 끝 ================-->
 
-	<!--===========Reply Pop-Up 시작================ -->
-	<div class="container">
-		<!-- Modal -->
-		<div class="modal fade" id="myModalReply" role="dialog">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-						<h4 class="modal-title">
-							<span class="glyphicon glyphicon-comment" style="color: white !important"></span> Comments
-						</h4>
-					</div> <!-- .modal-header 끝 -->
-					<div class="modal-Reply-body">
-						<ul class="reply-box">
-							<li class="left clearfix">
-								<div class="reply-body">
-									<strong><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong> 
-									<small class="pull-right text-muted">
-										<i class="glyphicon glyphicon-calendar"></i> 13:00:00
-									</small>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.</p>
-								</div>
-							</li>
-							<li class="left clearfix">
-								<div class="reply-body clearfix">
-									<strong><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong> 
-									<small class="pull-right text-muted">
-										<i class="glyphicon glyphicon-calendar"></i> 13:00:00
-									</small>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.</p>
-								</div>
-							</li>
-							<li class="left clearfix">
-								<div class="reply-body">
-									<strong><i class="glyphicon glyphicon-user"></i> Leemyeongjin</strong> 
-									<small class="pull-right text-muted">
-										<i class="glyphicon glyphicon-calendar"></i> 13:00:00
-									</small>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-										Curabitur bibendum ornare dolor, quis ullamcorper ligula	sodales.</p>
-								</div>
-							</li>
-						</ul>
-					</div><!-- .modal-Reply-body 끝 -->
-					<div class="modal-footer" style="font-color: white">
-						<a href="#" class="btn btn-primary" style="background-color: #BDBDBD; border-color: #BDBDBD;">
-							to Content</a> 
-						<a href="#" class="btn btn-primary" style="background-color: #BDBDBD; border-color: #BDBDBD; width: 11%;">
-							to List</a>
-					</div><!-- .modal-footer 끝 -->
-				</div><!-- .modal-content 끝 -->
-			</div><!-- .modal-dialog 끝 -->
-		</div><!-- #myModalReply 끝 -->
-	</div><!-- .container 끝 -->
-	<!--=============Reply Pop-Up 끝================= -->
-
-
 	<!-- Google map -->
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
@@ -331,7 +261,8 @@ $(document).ready(function(){
 	}
 });
 </script>
-</body>
+<jsp:include page="groupReplyCheckModal.jsp"></jsp:include>
 <jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="../template/footer.jsp"></jsp:include>
+</body>
 </html>

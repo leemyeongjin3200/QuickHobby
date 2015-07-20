@@ -28,7 +28,7 @@
 							<input type="hidden" name="groupBoardGroupNum" value="${group.groupNum}"/>
 							<input type="hidden" name="groupBoardWriter" value="${member.memberNum}" />
 							<div class="form-group">
-								<label for=""><span class="glyphicon glyphicon-pushpin"></span> Title ${group.groupNum}</label>
+								<label for=""><span class="glyphicon glyphicon-pushpin"></span> Title</label>
 								<input class="form-control" type="text"	name="groupBoardSubject" size="50" placeholder="Title" />
 							</div>
 

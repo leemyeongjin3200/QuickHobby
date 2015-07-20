@@ -12,7 +12,7 @@ import com.quickHobby.boardReply.dto.BoardReplyDto;
 * @name : BoardReplyServiceImpl
 * @date : 2015. 7. 8.
 * @author : 차건강
-* @description : Tip & Review BoardReply 로직 부분
+* @description : Tip & Review BoardReply Dao 부분과 연결
  */
 @Component
 public class BoardReplyServiceImpl implements BoardReplyService {
@@ -24,7 +24,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	* @name : getBoardReplyList
 	* @date : 2015. 7. 9.
 	* @author : 차건강
-	* @description : Tip & Review BoardReply 리스트 DB에 요청
+	* @description : Tip & Review BoardReply 리스트 Dao에 요청
 	 */
 	public List<BoardReplyDto> getBoardReplyList(int boardNum){
 		return boardReplyDao.getBoardReplyList(boardNum);	
@@ -34,7 +34,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	* @name : boardReplyWrite
 	* @date : 2015. 7. 9.
 	* @author : 차건강
-	* @description : Tip & Review BoardReply 작성한 내용 DB에 저장
+	* @description : Tip & Review BoardReply 작성한 내용 Dao에 전달
 	 */
 	@Override
 	public int boardReplyWrite(BoardReplyDto boardReplyDto) {
@@ -45,7 +45,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	* @name : boardReplyModify
 	* @date : 2015. 7. 13.
 	* @author : 차건강
-	* @description : Tip & Review BoardReply 수정한 내용 DB에 저장
+	* @description : Tip & Review BoardReply 수정한 내용 Dao에 전달
 	 */
 	@Override
 	public int boardReplyModify(BoardReplyDto boardReplyDto) {
@@ -56,7 +56,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	* @name : boardReplyModify
 	* @date : 2015. 7. 13.
 	* @author : 차건강
-	* @description : Tip & Review BoardReply DB에서 삭제
+	* @description : Tip & Review BoardReply 삭제할 내용 Dao에 전달
 	 */
 	@Override
 	public int boardReplyDelete(BoardReplyDto boardReplyDto) {

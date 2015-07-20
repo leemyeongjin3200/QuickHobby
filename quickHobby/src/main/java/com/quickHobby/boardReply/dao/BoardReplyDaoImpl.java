@@ -12,7 +12,7 @@ import com.quickHobby.boardReply.dto.BoardReplyDto;
 * @name : BoardReplyDaoImpl
 * @date : 2015. 7. 8.
 * @author : 차건강
-* @description : Tip & Review BoardReply DB와 연결하는 부분
+* @description : Tip & Review BoardReply DB와 연결
  */
 @Component
 public class BoardReplyDaoImpl implements BoardReplyDao {

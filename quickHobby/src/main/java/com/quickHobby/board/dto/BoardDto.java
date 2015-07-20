@@ -7,7 +7,6 @@ import java.util.List;
 import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 public class BoardDto {
-	private int rnum;
 	private int boardNum;
 	private int boardWriter;
 	private String boardSubject;
@@ -16,7 +15,7 @@ public class BoardDto {
 	private Date boardModifyDate;
 	private String boardFileName;
 	private String boardFilePath;
-	private long boardFileSize;
+	private String boardFileSize;
 	
 	private int boardVisible;
 	private int boardRecommand;
@@ -24,13 +23,6 @@ public class BoardDto {
 	
 	private String boardSection;
 	
-	
-	public int getRnum() {
-		return rnum;
-	}
-	public void setRnum(int rnum) {
-		this.rnum = rnum;
-	}
 	private List<BoardReplyDto> boardReplyList = new ArrayList<BoardReplyDto>();
 	
 	private int boardReplyCount;
@@ -85,10 +77,10 @@ public class BoardDto {
 	public void setBoardFilePath(String boardFilePath) {
 		this.boardFilePath = boardFilePath;
 	}
-	public long getBoardFileSize() {
+	public String getBoardFileSize() {
 		return boardFileSize;
 	}
-	public void setBoardFileSize(long boardFileSize) {
+	public void setBoardFileSize(String boardFileSize) {
 		this.boardFileSize = boardFileSize;
 	}
 	public int getBoardVisible() {
