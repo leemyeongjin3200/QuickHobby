@@ -142,7 +142,7 @@ $(document).ready(function(){
 </div>
 <!-- Navigation bar//-->
 
-<div class="container" style="overflow:auto hidden;">
+<div class="container" style="overflow:auto;">
 <!-- Page Title// -->
        <div class="row">
            <div class="col-lg-12">
@@ -246,18 +246,9 @@ $(document).ready(function(){
 									    	return (rad*180/Math.PI);
 									    }  
 									</script>
-									<div class="apply-box">
-										<a title="" href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
-											<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
-											<div class="apply-box-caption">
-												<div class="apply-box-caption-content">
-													<p> DATE : <fmt:formatDate value="${board.apply_closedate}" type="date" pattern="yyyyMMdd"/> </p>
-													<p> TITLE : ${board.apply_subject} </p>
-													<p> SUBTITLE : ${board.apply_subtitle} </p>
-												</div>
-											</div>
-										</a>
-									</div>
+									<a title="${board.apply_subject}" href="#">
+										<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+									</a>
 								</div>
 							</c:forEach>
 						</div>

@@ -110,7 +110,7 @@ public class ApplyServiceImpl implements ApplyService {
 		if(fileSize!=0){
 			try{
 
-				String dir="C:\\quickHobby\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
 
 				logger.info("dir : " + dir);
 				
@@ -302,7 +302,7 @@ public class ApplyServiceImpl implements ApplyService {
 		if(fileSize!=0){
 			try{
 
-				String dir="C:\\quickHobby\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
 
 				logger.info("dir : " + dir);
 				
