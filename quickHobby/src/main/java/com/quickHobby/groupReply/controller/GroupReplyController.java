@@ -112,8 +112,12 @@ public class GroupReplyController {
 		groupReplyDto.setGroupReplyWriter(groupReplyWriter);
 		groupReplyDto.setGroupReplyBoardNum(groupReplyBoardNum);
 		groupReplyDto.setGroupReplyNum(groupReplyNum);
+		logger.info("groupReplyNum:"+groupReplyNum);
+		logger.info("groupReplyBoardNum:"+groupReplyBoardNum);
+		logger.info("groupReplyWriter:"+groupReplyWriter);
 		try {
 			int check = groupReplyService.groupReplyDelete(groupReplyDto);
+			logger.info("check:"+check);
 			if (check!=0) {
 				return getGroupReplyList(groupReplyBoardNum);
 			}

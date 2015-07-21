@@ -166,11 +166,11 @@
  <div class="container"> 	
 	<div class="mainGrid_menu" id="filters">
        <ul>
-           <li class="active_grid_menu"><a data-toggle="tooltip" data-placement="top" title="많은 사람들이 관심 갖고 있는 모임입니다." class="btn btn-default" href="#mainFilter" data-filter=".best">BEST</a></li>
-           <li><a data-toggle="tooltip" data-placement="top" title="뮤지컬, 연극, 영화, 미술관 같이 보고 듣고 즐기는 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".eye">EYE</a></li>
-           <li><a data-toggle="tooltip" data-placement="top" title="맛집을 혼자만 즐기기 아쉽다면?" class="btn btn-default" href="#mainGrid_menu" data-filter=".mouth" >MOUTH</a></li>
-           <li><a data-toggle="tooltip" data-placement="top" title="도자기 만들기, 치즈스쿨 체험, 공예 배우기 등 직접 체험해 볼 수 있는 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".hand">HAND</a></li>
-           <li><a data-toggle="tooltip" data-placement="top" title="좀 더 스릴 넘치는 경험이 해보고 싶은 분들을 위한 액티비티한 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".legs">LEGS</a></li>
+           <li class="active_grid_menu"><a data-toggle="tooltip" data-placement="top" title="많은 사람들이 관심 가지고 있는 모임입니다." class="btn btn-default" href="#mainFilter" data-filter=".best">BEST</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="뮤지컬, 영화, 미술관 관람 등 시각적인 문화활동을 즐기는 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".eye">EYE</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="맛집을 혼자서 즐기기 외롭다면?" class="btn btn-default" href="#mainGrid_menu" data-filter=".mouth" >MOUTH</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="도자기 만들기, 치즈스쿨 체험, 공예 배우기 등을 직접 체험해 볼 수 있는 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".hand">HAND</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="조금 더 스릴 넘치는 경험이 해보고 싶은 분들을 위한 액티비티한 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".legs">LEGS</a></li>
        </ul>
    </div>
 </div>

@@ -119,7 +119,12 @@
                 
       			<div class="single_gMember" >
                     <div class="gMember_img">
-                    	<img src="${root}/pds/default.PNG" alt="img">
+                    	<c:if test="${host.memberFileName == null}">
+	                    	<img src="${root}/pds/default.PNG" alt="img">
+	                    </c:if>
+	                    <c:if test="${host.memberFileName != null}">
+	                    	<img src="${root}/pds/${host.memberFileName}" alt="img">
+	                    </c:if>
                     </div>
                     <ul class="list-unstyled groupApply-list" style="text-align:left;">
 	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span><a href="${root}/memberBoard/check.do?memberNum=${host.memberNum}"> ${host.memberNickName}</a></span></li>
