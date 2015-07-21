@@ -46,6 +46,6 @@
 	</update>
 	
 	<delete id="groupReplyDelete" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
-		<![CDATA[delete from groupreply where GROUPREPLY_NUM=#{groupReplyBoardNum}]]>
+		<![CDATA[delete from groupreply where GROUPREPLY_NUM=#{groupReplyNum}]]>
 	</delete>
 </mapper>

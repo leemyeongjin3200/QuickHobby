@@ -113,9 +113,9 @@
 					        	 	  	<c:if test="${board.boardFileName==null}">
 					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/img/Lighthouse.jpg" alt="Image"/>
 					        	 	  	</c:if>
-					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
+					        	 	  		
 					        	 	  	<c:if test="${board.boardFileName!=null}">
-					        	 	  	
+					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
 					        	 	  	</c:if>
 					        	 	  </div>
 							          <div class="gAlbum-date-wrapper">

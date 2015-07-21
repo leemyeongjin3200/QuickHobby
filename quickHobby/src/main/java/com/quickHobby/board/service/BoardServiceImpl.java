@@ -162,7 +162,6 @@ public class BoardServiceImpl implements BoardService {
 				logger.info("dir : " + dir);
 				
 				File file=new File(dir, timeName);
-				logger.info("passsssssssssssssssssssssssssssssssss");
 				upFile.transferTo(file);		
 				
 				boardDto.setBoardFilePath(file.getAbsolutePath());
