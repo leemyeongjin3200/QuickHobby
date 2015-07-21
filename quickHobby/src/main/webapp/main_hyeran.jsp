@@ -39,6 +39,18 @@
     text-transform: uppercase;
     border:2px solid #363940; 
 }
+.iconInformation{
+    border:1px solid #4C4C4C; 
+	background-color: #EAEAEA;
+	width: 1320px;
+	height: 200px;
+	margin-left: 15px;
+}
+
+.iconInformation h4{
+	color: black;
+	text-align:center;
+}
 
 /**ApplyList(Grid)=======================================
 ============================================*/ 
@@ -71,7 +83,7 @@
 <title>HYERAN</title>
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
-<body>
+<body onload="">
 <!-- Content 1//-->
 <div class="container-fluid">
   <br/><%-- <br/><br/><br/><br/>
@@ -91,32 +103,40 @@
       <div class="item active">
         <img src="${root}/img/mainBg/bg04.jpg" alt="Chania"  >
         <div class="carousel-caption">
-          <h3>Chania</h3>
-          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+          <h2>Welcome to QuickHobby ! &nbsp;- Social Activity Platform</h2><br/>
+          <p>뭔가 하루를 색다르게 보내고 싶은데 무얼 해야할지 모르겠다면?</p>
+          <p>하고싶은게 있는데 같이 할 친구들이 필요하다면?</p>
+          <p>퀴카비는 여러 사람들과 함께 즐기고 소통하며 더 나은 삶을 살고자 합니다.</p>
+          <p>지친 일상 속에서 퀴카비를 통해 활력을 찾아보는건 어떨까요?</p><br/><br/><br/>
         </div>
       </div>
 
       <div class="item">
         <img src="${root}/img/mainBg/bg02.jpg" alt="Chania" >
         <div class="carousel-caption">
-          <h3>Chania</h3>
-          <p>The atmosphere in Chania has a touch of Florence and Venice.</p>
+          <h2>Apply</h2><br/>
+          <p>당신에게 딱 맞는 모임을 찾고 싶으세요?</p>
+          <p>상단의 Apply에서 검색 기능을 사용해보세요!</p>
+          <p>직접 모임을 만들어보는건 어떨까요?</p><br/><br/><br/><br/><br/>
         </div>
       </div>
     
       <div class="item">
         <img src="${root}/img/mainBg/bg03.jpg" alt="Flower"  >
         <div class="carousel-caption">
-          <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p>
+          <h2>Tip & Review</h2><br/>
+          <p>처음이라 뭔가 두렵다면, 관심있는 모임이 있다면,</p>
+          <p>Tip & Review 게시판을 통해 이미 경험했던 사람들의 후기도 감상하고</p>
+          <p>취미 활동에 대한 정보도 얻어보세요!</p><br/><br/><br/><br/><br/>
         </div>
       </div>
 
       <div class="item">
         <img src="${root}/img/mainBg/bg01.jpg" alt="Flower" >
         <div class="carousel-caption">
-          <h3>Flowers</h3>
-          <p>Beatiful flowers in Kolymbari, Crete.</p>
+          <h2>"절대 후회하지 마라.</h2>
+          <h2>좋았다면 추억이고, 나빴다면 경험이다."</h2><br/>
+          <h3>&nbsp;-&nbsp;Carol.A Turkington</h3><br/><br/><br/>
         </div>
       </div>
       
@@ -136,15 +156,21 @@
 <br/>
 <!-- //Content 1-->
 
+<!-- Icon 설명 박스 
+<div class="iconInformation" id="information">
+	<h4>설명설명설명설명설명설명설명설명</h4>
+</div>
+ Icon 설명 끝 -->
+
 <!-- Navigation bar//-->
- <div class="container">
+ <div class="container"> 	
 	<div class="mainGrid_menu" id="filters">
        <ul>
-           <li class="active_grid_menu"><a class="btn btn-default" href="#mainFilter" data-filter=".best">BEST</a></li>
-           <li><a class="btn btn-default" href="#mainGrid_menu" data-filter=".eye">EYE</a></li>
-           <li><a class="btn btn-default" href="#mainGrid_menu" data-filter=".mouth" >MOUTH</a></li>
-           <li><a class="btn btn-default" href="#mainGrid_menu" data-filter=".hand">HAND</a></li>
-           <li><a class="btn btn-default" href="#mainGrid_menu" data-filter=".legs">LEGS</a></li>
+           <li class="active_grid_menu"><a data-toggle="tooltip" data-placement="top" title="많은 사람들이 관심 갖고 있는 모임입니다." class="btn btn-default" href="#mainFilter" data-filter=".best">BEST</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="뮤지컬, 연극, 영화, 미술관 같이 보고 듣고 즐기는 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".eye">EYE</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="맛집을 혼자만 즐기기 아쉽다면?" class="btn btn-default" href="#mainGrid_menu" data-filter=".mouth" >MOUTH</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="도자기 만들기, 치즈스쿨 체험, 공예 배우기 등 직접 체험해 볼 수 있는 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".hand">HAND</a></li>
+           <li><a data-toggle="tooltip" data-placement="top" title="좀 더 스릴 넘치는 경험이 해보고 싶은 분들을 위한 액티비티한 모임입니다." class="btn btn-default" href="#mainGrid_menu" data-filter=".legs">LEGS</a></li>
        </ul>
    </div>
 </div>
@@ -437,6 +463,12 @@
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
 <script type="text/javascript" src="${root}/css/apply/apply-grid.js"></script>
 <script>
+var $container = $('.grid');
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+	var filterValue = '.best';
+	 $container.isotope({ filter: filterValue });
+});
 
 //img column 정렬
 $(window).load(function () {

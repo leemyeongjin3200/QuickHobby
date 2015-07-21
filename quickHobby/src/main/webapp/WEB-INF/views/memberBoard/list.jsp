@@ -17,7 +17,7 @@
 <title>My Page</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
-<body style="font-family:'맑은 샘물', Sans-serif;">
+<body>
 <!--main-->
 <div class="container">
 	<div class="row">
@@ -74,9 +74,9 @@
 	                                        <img src="${root}/img/Penguins.jpg" alt="User" class="img-circle" />
 	                                    </div>
 	                                    <div class="col-sm-11 myBoardReply-body">                                        
-	                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.boardReplyWriter}</a></strong>
+	                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.memberNickName}</a></strong>
 	                                            <small class="pull-right text-muted">
-	                                                <i class="glyphicon glyphicon-time"></i><fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="MM.dd. hh:mm:ss"/>
+	                                                <i class="glyphicon glyphicon-time"></i>&nbsp;<fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="MM.dd. hh:mm:ss"/>
 	                                            </small>                                      
 	                                        <p>
 	                                            ${reply.boardReplyContent}
