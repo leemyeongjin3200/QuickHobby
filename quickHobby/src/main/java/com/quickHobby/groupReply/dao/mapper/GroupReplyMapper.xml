@@ -11,6 +11,7 @@
 		<result property="groupReplyCreateDate" column="GROUPREPLY_CREATEDATE"/>
 		<result property="groupReplyModifyDate" column="GROUPREPLY_MODIFYDATE"/>
 		<result property="memberNickName" column="MEMBER_NICKNAME"/>
+		<result property="memberFilePath" column="member_filepath"/>
 	</resultMap>
 	
 	<select id="getGroupReplyCount" parameterType="int" resultType="int">
@@ -19,15 +20,15 @@
 		]]>
 	</select>
 	
-	<select id="getBoardReplyList" resultMap="groupReplyDto" parameterType="int" >
+	<select id="getGroupReplyList" resultMap="groupReplyDto" parameterType="int" >
 		<![CDATA[select g.groupreply_num as groupreply_num, 
 		g.groupreply_writer as groupreply_writer,
 		g.groupreply_boardnum as groupreply_boardnum, 
 		g.groupreply_content as groupreply_content,  
 		g.groupreply_createdate as groupreply_createdate,  
 		g.groupreply_modifydate as groupreply_modifydate, 
-		m.member_nickname as member_nickname
-		m.member_filename as member_filename
+		m.member_nickname as member_nickname,
+		m.member_filepath as member_filepath
 		from groupreply g	
 		inner join member m on m.member_num = g.groupreply_writer
 		where  g.groupreply_boardnum=#{groupBoardNum}
@@ -36,15 +37,15 @@
 	
 	<insert id="groupReplyWrite" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
 		INSERT INTO GROUPREPLY VALUES(groupreply_num_seq.nextval, #{groupReplyWriter}, 
-		#{groupBoardNum}, #{groupReplyContent}, SYSDATE, SYSDATE)
+		#{groupReplyBoardNum}, #{groupReplyContent}, SYSDATE, SYSDATE)
 	</insert>
 	
 	<update id="groupReplyModify" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
 		<![CDATA[update groupreply set GROUPREPLY_CONTENT=#{groupReplyContent}, GROUPREPLY_MODIFYDATE=sysdate
-		where GROUPREPLY_NUM=#{groupReplyNum}]]>
+		where GROUPREPLY_NUM=#{groupReplyBoardNum}]]>
 	</update>
 	
 	<delete id="groupReplyDelete" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
-		<![CDATA[delete from groupreply where GROUPREPLY_NUM=#{groupReplyNum}]]>
+		<![CDATA[delete from groupreply where GROUPREPLY_NUM=#{groupReplyBoardNum}]]>
 	</delete>
 </mapper>

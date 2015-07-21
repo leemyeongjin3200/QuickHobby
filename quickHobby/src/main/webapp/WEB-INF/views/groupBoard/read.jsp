@@ -6,16 +6,10 @@
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<c:set var="root" value="${pageContext.request.contextPath }"/>
-<c:set var="root1" value="${pageContext.request.requestURI }"/>
-<link rel="stylesheet" type="text/css" href="${root}/css/board/bootstrap-responsive.min.css"/>
-<link rel="stylesheet" type="text/css" href="${root}/css/board/readBoard.css"/>
 <title>Insert title here</title>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin-top:50px; margin-bottom:30px">
 	<input type="hidden" name="pageNumber" value="${pageNumber}"/>
   <!--======================게시글 read content========================== -->
      <div class="row-fluid">
@@ -26,17 +20,21 @@
                      <h3>${groupBoard.groupBoardSubject}</h3>
                       <div class="board-meta clearfix">
                           <p class="pull-left">
-                               <i class="glyphicon glyphicon-user"></i> by <a href="#">${groupBoard.memberNickName}</a> | <i class="glyphicon glyphicon-calendar"></i> <fmt:formatDate value="${groupBoard.groupBoardModifyDate}"/>
+                               <i class="glyphicon glyphicon-user"></i> by <a href="${root}/memberBoard/check.do?memberNum=${groupBoard.groupBoardWriter}">${groupBoard.memberNickName}</a> | <i class="glyphicon glyphicon-calendar"></i> <fmt:formatDate value="${groupBoard.groupBoardModifyDate}" pattern="yyyy-MM-dd"/>
                           </p>
                           <p class="clearfix pull-right"><i class="glyphicon glyphicon-comment"></i> ${groupBoard.groupReplyCount}</p>
                       </div>
-                      <p><img src="${root}/groupBoardImage/${groupBoard.groupBoardFileName}" width="100%" alt="" /></p>
                       <p>
-                      	<script>
-                      		var content='${groupBoard.groupBoardContent}';
-                      		content=content.replaceAll("\r\n","<br>").replace(" ", "&nbsp");
-                      	</script>
-                      	${content}
+                      	<c:if test="${groupBoard.groupBoardFileName!=null}">
+                      		<img src="${root}/groupBoardImage/${groupBoard.groupBoardFileName}" width="100%" alt="" />
+                      	</c:if>
+                      	<c:if test="${groupBoard.groupBoardFileName==null}">
+                      		<img src="${root}/groupImage/1437372698884_bunji drop.jpg" width="100%" alt="" />
+                      	</c:if>
+                      
+                      </p>
+                      <p class="textArea">
+                      	${groupBoard.groupBoardContent}
                       </p>
  					<p>&nbsp;</p>
                 </div><!-- .board-item 끝 -->
@@ -50,64 +48,21 @@
                 <div class="boardReply-list">
                 <div></div><!--  지우지 마세요!! -->
                 	<!-- 리플 01 시작 -->
-                    <div class="boardReply media">
-                       <div class="span2 pull-left boardReply-img">
-                           <img class="img-circle" src="${root}/img/Penguins.jpg" alt="" />     
-                       </div>
-
-                       <div class="span10 media-body boardReply-icon">
-                           <i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a><br/>
-                           <i class="glyphicon glyphicon-time"></i> 13:00:00
-                       </div>
-                       <div class="pull-left ReplyContent">
-                       <p>하하하하하 리플01 입니다. 리플01 입니다. 리플01 입니다. 리플01 입니다.</p>
-                       </div>
-                   </div><!-- 리플 01 끝 -->
-
-				   <!-- 리플 02시작 -->
-                   <div class="boardReply media">
-                     <div class="span2 pull-left boardReply-img">
-                         <img class="img-circle" src="${root}/img/Penguins.jpg" alt="" />     
-                     </div>
-
-                     <div class="span10 media-body boardReply-icon">
-                         <i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a><br/>
-                         <i class="glyphicon glyphicon-time"></i> 13:00:00
-                     </div>
-                     <div class="pull-left ReplyContent">
-                     <p>하하하하하 리플02 입니다. 리플02 입니다. 리플02 입니다. 리플02 입니다. 리플02 입니다. 리플02 입니다. 리플02 입니다.</p>
-                     </div>
-                  </div><!-- 리플 02 끝 -->
-                    
-                  <!-- 리플 03시작 -->
-                  <div class="boardReply media">
-                     <div class="span2 pull-left boardReply-img">
-                         <img class="img-circle" src="${root}/img/Penguins.jpg" alt="" />     
-                     </div>
-
-                     <div class="span10 media-body boardReply-icon">
-                         <i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a><br/>
-                         <i class="glyphicon glyphicon-time"></i> 13:00:00
-                     </div>
-                     <div class="pull-left ReplyContent">
-                     <p>하하하하하 리플03 입니다. 리플03 입니다. 리플03 입니다. 리플03 입니다. 리플03 입니다. 리플03 입니다. 리플03 입니다.</p>
-                     </div>
-                 </div><!-- 리플 03 끝 -->
-                    
-                <!-- 리플 04시작 -->
-                <div class="boardReply media">
-                   <div class="span2 pull-left boardReply-img">
-                       <img class="img-circle" src="${root}/img/Penguins.jpg" alt="" />     
-                   </div>
-
-                   <div class="span10 media-body boardReply-icon">
-                       <i class="glyphicon glyphicon-user"></i> by <a href="#">seoingoo</a><br/>
-                       <i class="glyphicon glyphicon-time"></i> 13:00:00
-                   </div>
-                   <div class="pull-left ReplyContent">
-                   <p>하하하하하 리플04 입니다. 리플04 입니다. 리플04 입니다. 리플04 입니다. 하하하하하 리플04 입니다. 리플04 입니다. 리플04 입니다. 리플04 입니다.</p>
-                   </div>
-               </div><!-- 리플 04 끝 -->
+                	<c:forEach var="boardReply" items="${groupBoard.groupReplyList}">
+	                    <div class="boardReply media">
+	                       <div class="span2 pull-left boardReply-img">
+	                           <img class="img-circle" src="${root}/pds/${fileName}" alt="" />     
+	                       </div>
+	
+	                       <div class="span10 media-body boardReply-icon">
+	                           <i class="glyphicon glyphicon-user"></i> by <a href="${root}/memberBoard/check.do?memberNum=${boardReply.groupReplyWriter}">${boardReply.memberNickName}</a><br/>
+	                           <i class="glyphicon glyphicon-time"></i> <fmt:formatDate value="${boardReply.groupReplyModifyDate}" pattern="yyyy-MM-dd"/>
+	                       </div>
+	                       <div class="pull-left ReplyContent">
+	                       <p>${boardReply.groupReplyContent}</p>
+	                       </div>
+	                   </div><!-- 리플 01 끝 -->
+	                 </c:forEach>
              </div><!-- 답글목록 .boardReply-list 끝  -->
              
  			 <!--답글달기 .boardReply-form 시작  -->
@@ -125,13 +80,21 @@
    <!--  버튼 줄 시작-->
    <div class="row">
 	<div class="col-12-lg" style="text-align:center">
-		<a href="#" class="btn btn-primary" >previous</a>
-        <a href="#" class="btn btn-primary" >to List</a>
-        <a href="#" class="btn btn-primary" >next</a>
+		<c:if test="${member.memberNum == groupBoard.groupBoardWriter}">
+			<a href="#" class="btn btn-primary" >Update</a>
+        	<a href="#" class="btn btn-primary" onclick="deleteFunction('${groupBoard.groupBoardNum}')">Delete</a>
+		</c:if>
+        <a href="#" class="btn btn-primary" onclick="moveList()">List</a>
 	</div>
   </div><!-- 버튼 줄.row 끝 -->
 </div><!-- .container 끝 -->
-
-<script src="${root}/css/apply/default.js"></script>
+<script type="text/javascript">
+	var textArea='${groupBoard.groupBoardContent}';
+	textArea = textArea.replace(/\r\n/g, '"<"br">"');
+	textArea = textArea.replace(/\n/g, '"<"br">"');
+	textArea = textArea.replace(/\r/g, '"<"br">"');
+	
+	$(".textArea").text(textArea);
+</script>
 </body>
 </html>

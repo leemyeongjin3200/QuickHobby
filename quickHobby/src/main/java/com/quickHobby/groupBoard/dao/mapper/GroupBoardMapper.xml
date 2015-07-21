@@ -12,7 +12,9 @@
 		<result property="groupBoardContent" column="GROUPBOARD_CONTENT"/>
 		<result property="groupBoardCreateDate" column="GROUPBOARD_CREATEDATE"/>
 		<result property="groupBoardModifyDate" column="GROUPBOARD_MODIFYDATE"/>
-		
+		<result property="groupBoardFileName" column="groupboard_filename"/>
+		<result property="groupBoardFilePath" column="groupboard_filepath"/>
+		<result property="groupBoardFileSize" column="groupboard_filesize"/>
 		<result property="groupBoardVisible" column="GROUPBOARD_VISIBLE"/>
 		<result property="groupBoardReadCount" column="GROUPBOARD_READCOUNT"/>
 		<result property="memberNickName" column="member_nickname"/>
@@ -40,13 +42,23 @@
 				sysdate, sysdate, 1, #{groupBoardReadCount})]]>
 	</insert>
 	
+	<insert id="groupBoardInsertFile" parameterType="com.quickHobby.groupBoard.dto.GroupBoardDto">
+		<![CDATA[insert into groupboard(GROUPBOARD_NUM, GROUPBOARD_GROUPNUM, 
+				GROUPBOARD_WRITER, GROUPBOARD_SUBJECT, 
+				GROUPBOARD_CONTENT,GROUPBOARD_CREATEDATE, GROUPBOARD_MODIFYDATE, 
+				GROUPBOARD_VISIBLE, GROUPBOARD_READCOUNT, groupboard_filename, groupboard_filepath, groupboard_filesize)
+ 				values(groupboard_num_seq.nextval, #{groupBoardGroupNum},
+ 				#{groupBoardWriter}, #{groupBoardSubject}, #{groupBoardContent},
+				sysdate, sysdate, 1, #{groupBoardReadCount}, #{groupBoardFileName}, #{groupBoardFilePath}, #{groupBoardFileSize})]]>
+	</insert>
+	
 	<update id="groupReadCount" parameterType="int">
 		<![CDATA[update groupboard set GROUPBOARD_READCOUNT=GROUPBOARD_READCOUNT+1
 		where groupboard_num=#{groupBoardNum}]]>
 	</update>
 	
 	<select id="groupBoardRead" resultMap="groupBoardDto" parameterType="int">
-		<![CDATA[select * from groupboard where groupboard_num=#{groupBoardNum}]]>
+		<![CDATA[select a.*, b.member_nickname as memberNickName from groupboard a, member b where a.groupboard_num=#{groupBoardNum} and a.groupboard_writer=b.member_num]]>
 	</select>
 	
 	<update id="groupBoardDelete" parameterType="int">

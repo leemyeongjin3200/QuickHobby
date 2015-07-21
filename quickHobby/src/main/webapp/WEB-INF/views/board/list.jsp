@@ -111,15 +111,15 @@
 					        	 	<div class="col-md-4">
 					        	 	  <div class="gAlbum-img">
 					        	 	  	<c:if test="${board.boardFileName==null}">
-					        	 	  		<img class="img-responsive" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/img/Lighthouse.jpg" alt="Image"/>
 					        	 	  	</c:if>
-					        	 	  		<img class="img-responsive" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
+					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
 					        	 	  	<c:if test="${board.boardFileName!=null}">
 					        	 	  	
 					        	 	  	</c:if>
 					        	 	  </div>
 							          <div class="gAlbum-date-wrapper">
-							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i>${board.boardWriter}</span>
+							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i><a href="${root}/memberBoard/check.do?memberNum=${board.boardWriter}">${board.memberNickName}</a></span>
 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
 							            <span class="floatright"><i class="glyphicon glyphicon-heart"></i>${board.boardRecommand}</span>
 							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></span>

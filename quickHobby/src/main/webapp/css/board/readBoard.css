@@ -62,7 +62,8 @@ body {
 .well{
   margin-left:-1%;
   margin-right:-1%;
-  background: rgba(220, 220, 220, 0.5) !important;
+  height: 785px;
+  background: rgba(220, 220, 220, 1) !important;
 }
 .board-item h3{
 	margin-top:0

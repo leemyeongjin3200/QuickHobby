@@ -9,52 +9,7 @@
 <title>Insert title here</title>
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="${root}/css/jquery.js"></script>
-<script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		var geocoder = new google.maps.Geocoder();
-		 
-	    var addr="${applyDto.apply_location}";
-	 
-	    var lat="";
-	    var lng="";
-	 
-	    geocoder.geocode({'address':addr},
-	 
-	        function(results, status){
-	 
-	            if(results!=""){
-	 
-	                var location=results[0].geometry.location;
-	 
-	                lat=location.lat();
-	                lng=location.lng();
-	  
-	                var latlng = new google.maps.LatLng(lat , lng);
-	                var myOptions = {
-	                    zoom: 16,
-	                    center: latlng,
-	                    mapTypeControl: true,
-	                    mapTypeId: google.maps.MapTypeId.ROADMAP
-	                };
-	                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-	                
-	        		var marker=new google.maps.Marker({
-	        			position:latlng,
-	        			map:map
-	        		});
-	        		
-	        		var geocoder=new google.maps.Geocoder();
-	            }
-	        }
-		)
-	});
-</script>
-
 <style>
-
 /*groupApply*/
 .groupApply-img img {
     width: 100%;
@@ -196,8 +151,8 @@
         	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
 		
-
-</body>
+<script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
 	var recommends=${recommends};
 	var reports=${reports};
@@ -230,9 +185,7 @@
 	});
 	
 	function reportfun(){
-		$("#reportBtn").click(function(){
-			$("#reportModal").modal();
-		});
+		$("#reportModal").modal();
 	}
 	
 	function reportForm(form){
@@ -322,6 +275,46 @@
 	}
 </script>
 <script type="text/javascript">
+	$(document).ready(function(){
+		var geocoder = new google.maps.Geocoder();
+		 
+	    var addr="${applyDto.apply_location}";
+	 
+	    var lat="";
+	    var lng="";
+	 
+	    geocoder.geocode({'address':addr},
+	 
+	        function(results, status){
+	 
+	            if(results!=""){
+	 
+	                var location=results[0].geometry.location;
+	 
+	                lat=location.lat();
+	                lng=location.lng();
+	  
+	                var latlng = new google.maps.LatLng(lat , lng);
+	                var myOptions = {
+	                    zoom: 16,
+	                    center: latlng,
+	                    mapTypeControl: true,
+	                    mapTypeId: google.maps.MapTypeId.ROADMAP
+	                };
+	                var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+	                
+	        		var marker=new google.maps.Marker({
+	        			position:latlng,
+	        			map:map
+	        		});
+	        		
+	        		var geocoder=new google.maps.Geocoder();
+	            }
+	        }
+		)
+	});
+</script>
+<script type="text/javascript">
 	function checkJoin(root, apply_num){
 		if("${memberGroups}" > 8){
 			alert("8개 이상의 그룹을 가입할 수 없습니다.");
@@ -345,6 +338,7 @@
 		}
 	}
 </script>
+</body>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <jsp:include page="report.jsp"></jsp:include>
 </html>

@@ -36,12 +36,6 @@
 		           	 </c:forEach>   
 		           </ul>
 		        </div>
-		       
-		        
-		        <div class="modal-footer" style="font-color:white">
-		        	<a onclick="toContent()" id="toContent" class="btn btn-primary" style="background-color:#BDBDBD; border-color:#BDBDBD;">to Content</a>
-		            <a href="#" class="btn btn-primary" name="toList" style="background-color:#BDBDBD; border-color:#BDBDBD; width:11%;">to List</a>
-		        </div>
 		      </div>
 		    </div>
 		</div><!-- #myModalReply 끝 -->

@@ -204,8 +204,9 @@ public class BoardServiceImpl implements BoardService {
 //		boardReply와 연결
 		BoardDto boardDto=boardDao.boardRead(boardNum);
 		boardDto.setBoardReplyList(boardReplyDao.getBoardReplyList(boardNum));
+		boardDto.setBoardReplyCount(boardReplyDao.getBoardReplyCount(boardNum));
 		
-		logger.info("boardDto:"+boardDto);
+		logger.info("memberNickName:"+boardDto.getMemberNickName());
 		
 		mav.addObject("board", boardDto);
 		mav.addObject("pageNumber", pageNumber);

@@ -85,7 +85,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @author : 차건강
 	* @description : Group Board 글의 visible 값 0으로 바꿔서 화면상에서 delete
 	 */
-	@RequestMapping(value="/groupBoard/delete.do", method=RequestMethod.POST)
+	@RequestMapping(value="/groupBoard/delete.do", method=RequestMethod.GET)
 	public ModelAndView groupBoardDelete(HttpServletRequest request, HttpServletResponse response){		
 		logger.info("groupBoardDelete------------------------------------------");
 		

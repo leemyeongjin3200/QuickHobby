@@ -92,12 +92,15 @@ function toReadPage(groupBoardNum){
 	
 	var root=getContextPath();
 	var callUrl=root+"/groupBoard/read.do?groupBoardNum="+groupBoardNum+"&pageNumber="+pageNumber;
+
 	$.ajax({
 		url:callUrl,
 		type:"get",
 		dataType:"html",
 		success:function(data){
-			$(location).attr("href", callUrl);
+			$(".boardPoint").css("display", "none");
+			$("#gRead").html(data);
+			$("#gRead").css("display", "block");
 		}
 	});
 }
@@ -344,4 +347,25 @@ function padStr(i) {
 
 function groupBoardWrite(){
 	$("#groupBoardModal").modal();
+}
+
+function moveList(){
+	$("#gRead").css("display", "none");
+	$(".boardPoint").css("display", "initial");
+}
+
+function deleteFunction(groupBoardNum){
+	var root=getContextPath();
+	var callUrl=root + "/groupBoard/delete.do?groupBoardNum=" + groupBoardNum;
+	
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			alert("삭제완료");
+			location.reload();
+			moveList();
+		}
+	});
 }

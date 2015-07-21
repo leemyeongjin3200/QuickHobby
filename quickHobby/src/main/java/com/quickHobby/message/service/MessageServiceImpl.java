@@ -82,7 +82,6 @@ public class MessageServiceImpl implements MessageService {
 			}
 		}
 		
-		
 		mav.addObject("messageList", messageList);
 		mav.addObject("count", count);
 //		mav.addObject("boardSize", boardSize);

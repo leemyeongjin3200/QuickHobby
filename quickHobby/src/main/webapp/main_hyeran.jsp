@@ -83,7 +83,7 @@
 <title>HYERAN</title>
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
-<body>
+<body onload="">
 <!-- Content 1//-->
 <div class="container-fluid">
   <br/><%-- <br/><br/><br/><br/>
@@ -463,8 +463,11 @@
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
 <script type="text/javascript" src="${root}/css/apply/apply-grid.js"></script>
 <script>
+var $container = $('.grid');
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
+	var filterValue = '.best';
+	 $container.isotope({ filter: filterValue });
 });
 
 //img column 정렬

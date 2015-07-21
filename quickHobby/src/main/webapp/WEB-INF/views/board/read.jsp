@@ -38,9 +38,9 @@
                      <h3>${board.boardSubject}</h3>
                       <div class="board-meta clearfix">
                           <p class="pull-left">
-                               <i class="glyphicon glyphicon-user"></i> by <a href="#">${board.boardWriter}</a> | <i class="glyphicon glyphicon-tag"></i> Category <a href="#">${board.boardSection}</a> | <i class="glyphicon glyphicon-calendar"></i> ${board.boardModifyDate}
+                               <i class="glyphicon glyphicon-user"></i> by <a href="${root}/memberBoard/check.do?memberNum=${board.boardWriter}">${board.memberNickName}</a> | <i class="glyphicon glyphicon-tag"></i> Category <c:if test="${board.boardSection=='t'}"><b>Tip</b></c:if> <c:if test="${board.boardSection=='r'}"><b>Review</b></c:if> | <i class="glyphicon glyphicon-calendar"></i><fmt:formatDate value="${board.boardModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
                           </p>
-                          <p class="clearfix pull-right"><i class="glyphicon glyphicon-comment"></i> 3 Comments</p>
+                          <p class="clearfix pull-right"><i class="glyphicon glyphicon-comment"></i>${board.boardReplyCount}</p>
                       </div>
                       <p>
                       	<c:if test="${board.boardFileName==null}">
@@ -70,14 +70,19 @@
                 	<!-- 리플 01 시작 -->
                 	<c:forEach var="reply" items="${board.boardReplyList}">
                 	
-                    <div class="boardReply media" data-replynum="${reply.boardReplyNum}">
+                    <div class="boardReply media" title="replyDiv" data-replynum="${reply.boardReplyNum}">
                        <div class="span2 pull-left boardReply-img">
                            <img class="img-circle" src="${root}/pds/${reply.memberFileName}" alt="" />     
                        </div>
 
                        <div class="span10 media-body boardReply-icon">
-                           <i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.memberNickName}</a><br/>
+                           <i class="glyphicon glyphicon-user"></i> by <a href="${root}/memberBoard/check.do?memberNum=${reply.boardReplyWriter}">${reply.memberNickName}</a><br/>
                            <i class="glyphicon glyphicon-time"></i> <fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                           
+						<!-- 자신의 reply에만 삭제 버튼 보여주기 -->
+                           <c:if test="${reply.boardReplyWriter==member.memberNum}">
+                           		<a class="pull-right" style='cursor:pointer;' name="deleteReply"><i class="glyphicon glyphicon-remove"></i></a>
+                           </c:if>
                        </div>
                        <div class="pull-left ReplyContent">
                        <p>${reply.boardReplyContent}</p>
@@ -105,9 +110,20 @@
    <!--  버튼 줄 시작-->
    <div class="row">
 	<div class="col-12-lg" style="text-align:center">
-		<a href="#" class="btn btn-primary" >previous</a>
-        <a href="#" class="btn btn-primary" >to List</a>
-        <a href="#" class="btn btn-primary" >next</a>
+	
+		<!-- 		수정, 삭제, 목록보기 버튼 부분 -->
+		<form id="boardUD" name="boardUD"> 
+			<input id="boardNum" type="hidden" name="boardNum" value="${board.boardNum}">
+			<input type="hidden" name="pageNumber" value="${pageNumber}"/>
+			
+			<!-- 글 작성자에게만 수정/삭제 버튼 보이기 -->
+			<c:if test="${member.memberNum==board.boardWriter}">
+				<a style='cursor:pointer;' onclick="boardUpdate('${board.boardNum}','${pageNumber}')" class="btn btn-primary" >Modify</a>
+		        <a style='cursor:pointer;' onclick="boardDelete(${board.boardNum})" class="btn btn-primary" >Delete</a>
+		    </c:if>
+		    
+	        <a href="${root}/board/list.do?pageNumber=${pageNumber}" class="btn btn-primary" >To List</a>
+	    </form>
 	</div>
   </div><!-- 버튼 줄.row 끝 -->
 </div><!-- .container 끝 -->
@@ -122,14 +138,14 @@
 <script type="text/javascript" src="${root}/css/boardReply/boardReply.js"></script>
 <script type="text/javascript">
 //  	수정 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
-	function boardUpdate(boardNum) {
-		var boardUD = document.getElementById("boardUD");	
-		boardUD.action="${root}/board/updateForm.do";
-		boardUD.method="post";		
-		var input=document.getElementById("boardNum");
-		input.value=boardNum;
-		boardUD.submit(); 
-	}
+// 	function boardUpdate(boardNum) {
+// 		var boardUD = document.getElementById("boardUD");	
+// 		boardUD.action="${root}/board/updateForm.do";
+// 		boardUD.method="post";		
+// 		var input=document.getElementById("boardNum");
+// 		input.value=boardNum;
+// 		boardUD.submit(); 
+// 	}
 	
 	function boardDelete(boardNum) {
 // 		삭제 버튼 클릭 시 boardNum값과 함께 POST 방식으로 넘기기
@@ -145,4 +161,5 @@
 		}
 	}
 </script>
+<jsp:include page="updateModal.jsp"></jsp:include>
 </html>

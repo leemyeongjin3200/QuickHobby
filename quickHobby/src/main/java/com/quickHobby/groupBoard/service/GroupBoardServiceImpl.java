@@ -102,8 +102,13 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		}
 		
 		groupBoardDto.setGroupBoardReadCount(0);
+		int check=0;
+		if(fileSize != 0){
+			check=groupBoardDao.groupBoardWriteFile(groupBoardDto);
+		}else{
+			check=groupBoardDao.groupBoardWrite(groupBoardDto);
+		}
 		
-		int check=groupBoardDao.groupBoardWrite(groupBoardDto);
 		logger.info("check:"+check);
 		
 		mav.addObject("check", check);
@@ -129,8 +134,18 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 //		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
 		groupBoardDto.setGroupReplyList(groupReplyDao.getGroupReplyList(groupBoardNum));
-		logger.info("groupBoardDto:"+groupBoardDto);
 		
+		String filePath=memberDao.getFile(groupBoardDto.getGroupBoardWriter());
+		String fileName=null;
+		
+		if(filePath!=null){
+			fileName=filePath.split("\\\\")[10];
+		}else{
+			fileName="default.PNG";
+			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+		}
+		
+		mav.addObject("fileName", fileName);
 		mav.addObject("groupBoard", groupBoardDto);
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/read");
@@ -148,13 +163,10 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
-		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
 		int check=groupBoardDao.boardDelete(groupBoardNum);
 		
 		mav.addObject("check", check);
-		mav.addObject("pageNumber", pageNumber);
-		mav.addObject("groupBoardNum", groupBoardNum);
 		mav.setViewName("groupBoard/deleteOk");
 	}
 
