@@ -69,7 +69,7 @@
                 <div></div><!--  지우지 마세요!! -->
                 	<!-- 리플 01 시작 -->
                 	<c:forEach var="reply" items="${board.boardReplyList}">
-                	
+                	<c:set var="fileName" value="${fileName}"></c:set>
                     <div class="boardReply media" title="replyDiv" data-replynum="${reply.boardReplyNum}">
                        <div class="span2 pull-left boardReply-img">
                            <img class="img-circle" src="${root}/pds/${reply.memberFileName}" alt="" />     

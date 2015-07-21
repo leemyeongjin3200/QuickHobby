@@ -10,6 +10,7 @@ public class GroupReplyDto {
 	private Date groupReplyCreateDate;
 	private Date groupReplyModifyDate;
 	private String memberNickName;
+	private String memberFileName;
 	private String memberFilePath;
 	
 	public int getGroupReplyNum() {
@@ -59,5 +60,11 @@ public class GroupReplyDto {
 	}
 	public void setMemberFilePath(String memberFilePath) {
 		this.memberFilePath = memberFilePath;
+	}
+	public String getMemberFileName() {
+		return memberFileName;
+	}
+	public void setMemberFileName(String memberFileName) {
+		this.memberFileName = memberFileName;
 	}
 }

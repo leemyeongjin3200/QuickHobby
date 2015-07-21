@@ -369,3 +369,18 @@ function deleteFunction(groupBoardNum){
 		}
 	});
 }
+
+function updateFunction(groupBoardNum){
+	var root=getContextPath();
+	var callUrl=root + "/groupBoard/updateForm.do?groupBoardNum=" + groupBoardNum;
+	
+	$.ajax({
+		url:callUrl,
+		type:"get",
+		dataType:"html",
+		success:function(data){
+			$(".updatePoint").html(data);
+			$("#groupBoardUpdateModal").modal();
+		}
+	});
+}

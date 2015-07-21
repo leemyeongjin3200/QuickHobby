@@ -71,4 +71,17 @@
 		GROUPBOARD_CONTENT=#{groupBoardContent}, GROUPBOARD_MODIFYDATE=sysdate
 		where groupBoard_num=#{groupBoardNum}]]>
 	</update>
+	
+	<update id="groupBoardUpdateFile" parameterType="com.quickHobby.groupBoard.dto.GroupBoardDto">
+		<![CDATA[
+			update groupboard set groupboard_subject=#{groupBoardSubject}, groupboard_content=#{groupBoardContent}, groupboard_modifydate=sysdate,
+			groupboard_filename=#{groupBoardFileName}, groupboard_filepath=#{groupBoardFilePath}, groupboard_filesize=#{groupBoardFileSize}
+			where groupBoard_num=#{groupBoardNum}
+		]]>
+	</update>
+	<select id="getFile" parameterType="int" resultType="String">
+		<![CDATA[
+			select groupboard_filepath from groupboard where groupboard_num=#{groupBoardNum}
+		]]>
+	</select>
 </mapper>

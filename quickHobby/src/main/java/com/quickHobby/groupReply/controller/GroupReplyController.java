@@ -36,7 +36,7 @@ public class GroupReplyController {
 	* @author : 차건강
 	* @description : groupReply 작성
 	 */
-	@RequestMapping(value = "groupReply/groupReplyWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/groupReply/groupReplyWrite.do", method = RequestMethod.POST)
 	public @ResponseBody String groupReplyWrite(GroupReplyDto groupReplyDto, HttpServletRequest request) {
 
 		int groupReplyBoardNum = Integer.parseInt(request.getParameter("groupBoardNum"));
@@ -77,6 +77,18 @@ public class GroupReplyController {
 		
 		List<GroupReplyDto> groupReplyList = new ArrayList<GroupReplyDto>();
 		groupReplyList = groupReplyService.getGroupReplyList(groupBoardNum);
+		for(int i=0; i<groupReplyList.size(); i++){
+			String filePath=groupReplyList.get(i).getMemberFilePath();
+			String fileName=null;
+			if(filePath!=null){
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+			}
+			
+			groupReplyList.get(i).setMemberFileName(fileName);
+		}
 		logger.info("groupReplyListSize:"+groupReplyList.size());
 		ObjectMapper obj = new ObjectMapper();
 		return URLEncoder.encode(obj.writeValueAsString(groupReplyList), "UTF-8");		

@@ -334,3 +334,7 @@ a:active{text-decoration:none;}
 .icon{
 	margin:0 0 0 0;
 }
+
+.board-item{
+	overflow-y: scroll;
+}
