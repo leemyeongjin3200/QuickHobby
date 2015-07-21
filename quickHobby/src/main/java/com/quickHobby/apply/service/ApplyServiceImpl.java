@@ -217,6 +217,13 @@ public class ApplyServiceImpl implements ApplyService {
 		int joins=applyDao.getJoins(apply_num);
 		int recommends=applyDao.getRecommends(apply_num);
 		MemberDto host=applyDao.getHost(apply_num);
+		String filePath=host.getMemberFilePath();
+		
+		String fileName=null;
+		if(filePath!=null){
+			fileName=filePath.split("\\\\")[10];
+		}
+		host.setMemberFileName(fileName);
 		
 		int isJoin=applyDao.isJoinGroup(memberMap);
 		

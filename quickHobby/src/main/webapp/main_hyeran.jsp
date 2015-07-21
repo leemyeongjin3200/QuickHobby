@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<c:set var="root1" value="${pageContext.request.requestURI }"/>
+<c:set var="servletPath" value="${pageContext.request.servletPath}"/>
 <style type="text/css">
 /* === mainGrid_menu 버튼 === */
 .active_grid_menu a, .mainGrid_menu ul li a:hover{
@@ -84,6 +84,7 @@
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body onload="">
+<input type="hidden" name="servletPath" value="${servletPath}"/>
 <!-- Content 1//-->
 <div class="container-fluid">
   <br/><%-- <br/><br/><br/><br/>

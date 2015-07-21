@@ -23,6 +23,11 @@ body {
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
+<c:if test="${param.loginCheck==1}">
+	<script type="text/javascript">
+		$("#myModal").modal();
+	</script>
+</c:if>
 	<c:if test="${error==1}">
 		<script>
 			alert("이미 가입그룹이 꽉 찼습니다.");
@@ -124,6 +129,7 @@ body {
 						<div class="grid point" id="">
 							<c:forEach var="board" items="${applyDtoList}">
 								<input type="hidden" name="groupLocation" value="${board.apply_location}"/>
+								<input type="hidden" class="distance${board.apply_num}" value=""/>
 								<div id="board" class="grid-item ${board.apply_category} ${board.apply_inout} ${board.apply_num}">
 									<fmt:formatDate var="closeDate" value="${board.apply_closedate}" pattern="yyyyMMdd"/>
 									<input type="hidden" id="groupDate" value="${closeDate}"/>
@@ -237,33 +243,46 @@ $(document).ready(function(){
                 var dist=distance(lat, lng);
                 
                 var className="";
-		    	if(dist>0 && dist <= 5){
-		    		className="location1";
-		    	}else if(dist <= 10){
-		    		className="location2";
-		    	}else if(dist <= 20){
-		    		className="location3";
-		    	}else if(dist <= 30){
-		    		className="location4";
-		    	}else if(dist <= 40){
-		    		className="location5";
-		    	}else if(dist <= 50){
-		    		className="location6";
-		    	}else if(dist <= 100){
-		    		className="location7";
-		    	}else if(dist <= 150){
-		    		className="location8";
-		    	}else if(dist <= 200){
-		    		className="location9";
-		    	}else if(dist <= 300){
-		    		className="location10";
-		    	}else{
-		    		className="location11";
-		    	}
-		    	$("." + '${board.apply_num}').addClass(className);
+                
+                if(dist>=300){
+                	className+="location11 ";
+                }
+                if(dist>=200){
+                	className+="location10 ";
+                }
+                if(dist>=150){
+                	className+="location9 ";
+                }
+                if(dist>=100){
+                	className+="location8 ";
+                }
+                if(dist>=50){
+                	className+="location7 ";
+                }
+                if(dist>=40){
+                	className+="location6 ";
+                }
+                if(dist>=30){
+                	className+="location5 ";
+                }
+                if(dist>=20){
+                	className+="location4 ";
+                }
+                if(dist>=10){
+                	className+="location3 ";
+                }
+                if(dist>=5){
+                	className+="location2 ";
+                }
+                if(dist>=0){
+                	className+="location1 ";
+                }
+              
+                $("." + '${board.apply_num}').addClass(className);
+                $(".distance"+'${board.apply_num}').val(dist);
             }else{
             	alert("에러");
-            }
+            }	    	
     });
 
     function distance(lat, lng){
@@ -304,6 +323,8 @@ $(function() {
 	  var filterFns = {
 			 
 	  };
+	  
+	  var filterValue="";
 	  //filter nav-bar nav li 클릭시
 	  $('.filterGroup').on('click', 'li', function() {
 		  	var arr1=$("#datepicker").val();
@@ -331,8 +352,9 @@ $(function() {
 		  // set filter for group
 		  filters[ filterGroup ] = $this.attr('data-filter');
 		  // combine filters
-		  var filterValue = concatValues( filters );
+		  filterValue = concatValues( filters );
 		  filterValue=filterFns[filterValue] || filterValue;
+
 		  $grid.isotope({ filter: filterValue });
 	  });
 	  
@@ -396,7 +418,8 @@ $(function() {
 		  // set filter for group
 		  filters[ filterGroup ] = $this.attr('data-filter');
 		  // combine filters
-		  var filterValue = concatValues( filters );
+		  filterValue = concatValues( filters );
+		  
 		  $grid.isotope({ filter: filterValue });
 		    
 	    // $("#labels-locations-output").text( "You selected " + locations[ui.value] + " (" + ui.value + ")");

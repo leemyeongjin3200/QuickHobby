@@ -263,6 +263,12 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		logger.info("groupNum:" + groupNum);
 		
 		GroupDto group=groupDao.getGroupDto(groupNum);
+		String groupFilePath=group.getGroupFilePath();
+		String groupFileName=null;
+		if(groupFilePath==null){
+			groupFileName="default.jpg";
+			group.setGroupFileName(groupFileName);
+		}
 		
 		int count=groupBoardDao.getGroupBoardCount(groupNum);
 		
@@ -280,19 +286,19 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		List<MemberDto> member=memberDao.getMemberList(groupNum);
 		
-		logger.info("date:"+group.getGroupDate());
-		logger.info("location:"+group.getGroupLocation());
-		
-		
 		Weather w=new Weather(group.getGroupLocation(), group.getGroupDate());
 		WeatherDTO weather=w.getWeather();
 		
 		for(int i=0; i<member.size(); i++){
 			String filePath=member.get(i).getMemberFilePath();
+			String fileName=null;
 			if(filePath!=null){
-				String fileName=filePath.split("\\\\")[10];
-				member.get(i).setMemberFileName(fileName);
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
 			}
+			member.get(i).setMemberFileName(fileName);
 		}
 	
 		mav.addObject("memberList", member);

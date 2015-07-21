@@ -11,6 +11,7 @@
 		<result property="boardReplyCreateDate" column="BOARDREPLY_CREATEDATE"/>
 		<result property="boardReplyModifyDate" column="BOARDREPLY_MODIFYDATE"/>
 		<result property="memberNickName" column="MEMBER_NICKNAME"/>
+		<result property="memberFilePath" column="member_filepath"/>
 
 	</resultMap>
 	<insert id="boardReplyWrite" parameterType="com.quickHobby.boardReply.dto.BoardReplyDto">
@@ -25,7 +26,8 @@
 		r.boardreply_content as boardreply_content,  
 		r.boardreply_createdate as boardreply_createdate,  
 		r.boardreply_modifydate as boardreply_modifydate, 
-		m.member_nickname as member_nickname
+		m.member_nickname as member_nickname,
+		m.member_filepath as member_filepath
 		from boardreply r	
 		inner join member m on m.member_num = r.boardreply_writer
 		where  r.BOARDREPLY_BOARDNUM=#{boardReplyBoardNum}

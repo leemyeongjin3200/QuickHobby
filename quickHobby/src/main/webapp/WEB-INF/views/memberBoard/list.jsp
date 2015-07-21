@@ -62,9 +62,15 @@
                               
                           <p class="pull-right"><i class="glyphicon glyphicon-comment"></i> ${board.boardReplyCount} Comments</p>    
                       </div>
-
-                      <p class="img"><c:if test="${board.boardFileName==null}"><img src="${root}/img/maxresdefault.jpg" width="100%" alt="" /></c:if><c:if test="${board.boardFileName!=null}"><img src="${root}/img/Koala.jpg" width="100%" alt="" /></c:if></p>
-                      <hr>
+								<p class="img">
+									<c:if test="${board.boardFileName==null}">
+										<img src="${root}/img/maxresdefault.jpg" width="100%" alt="" />
+									</c:if>
+									<c:if test="${board.boardFileName!=null}">
+										<img src="${root}/img/Koala.jpg" width="100%" alt="" />
+									</c:if>
+								</p>
+								<hr>
                       <p>${board.boardContent}
                       </p>
 			          

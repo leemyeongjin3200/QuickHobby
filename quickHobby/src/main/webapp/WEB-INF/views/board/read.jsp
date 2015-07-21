@@ -20,6 +20,11 @@
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
+<c:if test="${param.loginCheck==1}">
+	<script type="text/javascript">
+		$("#myModal").modal();
+	</script>
+</c:if>
 <div class="container">
 <!-- Page Header -->
      <div class="row">
@@ -97,10 +102,19 @@
              <div class="boardReply-form">
                  <h4>Leave a Comment</h4>
 <!--                  <form name="boardReply-form" id="boardReply-form"> -->
-                     <input type="text" rows="4" name="message" id="message" required="required" class="input-block-level" placeholder="Message"/>
-                     <span class="input-group-btn">
+					<c:if test="${member!=null}">
+                     	<input type="text" rows="4" name="message" id="message" required="required" class="input-block-level" placeholder="Message"/>
+                     	 <span class="input-group-btn">
                      	<button type="button" name="replyBtn" class="btn btn-block btn-primary">Submit Comment</button>
                      </span>
+                     </c:if>
+                     <c:if test="${member==null}">
+                     	<input type="text" rows="4" name="message" id="message" required="required" class="input-block-level" placeholder="로그인 후 이용하세요" disabled/>
+                     	 <span class="input-group-btn">
+                     	<button type="button" name="replyBtn" class="btn btn-block btn-primary" disabled>Submit Comment</button>
+                     </span>
+                     </c:if>
+                    
 <!--                  </form> -->
              </div><!--답글달기 .board-reply 끝  -->
          </div><!-- 답글 #boardReply 끝-->

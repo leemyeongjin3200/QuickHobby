@@ -13,6 +13,11 @@
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
+<c:if test="${param.loginCheck==1}">
+	<script type="text/javascript">
+		$("#myModal").modal();
+	</script>
+</c:if>
 <!-- 일반게시판 Content 시작 -->
 <div class="container">
 	<!-- Page Header -->
@@ -94,7 +99,9 @@
 							</div> <!-- .gTable 끝  -->
 							<div class="col-lg-1 btns" style="float:right">
 								<div class="clearfix" style="margin-top: 20px; text-align:right">
-									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">Write</a>
+									<c:if test="${member != null}">
+										<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">Write</a>
+									</c:if>
 								</div>
 							</div>
 					</div><!-- .row-fluid 끝 -->
@@ -142,7 +149,9 @@
 			        	
 		        		<div class="col-lg-1 btns" style="float:right">
 							<div class="clearfix" style="margin-top: 20px; text-align:right">
-								<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">Write</a>
+								<c:if test="${member!=null}">
+									<a href="#" class="btn btn-primary  btn-sm btn-block" onclick="writeBoard('${member.memberNum}')">Write</a>
+								</c:if>
 							</div>
 						</div>
 							
