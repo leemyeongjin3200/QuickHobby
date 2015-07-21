@@ -125,6 +125,39 @@ function writeBoard(memberNum){
 	$("#writeBoardModal").modal();
 }
 
-function boardCheck(form){
+function boardUpdate(boardNum, pageNumber){
+	$("#updateBoardModal").modal();
+}
+
+function fromImgToRead(boardNum, currentPage){
+	var root=getContextPath();
+	$(location).attr("href", root+"/board/read.do?boardNum="+boardNum+"&pageNumber="+currentPage);
+}
+
+function boardWriteCheck(form){
+	if(form.boardSection.value==""){
+		alert("You have to check at least a section.");
+		form.boardSection[0].focus();
+		return false;
+	}
 	
+	if(form.boardSubject.value==""){
+		alert("You have to input the title.");
+		form.boardSubject.focus();
+		return false;
+	}
+}
+
+function boardUpdateCheck(form){
+	if(form.boardSection.value==""){
+		alert("You have to check at least a section.");
+		form.boardSection[0].focus();
+		return false;
+	}
+	
+	if(form.boardSubject.value==""){
+		alert("You have to input the title.");
+		form.boardSubject.focus();
+		return false;
+	}
 }

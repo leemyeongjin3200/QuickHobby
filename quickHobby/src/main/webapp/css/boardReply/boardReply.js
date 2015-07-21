@@ -64,6 +64,7 @@ function getReplyList(replyList){
 
 // list div 그리기
 function makeReplyDiv(reply) {
+	var root=getContextPath();
 	var d = new Date(reply.boardReplyModifyDate);
 	var dateStr = padStr(d.getFullYear()) +
 	padStr(1 + d.getMonth()) +
@@ -86,8 +87,8 @@ function makeReplyDiv(reply) {
 	console.log(session);
 	
 	var text = '<div class="boardReply media" title="replyDiv" data-replynum="' + reply.boardReplyNum + '">';
-	text += '<div class="span2 pull-left boardReply-img"><img class="img-circle" src="${root}/pds/'+reply.memberFileName+'" alt="" /></div>';
-	text += '<div class="span10 media-body boardReply-icon"><i class="glyphicon glyphicon-user"></i> by <a href="#">';
+	text += '<div class="span2 pull-left boardReply-img"><img class="img-circle" src="'+root+'/pds/'+reply.memberFileName+'" alt="" /></div>';
+	text += '<div class="span10 media-body boardReply-icon"><i class="glyphicon glyphicon-user"></i> by <a href="'+root+'/memberBoard/check.do?memberNum='+reply.boardReplyWriter+'">';
 	text += reply.memberNickName+'</a><br/>';
 	text += '<i class="glyphicon glyphicon-time"></i>'+replyTime;
 	
