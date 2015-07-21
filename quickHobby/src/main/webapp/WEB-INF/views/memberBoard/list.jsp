@@ -26,7 +26,12 @@
         <div class="" id="sidebar" style="background-color:#white;">
  			<div class="single_gMember" >
                     <div class="gMember_img">
-                    	<img src="${root}/pds/default.PNG" alt="img">
+                    	<c:if test="${host.memberFileName == null}">
+	                    	<img src="${root}/pds/default.PNG" alt="img"/>
+	                    </c:if>
+	                    <c:if test="${host.memberFileName != null}">
+	                    	<img src="${root}/pds/${host.memberFileName}" alt="img"/>
+	                    </c:if>
                     </div>
                    <ul class="list-unstyled groupApply-list" style="text-align:left;">
 	                    <li><i class="glyphicon glyphicon-user"></i><b> NickName : </b><span>${host.memberNickName}</span></li>
@@ -53,12 +58,12 @@
                         <h4><strong>${board.boardSubject}</strong></h4>
                         <div class="clearfix myBoard-underline">
                             <p class="pull-left">
-                              <i class="glyphicon glyphicon-user"></i> by ${host.memberNickName}&nbsp; | &nbsp;<i class="glyphicon glyphicon-tag"></i> Category <c:if test="${board.boardSection == 't'}">Tip</c:if><c:if test="${board.boardSection == 'r'}">Review</c:if>&nbsp; | &nbsp;<i class="glyphicon glyphicon-calendar"> <fmt:formatDate value="${board.boardModifyDate}" pattern="yyyy.MM.dd. hh:mm:ss"/></i>
+                              <i class="glyphicon glyphicon-user"></i> by <strong>${host.memberNickName}</strong>&nbsp; | &nbsp;<i class="glyphicon glyphicon-tag"></i> Category <c:if test="${board.boardSection == 't'}"><strong>Tip</strong></c:if><c:if test="${board.boardSection == 'r'}"><strong>Review</strong></c:if>&nbsp; | &nbsp;<i class="glyphicon glyphicon-calendar"><fmt:formatDate value="${board.boardModifyDate}" pattern="yyyy.MM.dd. hh:mm:ss"/></i>
                               
                           <p class="pull-right"><i class="glyphicon glyphicon-comment"></i> ${board.boardReplyCount} Comments</p>    
                       </div>
 
-                      <p class="img"><img src="${root}/img/Koala.jpg" width="100%" alt="" /></p>
+                      <p class="img"><c:if test="${board.boardFileName==null}"><img src="${root}/img/maxresdefault.jpg" width="100%" alt="" /></c:if><c:if test="${board.boardFileName!=null}"><img src="${root}/img/Koala.jpg" width="100%" alt="" /></c:if></p>
                       <hr>
                       <p>${board.boardContent}
                       </p>
@@ -71,7 +76,12 @@
 	                            	<!-- 리플1 시작-->
 	                                <li class="clearfix myBoardReplyItem">
 	                                    <div class="col-sm-1 myBoardReply-img">
-	                                        <img src="${root}/img/Penguins.jpg" alt="User" class="img-circle" />
+	                                    	<c:if test="${reply.memberFileName == null}">
+	                                        	<img src="${root}/pds/default.PNG" alt="User" class="img-circle" />
+	                                        </c:if>
+	                                        <c:if test="${reply.memberFileName != null}">
+	                                        	<img src="${root}/pds/${reply.memberFileName}" alt="User" class="img-circle" />
+	                                        </c:if>
 	                                    </div>
 	                                    <div class="col-sm-11 myBoardReply-body">                                        
 	                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="#">${reply.memberNickName}</a></strong>

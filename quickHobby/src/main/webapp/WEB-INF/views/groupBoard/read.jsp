@@ -38,7 +38,7 @@
 									width=100%; alt="" />
 							</c:if>
 							<c:if test="${groupBoard.groupBoardFileName==null}">
-								<img src="${root}/groupImage/1437372698884_bunji drop.jpg"
+								<img src="${root}/groupImage/1437372698884_bunji drop.jpg"	
 									width="100%" alt="" />
 							</c:if>
 
