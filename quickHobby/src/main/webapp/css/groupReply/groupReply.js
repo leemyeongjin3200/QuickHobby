@@ -103,21 +103,19 @@ function makeReplyDiv(reply) {
 function deleteReply(e){
 	var target = $(e.target);
 	var replyDiv =target.parents('div[title="replyDiv"]');
-	alert("replyDiv" + replyDiv);
+	console.log(replyDiv);
 	var replySection =target.parents('#boardReply');
-	alert("replySection" + replySection);
+	console.log(replySection);
 	var replyWrap = replySection.find('.boardReply-list');
-	alert("replyWrap" + replyWrap);
+	console.log(replyWrap);
 	var replyNum = replyDiv.data('replynum');
-	alert("replyNum" + replyNum);
+	console.log(replyNum);
 	var boardNum = replySection.data('num');
-	alert("boardNum" + boardNum);
 	var sendData="groupReplyNum="+replyNum+"&groupReplyBoardNum="+boardNum;
-	alert("sendData" + sendData);
+	console.log(sendData);
 	var root=getContextPath();
-	alert("root" + root);
 	var callUrl=root+"/groupReply/groupReplyDelete.do";
-	alert("callUrl" + callUrl);
+	console.log(callUrl);
 	$.ajax({
 		url:callUrl,
 		type:"post",
@@ -125,8 +123,9 @@ function deleteReply(e){
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
+			console.log(data);
 			var replyList = JSON.parse(decodeURIComponent(data));
-			alert(replyList);
+			console.log(replyList);
 			replyWrap.html(getReplyList(replyList));
 		},
 		error:function(xhr, status, error){
