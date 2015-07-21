@@ -20,6 +20,7 @@ public class GroupBoardDto {
 	private long groupBoardFileSize;
 	private int groupBoardVisible;
 	private int groupBoardReadCount;
+	private int number;
 	
 	private List<GroupReplyDto> groupReplyList = new ArrayList<GroupReplyDto>();
 	private int groupReplyCount;
@@ -120,6 +121,12 @@ public class GroupBoardDto {
 	}
 	public void setMemberNickName(String memberNickName) {
 		this.memberNickName = memberNickName;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
 	}
 	
 }

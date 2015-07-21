@@ -267,13 +267,14 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		int count=groupBoardDao.getGroupBoardCount(groupNum);
 		
 		List<GroupBoardDto> groupBoardList=new ArrayList<GroupBoardDto>();
-		
 		if(count>0){
 			groupBoardList=groupBoardDao.getGroupBoardList(groupNum);
+			int number=groupBoardList.size();
 			for(int i=0; i<groupBoardList.size(); i++){
 				int groupBoardNum=groupBoardList.get(i).getGroupBoardNum();
 				int groupReplyCount=groupReplyDao.getGroupReplyCount(groupBoardNum);
 				groupBoardList.get(i).setGroupReplyCount(groupReplyCount);
+				groupBoardList.get(i).setNumber(number--);
 			}
 		}
 		

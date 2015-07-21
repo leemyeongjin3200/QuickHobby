@@ -95,39 +95,6 @@ public class GroupReplyController {
 	}
 	
 	/**
-	* @name : groupReplyModify
-	* @date : 2015. 7. 18.
-	* @author : 차건강
-	* @description : groupReply 수정
-	 */
-	@RequestMapping(value = "groupReply/groupReplyModify.do", method = RequestMethod.POST)
-	public @ResponseBody String groupReplyModify(GroupReplyDto groupReplyDto, HttpServletRequest request) {
-		logger.info("groupReplyModify---------------------------------");
-		
-		int groupReplyNum = Integer.parseInt(request.getParameter("groupReplyNum"));
-		int groupReplyBoardNum = Integer.parseInt(request.getParameter("groupReplyBoardNum"));
-		String groupReplyContent = request.getParameter("groupReplyContent");
-		
-		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-		int groupReplyWriter=member.getMemberNum();
-		
-		groupReplyDto.setGroupReplyWriter(groupReplyWriter);
-		groupReplyDto.setGroupReplyBoardNum(groupReplyBoardNum);
-		groupReplyDto.setGroupReplyNum(groupReplyNum);
-		groupReplyDto.setGroupReplyContent(groupReplyContent);
-		try {
-			int check = groupReplyService.groupReplyModify(groupReplyDto);
-			if (check!=0) {
-				return getGroupReplyList(groupReplyBoardNum);
-			}
-		} catch (Exception e) {
-			System.out.println("groupReply Controller Error");
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	/**
 	* @name : groupReplyDelete
 	* @date : 2015. 7. 18.
 	* @author : 차건강

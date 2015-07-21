@@ -57,10 +57,10 @@
 				<h4>Comments</h4>
 				<!-- 새로고침???? -->
 				<!-- 세션값 받아와서 스크립트로 보내기 -->
-				
+				<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
 				<!-- 답글목록 boardReply-list 시작  -->
 				<div class="boardReply-list">
-				<input id="sessionNum" type="hidden" value="${member.memberNum}"/>
+				
 					<div></div>
 					<!--  지우지 마세요!! -->
 					<!-- 리플 01 시작 -->
@@ -78,7 +78,7 @@
 									pattern="yyyy-MM-dd HH:mm:ss" />
 									
 								<c:if test="${boardReply.groupReplyWriter==member.memberNum}">
-                           			<a class="pull-right" style='cursor:pointer;' name="deleteReply1"><i class="glyphicon glyphicon-remove"></i></a>
+                           			<a class="pull-right" style='cursor:pointer;' name="deleteReply"><i class="glyphicon glyphicon-remove"></i></a>
                            		</c:if>
 							</div>
 							<div class="pull-left ReplyContent">

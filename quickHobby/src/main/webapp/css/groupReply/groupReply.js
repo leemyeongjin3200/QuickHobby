@@ -5,7 +5,7 @@
 $(document).ready(function(){
 	$("#boardReply").on('click', 'button[name="replyBtn"]', writeReply);
 	$("#boardReply").on('keydown', '.input-block-level', triggerWriteReply);
-	$("#boardReply").on('click', 'a[name="deleteReply1"]', deleteReply);
+	$("#boardReply").on('click', 'a[name="deleteReply"]', deleteReply);
 });
 
 function triggerWriteReply(e){
@@ -103,21 +103,13 @@ function makeReplyDiv(reply) {
 function deleteReply(e){
 	var target = $(e.target);
 	var replyDiv =target.parents('div[title="replyDiv"]');
-	alert("replyDiv" + replyDiv);
 	var replySection =target.parents('#boardReply');
-	alert("replySection" + replySection);
 	var replyWrap = replySection.find('.boardReply-list');
-	alert("replyWrap" + replyWrap);
 	var replyNum = replyDiv.data('replynum');
-	alert("replyNum" + replyNum);
 	var boardNum = replySection.data('num');
-	alert("boardNum" + boardNum);
 	var sendData="groupReplyNum="+replyNum+"&groupReplyBoardNum="+boardNum;
-	alert("sendData" + sendData);
 	var root=getContextPath();
-	alert("root" + root);
 	var callUrl=root+"/groupReply/groupReplyDelete.do";
-	alert("callUrl" + callUrl);
 	$.ajax({
 		url:callUrl,
 		type:"post",
@@ -126,7 +118,6 @@ function deleteReply(e){
 		dataType:"text",
 		success:function(data){
 			var replyList = JSON.parse(decodeURIComponent(data));
-			alert(replyList);
 			replyWrap.html(getReplyList(replyList));
 		},
 		error:function(xhr, status, error){
