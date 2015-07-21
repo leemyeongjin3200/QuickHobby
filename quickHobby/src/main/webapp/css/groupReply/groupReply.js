@@ -4,12 +4,8 @@
 // mouse click, keyboard input event
 $(document).ready(function(){
 	$("#boardReply").on('click', 'button[name="replyBtn"]', writeReply);
-//	$(".board-reply").on('click', '.modifyBtn', clickModifyBtn);
 	$("#boardReply").on('keydown', '.input-block-level', triggerWriteReply);
-	$("#boardReply").on('click', 'a[name="deleteReply"]', deleteReply);
-//	$(".board-reply").on('click', '.edit_ok', modifyReply);
-//	$(".board-reply").on('click', '.edit_cancel', cancelReply);
-//	$(".board-reply").on('keydown', '.edit_text', triggerEditReply);
+	$("#boardReply").on('click', 'a[name="deleteReply1"]', deleteReply);
 });
 
 function triggerWriteReply(e){
@@ -83,13 +79,14 @@ function makeReplyDiv(reply) {
 	// console.log(replyTime);
 	
 	var imgSrc=root + "/pds/" + reply.memberFileName;
+	var memberSrc=root + "/memberBoard/check.do?memberNum=" + reply.groupReplyWriter;
 	// 세션값 받아오기
 	var session=document.getElementById("sessionNum").value;
 	console.log(session);
 	
 	var text = '<div class="boardReply media" title="replyDiv" data-replynum="' + reply.groupReplyNum + '">';
 	text += '<div class="span2 pull-left boardReply-img"><img class="img-circle" src="'+ imgSrc +'" alt="" /></div>';
-	text += '<div class="span10 media-body boardReply-icon"><i class="glyphicon glyphicon-user"></i> by <a href="#">';
+	text += '<div class="span10 media-body boardReply-icon"><i class="glyphicon glyphicon-user"></i> by <a href="' + memberSrc + '">';
 	text += reply.memberNickName+'</a><br/>';
 	text += '<i class="glyphicon glyphicon-time"></i>'+replyTime;
 	
@@ -100,82 +97,27 @@ function makeReplyDiv(reply) {
 	text += '</div>';
 	text += '<div class="pull-left ReplyContent"><p>'+reply.groupReplyContent+'</p></div></div>';
 	
-	
-
-	
-//	if (parseInt(session) == reply.boardReplyWriter) {
-//		text += '<span class="reply_btns">'
-//				+ '<a class="modifyBtn" style="cursor:pointer;">Modify</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a class="deleteBtn" style="cursor:pointer;">Delete</a></span></div>';
-//		return text;
-//	}
-//	if (parseInt(session) != reply.boardReplyWriter) {
-//		text += '</div>';
-//		return text;
-//	}
 	return text;	
 }
 
-//// 수정 버튼 클릭
-//function clickModifyBtn(e){
-//	console.log("clickModifyBtn");
-//	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
-//	var prevText = replayDiv.find('.reply_content').html();
-//	replayDiv.find('.reply_content').after('<span class="reply_edit"><input class="edit_text" type="text" value="'+prevText+'"/>&nbsp;&nbsp;<a class="edit_ok" style="cursor:pointer;">Modify</a>&nbsp;/&nbsp;<a class="edit_cancel" style="cursor:pointer;">Cancel</a></span>');
-//	replayDiv.find('.reply_btns').hide();
-//	replayDiv.find('.reply_content').hide();
-//}
-//
-//// 수정 기능 
-//function modifyReply(e){
-//	console.log("modifyReply");
-//	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
-//	var replaySection =target.parents('.board-reply');
-//	var replyWrap = replaySection.find('.replyDiv-wrap');
-//	var boardNum = replaySection.data('num');
-//	var replyNum = replayDiv.data('replynum');
-//	var editText = replayDiv.find('.reply_edit input').val();
-//	var sendData="boardReplyNum="+replyNum+"&boardReplyContent="+editText+"&boardNum="+boardNum;
-//	var root=getContextPath();
-//	var callUrl=root+"/boardReply/boardReplyModify.do";
-//	console.log(sendData, callUrl);
-//	$.ajax({
-//		url:callUrl,
-//		type:"post",
-//		data:sendData,
-//		contentType:"application/x-www-form-urlencoded;charset=utf-8",
-//		dataType:"text",
-//		success:function(data){
-//			var replyList = JSON.parse(decodeURIComponent(data));
-//			replyWrap.html(getReplyList(replyList));
-//		},
-//		error:function(xhr, status, error){
-//			alert(xhr+","+status+","+error);
-//		}
-//	});
-//}
-//
-//// 수정 취소 기능
-//function cancelReply(e){
-//	var target = $(e.target), replayDiv =target.parents('.replyDiv'); 
-//	var replaySection =target.parents('.board-reply');
-//	replayDiv.find('.reply_content').show();
-//	replayDiv.find('.reply_btns').show();
-//	replayDiv.find('.reply_edit').remove();
-//}
-
-// 삭제 기능
-
 function deleteReply(e){
 	var target = $(e.target);
-	var replyDiv =target.parents('div[title="replyDiv"]'); 
+	var replyDiv =target.parents('div[title="replyDiv"]');
+	alert("replyDiv" + replyDiv);
 	var replySection =target.parents('#boardReply');
+	alert("replySection" + replySection);
 	var replyWrap = replySection.find('.boardReply-list');
+	alert("replyWrap" + replyWrap);
 	var replyNum = replyDiv.data('replynum');
+	alert("replyNum" + replyNum);
 	var boardNum = replySection.data('num');
-	var sendData="boardReplyNum="+replyNum+"&boardNum="+boardNum;
-	
+	alert("boardNum" + boardNum);
+	var sendData="groupReplyNum="+replyNum+"&groupReplyBoardNum="+boardNum;
+	alert("sendData" + sendData);
 	var root=getContextPath();
-	var callUrl=root+"/boardReply/boardReplyDelete.do";
+	alert("root" + root);
+	var callUrl=root+"/groupReply/groupReplyDelete.do";
+	alert("callUrl" + callUrl);
 	$.ajax({
 		url:callUrl,
 		type:"post",
@@ -184,6 +126,7 @@ function deleteReply(e){
 		dataType:"text",
 		success:function(data){
 			var replyList = JSON.parse(decodeURIComponent(data));
+			alert(replyList);
 			replyWrap.html(getReplyList(replyList));
 		},
 		error:function(xhr, status, error){

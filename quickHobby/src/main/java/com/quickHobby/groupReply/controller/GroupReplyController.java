@@ -133,7 +133,7 @@ public class GroupReplyController {
 	* @author : 차건강
 	* @description : groupReply 삭제
 	 */
-	@RequestMapping(value = "groupReply/groupReplyDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/groupReply/groupReplyDelete.do", method = RequestMethod.POST)
 	public @ResponseBody String groupReplyDelete(GroupReplyDto groupReplyDto, HttpServletRequest request) {
 		logger.info("groupReplyDelete---------------------------------");
 		
