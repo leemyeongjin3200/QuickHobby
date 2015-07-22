@@ -122,12 +122,12 @@ body {
 						<header class="panel-heading">INDOOR/OUTDOOR</header>
 						<div class="btn-group btn-group-justified panel-body inoutBtn" data-toggle="buttons">
 							<ul class="filterGroup" data-filter-group="inOut">
-							 	<li data-filter=".indoor">
+							 	<li data-filter=".in">
 							 		<label class="btn btn-default" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
 							 			<input type="radio" name="options" id="option5">IN
 							 		</label>
 							 	</li>
-							 	<li data-filter=".outdoor"><label class="btn btn-default" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><input type="radio" name="options" id="option6" >OUT</label></li>
+							 	<li data-filter=".out"><label class="btn btn-default" style="border-top-left-radius: 0; border-bottom-left-radius: 0;"><input type="radio" name="options" id="option6" >OUT</label></li>
 							 </ul> 
 						</div>			
 					</div>
@@ -208,7 +208,7 @@ body {
 										</a>
 									</div>
 								</div>
-								<c:if test="${board.apply_readcount>100}">
+								<c:if test="${board.apply_readcount>10}">
 									<script>
 										$("." + '${board.apply_num}').addClass("best");
 									</script>
