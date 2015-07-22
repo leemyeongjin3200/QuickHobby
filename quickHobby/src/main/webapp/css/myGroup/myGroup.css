@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-@import url(http://fonts.googleapis.com/earlyaccess/jejuhallasan.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 #backgroundDiv{
 	position:relative;
@@ -39,7 +39,7 @@
 	position:relative;
 	z-index:2;
 	font-size: 20px;
-	font-family: 'Jeju Hallasan', cursive;
+	font-family: 'Nanum Gothic', serif;
 }
 
 .groupInfo{
@@ -54,7 +54,7 @@
 	z-index:3;
 	color:white;
 	font-size: 16px;
-	font-family:'Jeju Hallasan', cursive;
+	font-family:'Nanum Gothic', serif;
 	background-color: black;
 	opacity:0;
 }

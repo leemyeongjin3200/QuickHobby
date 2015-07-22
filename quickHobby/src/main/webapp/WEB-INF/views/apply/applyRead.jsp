@@ -10,6 +10,9 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+.board{
+	min-height:100%;
+}
 /*groupApply*/
 .groupApply-img img {
     width: 100%;
@@ -46,18 +49,16 @@
   margin: 0 auto 15px;
   width: 150px;
 }
-
 .single_gMember span {
   display: inline-block;
   font-size: 15px;
   margin-bottom: 10px;
- 
 }
 </style>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body style="font-family:'맑은 샘물', Sans-serif;">
-    <div class="container">
+    <div class="container board">
     	<hr>
         <div class="row">
             <div class="col-md-12">

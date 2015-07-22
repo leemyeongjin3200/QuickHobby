@@ -13,13 +13,24 @@
 <c:set var="current" value="4"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root}/css/memberBoard/memberBoard.css"/>
-
+<style type="text/css">
+.board{
+	min-height:100%;
+}
+</style>
 <title>My Page</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
 <!--main-->
-<div class="container">
+<div class="container board">
+  <div class="row">
+           <div class="col-lg-12">
+               <h1 class="page-header">${host.memberNickName}
+                   <small>'s Page</small>
+               </h1>
+           </div>
+       </div>
 	<div class="row">
       <!--left-->
       <div class="col-md-3" id="leftCol">

@@ -34,7 +34,7 @@
             <div class="checkbox">
               <label><input id="rememberId" name="rememberId" type="checkbox">Remember me</label>
             </div>
-              <button type="submit" id="loginBtn" class="btn btn-success btn-block" style="background-color:#BDBDBD; border-color:#BDBDBD"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button type="submit" id="loginBtn" class="btn btn-success btn-block" ><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
         </div>
         <div class="modal-footer">

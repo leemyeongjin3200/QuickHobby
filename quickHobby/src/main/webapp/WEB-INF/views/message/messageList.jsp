@@ -9,6 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${root}/css/message/message.css"/>
+<style type="text/css">
+.container{
+	min-height:100%;
+}
+</style>
 <title>HYERAN</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>

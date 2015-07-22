@@ -9,32 +9,28 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-/*
-body {
-    padding-top: 70px;
-}
-*/
+
 #icon_eye{
     background: url('${root}/img/icon/eyeIcon.png') center center no-repeat;
-	background-size: 42px auto;
+	background-size: 38px auto;
 	background-color:#e74c3c;
 	border:2px solid #e74c3c;
 }
 #icon_mouth{
 	background: url('${root}/img/icon/mouthIcon.png') center center no-repeat;
-	background-size: 40px auto;
+	background-size: 35px auto;
 	background-color:#BCE067;
 	border:2px solid #BCE067;
 }
 #icon_hand{
 	background: url('${root}/img/icon/handIcon.png') center center no-repeat;
-	background-size: 40px auto;
+	background-size: 35px auto;
 	background-color:#3498db;
 	border:2px solid #3498db;
 }
 #icon_legs{
 	background: url('${root}/img/icon/feetIcon.png') center center no-repeat;
-	background-size: 40px auto;
+	background-size: 35px auto;
 	background-color:#8e44ad;
 	border:2px solid #8e44ad;
 }
@@ -66,11 +62,11 @@ body {
 		</script>
 	</c:if>
 	<div class="container-fluid filterMenu" style="display: block;">
-		<div class="collapse out" id="demo">
+		<div class="collapse out" id="demo" style="margin-bottom:-10px;">
 			<div class="row filterStart">
 				<div class="col-md-2 panel">
 				 <header class="panel-heading">FILTER</header>
-					<div class="button panel-body" style="height:210px !important;">
+					<div class="button panel-body" style="height:165px !important;">
 						<ul class="filterAllBest filterGroup" data-filter-group="all">
   							<li data-filter="*"><a href="#" class="btn btn-default btn-block btn-lg" id="allBtn">All</a></li>
   							<li data-filter=".best"><a href="#" class="btn btn-default btn-block btn-lg" id="bestBtn">BEST</a></li>
@@ -148,7 +144,7 @@ body {
 				</div><!-- .row 끝 -->
 				
 				<div class="row" >
-					<div class="col-md-12 panel" style="margin-top:-20px;">
+					<div class="col-md-12 panel" style="margin-top:-22px;">
 						<header class="panel-heading">DISTANCE</header>
 						<div class="locationFilter panel-body">
 							<div class="slider filterGroup" data-filter-group="location"></div>

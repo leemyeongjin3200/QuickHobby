@@ -7,19 +7,21 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>모임 신청하기</title>
-
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="${root}/css/apply/jquery-ui-1.8.21.custom.css">
 <link rel="stylesheet" href="${root}/css/bootstrap/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
-
+<style type="text/css">
+.board{
+	min-height:100%;
+}
+</style>
+<title>모임 신청하기</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
 <br/><br/>
-	<div class="container">
+	<div class="container board">
 		<div class="page-header">
 			<h2>모임 신청하기</h2>
 		</div>

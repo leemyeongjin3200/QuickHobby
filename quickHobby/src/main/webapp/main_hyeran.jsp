@@ -10,6 +10,7 @@
 
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="servletPath" value="${pageContext.request.servletPath}"/>
+<link rel='stylesheet' href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css'>
 <style type="text/css">
 /* === mainGrid_menu 버튼 === */
 .active_grid_menu a, .mainGrid_menu ul li a:hover{
@@ -75,7 +76,7 @@
 }
 /**********************************/
 </style>
-<title>HYERAN</title>
+<title></title>
 </head>
 <jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body onload="">
@@ -209,7 +210,7 @@
 <script type="text/javascript" src="${root}/css/main/isotope-docs.min.js"></script>
 <script type="text/javascript" src="${root}/css/apply/jquery-migrate-1.0.0.min.js"></script>
 <script type="text/javascript" src="${root}/css/apply/apply-grid.js"></script>
-<script>
+<script type="text/javascript">
 var $container = $('.grid');
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
