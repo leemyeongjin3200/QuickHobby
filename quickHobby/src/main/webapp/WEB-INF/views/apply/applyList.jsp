@@ -38,7 +38,12 @@ body {
 	background-color:#8e44ad;
 	border:2px solid #8e44ad;
 }
-
+[data-toggle="buttons"] > ul > li > .btn input[type="radio"],
+[data-toggle="buttons"] > ul > li> .btn-group > .btn input[type="radio"] {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  pointer-events: none !important;
+}
 </style>
 <title>Apply</title>
 <!-- smooth animate css file -->
@@ -444,6 +449,8 @@ $(function() {
 	$(".slider")        
 	 // activate the slider with options
 	 .slider({ 
+		 animate:true,
+		 range:"min",
 	     min: 0, 
 	     max: 11, 
 	 })
