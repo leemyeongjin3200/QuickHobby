@@ -26,16 +26,6 @@ public class BoardDaoImpl implements BoardDao {
 	public int getBoardCount() {
 		return sqlSession.selectOne("board.dao.mapper.boardCount");
 	}
-	
-//	@Override
-//	public int getTipBoardCount() {
-//		return sqlSession.selectOne("board.dao.mapper.getTipBoardCount");
-//	}
-//
-//	@Override
-//	public int getReviewBoardCount() {
-//		return sqlSession.selectOne("board.dao.mapper.getReviewBoardCount");
-//	}
 
 	@Override
 	public List<BoardDto> getBoardList(int startRow, int endRow) {
@@ -44,22 +34,6 @@ public class BoardDaoImpl implements BoardDao {
 		map.put("endRow", endRow);
 		return sqlSession.selectList("board.dao.mapper.boardList", map);
 	}
-	
-//	@Override
-//	public List<BoardDto> getTipBoardList(int startRow, int endRow) {
-//		Map<String,Integer>map=new HashMap<String, Integer>();
-//		map.put("startRow", startRow);
-//		map.put("endRow", endRow);
-//		return sqlSession.selectList("board.dao.mapper.getTipBoardList", map);
-//	}
-//
-//	@Override
-//	public List<BoardDto> getReviewBoardList(int startRow, int endRow) {
-//		Map<String,Integer>map=new HashMap<String, Integer>();
-//		map.put("startRow", startRow);
-//		map.put("endRow", endRow);
-//		return sqlSession.selectList("board.dao.mapper.getReviewBoardList", map);
-//	}
 	
 	@Override
 	public int boardWrite(BoardDto boardDto) {
@@ -92,5 +66,15 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public int boardUpdate(BoardDto boardDto) {
 		return sqlSession.update("board.dao.mapper.boardUpdate", boardDto);
+	}
+
+	@Override
+	public String getFile(int boardNum) {
+		return sqlSession.selectOne("board.dao.mapper.getFile", boardNum);
+	}
+
+	@Override
+	public int boardUpdateFile(BoardDto boardDto) {
+		return sqlSession.update("board.dao.mapper.boardUpdateFile", boardDto);
 	}
 }

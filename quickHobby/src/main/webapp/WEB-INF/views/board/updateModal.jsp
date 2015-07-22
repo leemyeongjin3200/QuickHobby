@@ -39,7 +39,6 @@
 										}
 									});
 								</script>
-								${board.boardSection}
 							</div>
 							
 							<div class="form-group">

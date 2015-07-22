@@ -20,11 +20,7 @@ public interface BoardDao {
 
 	int boardWriteFile(BoardDto boardDto);
 
-//	List<BoardDto> getTipBoardList(int startRow, int endRow);
-//
-//	List<BoardDto> getReviewBoardList(int startRow, int endRow);
-//
-//	int getTipBoardCount();
-//
-//	int getReviewBoardCount();
+	String getFile(int boardNum);
+
+	int boardUpdateFile(BoardDto boardDto);
 }

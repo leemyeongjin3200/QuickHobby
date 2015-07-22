@@ -59,22 +59,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		int count=boardDao.getBoardCount();
 		
-		// Tip / Review Board 각각의 게시물 수 구하기
-//		int tipCount=boardDao.getTipBoardCount();
-//		int reviewCount=boardDao.getReviewBoardCount();
-//		logger.info("tipCount:"+tipCount);
-//		logger.info("reviewCount:"+reviewCount);
 		
 		List<BoardDto> boardList=new ArrayList<BoardDto>();
-//		List<BoardDto> tipBoardList=new ArrayList<BoardDto>();
-//		List<BoardDto> reviewBoardList=new ArrayList<BoardDto>();
 		
 		if(count>0){
 			boardList=boardDao.getBoardList(startRow, endRow);
-			
-			// Tip / Review List를 따로 DB에서 가져온다.
-//			tipBoardList=boardDao.getTipBoardList(startRow, endRow);
-//			reviewBoardList=boardDao.getReviewBoardList(startRow, endRow);
 		}
 		
 		int boardListSize=boardList.size();
@@ -86,17 +75,12 @@ public class BoardServiceImpl implements BoardService {
 			int boardReplyCount=boardReplyDao.getBoardReplyCount(boardNum);
 			
 			boardList.get(i).setBoardReplyCount(boardReplyCount);
-//			boardList.set(i, boardDto);
 			logger.info("boardDtogetBoardReplyCount:"+boardReplyCount);
 			logger.info("memberNickName:"+boardList.get(i).getMemberNickName());
 		}
 		
 		mav.addObject("boardList", boardList);
-//		mav.addObject("tipBoardList", tipBoardList);
-//		mav.addObject("reviewBoardList", reviewBoardList);
 		mav.addObject("count", count);
-//		mav.addObject("tipCount", tipCount);
-//		mav.addObject("reviewCount", reviewCount);
 		mav.addObject("boardSize", boardSize);
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("board", boardDto);
@@ -280,14 +264,47 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void boardUpdate(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		BoardDto boardDto=(BoardDto)map.get("BoardDto");
 
 		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
-
-		int check=boardDao.boardUpdate(boardDto);
 		
+		MultipartFile boardFile=request.getFile("board_file");
+		String fileName=boardFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=boardFile.getSize();
+		
+		if(fileSize != 0){
+			String deleteFilePath=boardDao.getFile(boardNum);
+			
+			if(deleteFilePath != null){
+				File deleteFile=new File(deleteFilePath);
+				deleteFile.delete();
+			}
+			try{
+				String dir="C:\\quickHobby\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\boardImage";
+				File file=new File(dir, timeName);
+				boardFile.transferTo(file);
+				logger.info("dir:"+dir);
+				
+				boardDto.setBoardFileName(timeName);
+				boardDto.setBoardFilePath(file.getAbsolutePath());
+				boardDto.setBoardFileSize(String.valueOf(fileSize));				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		int check=0;
+		if(fileSize!=0){
+			check=boardDao.boardUpdateFile(boardDto);
+			logger.info("check1:"+check);
+		}else{
+			check=boardDao.boardUpdate(boardDto);
+			logger.info("check2:"+check);
+		}
+
 		mav.addObject("boardNum", boardNum);
 		mav.addObject("check", check);
 		mav.addObject("pageNumber", pageNumber);

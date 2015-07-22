@@ -93,4 +93,18 @@
 		BOARD_CONTENT=#{boardContent}, BOARD_MODIFYDATE=sysdate
 		where board_num=#{boardNum}]]>
 	</update>
+	
+	<update id="boardUpdateFile" parameterType="com.quickHobby.board.dto.BoardDto">
+		<![CDATA[
+			update board set board_subject=#{boardSubject}, board_content=#{boardContent}, board_modifydate=sysdate,
+			board_filename=#{boardFileName}, board_filepath=#{boardFilePath}, board_filesize=#{boardFileSize}
+			where board_num=#{boardNum}
+		]]>
+	</update>
+	
+	<select id="getFile" parameterType="int" resultType="String">
+		<![CDATA[
+			select board_filepath from board where board_num=#{BoardNum}
+		]]>
+	</select>
 </mapper>
