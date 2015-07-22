@@ -54,10 +54,10 @@
 ============================================*/ 
 .grayscale {
     filter: none;
-    -webkit-filter: grayscale(60%);
-    -moz-filter:    grayscale(60%);
-    -ms-filter:     grayscale(60%);
-    -o-filter:      grayscale(60%);
+    -webkit-filter: grayscale(40%);
+    -moz-filter:    grayscale(40%);
+    -ms-filter:     grayscale(40%);
+    -o-filter:      grayscale(40%);
     cursor: pointer;
 }
 .grid{
