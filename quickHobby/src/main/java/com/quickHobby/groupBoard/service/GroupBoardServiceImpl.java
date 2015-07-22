@@ -262,7 +262,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		int groupNum=Integer.parseInt(request.getParameter("groupNum"));
 		logger.info("groupNum:" + groupNum);
 		
-		GroupDto group=groupDao.getGroupDto(groupNum);
+		GroupDto group=groupDao.getGroupDto(groupNum) ;
 		String groupFilePath=group.getGroupFilePath();
 		String groupFileName=null;
 		if(groupFilePath==null){

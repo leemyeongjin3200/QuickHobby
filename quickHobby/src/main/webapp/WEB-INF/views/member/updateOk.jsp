@@ -14,7 +14,7 @@
 		<script type="text/javascript">
 			alert("수정이 완료 되었습니다.");
 			//location.href="${root}/member/register.do";
-			$(location).attr("href", "${root}/memberMain.do");
+			$(location).attr("href", "${root}/main.do");
 		</script>
 	</c:if>
 	
@@ -22,7 +22,7 @@
 		<script type="text/javascript">
 			alert("수정에 실패 했습니다. 다시 시도해 주세요.");
 			//location.href="${root}/member/register.do";
-			$(location).attr("href", "${root}/member/update.do");
+			$(location).attr("href", "${root}/main.do");
 		</script>
 	</c:if>
 </body>

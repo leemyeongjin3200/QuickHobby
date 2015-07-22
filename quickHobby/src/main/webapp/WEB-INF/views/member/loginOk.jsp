@@ -12,14 +12,14 @@
 <body>
 	<c:if test="${member!=null}">
 		<script type="text/javascript">
-			$(location).attr("href", "${root}/memberMain.do");
+			$(location).attr("href", "${root}/main.do");
 		</script>
 	</c:if>
 	
 	<c:if test="${member==null}">
 		<script type="text/javascript">
 			alert("아이디와 비밀번호를 확인해주세요.");
-			$(location).attr("href", "${root}/memberMain.do");
+			$(location).attr("href", "${root}/main.do");
 		</script>
 	</c:if>
 </body>

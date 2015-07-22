@@ -19,7 +19,7 @@
 		<h3>회원님의 비밀번호는 ${password}입니다.</h3>
 		<p class="text-info">비밀번호는 처음 네글자만 공개 됩니다.</p><br/>
 		<a id="login" class="btn btn-default" href="#">로그인</a>
-		<a class="btn btn-default" href="${root}/memberMain.do">메인으로</a>
+		<a class="btn btn-default" href="${root}/main.do">메인으로</a>
 		</div>
 	</div>
 </body>
