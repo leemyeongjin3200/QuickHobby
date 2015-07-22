@@ -178,7 +178,7 @@
 	
 	<c:forEach var="board" items="${applyDtoList}">
 		<div class="grid-item ${board.apply_category} ${board.apply_num}" id="board">
-		<c:if test="${board.apply_readcount>100}">
+		<c:if test="${board.apply_readcount>10}">
 			<script>
 				$("." + '${board.apply_num}').addClass("best");
 			</script>
@@ -186,10 +186,10 @@
 			<div class="apply-box">
 				<a href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
 					<c:if test="${board.apply_filename != null }">
-						<img alt="" src="${root}/groupImage/${board.apply_filename}" class="img-responsive grayscale">
+						<img alt="" src="${root}/img/groupImage/${board.apply_filename}" class="img-responsive grayscale">
 					</c:if>
 					<c:if test="${board.apply_filename == null}">
-						<img alt="" src="${root}/groupImage/default.jpg" class="img-responsive grayscale">
+						<img alt="" src="${root}/img/groupImage/default.jpg" class="img-responsive grayscale">
 					</c:if>
 					<div class="apply-box-caption">
 						<div class="apply-box-caption-content">

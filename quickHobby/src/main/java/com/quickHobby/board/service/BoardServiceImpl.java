@@ -142,7 +142,7 @@ public class BoardServiceImpl implements BoardService {
 		if(fileSize!=0){
 			try{
 
-				String dir="C:\\quickHobby\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\boardImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\boardImage";
 
 				logger.info("dir : " + dir);
 				
@@ -194,10 +194,10 @@ public class BoardServiceImpl implements BoardService {
 			String filePath=boardReplyList.get(i).getMemberFilePath();
 			String fileName=null;
 			if(filePath!=null){
-				fileName=filePath.split("\\\\")[10];
+				fileName=filePath.split("\\\\")[11];
 			}else{
 				fileName="default.PNG";
-				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
 			}
 			
 			boardReplyList.get(i).setMemberFileName(fileName);
@@ -283,7 +283,7 @@ public class BoardServiceImpl implements BoardService {
 				deleteFile.delete();
 			}
 			try{
-				String dir="C:\\quickHobby\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\boardImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\boardImage";
 				File file=new File(dir, timeName);
 				boardFile.transferTo(file);
 				logger.info("dir:"+dir);

@@ -30,16 +30,16 @@ function writeReply(e){
 	var replyWrap = replySection.find('.boardReply-list');
 	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
 	var root=getContextPath();
-	var callUrl=root+"/boardReply/boardReplyWrite.do";
+	var callUrl=root+"/boardReply/boardReplyWrite.do?" + sendData;
 	console.log(sendData, callUrl);
+	/*data:sendData,
+	contentType:"application/x-www-form-urlencoded;charset=utf-8",*/
 	$.ajax({
 		url:callUrl,
-		type:"post",
-		data:sendData,
-		contentType:"application/x-www-form-urlencoded;charset=utf-8",
+		type:"get",
 		dataType:"text",
 		success:function(data){
-			var replyList = JSON.parse(decodeURIComponent(data));
+			var replyList = JSON.parse(decodeURIComponent(data.replace(/\+/gi, "%20")));
 			replyWrap.html(getReplyList(replyList));
 			replySection.find('.input-block-level').val('');
 		},
@@ -77,13 +77,13 @@ function makeReplyDiv(reply) {
 	var second=dateStr.substring(12,14);
 	var replyTime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 	// console.log(replyTime);
-	
+	var replyText=reply.boardReplyContent
 	// 세션값 받아오기
 	var session=document.getElementById("sessionNum").value;
 	console.log(session);
 	
 	var text = '<div class="boardReply media" title="replyDiv" data-replynum="' + reply.boardReplyNum + '">';
-	text += '<div class="span2 pull-left boardReply-img"><img class="img-circle" src="'+root+'/pds/'+reply.memberFileName+'" alt="" /></div>';
+	text += '<div class="span2 pull-left boardReply-img"><img class="img-circle" src="'+root+'/img/memberImage/'+reply.memberFileName+'" alt="" /></div>';
 	text += '<div class="span10 media-body boardReply-icon"><i class="glyphicon glyphicon-user"></i> by <a href="'+root+'/memberBoard/check.do?memberNum='+reply.boardReplyWriter+'">';
 	text += reply.memberNickName+'</a><br/>';
 	text += '<i class="glyphicon glyphicon-time"></i>'+replyTime;
@@ -93,8 +93,8 @@ function makeReplyDiv(reply) {
 	}
 	
 	text += '</div>';
-	text += '<div class="pull-left ReplyContent"><p>'+reply.boardReplyContent+'</p></div></div>';
-
+	text += '<div class="pull-left ReplyContent"><p>'+replyText+'</p></div></div>';
+	
 	return text;	
 }
 
@@ -118,7 +118,7 @@ function deleteReply(e){
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
-			var replyList = JSON.parse(decodeURIComponent(data));
+			var replyList = JSON.parse(decodeURIComponent(data.replace(/\+/gi, "%20")));
 			replyWrap.html(getReplyList(replyList));
 		},
 		error:function(xhr, status, error){

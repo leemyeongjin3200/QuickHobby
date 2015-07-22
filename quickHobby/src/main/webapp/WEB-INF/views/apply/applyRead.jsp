@@ -63,10 +63,10 @@
             <div class="col-md-12">
                 <div class="groupApply-img post-thumb">
                 	<c:if test="${applyDto.apply_filename == null }">
-						<img class="img-responsive" src="${root}/groupImage/default.jpg"/>
+						<img class="img-responsive" src="${root}/img/groupImage/default.jpg"/>
 					</c:if>
 					<c:if test="${applyDto.apply_filename != null }">
-						<img class="img-responsive" src="${root}/groupImage/${applyDto.apply_filename}"/>
+						<img class="img-responsive" src="${root}/img/groupImage/${applyDto.apply_filename}"/>
 					</c:if>
                      
                  </div>
@@ -120,10 +120,10 @@
       			<div class="single_gMember" >
                     <div class="gMember_img">
                     	<c:if test="${host.memberFileName == null}">
-	                    	<img src="${root}/pds/default.PNG" alt="img">
+	                    	<img src="${root}/img/memberImage/default.PNG" alt="img">
 	                    </c:if>
 	                    <c:if test="${host.memberFileName != null}">
-	                    	<img src="${root}/pds/${host.memberFileName}" alt="img">
+	                    	<img src="${root}/img/memberImage/${host.memberFileName}" alt="img">
 	                    </c:if>
                     </div>
                     <ul class="list-unstyled groupApply-list" style="text-align:left;">
@@ -136,7 +136,7 @@
              	<div class="single_gMember" style="margin-top:20px">
              		<div class="col-lg-4">
 		                <b style="margin-top:35px;"> <fmt:formatDate value="${applyDto.apply_closedate}" type="date"/></b><br/><br/>
-						<img id=weather style="width:80px; height:80px;" src="${root}/weather/QuestionMark.png"><br/>
+						<img id=weather style="width:80px; height:80px;" src="${root}/img/weather/QuestionMark.png"><br/>
 						<b>${weather.wf}</b><br/>
 		                <b>최저 : ${weather.tmn}</b><br/>
 		                <b>최고 : ${weather.tmx}</b>
@@ -166,25 +166,25 @@
 		if("${weather.wf}" != ""){
 		
 		var wf="${weather.wf}";
-		var url="${root}/weather/" + wf + ".jpg";
+		var url="${root}/img/weather/" + wf + ".png";
 		
 			$("#weather").attr("src", url);
 		}
 		
 		if("${host.memberFileName}" !=""){
 			var fileName="${host.memberFileName}";
-			var url="${root}/pds/" + fileName + ".jpg";
+			var url="${root}/img/memberImage/" + fileName + ".jpg";
 		}
 		
 		$("#likes").html(recommends);
 		$("#reports").html(reports);
 
-		$(".likes").append('<img onclick="reportfun()" src="${root}/icon/report.png" style="cursor:pointer; width:25px; height:25px;" id="reportBtn">&nbsp;&nbsp;&nbsp;&nbsp;');
+		$(".likes").append('<img onclick="reportfun()" src="${root}/img/icon/report.png" style="cursor:pointer; width:25px; height:25px;" id="reportBtn">&nbsp;&nbsp;&nbsp;&nbsp;');
 		if("${memberRecommend}" > 0){
-			$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+			$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/img/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 		}
 		if("${memberRecommend}" == 0){
-			$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+			$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/img/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 		}
 		
 	});
@@ -237,7 +237,7 @@
 			success:function(data){
 				alert("이 게시물을 좋아합니다.")
 				$("#recommendBtn").remove();
-				$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+				$(".likes").append('<img class="clicked" onclick="clickfun()" src="${root}/img/icon/heart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 				recommends++;
 				$("#likes").html(recommends);
 			},
@@ -264,7 +264,7 @@
 			success:function(data){
 				alert("좋아요를 취소합니다.")
 				$("#recommendBtn").remove();
-				$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
+				$(".likes").append('<img class="nonclicked" onclick="nonclickfun()" src="${root}/img/icon/notHeart.png" style="cursor:pointer; width:26px; height:26px;" id="recommendBtn">');
 				recommends--;
 				$("#likes").html(recommends);
 			},

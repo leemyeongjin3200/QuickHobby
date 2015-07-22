@@ -15,25 +15,25 @@ body {
 }
 */
 #icon_eye{
-    background: url('${root}/icon/eyeIcon.png') center center no-repeat;
+    background: url('${root}/img/icon/eyeIcon.png') center center no-repeat;
 	background-size: 42px auto;
 	background-color:#e74c3c;
 	border:2px solid #e74c3c;
 }
 #icon_mouth{
-	background: url('${root}/icon/mouthIcon.png') center center no-repeat;
+	background: url('${root}/img/icon/mouthIcon.png') center center no-repeat;
 	background-size: 40px auto;
 	background-color:#BCE067;
 	border:2px solid #BCE067;
 }
 #icon_hand{
-	background: url('${root}/icon/handIcon.png') center center no-repeat;
+	background: url('${root}/img/icon/handIcon.png') center center no-repeat;
 	background-size: 40px auto;
 	background-color:#3498db;
 	border:2px solid #3498db;
 }
 #icon_legs{
-	background: url('${root}/icon/feetIcon.png') center center no-repeat;
+	background: url('${root}/img/icon/feetIcon.png') center center no-repeat;
 	background-size: 40px auto;
 	background-color:#8e44ad;
 	border:2px solid #8e44ad;
@@ -193,10 +193,10 @@ body {
 									<div class="apply-box">
 										<a title="" href="${root}/apply/applyRead.do?apply_num=${board.apply_num}" class="apply-box">
 											<c:if test="${board.apply_filename == null }">
-												<img class="grayscale img-responsive" src="${root}/groupImage/default.jpg">
+												<img class="grayscale img-responsive" src="${root}/img/groupImage/default.jpg">
 											</c:if>
 											<c:if test="${board.apply_filename != null }">
-												<img class="grayscale img-responsive" src="${root}/groupImage/${board.apply_filename}">
+												<img class="grayscale img-responsive" src="${root}/img/groupImage/${board.apply_filename}">
 											</c:if>
 											<div class="apply-box-caption">
 												<div class="apply-box-caption-content">
@@ -417,7 +417,9 @@ $(function() {
 	  
 	  $('.filterAllBest').on('click', 'li', function() {
 		    filters={};
-
+		    $(":checked").parent("label").removeClass("active");
+		    $("#datepicker").val("");
+		    $("#datepicker2").val("");
 		    var filterValue = $(this).attr('data-filter');
 		    // use filterFn if matches value
 		    filterValue = filterFns[filterValue] || filterValue;

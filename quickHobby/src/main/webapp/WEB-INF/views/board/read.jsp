@@ -49,11 +49,11 @@
                       </div>
                       <p>
                       	<c:if test="${board.boardFileName==null}">
-                      		<img src="${root}/img/Chrysanthemum.jpg" width="100%" alt="" />
+                      		<img src="${root}/img/boardImage/default.jpg" width="100%" alt="" />
                       	</c:if>
                       	
                       	<c:if test="${board.boardFileName!=null}">
-                      		<img src="${root}/boardImage/${board.boardFileName}" width="100%" alt="" />
+                      		<img src="${root}/img/boardImage/${board.boardFileName}" width="100%" alt="" />
                       	</c:if>
                       </p>
                       <p>${board.boardContent}</p>
@@ -77,7 +77,7 @@
                 	<c:set var="fileName" value="${fileName}"></c:set>
                     <div class="boardReply media" title="replyDiv" data-replynum="${reply.boardReplyNum}">
                        <div class="span2 pull-left boardReply-img">
-                           <img class="img-circle" src="${root}/pds/${reply.memberFileName}" alt="" />     
+                           <img class="img-circle" src="${root}/img/memberImage/${reply.memberFileName}" alt="" />     
                        </div>
 
                        <div class="span10 media-body boardReply-icon">

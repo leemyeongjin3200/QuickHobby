@@ -34,11 +34,11 @@
 						<p>
 							<c:if test="${groupBoard.groupBoardFileName!=null}">
 								<img
-									src="${root}/groupBoardImage/${groupBoard.groupBoardFileName}"
+									src="${root}/img/groupBoardImage/${groupBoard.groupBoardFileName}"
 									width=100%; alt="" />
 							</c:if>
 							<c:if test="${groupBoard.groupBoardFileName==null}">
-								<img src="${root}/groupImage/1437372698884_bunji drop.jpg"	
+								<img src="${root}/img/groupImage/1437372698884_bunji drop.jpg"	
 									width="100%" alt="" />
 							</c:if>
 
@@ -67,7 +67,7 @@
 					<c:forEach var="boardReply" items="${groupBoard.groupReplyList}">
 						<div class="boardReply media" title="replyDiv" data-replynum="${boardReply.groupReplyNum}">
 							<div class="span2 pull-left boardReply-img">
-								<img class="img-circle" src="${root}/pds/${boardReply.memberFileName}" alt="" />
+								<img class="img-circle" src="${root}/img/memberImage/${boardReply.memberFileName}" alt="" />
 							</div>
 
 							<div class="span10 media-body boardReply-icon">

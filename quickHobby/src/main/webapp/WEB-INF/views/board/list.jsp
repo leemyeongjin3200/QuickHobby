@@ -118,11 +118,11 @@
 					        	 	<div class="col-md-4">
 					        	 	  <div class="gAlbum-img">
 					        	 	  	<c:if test="${board.boardFileName==null}">
-					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/img/Lighthouse.jpg" alt="Image"/>
+					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/img/boardImage/default.jpg" alt="Image"/>
 					        	 	  	</c:if>
 					        	 	  		
 					        	 	  	<c:if test="${board.boardFileName!=null}">
-					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/boardImage/${board.boardFileName}" alt="Image"/>
+					        	 	  		<img class="img-responsive" style='cursor:pointer;' onclick="fromImgToRead('${board.boardNum}','${currentPage}')" src="${root}/img/boardImage/${board.boardFileName}" alt="Image"/>
 					        	 	  	</c:if>
 					        	 	  </div>
 							          <div class="gAlbum-date-wrapper">

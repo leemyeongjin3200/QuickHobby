@@ -60,7 +60,7 @@ public class MemberServiceImpl implements MemberService{
 		
 		if(fileSize != 0){
 			try{
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage";
 				File file=new File(dir, timeName);
 				userPhoto.transferTo(file);
 				
@@ -195,10 +195,10 @@ public class MemberServiceImpl implements MemberService{
 		String fileName=null;
 		
 		if(filePath!=null){
-			fileName=filePath.split("\\\\")[10];
+			fileName=filePath.split("\\\\")[11];
 		}else{
 			fileName="default.PNG";
-			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
 		}
 		mav.addObject("fileName", fileName);
 		mav.setViewName("member/update");
@@ -228,7 +228,7 @@ public class MemberServiceImpl implements MemberService{
 				deleteFile.delete();
 			}
 			try{
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage";
 				File file=new File(dir, timeName);
 				userPhoto.transferTo(file);
 				

@@ -39,7 +39,7 @@ function writeReply(e){
 		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
-			var replyList = JSON.parse(decodeURIComponent(data));
+			var replyList = JSON.parse(decodeURIComponent(data.replace(/\+/gi, "%20")));
 			replyWrap.html(getReplyList(replyList));
 			replySection.find('.input-block-level').val('');
 		},
@@ -78,7 +78,7 @@ function makeReplyDiv(reply) {
 	var replyTime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 	// console.log(replyTime);
 	
-	var imgSrc=root + "/pds/" + reply.memberFileName;
+	var imgSrc=root + "/img/memberImage/" + reply.memberFileName;
 	var memberSrc=root + "/memberBoard/check.do?memberNum=" + reply.groupReplyWriter;
 	// 세션값 받아오기
 	var session=document.getElementById("sessionNum").value;
@@ -118,7 +118,7 @@ function deleteReply(e){
 		dataType:"text",
 		success:function(data){
 			console.log(data);
-			var replyList = JSON.parse(decodeURIComponent(data));
+			var replyList = JSON.parse(decodeURIComponent(data.replace(/\+/gi, "%20")));
 			replyWrap.html(getReplyList(replyList));
 		},
 		error:function(xhr, status, error){

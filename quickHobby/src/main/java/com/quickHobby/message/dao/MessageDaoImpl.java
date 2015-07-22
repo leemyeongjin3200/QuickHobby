@@ -23,12 +23,12 @@ public class MessageDaoImpl implements MessageDao {
 	private SqlSessionTemplate sqlSession;
 	
 	public int send(MessageDto messageDto){
-		return sqlSession.insert("messageSend", messageDto);
+		return sqlSession.insert("message.dao.mapper.messageSend", messageDto);
 	}
 	
 	public int delete(String message_num){
 		int messageNum=Integer.parseInt(message_num);
-		return sqlSession.delete("messageDelete", messageNum);
+		return sqlSession.delete("message.dao.mapper.messageDelete", messageNum);
 	}
 
 	@Override

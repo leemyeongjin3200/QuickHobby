@@ -23,7 +23,9 @@
 		<result property="boardContent" column="BOARD_CONTENT"/>
 		<result property="boardCreateDate" column="BOARD_CREATEDATE"/>
 		<result property="boardModifyDate" column="BOARD_MODIFYDATE"/>
-		
+		<result property="boardFileName" column="board_filename"/>
+		<result property="boardFilePath" column="board_filepath"/>
+		<result property="boardFileSize" column="board_filesize"/>
 		<result property="boardVisible" column="BOARD_VISIBLE"/>
 		<result property="boardRecommand" column="BOARD_RECOMMAND"/>
 		<result property="boardReadCount" column="BOARD_READCOUNT"/>

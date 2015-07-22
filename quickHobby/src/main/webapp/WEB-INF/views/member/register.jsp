@@ -84,7 +84,7 @@
 			</div>
 			<div class="col-md-3">
 				<label for="memberFile"><span class="glyphicon glyphicon-camera"></span> 사진 선택</label><br/>
-				<img class="img-thumnail" alt="이미지 없음" src="${root}/pds/default.PNG" id="userImage" height="300" width="250"><br/><br/>
+				<img class="img-thumnail" alt="이미지 없음" src="${root}/img/memberImage/default.PNG" id="userImage" height="300" width="250"><br/><br/>
 				<input type="file" name="memberFile" onclick="previewImage()"/>
 			</div>
 		</form>

@@ -19,7 +19,7 @@
 <link href="${root}/css/groupBoard/groupBoard.css" rel="stylesheet">
 <style>
 #gb-bgImg {
-	background: url(${root}/groupImage/${group.groupFileName}) no-repeat center center;
+	background: url(${root}/img/groupImage/${group.groupFileName}) no-repeat center center;
 	padding: 0;
 	-webkit-background-size: cover;
 	background-size: cover;
@@ -65,7 +65,7 @@
 									<p class="when"><fmt:formatDate value="${group.groupDate}" pattern="MMM. d"/></p>
 								</div>
 								<div class="col-sm-3 group_weather"><!-- 날씨 -->
-									<img id="weather" src="${root}/weather/QuestionMark.png" class="img-responsive" alt="">
+									<img id="weather" src="${root}/img/weather/QuestionMark.png" class="img-responsive" alt="">
 								</div>
 								<div class="col-sm-6 group_location"><!-- 주소 -->
 									<p class="glocation1">${group.groupLocation}</p>
@@ -213,23 +213,34 @@
 				<div class="gMember_area">
 					<div class="gMember_slider">
 						<c:forEach var="groupMember" items="${memberList}">
-							<div class="col-lg-3 col-md-3 col-sm-4">
-								<div class="single_gMember">
-									<div class="gMember_img">
-										<img src="${root}/pds/${groupMember.memberFileName}" alt="img" class="img-responsive">
+							<c:if test="${group.groupHost==groupMember.memberNum}">
+								<div class="col-lg-3 col-md-3 col-sm-4">
+									<div class="single_gMember">
+										<div class="gMember_img">
+											<img src="${root}/img/memberImage/${groupMember.memberFileName}" alt="img" class="img-responsive">
+										</div>
+										<h5>
+											<i class="glyphicon glyphicon-user"></i><a href="${root}/memberBoard/check.do?memberNum=${groupMember.memberNum}"> ${groupMember.memberNickName}</a>
+										</h5>
+										<span>Host</span>				
 									</div>
-									<h5>
-										<i class="glyphicon glyphicon-user"></i><a href="#"> ${groupMember.memberNickName}</a>
-									</h5>
-									<c:if test="${group.groupHost==groupMember.memberNum}">
-										<span>Host</span>
-									</c:if>
-									<c:if test="${group.groupHost!=groupMember.memberNum}">
-										<span>Member</span>
-									</c:if>
-									
-								</div>
-							</div><!-- GroupMember 01 끝 -->
+								</div><!-- GroupMember 01 끝 -->
+							</c:if>
+						</c:forEach>
+						<c:forEach var="groupMember" items="${memberList}">
+							<c:if test="${group.groupHost!=groupMember.memberNum}">
+								<div class="col-lg-3 col-md-3 col-sm-4">
+									<div class="single_gMember">
+										<div class="gMember_img">
+											<img src="${root}/img/memberImage/${groupMember.memberFileName}" alt="img" class="img-responsive">
+										</div>
+										<h5>
+											<i class="glyphicon glyphicon-user"></i><a href="${root}/memberBoard/check.do?memberNum=${groupMember.memberNum}"> ${groupMember.memberNickName}</a>
+										</h5>
+										<span>Member</span>				
+									</div>
+								</div><!-- GroupMember 01 끝 -->
+							</c:if>
 						</c:forEach>
 						
 					</div><!-- .gMember_slider 끝 -->
@@ -256,14 +267,14 @@ $(document).ready(function(){
 	if("${weather.wf}" != ""){
 	
 	var wf="${weather.wf}";
-	var url="${root}/weather/" + wf + ".jpg";
+	var url="${root}/img/weather/" + wf + ".png";
 	
 		$("#weather").attr("src", url);
 	}
 	
 	if("${host.memberFileName}" !=""){
 		var fileName="${host.memberFileName}";
-		var url="${root}/pds/" + fileName + ".jpg";
+		var url="${root}/img/memberImage/" + fileName + ".jpg";
 	}
 });
 </script>

@@ -81,6 +81,8 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 			String fileName=null;
 			if(filePath==null){
 				fileName="default.jpg";
+			}else{
+				fileName=groupList.get(i).getGroupFileName();
 			}
 			groupList.get(i).setGroupFileName(fileName);
 		}

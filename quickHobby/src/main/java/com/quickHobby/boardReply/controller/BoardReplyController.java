@@ -37,7 +37,7 @@ public class BoardReplyController {
 	* @author : 차건강
 	* @description : boardReply 작성
 	 */
-	@RequestMapping(value = "boardReply/boardReplyWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value = "boardReply/boardReplyWrite.do", method = RequestMethod.GET)
 	public @ResponseBody String boardReplyWrite(BoardReplyDto boardReplyDto, HttpServletRequest request) {
 
 		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));
@@ -58,6 +58,7 @@ public class BoardReplyController {
 				String replyList = getBoardReplyList(boardReplyBoardNum);
 				
 				logger.info("replyList:"+replyList);
+				URLEncoder.encode(replyList);
 				return replyList;
 				
 			} catch (Exception e) {
@@ -73,7 +74,7 @@ public class BoardReplyController {
 	* @author : 차건강
 	* @description : boardReply 리스트 불러오기
 	 */
-	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.POST)
+	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.GET)
 	public @ResponseBody String getBoardReplyList(int boardNum) throws Exception {
 		logger.info("getBoardReplyList---------------------------------");
 		
@@ -83,10 +84,10 @@ public class BoardReplyController {
 			String filePath=replyList.get(i).getMemberFilePath();
 			String fileName=null;
 			if(filePath!=null){
-				fileName=filePath.split("\\\\")[10];
+				fileName=filePath.split("\\\\")[11];
 			}else{
 				fileName="default.PNG";
-				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
 			}
 			
 			replyList.get(i).setMemberFileName(fileName);

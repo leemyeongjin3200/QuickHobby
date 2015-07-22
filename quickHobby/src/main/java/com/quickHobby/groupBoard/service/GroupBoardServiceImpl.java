@@ -90,7 +90,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		if(fileSize != 0){
 			try{
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupBoardImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\groupBoardImage";
 				File file=new File(dir, timeName);
 				userFile.transferTo(file);
 				
@@ -141,10 +141,10 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 			String filePath=groupReplyList.get(i).getMemberFilePath();
 			String fileName=null;
 			if(filePath!=null){
-				fileName=filePath.split("\\\\")[10];
+				fileName=filePath.split("\\\\")[11];
 			}else{
 				fileName="default.PNG";
-				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
 			}
 			
 			groupReplyList.get(i).setMemberFileName(fileName);
@@ -225,7 +225,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 				deleteFile.delete();
 			}
 			try{
-				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupBoardImage";
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\groupBoardImage";
 				File file=new File(dir, timeName);
 				boardFile.transferTo(file);
 				
@@ -293,10 +293,10 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 			String filePath=member.get(i).getMemberFilePath();
 			String fileName=null;
 			if(filePath!=null){
-				fileName=filePath.split("\\\\")[10];
+				fileName=filePath.split("\\\\")[11];
 			}else{
 				fileName="default.PNG";
-				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
 			}
 			member.get(i).setMemberFileName(fileName);
 		}

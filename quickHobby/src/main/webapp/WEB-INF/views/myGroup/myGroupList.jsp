@@ -24,8 +24,8 @@
 			<c:forEach var="group" items="${groupList}">
 				<div class="col-md-3 postDiv">
 					<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}">
-						<img src="${root}/background/polaroid.png" class="img-responsive polaroid"></img>
-						<img src="${root}/groupImage/${group.groupFileName}" class="photo"></img>
+						<img src="${root}/img/background/polaroid.png" class="img-responsive polaroid"></img>
+						<img src="${root}/img/groupImage/${group.groupFileName}" class="photo"></img>
 						<div class="groupTitle">${group.groupSubject}</div>
 						<div class="groupInfo">
 							<p>DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></p>
