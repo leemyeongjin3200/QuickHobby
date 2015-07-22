@@ -18,6 +18,6 @@ public interface GroupBoardDao {
 	int boardDelete(int groupBoardNum);
 
 	int groupBoardUpdate(GroupBoardDto groupBoardDto);
-
-
+	int groupBoardUpdateFile(GroupBoardDto groupBoardDto);
+	String getFile(int groupBoardNum);
 }

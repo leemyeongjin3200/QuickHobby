@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.board.dao.BoardDao;
 import com.quickHobby.board.dto.BoardDto;
 import com.quickHobby.boardReply.dao.BoardReplyDao;
+import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 
 /**
@@ -157,12 +158,11 @@ public class BoardServiceImpl implements BoardService {
 		if(fileSize!=0){
 			try{
 
-				String dir="C:\\Users\\KOSTA_08_025\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\boardImage";
+				String dir="C:\\quickHobby\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\boardImage";
 
 				logger.info("dir : " + dir);
 				
 				File file=new File(dir, timeName);
-				logger.info("passsssssssssssssssssssssssssssssssss");
 				upFile.transferTo(file);		
 				
 				boardDto.setBoardFilePath(file.getAbsolutePath());
@@ -205,7 +205,22 @@ public class BoardServiceImpl implements BoardService {
 		BoardDto boardDto=boardDao.boardRead(boardNum);
 		boardDto.setBoardReplyList(boardReplyDao.getBoardReplyList(boardNum));
 		
-		logger.info("boardDto:"+boardDto);
+		List<BoardReplyDto> boardReplyList=boardDto.getBoardReplyList();
+		for(int i=0; i<boardReplyList.size(); i++){
+			String filePath=boardReplyList.get(i).getMemberFilePath();
+			String fileName=null;
+			if(filePath!=null){
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+			}
+			
+			boardReplyList.get(i).setMemberFileName(fileName);
+		}
+		boardDto.setBoardReplyCount(boardReplyDao.getBoardReplyCount(boardNum));
+		
+		logger.info("memberNickName:"+boardDto.getMemberNickName());
 		
 		mav.addObject("board", boardDto);
 		mav.addObject("pageNumber", pageNumber);

@@ -77,8 +77,14 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 		
 		List<GroupDto> groupList=groupDao.myGroupList(member.getMemberNum());
 		for(int i=0; i<groupList.size(); i++){
-			System.out.println(groupList.get(i).getGroupFileName());
+			String filePath=groupList.get(i).getGroupFilePath();
+			String fileName=null;
+			if(filePath==null){
+				fileName="default.jpg";
+			}
+			groupList.get(i).setGroupFileName(fileName);
 		}
+		
 		mav.addObject("groupList", groupList);
 		mav.setViewName("myGroup/myGroupList");
 	}

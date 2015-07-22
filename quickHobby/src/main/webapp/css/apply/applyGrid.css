@@ -42,11 +42,6 @@ a:active{text-decoration:none !important;}
 	background: #353535;
 }
 
-.filtering{
-	border:2px solid #fff;
-	padding:5px;
-}
-
 .locationFilter{
 	border:2px solid #fff;
 	margin-bottom:0px;
@@ -54,24 +49,13 @@ a:active{text-decoration:none !important;}
 .datepicker{
 	font-size: 8px;
 }
-
-.category span{
-	font-size:40px;
-	padding:5px;
-}
-.category{
-	margin:-18px 0px 0px 30px;
-}
-.well{
-	background: rgba(0, 0, 0, 0.1) !important;
-	padding:5px;
-}
 .filterStart{
 	padding-top:40px;
 }
 .slider{
-	margin-left:40px;
-	margin-right:40px;
+	margin-left:2%;
+	margin-right:2%;
+	margin-top:10px;
 }
 
 /**                                */
@@ -80,7 +64,6 @@ a:active{text-decoration:none !important;}
 	min-height: 100%;
 	padding: 5px 5px;
 	position: relative;
-
 }
 
 .box {
@@ -107,15 +90,6 @@ a:active{text-decoration:none !important;}
 	margin-top: 0px;
 	font-weight: 300;
 }
-/*
-.box-content {
-	position: relative;
-	z-index: 50;
-  	margin-top: -1px;
-	padding: 10px;
-	background: #fff !important;
-}
-*/
 .box-content {
 
 	width: 100%;
@@ -126,18 +100,13 @@ a:active{text-decoration:none !important;}
 }
 /* Grid Images
 =================================================================== 
-.masonry-thumb {
-  	display: inline-block;
-  	vertical-align: top;
-  	margin-bottom: 6px;
-}
 */
 .grayscale {
     filter: none;
-    -webkit-filter: grayscale(60%);
-    -moz-filter:    grayscale(60%);
-    -ms-filter:     grayscale(60%);
-    -o-filter:      grayscale(60%);
+    -webkit-filter: grayscale(40%);
+    -moz-filter:    grayscale(40%);
+    -ms-filter:     grayscale(40%);
+    -o-filter:      grayscale(40%);
     cursor: pointer;
 }
 
@@ -157,26 +126,90 @@ a:active{text-decoration:none !important;}
 }
 
 /**********************************/
-.button-group{
-	 list-style: none;
- 	 margin: 0;
- 	 left: 0; 
+
+/**btn*/
+ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
 }
-.button-group li{
-	display: inline-block;
-    margin: 0 -2px;
-    width: 50%; 
-    border: 1px solid #fff;
-    background-color:#fff;
-    -webkit-border-radius: 1000px;
-    -webkit-border-radius: 1000px;
-    border-radius: 1000px;
+#allBtn{
+	margin-top:25px;
+	margin-bottom:25px;
 }
-.applicationFee{
-	padding-top:10px;
+
+.categoryBtn >ul >li{
+	display: table-cell;
+	 float: none;
+  	width: 1%;
+
 }
-.inout{
-	margin-top:-8px;
+.categoryBtn-circle{
+	height:55px;
+	width:55px;
+	border-radius:100% !important;
+	margin-top:-10px;
+}
+
+.btn-group-justified {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+}
+.btn-group-justified > ul > li {
+  display: table-cell;
+  float: none;
+  width: 1%;
+}
+.btn-group-justified > ul > li > .btn {
+  width: 100%;
+}
+
+.categoryBtn ul{
+	margin-top:6px;
+}
+.inoutBtn ul, .feeBtn ul {
+	margin-top:7px;
+}
+
+.date li{
+	display:inline;
+}
+
+.button > span{
+	display:inline;
+	postition:relative;
+	font-size:30px;
+	padding-left:10px;
+}
+
+
+/**panel*/
+.panel header{
+	text-decoration: none;
+	font-size: 14px;
+	text-align: center;
+	display: block;
+	line-height: 15px;
+	border:1px solid #ddd;
+	background-color:rgba(255,255,255, 0.4) !important;
+	font-weight: bold;
+	color:#fff;
+}
+
+.panel > .panel-body {
+	border:1px solid #ddd;
+	height:80px;
+}
+
+.panel{
+	padding: 5px !important;
+	background-color:rgba(255,255,255, 0) !important;
+}
+/**slider*/
+.ui-slider-range {
+    background-color: #FF7012;
 }
 
 

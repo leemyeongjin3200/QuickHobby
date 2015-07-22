@@ -196,4 +196,6 @@ a:active{text-decoration:none;}
       background-color: #f9f9f9;
       text-align: center;
   }
-  
+  .board-item{
+	overflow-y: scroll;
+}

@@ -19,6 +19,7 @@ import com.quickHobby.group.dto.GroupDto;
 import com.quickHobby.groupBoard.dao.GroupBoardDao;
 import com.quickHobby.groupBoard.dto.GroupBoardDto;
 import com.quickHobby.groupReply.dao.GroupReplyDao;
+import com.quickHobby.groupReply.dto.GroupReplyDto;
 import com.quickHobby.member.dao.MemberDao;
 import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.weather.Weather;
@@ -134,18 +135,21 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 //		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
 		groupBoardDto.setGroupReplyList(groupReplyDao.getGroupReplyList(groupBoardNum));
+		List<GroupReplyDto> groupReplyList=groupBoardDto.getGroupReplyList();
 		
-		String filePath=memberDao.getFile(groupBoardDto.getGroupBoardWriter());
-		String fileName=null;
-		
-		if(filePath!=null){
-			fileName=filePath.split("\\\\")[10];
-		}else{
-			fileName="default.PNG";
-			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+		for(int i=0; i<groupReplyList.size(); i++){
+			String filePath=groupReplyList.get(i).getMemberFilePath();
+			String fileName=null;
+			if(filePath!=null){
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+			}
+			
+			groupReplyList.get(i).setMemberFileName(fileName);
 		}
 		
-		mav.addObject("fileName", fileName);
 		mav.addObject("groupBoard", groupBoardDto);
 		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/read");
@@ -182,14 +186,14 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
-		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
-		
+		int groupBoardGroupNum=groupBoardDto.getGroupBoardGroupNum();
+				
 		mav.addObject("groupBoardNum", groupBoardNum);
+		mav.addObject("groupBoardGroupNum", groupBoardGroupNum);
 		mav.addObject("groupBoard", groupBoardDto);
-		mav.addObject("pageNumber", pageNumber);
-		mav.setViewName("groupBoard/updateForm");
+		mav.setViewName("groupBoard/updateModal");
 	}
 
 	/**
@@ -201,18 +205,48 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	@Override
 	public void groupBoardUpdate(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
+		MultipartHttpServletRequest request=(MultipartHttpServletRequest)map.get("request");
 		GroupBoardDto groupBoardDto=(GroupBoardDto)map.get("GroupBoardDto");
 		// logger.info("boardSubject:"+request.getParameter("boardSubject"));
 
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
-		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
+		int groupNum=Integer.parseInt(request.getParameter("groupBoardGroupNum"));
+		
+		MultipartFile boardFile=request.getFile("file");
+		String fileName=boardFile.getOriginalFilename();
+		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
+		long fileSize=boardFile.getSize();
 
-		int check=groupBoardDao.groupBoardUpdate(groupBoardDto);
+		if(fileSize != 0){
+			String deleteFilePath=groupBoardDao.getFile(groupBoardNum);
+			
+			if(deleteFilePath != null){
+				File deleteFile=new File(deleteFilePath);
+				deleteFile.delete();
+			}
+			try{
+				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\groupBoardImage";
+				File file=new File(dir, timeName);
+				boardFile.transferTo(file);
+				
+				groupBoardDto.setGroupBoardFileName(timeName);
+				groupBoardDto.setGroupBoardFilePath(file.getAbsolutePath());
+				groupBoardDto.setGroupBoardFileSize(fileSize);				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}
+		
+		int check=0;
+		if(fileSize!=0){
+			check=groupBoardDao.groupBoardUpdateFile(groupBoardDto);
+		}else{
+			check=groupBoardDao.groupBoardUpdate(groupBoardDto);
+		}
 		
 		mav.addObject("groupBoardNum", groupBoardNum);
+		mav.addObject("groupNum", groupNum);
 		mav.addObject("check", check);
-		mav.addObject("pageNumber", pageNumber);
 		mav.setViewName("groupBoard/updateOk");
 	}
 	/**
@@ -229,35 +263,42 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		logger.info("groupNum:" + groupNum);
 		
 		GroupDto group=groupDao.getGroupDto(groupNum);
+		String groupFilePath=group.getGroupFilePath();
+		String groupFileName=null;
+		if(groupFilePath==null){
+			groupFileName="default.jpg";
+			group.setGroupFileName(groupFileName);
+		}
 		
 		int count=groupBoardDao.getGroupBoardCount(groupNum);
 		
 		List<GroupBoardDto> groupBoardList=new ArrayList<GroupBoardDto>();
-		
 		if(count>0){
 			groupBoardList=groupBoardDao.getGroupBoardList(groupNum);
+			int number=groupBoardList.size();
 			for(int i=0; i<groupBoardList.size(); i++){
 				int groupBoardNum=groupBoardList.get(i).getGroupBoardNum();
 				int groupReplyCount=groupReplyDao.getGroupReplyCount(groupBoardNum);
 				groupBoardList.get(i).setGroupReplyCount(groupReplyCount);
+				groupBoardList.get(i).setNumber(number--);
 			}
 		}
 		
 		List<MemberDto> member=memberDao.getMemberList(groupNum);
-		
-		logger.info("date:"+group.getGroupDate());
-		logger.info("location:"+group.getGroupLocation());
-		
 		
 		Weather w=new Weather(group.getGroupLocation(), group.getGroupDate());
 		WeatherDTO weather=w.getWeather();
 		
 		for(int i=0; i<member.size(); i++){
 			String filePath=member.get(i).getMemberFilePath();
+			String fileName=null;
 			if(filePath!=null){
-				String fileName=filePath.split("\\\\")[10];
-				member.get(i).setMemberFileName(fileName);
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
 			}
+			member.get(i).setMemberFileName(fileName);
 		}
 	
 		mav.addObject("memberList", member);

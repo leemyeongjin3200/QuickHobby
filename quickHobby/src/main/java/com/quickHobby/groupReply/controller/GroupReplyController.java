@@ -36,7 +36,7 @@ public class GroupReplyController {
 	* @author : 차건강
 	* @description : groupReply 작성
 	 */
-	@RequestMapping(value = "groupReply/groupReplyWrite.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/groupReply/groupReplyWrite.do", method = RequestMethod.POST)
 	public @ResponseBody String groupReplyWrite(GroupReplyDto groupReplyDto, HttpServletRequest request) {
 
 		int groupReplyBoardNum = Integer.parseInt(request.getParameter("groupBoardNum"));
@@ -77,42 +77,21 @@ public class GroupReplyController {
 		
 		List<GroupReplyDto> groupReplyList = new ArrayList<GroupReplyDto>();
 		groupReplyList = groupReplyService.getGroupReplyList(groupBoardNum);
+		for(int i=0; i<groupReplyList.size(); i++){
+			String filePath=groupReplyList.get(i).getMemberFilePath();
+			String fileName=null;
+			if(filePath!=null){
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+			}
+			
+			groupReplyList.get(i).setMemberFileName(fileName);
+		}
 		logger.info("groupReplyListSize:"+groupReplyList.size());
 		ObjectMapper obj = new ObjectMapper();
 		return URLEncoder.encode(obj.writeValueAsString(groupReplyList), "UTF-8");		
-	}
-	
-	/**
-	* @name : groupReplyModify
-	* @date : 2015. 7. 18.
-	* @author : 차건강
-	* @description : groupReply 수정
-	 */
-	@RequestMapping(value = "groupReply/groupReplyModify.do", method = RequestMethod.POST)
-	public @ResponseBody String groupReplyModify(GroupReplyDto groupReplyDto, HttpServletRequest request) {
-		logger.info("groupReplyModify---------------------------------");
-		
-		int groupReplyNum = Integer.parseInt(request.getParameter("groupReplyNum"));
-		int groupReplyBoardNum = Integer.parseInt(request.getParameter("groupReplyBoardNum"));
-		String groupReplyContent = request.getParameter("groupReplyContent");
-		
-		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-		int groupReplyWriter=member.getMemberNum();
-		
-		groupReplyDto.setGroupReplyWriter(groupReplyWriter);
-		groupReplyDto.setGroupReplyBoardNum(groupReplyBoardNum);
-		groupReplyDto.setGroupReplyNum(groupReplyNum);
-		groupReplyDto.setGroupReplyContent(groupReplyContent);
-		try {
-			int check = groupReplyService.groupReplyModify(groupReplyDto);
-			if (check!=0) {
-				return getGroupReplyList(groupReplyBoardNum);
-			}
-		} catch (Exception e) {
-			System.out.println("groupReply Controller Error");
-			e.printStackTrace();
-		}
-		return null;
 	}
 	
 	/**
@@ -121,7 +100,7 @@ public class GroupReplyController {
 	* @author : 차건강
 	* @description : groupReply 삭제
 	 */
-	@RequestMapping(value = "groupReply/groupReplyDelete.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/groupReply/groupReplyDelete.do", method = RequestMethod.POST)
 	public @ResponseBody String groupReplyDelete(GroupReplyDto groupReplyDto, HttpServletRequest request) {
 		logger.info("groupReplyDelete---------------------------------");
 		
@@ -133,8 +112,12 @@ public class GroupReplyController {
 		groupReplyDto.setGroupReplyWriter(groupReplyWriter);
 		groupReplyDto.setGroupReplyBoardNum(groupReplyBoardNum);
 		groupReplyDto.setGroupReplyNum(groupReplyNum);
+		logger.info("groupReplyNum:"+groupReplyNum);
+		logger.info("groupReplyBoardNum:"+groupReplyBoardNum);
+		logger.info("groupReplyWriter:"+groupReplyWriter);
 		try {
 			int check = groupReplyService.groupReplyDelete(groupReplyDto);
+			logger.info("check:"+check);
 			if (check!=0) {
 				return getGroupReplyList(groupReplyBoardNum);
 			}

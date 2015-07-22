@@ -47,7 +47,7 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
 		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
 		MemberDto host=memberDao.getMember(memberNum);
-
+		
 		List<BoardDto> memberBoardList=null;
 		memberBoardList=memberBoardDao.getSumlist(memberNum);
 		
@@ -55,6 +55,14 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 			int comments=boardReplyDao.getBoardReplyCount(memberBoardList.get(i).getBoardNum());
 			memberBoardList.get(i).setBoardReplyCount(comments);
 			List<BoardReplyDto> boardReplyList=boardReplyDao.getBoardReplyList(memberBoardList.get(i).getBoardNum());
+			for(int j=0; j<boardReplyList.size(); j++){
+				String filePath=boardReplyList.get(i).getMemberFilePath();
+				String fileName=null;
+				if(filePath!=null){
+					fileName=filePath.split("\\\\")[10];
+				}
+				boardReplyList.get(i).setMemberFileName(fileName);
+			}
 			memberBoardList.get(i).setBoardReplyList(boardReplyList);
 		}
 

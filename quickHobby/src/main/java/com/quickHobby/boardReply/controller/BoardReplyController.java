@@ -56,6 +56,7 @@ public class BoardReplyController {
 		if (check!=0) {
 			try {
 				String replyList = getBoardReplyList(boardReplyBoardNum);
+				
 				logger.info("replyList:"+replyList);
 				return replyList;
 				
@@ -78,6 +79,18 @@ public class BoardReplyController {
 		
 		List<BoardReplyDto> replyList = new ArrayList<BoardReplyDto>();
 		replyList = boardReplyService.getBoardReplyList(boardNum);
+		for(int i=0; i<replyList.size(); i++){
+			String filePath=replyList.get(i).getMemberFilePath();
+			String fileName=null;
+			if(filePath!=null){
+				fileName=filePath.split("\\\\")[10];
+			}else{
+				fileName="default.PNG";
+				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\pds\\default.PNG";
+			}
+			
+			replyList.get(i).setMemberFileName(fileName);
+		}
 		logger.info("replySize:"+replyList.size());
 		ObjectMapper obj = new ObjectMapper();
 		return URLEncoder.encode(obj.writeValueAsString(replyList), "UTF-8");		

@@ -128,7 +128,7 @@
 								<c:if test="${count > 0}">
 									<c:forEach var="groupBoard" items="${groupBoardList}">
 										<div class="gTableRow row${groupBoard.groupRowNum}" style="display:none">
-											<div class="gTableCell number">${groupBoard.groupRowNum}</div>
+											<div class="gTableCell number">${groupBoard.number}</div>
 											<div class="gTableCell nickname">
 												<i class="glyphicon glyphicon-user"></i> <a href="${root}/memberBoard/check.do?memberNum=${member.memberNum}">${groupBoard.memberNickName}</a>
 											</div>

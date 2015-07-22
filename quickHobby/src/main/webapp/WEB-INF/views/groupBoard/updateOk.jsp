@@ -13,16 +13,14 @@
 <!-- 	수정 성공시 -->
 	<c:if test="${check>0}">
 		<script type="text/javascript">
-			alert("Completed.");
-			location.href="${root}/groupBoard/list.do";
+			location.href="${root}/groupBoard/groupPage.do?groupNum=${groupNum}";
 		</script>
 	</c:if>
 	
 <!-- 	수정 실패시  -->
 	<c:if test="${check==0}">
 		<script type="text/javascript">
-			alert("Failed.");
-			location.href="${root}/groupBoard/updateForm.do";
+			location.href="${root}/groupBoard/groupPage.do?groupNum=${groupNum}";
 		</script>
 	</c:if>
 </body>

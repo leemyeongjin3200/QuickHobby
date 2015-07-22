@@ -11,6 +11,7 @@ public class BoardReplyDto {
 	private Date boardReplyModifyDate;
 	private String memberNickName;
 	private String memberFileName;
+	private String memberFilePath;
 	
 	public int getBoardReplyNum() {
 		return boardReplyNum;
@@ -59,5 +60,11 @@ public class BoardReplyDto {
 	}
 	public void setMemberFileName(String memberFileName) {
 		this.memberFileName = memberFileName;
+	}
+	public String getMemberFilePath() {
+		return memberFilePath;
+	}
+	public void setMemberFilePath(String memberFilePath) {
+		this.memberFilePath = memberFilePath;
 	}
 }

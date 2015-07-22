@@ -62,4 +62,16 @@ public class GroupBoardDaoImpl implements GroupBoardDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("groupBoard.dao.mapper.groupBoardInsertFile", groupBoardDto);
 	}
+
+	@Override
+	public String getFile(int groupBoardNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("groupBoard.dao.mapper.getFile", groupBoardNum);
+	}
+
+	@Override
+	public int groupBoardUpdateFile(GroupBoardDto groupBoardDto) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("groupBoard.dao.mapper.groupBoardUpdateFile", groupBoardDto);
+	}
 }

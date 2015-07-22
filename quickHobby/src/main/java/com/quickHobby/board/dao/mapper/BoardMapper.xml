@@ -80,7 +80,8 @@
 	</update>
 	
 	<select id="boardRead" resultMap="boardDto" parameterType="int">
-		select * from board where board_num=#{boardNum}
+		select b.*, m.member_nickname as member_nickname from board b 
+ 			inner join member m on m.member_num = b.board_writer where board_num=#{boardNum}
 	</select>
 	
 	<update id="boardDelete" parameterType="int">

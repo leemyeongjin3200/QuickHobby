@@ -102,7 +102,7 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	* @author : 차건강
 	* @description : Group Board updateForm 불러오기
 	 */
-	@RequestMapping(value="/groupBoard/updateForm.do", method=RequestMethod.POST)
+	@RequestMapping(value="/groupBoard/updateForm.do", method=RequestMethod.GET)
 	public ModelAndView groupBoardDUpdateForm(HttpServletRequest request, HttpServletResponse response){
 		logger.info("boardUpdateForm------------------------------------------");
 		
