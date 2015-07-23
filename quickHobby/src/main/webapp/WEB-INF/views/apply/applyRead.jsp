@@ -200,7 +200,8 @@
 		var report_content=form.report_content.value;
 		var report_boardnum=form.report_boardnum.value;
 		var report_boardtype=form.report_boardtype.value;
-		
+		var apply_num='${applyDto.apply_num}';
+		var root='${root}';
 		sendData="report_sender=" + report_sender + "&report_receiver=" + report_receiver + "&report_content=" + report_content + "&report_boardnum=" + report_boardnum + "&report_boardtype=" + report_boardtype;
 //		alert(sendData);
 		
@@ -211,7 +212,7 @@
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			dataType:"text",
 			success:function(data){
-				location.href="${root}/apply/applyRead.do?apply_num=${applyDto.apply_num}";
+				location.href=root + "/apply/applyRead.do?apply_num=" + apply_num;
 				alert("신고가 접수되었습니다.");
 				$("#reportModal").modal("toggle");
 			},

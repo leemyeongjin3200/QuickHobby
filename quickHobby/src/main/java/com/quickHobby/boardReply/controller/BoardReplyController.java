@@ -37,7 +37,7 @@ public class BoardReplyController {
 	* @author : 차건강
 	* @description : boardReply 작성
 	 */
-	@RequestMapping(value = "boardReply/boardReplyWrite.do", method = RequestMethod.GET)
+	@RequestMapping(value = "boardReply/boardReplyWrite.do", method = RequestMethod.POST)
 	public @ResponseBody String boardReplyWrite(BoardReplyDto boardReplyDto, HttpServletRequest request) {
 
 		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));

@@ -182,22 +182,12 @@ li {
 						<ul id="card-ul" class="features-hold baraja-container">
 							<c:forEach var="group" items="${groupList}">
 							<!-- Single group 시작 -->
-<<<<<<< HEAD
 							<li class="single-feature" title="Card style" onclick="moveGroupPage('${root}', '${group.groupNum}')">
 								<a href="#" class="fancy-button small vertical">
-										<!-- <span class="icon">
-=======
-							<li class="single-feature" title="Card style">
-								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/groupImage/${group.groupFileName}')" ></p></div>
-								<h4 class="feature-title"> <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
-								<p class="feature-text">${group.groupSubject}</p>
-								<p>${group.groupLocation}</p>
-									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button small vertical">
-										<span class="icon">
->>>>>>> branch 'master' of https://github.com/leemyeongjin3200/QuickHobby.git
-											<i class="glyphicon glyphicon-share-alt"></i>
-										</span>
-									</a>
+									<span class="icon">
+										<i class="glyphicon glyphicon-share-alt"></i>
+									</span>
+								</a>
 								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/groupImage/${group.groupFileName}')" ></p></div>
 								<h4 class="feature-title"> <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
 								<p class="feature-text">${group.groupSubject}</p>
@@ -239,7 +229,6 @@ li {
 	</section>
 	</div>
 </body>
-<script src="${root}/css/apply/default.js"></script>
 <script type="text/javascript" src="${root}/css/myGroup/modernizr.js"></script>
 <script type="text/javascript" src="${root}/css/myGroup/jquery.baraja.js"></script>
 <script type="text/javascript" src="${root}/css/myGroup/jquery.appear.js"></script>

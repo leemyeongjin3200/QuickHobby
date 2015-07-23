@@ -35,7 +35,6 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 				}else{
 					res.sendRedirect("/main.jsp");
 				}
-				
 			}
 		}catch(Exception e){
 			e.printStackTrace();

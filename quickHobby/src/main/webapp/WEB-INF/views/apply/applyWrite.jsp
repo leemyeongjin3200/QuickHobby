@@ -63,7 +63,7 @@
 					<label for=""><span class="glyphicon glyphicon-pushpin"></span> Title</label>
 					<div class="row">
 						<div class="col-md-9">
-							<input class="form-control" type="text" name="apply_subject" placeholder="Title"/>
+							<input class="form-control" type="text" name="apply_subject" placeholder="Title" maxlength="50"/>
 						</div>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 					<label for=""><span class="glyphicon glyphicon-subtitles"></span> Subtitle</label>
 					<div class="row">
 						<div class="col-md-9">
-							<input class="form-control" type="text" name="apply_subtitle" placeholder="Subtitle"/>
+							<input class="form-control" type="text" name="apply_subtitle" placeholder="Subtitle" maxlength="50"/>
 						</div>
 					</div>
 				</div>

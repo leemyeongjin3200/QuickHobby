@@ -59,4 +59,20 @@ public class GroupDaoImpl implements GroupDao {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("group.dao.mapper.hostJoin", map);
 	}
+	
+	public int getDeleteGroupNum(int applyNum){
+		return sqlSession.selectOne("group.dao.mapper.getDeleteGroupNum", applyNum);
+	}
+
+	@Override
+	public int deleteGroup(int groupNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("group.dao.mapper.deleteGroup", groupNum);
+	}
+
+	@Override
+	public int deleteJoin(int groupNum) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("group.dao.mapper.deleteJoin", groupNum);
+	}
 }

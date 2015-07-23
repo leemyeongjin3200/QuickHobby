@@ -16,4 +16,7 @@ public interface GroupDao {
 	public int joinMember(HashMap<String, Integer> map);
 	public int getGroupNumber();
 	public int hostJoin(HashMap<String, Integer> map);
+	public int getDeleteGroupNum(int applyNum);
+	public int deleteGroup(int groupNum);
+	public int deleteJoin(int groupNum);
 }

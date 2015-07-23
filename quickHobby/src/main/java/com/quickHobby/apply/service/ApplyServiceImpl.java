@@ -271,7 +271,10 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int apply_num = Integer.parseInt(request.getParameter("apply_num"));
-
+		
+		int groupNum=groupDao.getDeleteGroupNum(apply_num);
+		groupDao.deleteGroup(groupNum);
+		groupDao.deleteJoin(groupNum);
 		int check = applyDao.delete(apply_num);
 		logger.info("check : " + check);
 

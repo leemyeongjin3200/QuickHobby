@@ -69,7 +69,7 @@
                         <h4><strong>${board.boardSubject}</strong></h4>
                         <div class="clearfix myBoard-underline">
                             <p class="pull-left">
-                              <i class="glyphicon glyphicon-user"></i> by <strong>${host.memberNickName}</strong>&nbsp; | &nbsp;<i class="glyphicon glyphicon-tag"></i> Category <c:if test="${board.boardSection == 't'}"><strong>Tip</strong></c:if><c:if test="${board.boardSection == 'r'}"><strong>Review</strong></c:if>&nbsp; | &nbsp;<i class="glyphicon glyphicon-calendar"><fmt:formatDate value="${board.boardModifyDate}" pattern="yyyy.MM.dd. hh:mm:ss"/></i>
+                              <i class="glyphicon glyphicon-user"></i> by <strong>${host.memberNickName}</strong>&nbsp; | &nbsp;<i class="glyphicon glyphicon-tag"></i> Category <c:if test="${board.boardSection == 't'}"><strong>Tip</strong></c:if><c:if test="${board.boardSection == 'r'}"><strong>Review</strong></c:if>&nbsp; | &nbsp;<i class="glyphicon glyphicon-calendar"><fmt:formatDate value="${board.boardModifyDate}" pattern="yyyy.MM.dd. HH:mm:ss"/></i>
                               
                           <p class="pull-right"><i class="glyphicon glyphicon-comment"></i> ${board.boardReplyCount} Comments</p>    
                       </div>
@@ -104,7 +104,7 @@
 	                                    <div class="col-sm-11 myBoardReply-body">                                        
 	                                            <strong ><i class="glyphicon glyphicon-user"></i> by <a href="${root}/memberBoard/check.do?memberNum=${reply.boardReplyWriter}">${reply.memberNickName}</a></strong>
 	                                            <small class="pull-right text-muted">
-	                                                <i class="glyphicon glyphicon-time"></i>&nbsp;<fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="MM.dd. hh:mm:ss"/>
+	                                                <i class="glyphicon glyphicon-time"></i>&nbsp;<fmt:formatDate value="${reply.boardReplyModifyDate}" pattern="MM.dd. HH:mm:ss"/>
 	                                            </small>                                      
 	                                        <p>
 	                                            ${reply.boardReplyContent}

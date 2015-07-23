@@ -46,7 +46,7 @@
 	
 	<select id="getGroupDto" parameterType="int" resultMap="groupDto">
 		<![CDATA[
-			select a.*, b.apply_recommend from ggroup a, apply b where a.group_num=#{groupNumber} and b.apply_num=a.group_num
+			select a.*, b.apply_recommend from ggroup a, apply b where a.group_num=#{groupNumber} and b.apply_num=(select group_applynum from ggroup where group_num=#{groupNumber})
 		]]>
 	</select>
 
@@ -67,4 +67,22 @@
 			insert into join values(#{groupNum}, #{applyHost})
 		]]>
 	</insert>
+	
+	<select id="getDeleteGroupNum" parameterType="int" resultType="int">
+		<![CDATA[
+			select group_num from ggroup where group_applynum=${applyNum}
+		]]>
+	</select>
+	
+	<delete id="deleteGroup" parameterType="int">
+		<![CDATA[
+			delete ggroup where group_num=#{groupNum}
+		]]>
+	</delete>
+	
+	<delete id="deleteJoin" parameterType="int">
+		<![CDATA[
+			delete join where join_groupnum=#{groupNum}
+		]]>
+	</delete>
 </mapper>
