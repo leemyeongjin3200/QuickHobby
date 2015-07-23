@@ -30,13 +30,13 @@ function writeReply(e){
 	var replyWrap = replySection.find('.boardReply-list');
 	var sendData="boardNum="+boardNum+"&boardReplyContent="+text;
 	var root=getContextPath();
-	var callUrl=root+"/boardReply/boardReplyWrite.do?" + sendData;
+	var callUrl=root+"/boardReply/boardReplyWrite.do";
 	console.log(sendData, callUrl);
-	/*data:sendData,
-	contentType:"application/x-www-form-urlencoded;charset=utf-8",*/
 	$.ajax({
 		url:callUrl,
-		type:"get",
+		type:"post",
+		data:sendData,
+		contentType:"application/x-www-form-urlencoded;charset=utf-8",
 		dataType:"text",
 		success:function(data){
 			var replyList = JSON.parse(decodeURIComponent(data.replace(/\+/gi, "%20")));

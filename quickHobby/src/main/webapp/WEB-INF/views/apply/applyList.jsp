@@ -239,105 +239,139 @@
 <script src="${root}/css/groupBoard/jquery.ui.map.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-		var userLat="";
-		var userLng="";
-		$(document).ready(function geoLocation()
-		{
-		     if (navigator.geolocation)
-		          navigator.geolocation.getCurrentPosition(showPosition,showError);
-		     else
-		          alert("Geolocation is not supported by this browser.");
-		});
+	var userLat="";
+	var userLng="";
+	$(document).ready(function geoLocation()
+	{
+	     if (navigator.geolocation)
+	          navigator.geolocation.getCurrentPosition(showPosition,showError);
+	     else
+	          alert("Geolocation is not supported by this browser.");
+	});
 
-		function showPosition(position){
-		    userLat = position.coords.latitude;
-		    userLng = position.coords.longitude;
-		    
-		    $("#userLat").val(userLat);
-		    $("#userLng").val(userLng);
-		}
+	function showPosition(position){
+	    userLat = position.coords.latitude;
+	    userLng = position.coords.longitude;
+	    
+	    $("#userLat").val(userLat);
+	    $("#userLng").val(userLng);
+	}
 
-		function showError(error){
-		     switch (error.code){
-		          case error.PERMISSION_DENIED:
-		               alert("User denied the request for Geolocation.");
-		               break;
-		          case error.POSITION_UNAVAILABLE:
-		               alert("Location information is unavailable.");
-		               break;
-		          case error.TIMEOUT:
-		               alert("The request to get user location timed out.");
-		               break;
-		          case error.UNKNOWN_ERROR:
-		               alert("An unknown error occurred.");
-		               break;
-		     }
-		}
+	function showError(error){
+	     switch (error.code){
+	          case error.PERMISSION_DENIED:
+	               alert("User denied the request for Geolocation.");
+	               break;
+	          case error.POSITION_UNAVAILABLE:
+	               alert("Location information is unavailable.");
+	               break;
+	          case error.TIMEOUT:
+	               alert("The request to get user location timed out.");
+	               break;
+	          case error.UNKNOWN_ERROR:
+	               alert("An unknown error occurred.");
+	               break;
+	     }
+	}
 });
 </script>
 <c:forEach var="board" items="${applyDtoList}">
 <script type="text/javascript">
+$(window).ready(function(){
 	var geocoder = new google.maps.Geocoder();
 	var addr='${board.apply_location}';
 	
 	var lat="";
     var lng="";
- 
-    geocoder.geocode({'address':addr},
- 
-        function(results, status){
- 
-            if(status==google.maps.GeocoderStatus.OK){
- 
-                var location=results[0].geometry.location;
- 
-                lat=location.lat();
-                lng=location.lng();
-                var dist=distance(lat, lng);
-                
-                var className="";
-                
-                if(dist>=300){
-                	className+="location11 ";
-                }
-                if(dist>=200){
-                	className+="location10 ";
-                }
-                if(dist>=150){
-                	className+="location9 ";
-                }
-                if(dist>=100){
-                	className+="location8 ";
-                }
-                if(dist>=50){
-                	className+="location7 ";
-                }
-                if(dist>=40){
-                	className+="location6 ";
-                }
-                if(dist>=30){
-                	className+="location5 ";
-                }
-                if(dist>=20){
-                	className+="location4 ";
-                }
-                if(dist>=10){
-                	className+="location3 ";
-                }
-                if(dist>=5){
-                	className+="location2 ";
-                }
-                if(dist>=0){
-                	className+="location1 ";
-                }
-              
-                $("." + '${board.apply_num}').addClass(className);
-                $(".distance"+'${board.apply_num}').val(dist);
-            }else{
-            	alert("에러");
-            }	    	
-    });
-
+ 	getLatLng(addr);
+ 	
+    function getLatLng(addr){
+     	 geocoder.geocode({'address':addr},
+     			 
+   		        function(results, status){
+   		            if(status==google.maps.GeocoderStatus.OK){
+   		 
+   		                var location=results[0].geometry.location;
+   		 
+   		                lat=location.lat();
+   		                lng=location.lng();
+   		                var dist=distance(lat, lng);
+   		                
+   		                var className="";
+   		                
+   		                if(dist<=400){
+   		                	className+="location11 ";
+   		                }
+   		     			if(className!=""){
+   		     				 if(dist<=300){
+   		                     	className+="location10 ";
+   		                     }
+   		     			}
+   		                
+   		     			if(className!=""){
+   		     				if(dist<=200){
+   		                    	className+="location9 ";
+   		                    }
+   		     			}
+   		                
+   		     			if(className!=""){
+   		     				if(dist<=150){
+   		                    	className+="location8 ";
+   		                    }
+   		     			}
+   		     			
+   		     			if(className!=""){
+   		     				if(dist<=100){
+   		                    	className+="location7 ";
+   		                    }
+   		     			}
+   		     			
+   		     			if(className!=""){
+   		     				if(dist<=50){
+   		                    	className+="location6 ";
+   		                    }
+   		     			}
+   		                
+   		     			if(className!=""){
+   		     				if(dist<=40){
+   		                    	className+="location5 ";
+   		                    }
+   		     			}
+   		                
+   		     			if(className!=""){
+   		     				if(dist<=30){
+   		                    	className+="location4 ";
+   		                    }
+   		     			}
+   		                
+   		     			if(className!=""){
+   		     				if(dist<=20){
+   		                    	className+="location3 ";
+   		                    }
+   		     			}
+   		     			
+   		     			if(className!=""){
+   		     				if(dist<=10){
+   		                    	className+="location2 ";
+   		                    }
+   		     			}
+   		                
+   		     			if(className!=""){
+   		     				if(dist<=5){
+   		                    	className+="location1 ";
+   		                    }
+   		     			}
+   		                
+   		                $("." + '${board.apply_num}').addClass(className);
+   		                $(".distance"+'${board.apply_num}').val(dist);
+   		            }else if(status==google.maps.GeocoderStatus.OVER_QUERY_LIMIT){
+   		            	setTimeout(function(){
+   		            		getLatLng(addr);
+   		             	}, 600);
+   		            }	    	
+   		    });
+    }
+   
     function distance(lat, lng){
 		var userLat=Number($("#userLat").val());
 		var userLng=Number($("#userLng").val());
@@ -358,7 +392,8 @@ $(document).ready(function(){
 
     function rad2deg(rad){
     	return (rad*180/Math.PI);
-    }  
+    }
+})  
 </script>
 </c:forEach>
 <script type="text/javascript">
@@ -413,7 +448,7 @@ $(function() {
 	  
 	  $('.filterAllBest').on('click', 'li', function() {
 		    filters={};
-		    $(":checked").parent("label").removeClass("active");
+		    $(".active").removeClass("active");
 		    $("#datepicker").val("");
 		    $("#datepicker2").val("");
 		    var filterValue = $(this).attr('data-filter');
@@ -476,7 +511,7 @@ $(function() {
 		  filters[ filterGroup ] = $this.attr('data-filter');
 		  // combine filters
 		  filterValue = concatValues( filters );
-		  
+
 		  $grid.isotope({ filter: filterValue });
 		    
 	    // $("#labels-locations-output").text( "You selected " + locations[ui.value] + " (" + ui.value + ")");

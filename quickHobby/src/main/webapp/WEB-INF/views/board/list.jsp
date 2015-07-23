@@ -92,7 +92,7 @@
 											<!-- tip/review 구분하기 -->
 											
 												&nbsp;<a href="${root}/board/read.do?boardNum=${board.boardNum}&pageNumber=${currentPage}">${board.boardSubject}&nbsp;</a>
-												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></div>
+												<i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b> ${board.boardReplyCount}</b></a></div>
 											<div class="gTableCell date"><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></div>
 											<div class="gTableCell count">${board.boardReadCount}</div>
 											<div class="gTableCell good"></div>
