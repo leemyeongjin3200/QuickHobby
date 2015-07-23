@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${root}/css/message/message.css"/>
 <style type="text/css">
-.container{
+.board{
 	min-height:100%;
 }
 </style>
@@ -19,7 +19,7 @@
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
 <!-- Message Content// -->
-<div class="container">
+<div class="container board">
 	<!-- Page Title// -->
 		<div class="row">
 			<div class="col-lg-12">

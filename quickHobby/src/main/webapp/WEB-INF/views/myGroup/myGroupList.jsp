@@ -86,7 +86,7 @@ li {
 .single-feature .feature-text {
 	line-height: 1.5;
 	padding: 0 10px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .baraja-container .single-feature:hover {
 	-webkit-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
@@ -158,7 +158,7 @@ li {
 
 </style>
 
-<title>작업중 지우지 마세요!!!!!!!</title>
+<title></title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>	
@@ -188,9 +188,9 @@ li {
 								<p class="feature-text">${group.groupSubject}</p>
 								<p>${group.groupLocation}</p>
 									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button small vertical">
-										<!-- <span class="icon">
+										<span class="icon">
 											<i class="glyphicon glyphicon-share-alt"></i>
-										</span> -->
+										</span>
 									</a>
 							</li> <!-- Single group 끝-->
 						</c:forEach>	

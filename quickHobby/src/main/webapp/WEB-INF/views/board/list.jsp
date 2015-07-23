@@ -131,10 +131,10 @@
 					        	 	  	</c:if>
 					        	 	  </div>
 							          <div class="gAlbum-date-wrapper">
-							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i><a href="${root}/memberBoard/check.do?memberNum=${board.boardWriter}">${board.memberNickName}</a></span>
+							          	<span class="floatleft"><i class="glyphicon glyphicon-user"></i><a href="${root}/memberBoard/check.do?memberNum=${board.boardWriter}"> ${board.memberNickName}</a></span>
 							            <span class="floatleft"><i class="glyphicon glyphicon-calendar"></i><fmt:setLocale value="en_US" scope="session"/><fmt:formatDate type="both" value="${board.boardModifyDate}" pattern="E M/d, KK:mm a"/></span>
 							            <span class="floatright" style="color:white">a</span>
-							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b>${board.boardReplyCount}</b></a></span>
+							            <span class="floatright"><i class="glyphicon glyphicon-comment"></i><a onclick="replyCheck('${board.boardNum}','${currentPage}')"class="myReply" style='cursor:pointer;'><b> ${board.boardReplyCount}</b></a></span>
 							            <span class="clearboth"> &nbsp; </span>
 							          </div>
 							          <div class="gAlbum-container">
