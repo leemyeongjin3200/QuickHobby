@@ -1,24 +1,24 @@
 @CHARSET "UTF-8";
 /**footer==============================================
 ==================================================== */
-footer {
-	margin-top: 45px;
- 	padding: 35px 0 36px;
-  	border-top: 1px solid #E5E5E5;
-  	background-color:#E5E5E5;
-}
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
-#copyRight {
-	color: #777;
-	font-size: 12px;
-	text-align: center;
-}
-
+html,body{height: 100%; margin: 0; padding: 0;}
 
 body {
-    padding-top: 25px;
-
+    padding-top: 30px;
+	font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", sans-serif;
+	margin:0;
+	min-height:100% !important;
 }
+
+
+/* a태그 효과없음 */
+a:link{text-decoration:none !important;}
+a:visited{text-decoration:none !important;}
+a:hover{text-decoration:none !important;}
+a:active{text-decoration:none !important;}
+
 /** Content2-그리드==========================================
 =======================================================*/
 /** 박스 레이어 크기 및 위치*/
@@ -91,3 +91,23 @@ body {
       background-color: #f9f9f9;
       text-align: center;
   }
+  
+/** footer============================================
+======================================================= */
+ 
+  footer {
+  	position: absolute;
+	background: #333;
+	color:#e5e5e5;
+	width:100%;
+	padding-top: 40px;
+	padding-bottom: 60px;
+
+}
+
+#copyRight {
+	color: #777;
+	font-size: 12px;
+	text-align: center;
+}
+  

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
@@ -9,7 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
+<c:set var="root1" value="${pageContext.request.requestURI }"/>
 
+<link rel="stylesheet" type="text/css" href="${root}/css/myGroup/myGroup.css"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/myGroup/baraja.css" /> 
 <link rel="stylesheet" type="text/css" href="${root}/css/myGroup/responsive.css" /> 
 
@@ -160,7 +161,7 @@ li {
 
 <title>작업중 지우지 마세요!!!!!!!</title>
 </head>
-<jsp:include page="../template/header.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/header.jsp"></jsp:include>
 <body>	
 <div class="board">				
 <div class="container">
@@ -168,7 +169,7 @@ li {
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">${host.memberNickName}
-                <small>'s GroupList</small>
+                <small>'s List</small>
             </h1>
         </div>
     </div>
@@ -180,23 +181,58 @@ li {
 				<div class="col-lg-12 section-solid">
 						<!--Features container Starts -->
 						<ul id="card-ul" class="features-hold baraja-container">
-							<c:forEach var="group" items="${groupList}">
+						
 							<!-- Single group 시작 -->
 							<li class="single-feature" title="Card style">
-								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/groupImage/${group.groupFileName}')" ></p></div>
-								<h4 class="feature-title"> <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
-								<p class="feature-text">${group.groupSubject}</p>
-								<p>${group.groupLocation}</p>
+								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/bg01.jpg')" ></p></div>
+								<h4 class="feature-title">DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
+								<p class="feature-text">
+									TITLE: ${group.groupSubject}
+								</p>
+								<p>LOCATION: ${group.groupLocation}</p>
 									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button small vertical">
-										<!-- <span class="icon">
+										<span class="icon">
 											<i class="glyphicon glyphicon-share-alt"></i>
-										</span> -->
+										</span>
 									</a>
 							</li> <!-- Single group 끝-->
-						</c:forEach>	
-					</ul>
-					<br/>
+							
+								<!-- Single group 시작 -->
+							<li class="single-feature" title="Card style">
+								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/bg02.jpg')" ></p></div>
+								<h4 class="feature-title color-scheme">DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
+								<p class="feature-text">
+									TITLE: ${group.groupSubject}
+								</p>
+								<p>LOCATION: ${group.groupLocation}</p>
+									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button button-line btn-default small vertical">
+										
+										<span class="icon">
+											<i class="glyphicon glyphicon-share-alt"></i>
+										</span>
+									</a>
+							</li> <!-- Single group 끝-->
+							
+								<!-- Single group 시작 -->
+							<li class="single-feature" title="Card style">
+								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/bg03.jpg')" ></p></div>
+								<h4 class="feature-title color-scheme">DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
+								<p class="feature-text">
+									TITLE: ${group.groupSubject}
+								</p>
+								<p>LOCATION: ${group.groupLocation}</p>
+									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button button-line btn-default small vertical">
+										
+										<span class="icon">
+											<i class="glyphicon glyphicon-share-alt"></i>
+										</span>
+									</a>
+							</li> <!-- Single group 끝-->
+				
 						
+							
+						</ul>
+						<br/>
 						<!-- button Controls  -->
 						<div class="features-control relative">
 							<button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-prev" title="Previous" >
@@ -315,6 +351,6 @@ $(window).ready(function() {
 });
 
 </script>
-<jsp:include page="../template/footer.jsp"></jsp:include>
+<jsp:include page="WEB-INF/views/template/footer.jsp"></jsp:include>
 
 </html>

@@ -8,6 +8,7 @@
 <c:set var="root" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${root}/css/bootstrap/css/bootstrap-theme.min.css">
+<link rel='stylesheet' href='http://fonts.googleapis.com/earlyaccess/nanumgothic.css'>
 <link rel="stylesheet" type="text/css" href="${root}/css/main/main.css"/>
 <title>Insert title here</title>
 </head>

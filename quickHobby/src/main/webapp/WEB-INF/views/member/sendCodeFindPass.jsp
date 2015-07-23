@@ -25,7 +25,7 @@
               <input type="text" class="form-control" id="userCode" placeholder="Enter code">
               <p class="text-primary">입력하신 이메일주소로 인증번호가 발송 되었습니다. 확인 후 입력해주세요.</p>
             </div>
-              <button type="submit" class="btn btn-success btn-block" style="background-color:#BDBDBD; border-color:#BDBDBD"><span class="glyphicon glyphicon-off"></span> 인증하기</button>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> 인증하기</button>
           </form>
         </div>
       </div>

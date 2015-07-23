@@ -6,13 +6,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <c:set var="root" value="${pageContext.request.contextPath}"/>
+<style type="text/css">
+
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 <!-- footer// -->
+</body>
 <footer>
 	<div id="copyRight">CopyRight @ QuickHobby </div>
 </footer>
 <!-- //footer -->
-</body>
+
 </html>

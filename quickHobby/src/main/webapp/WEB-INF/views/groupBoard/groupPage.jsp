@@ -25,6 +25,14 @@
 	background-size: cover;
 	height: 50%;
 }
+.grayscale {
+    filter: none;
+    -webkit-filter: grayscale(50%);
+    -moz-filter:    grayscale(50%);
+    -ms-filter:     grayscale(50%);
+    -o-filter:      grayscale(50%);
+    cursor: pointer;
+}
 </style>
 <title>HYERAN</title>
 </head>
@@ -32,7 +40,7 @@
 <body>
 <!--===========group board Information=================-->
 <section id="gInfo">
-	<div id="gb-bgImg"><!-- background Image -->
+	<div id="gb-bgImg" class="grayscale"><!-- background Image -->
 		<div class="container">
 		<!-- Page Header -->
 		<div class="row">

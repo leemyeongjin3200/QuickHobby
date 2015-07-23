@@ -9,6 +9,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="${root}/css/board/board.css"/>
+<style type="text/css">
+.board{
+	min-height:100%;
+}
+</style>
 <title>Tip/Review</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
@@ -19,7 +24,7 @@
 	</script>
 </c:if>
 <!-- 일반게시판 Content 시작 -->
-<div class="container">
+<div class="container board">
 	<!-- Page Header -->
      <div class="row">
          <div class="col-lg-12">

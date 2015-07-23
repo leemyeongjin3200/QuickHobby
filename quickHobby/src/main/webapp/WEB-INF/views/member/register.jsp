@@ -7,11 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
+<style type="text/css">
+.board{
+	min-height:100%;
+}
+</style>
 <title>회원가입</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include><br/><br/>
 <body>
-	<div class="container">
+	<div class="container board">
 		<div class="page-header">
 			<h2>회원가입</h2>
 		</div>

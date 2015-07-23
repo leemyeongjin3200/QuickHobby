@@ -5,8 +5,10 @@
  */
 
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 html {
-  font-family: sans-serif;
+  font-family: NanumGothic, 나눔고딕, "Malgun Gothic", "맑은 고딕", sans-serif;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
@@ -3018,6 +3020,7 @@ fieldset[disabled] .btn {
           box-shadow: none;
   opacity: .65;
 }
+/*
 .btn-default {
   color: #333;
   background-color: #fff;
@@ -3063,8 +3066,55 @@ fieldset[disabled] .btn-default.active {
   color: #fff;
   background-color: #333;
 }
+*/
+.btn-default {
+  color: #333;
+  background-color: #D5D5D5;
+  border-color: #ccc;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  color: #333;
+  background-color: #A6A6A6;
+  border-color: #adadad;
+}
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+  background-image: none;
+}
+.btn-default.disabled,
+.btn-default[disabled],
+fieldset[disabled] .btn-default,
+.btn-default.disabled:hover,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled:focus,
+.btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled.focus,
+.btn-default[disabled].focus,
+fieldset[disabled] .btn-default.focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active {
+  background-color: #D5D5D5;
+  border-color: #ccc;
+}
+.btn-default .badge {
+  color: #D5D5D5;
+  background-color: #333;
+}
+
 .btn-primary {
-  color: #fff;
+  color: #D5D5D5;
   background-color: #337ab7;
   border-color: #2e6da4;
 }
