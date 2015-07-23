@@ -58,7 +58,8 @@
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body style="font-family:'맑은 샘물', Sans-serif;">
-    <div class="container board">
+<div class="board">
+    <div class="container">
     	<hr>
         <div class="row">
             <div class="col-md-12">
@@ -156,7 +157,7 @@
         <div class="col-lg-12">
         	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
-		
+	</div><br/>	
 <script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
