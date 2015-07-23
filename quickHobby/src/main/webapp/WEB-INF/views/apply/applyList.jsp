@@ -417,7 +417,7 @@ $(function() {
 	  
 	  $('.filterAllBest').on('click', 'li', function() {
 		    filters={};
-		    $(":checked").parent("label").removeClass("active");
+		    $(".active").removeClass("active");
 		    $("#datepicker").val("");
 		    $("#datepicker2").val("");
 		    var filterValue = $(this).attr('data-filter');
