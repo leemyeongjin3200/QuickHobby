@@ -15,7 +15,11 @@
 	<c:if test="${check > 0}">
 		<script type="text/javascript">
 			alert("게시물 작성이 완료되었습니다.");
-			location.href="${root}/apply/applyList.do";
+			window.setTimeout(function(){
+				location.reload();
+				location.href="${root}/apply/applyList.do";
+			}, 2000);
+			
 		</script>
 	</c:if>
 	

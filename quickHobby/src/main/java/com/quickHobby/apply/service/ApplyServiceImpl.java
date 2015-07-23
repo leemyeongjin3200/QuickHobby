@@ -210,10 +210,10 @@ public class ApplyServiceImpl implements ApplyService {
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int apply_num = Integer.parseInt(request.getParameter("apply_num"));
+		
 		// logger.info("apply_num : " + apply_num);
 
-		MemberDto member = (MemberDto) request.getSession().getAttribute(
-				"member");
+		MemberDto member = (MemberDto) request.getSession().getAttribute("member");
 		int memberNum = member.getMemberNum();
 
 		HashMap<String, Integer> memberMap = new HashMap<String, Integer>();
@@ -494,5 +494,6 @@ public class ApplyServiceImpl implements ApplyService {
 
 		int check = applyDao.insertReport(reportDto);
 		// System.out.println("check : " + check);
+		mav.setViewName("apply/read");
 	}
 }

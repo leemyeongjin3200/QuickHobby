@@ -104,7 +104,7 @@ public class ApplyController {
 	 * @author      : 서인구
 	 * @description : 신청 게시물 삭제 요청시
 	 */
-	@RequestMapping(value="apply/applyDelete.do", method=RequestMethod.GET)
+	@RequestMapping(value="/apply/applyDelete.do", method=RequestMethod.GET)
 	public ModelAndView applyDelete(HttpServletRequest request){
 		logger.info("applyDelete======");
 		
@@ -122,7 +122,7 @@ public class ApplyController {
 	 * @author      : 서인구
 	 * @description : 신청 게시물 수정 요청시
 	 */
-	@RequestMapping(value="apply/applyUpdate.do", method=RequestMethod.GET)
+	@RequestMapping(value="/apply/applyUpdate.do", method=RequestMethod.GET)
 	public ModelAndView applyUpdate(HttpServletRequest request){
 		logger.info("applyUpdate======");
 		
@@ -140,7 +140,7 @@ public class ApplyController {
 	 * @author      : 서인구
 	 * @description : 신청 게시물 수정 후 완료 버튼 클릭시
 	 */
-	@RequestMapping(value="apply/applyUpdateOk.do", method=RequestMethod.POST)
+	@RequestMapping(value="/apply/applyUpdateOk.do", method=RequestMethod.POST)
 	public ModelAndView applyUpdateOk(MultipartHttpServletRequest request, ApplyDto applyDto){
 		logger.info("applyUpdateOk======");
 		
@@ -153,7 +153,7 @@ public class ApplyController {
 		return mav;
 	}
 	
-	@RequestMapping(value="apply/applyOk.do", method=RequestMethod.GET)
+	@RequestMapping(value="/apply/applyOk.do", method=RequestMethod.GET)
 	public ModelAndView applyOk(HttpServletRequest request){
 		logger.info("applyOk======");
 		
@@ -175,7 +175,7 @@ public class ApplyController {
 		return mav;
 	}
 	
-	@RequestMapping(value="apply/incrementRecommend.do", method=RequestMethod.POST)
+	@RequestMapping(value="/apply/incrementRecommend.do", method=RequestMethod.POST)
 	public ModelAndView incrementRecommend(HttpServletRequest request){
 		logger.info("incerementRecommend======");
 		
@@ -187,7 +187,7 @@ public class ApplyController {
 		return null;
 	}
 	
-	@RequestMapping(value="apply/decrementRecommend.do", method=RequestMethod.POST)
+	@RequestMapping(value="/apply/decrementRecommend.do", method=RequestMethod.POST)
 	public ModelAndView decrementRecommend(HttpServletRequest request){
 		logger.info("decerementRecommend======");
 		
@@ -199,7 +199,7 @@ public class ApplyController {
 		return null;
 	}
 	
-	@RequestMapping(value="apply/report.do", method=RequestMethod.POST)
+	@RequestMapping(value="/apply/report.do", method=RequestMethod.POST)
 	public ModelAndView report(HttpServletRequest request){
 		logger.info("report======");
 		

@@ -14,6 +14,5 @@
 	}
 </script>
 <body onload="loadFunction()">
-
 </body>
 </html>

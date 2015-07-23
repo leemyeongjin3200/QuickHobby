@@ -158,6 +158,9 @@
         	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
 	</div><br/>	
+	<input type="hidden" id="apply_num" value="${applyDto.apply_num}"/>
+<jsp:include page="../template/footer.jsp"></jsp:include>
+<jsp:include page="report.jsp"></jsp:include>
 <script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 <script type="text/javascript">
@@ -201,21 +204,23 @@
 		var report_content=form.report_content.value;
 		var report_boardnum=form.report_boardnum.value;
 		var report_boardtype=form.report_boardtype.value;
-		var apply_num='${applyDto.apply_num}';
+		var apply_num=$("#apply_num").val();
 		var root='${root}';
+		var callUrl=root + "/apply/report.do";
 		sendData="report_sender=" + report_sender + "&report_receiver=" + report_receiver + "&report_content=" + report_content + "&report_boardnum=" + report_boardnum + "&report_boardtype=" + report_boardtype;
-//		alert(sendData);
 		
 		$.ajax({
-			url:"${root}/apply/report.do",
+			url:callUrl,
 			type:"post",
 			data:sendData,
 			contentType:"application/x-www-form-urlencoded;charset=utf-8",
 			dataType:"text",
 			success:function(data){
-				location.href=root + "/apply/applyRead.do?apply_num=" + apply_num;
 				alert("신고가 접수되었습니다.");
 				$("#reportModal").modal("toggle");
+				var reportsNum=Number($("#reports").text())+1;
+				$("#reports").text(reportsNum);
+				$("#report_content").val("");
 			},
 			error:function(xhr, status, error){
 				// xhr:XHRHttpRequest, status 4 20, error
@@ -346,7 +351,5 @@
 		}
 	}
 </script>
-<jsp:include page="../template/footer.jsp"></jsp:include>
-<jsp:include page="report.jsp"></jsp:include>
 </body>
 </html>

@@ -31,7 +31,7 @@
 			<mvc:exclude-mapping path="/board/list.do"/>
 			<mvc:exclude-mapping path="/board/read.do"/>
 			<mvc:exclude-mapping path="/boardReply/getBoardReplyList.do"/>
-			<mvc:exclude-mapping path="/groupBoard/list.do"/>
+			<mvc:exclude-mapping path="/groupReply/getGroupReplyList.do"/>
 			<mvc:exclude-mapping path="/main.do"/>
 			<bean class="com.quickHobby.interceptor.LoginCheckInterceptor"></bean>
 		</mvc:interceptor>

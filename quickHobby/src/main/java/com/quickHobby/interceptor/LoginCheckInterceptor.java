@@ -30,10 +30,10 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 							res.sendRedirect(reqUrl);
 						}
 					}
-					
 					return false;	
 				}else{
-					res.sendRedirect("/main.jsp");
+					res.sendRedirect("/quickHobby?loginCheck=1");
+					return false;
 				}
 			}
 		}catch(Exception e){

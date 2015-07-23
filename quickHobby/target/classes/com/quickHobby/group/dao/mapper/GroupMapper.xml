@@ -70,7 +70,7 @@
 	
 	<select id="getDeleteGroupNum" parameterType="int" resultType="int">
 		<![CDATA[
-			select group_num from ggroup where group_applynum=${applyNum}
+			select group_num from ggroup where group_applynum=#{applyNum}
 		]]>
 	</select>
 	

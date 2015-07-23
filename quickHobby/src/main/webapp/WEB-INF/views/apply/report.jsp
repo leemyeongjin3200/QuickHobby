@@ -18,23 +18,22 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Report</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" onsubmit="reportForm(this)">
+          <form role="form" id="reForm" name="reForm">
           	<input type="hidden" name="report_sender" value="${member.memberNum}">
           	<input type="hidden" name="report_receiver" value="${applyDto.apply_host}">
           	<input type="hidden" name="report_boardnum" value="${applyDto.apply_num}">
           	<input type="hidden" name="report_boardtype" value="A">
             <div class="form-group">
               <label for="report_content"><span class="glyphicon glyphicon-pencil"></span> Content</label>
-              <textarea rows="12" cols="58" class="form-control" name="report_content" placeholder="Enter Report Content"></textarea>
+              <textarea rows="12" cols="58" class="form-control" id="report_content" name="report_content" placeholder="Enter Report Content"></textarea>
             </div>
-              <button type="submit" class="btn btn-success btn-block">Report</button>
+              <input type="button" onclick="reportForm(reForm)" class="btn btn-success btn-block" value="Report"></input>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <button type="button" class="btn btn-danger btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
         </div>
       </div>
-      
     </div>
   </div> 
 </body>
