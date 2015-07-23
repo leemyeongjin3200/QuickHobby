@@ -22,203 +22,94 @@ a {
 	color: #cccccc;
 	text-decoration: none;
 }
-
 a:hover, a:focus, .btn:focus {
     text-decoration: none;
 	outline: none;
 	color: #6c6b6b
 }
-
-input:focus, textarea:focus {
-	outline: 0;
-}
-
-
-
-h1 {
-    font-size: 72px;
-    line-height: 82px;
-}
-
-h2 {
-    font-size: 48px;
-    line-height: 60px;
-}
-
-h3 {
-    font-size: 32px;
-    line-height: 45px;
-}
-
-h4 {
-    font-size: 20px;
-    line-height: 30px;
-}
-
-h5 {
-    font-size: 18px;
-	line-height: 25px;
-}
-
 img {
 	max-width: 100%;
 	height: auto;
 }
-
 ul, ol {
 	padding-left: 0 !important;
 }
-
 li {
 	list-style: none;
 }
-
-/* --------------- Common Classes --------------- */
 .center {
 	text-align: center;
 }
-
 .left {
 	text-align: left;
 }
-
-.justify {
-	text-align: justify;
-}
-
-.strong {
-font-weight: 700;
-}
-
-.floatright {
-	float:right;
-}
-
 .floatleft {
 	float:left;
 }
-
-.floatnone {
-	float:none;
-}
-
-.fixed {
-	position:fixed;
-}
-
 .absolute {
 	position:absolute;
 }
-
 .relative {
 	position:relative;
 }
-
 .container {
 	position:relative;
 	z-index: 10;
 }
-
-.section-overlay {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-
-.animated {
-	visibility: hidden;
-}
-
-.visible {
-	visibility: visible;
-}
-
-.section-title {
-	margin-bottom: 48px;
-}
-
-.section-title h3, .section-title h4 {
-	color: #F4F4F4;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-	display: inline-block;
-	margin-top: 0;
-	padding: 8px 0;
-	
-}
-
 .section-overlay {
 	background: rgba(0, 0, 0, .7) !important;
 	z-index: 5;
 }
 .section-solid {
-position: absolute;
 	width: 100%;
 	height: 100%;
 	background: rgba(255, 255, 255, 1) !important;
-
-
+	padding-top:4%;
+	padding-bottom:8%;
 }
-
 
 /* ================ Features Section ================ */
 #section-feature {
 	background-color: #f9f9f9 !important;
 }
-
 .container-fluid.features {
-	padding-top: 132px;
-	padding-bottom: 190px;
+	padding-top: 0px;
+	padding-bottom: 30px;
 }
-
 .baraja-container {
-	width: 250px;
-	height: 400px;
+	width: 240px;
+	height: 330px;
 }
-
 .baraja-container .single-feature {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 }
-
-.single-feature .feature-title {
-	margin-top: 18px;
-}
-
 .single-feature .feature-text {
 	line-height: 1.5;
 	padding: 0 10px;
-	margin-bottom: 16px;
+	margin-bottom: 10px;
 }
-
 .baraja-container .single-feature:hover {
 	-webkit-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
 	-moz-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
 	-o-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
 	box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
 }
-
-.single-feature .feature-image {
-
-}
-
 .feature-image {
-	height:220px !important;
-	width:248px !important;
+	height:200px !important;
+	width:238px !important;
 	overflow:hidden !important;
-
 	padding:2px;
-	
 }
+.feature-image:hover {
 
-
+}
 .features-control {
 	margin: auto;
-	margin-top: 55px;
+	margin-top: 30px;
 	width: 253px;
 	z-index: 1020;
 }
-
 .control-icon {
 	position: absolute;
 	top:0;
@@ -226,44 +117,19 @@ position: absolute;
 	font-size: 20px;
 	height: 46px;
 }
-
-.feature-link a{
-	color:#fff;
-	font-weight: 400;
-}
-.feature-link a i {
-	font-weight: 300;
-}
-
 .features-control #feature-prev {
 	left: 0px;
 }
-
 .features-control #feature-expand {
 	left: 60px;
 }
-
 .features-control #feature-close {
 	left: 120px;
 }
-
 .features-control #feature-next {
 	left: 180px;
 }
 
-.sub-steps .icon {
-	float:left;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
-	border-left: 1px solid;
-	line-height: 40px;
-	padding: 0px 13px;
-	-webkit-transition: all .3s ease-in;
-	-moz-transition: all .3s ease-in;
-	-o-transition: all .3s ease-in;
-	transition: all .3s ease-in;
-}
-	
 /* --------------- Button Styles --------------- */
 .button-line {
 	background: transparent;
@@ -274,39 +140,23 @@ position: absolute;
 	margin: 10px;
 	overflow: visible;
 }
-
 .no-text .icon {
 	margin: 0;
 }
-
 .btn .icon {
 	margin-left: 13px;
 }
-
-.button-white {
-	border-color: #fff;
-	color: #fff;
-}
-
-.button-white:hover {
-	border-color: #fff;
-	color: #fff;
-}
-
 /***********************/
-
-
 .ratio{
     position:relative;
     width: 100% ;
     height: 100% ;
     padding-bottom: 50%  ; 
-    
     background-repeat: no-repeat !important;
     background-position: center center !important;
     background-size: cover !important;  
-
 }
+
 </style>
 
 <title>작업중 지우지 마세요!!!!!!!</title>
@@ -326,24 +176,21 @@ position: absolute;
    <!-- //Page Title -->
 </div>
 	<section id="section-feature" class="feature-wrap">
-		<div class="section-solid"></div>
 		<div class="container-fluid features center">
-		
 			<div class="row">
-				<div class="col-lg-12">
+				<div class="col-lg-12 section-solid">
 						<!--Features container Starts -->
 						<ul id="card-ul" class="features-hold baraja-container">
 						
 							<!-- Single group 시작 -->
 							<li class="single-feature" title="Card style">
 								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/bg01.jpg')" ></p></div>
-								<h4 class="feature-title color-scheme">DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
+								<h4 class="feature-title">DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
 								<p class="feature-text">
 									TITLE: ${group.groupSubject}
 								</p>
 								<p>LOCATION: ${group.groupLocation}</p>
-									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button button-line btn-default small vertical">
-										Details
+									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button small vertical">
 										<span class="icon">
 											<i class="glyphicon glyphicon-share-alt"></i>
 										</span>
@@ -359,7 +206,7 @@ position: absolute;
 								</p>
 								<p>LOCATION: ${group.groupLocation}</p>
 									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button button-line btn-default small vertical">
-										Details
+										
 										<span class="icon">
 											<i class="glyphicon glyphicon-share-alt"></i>
 										</span>
@@ -375,7 +222,7 @@ position: absolute;
 								</p>
 								<p>LOCATION: ${group.groupLocation}</p>
 									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button button-line btn-default small vertical">
-										Details
+										
 										<span class="icon">
 											<i class="glyphicon glyphicon-share-alt"></i>
 										</span>
@@ -384,12 +231,8 @@ position: absolute;
 				
 						
 							
-							
-							
-							
-							
-							
 						</ul>
+						<br/>
 						<!-- button Controls  -->
 						<div class="features-control relative">
 							<button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-prev" title="Previous" >
@@ -440,9 +283,9 @@ $(document).ready(function() {
 				baraja.fan({
 					speed : 1500,
 					easing : 'ease-out',
-					range : 100,
+					range : 90,
 					direction : 'right',
-					origin : { x : 50, y : 200 },
+					origin : { x : 50, y : 150 },
 					center : true
 				});
 			});
@@ -450,9 +293,9 @@ $(document).ready(function() {
 				baraja.fan({
 					speed : 500,
 					easing : 'ease-out',
-					range : 100,
+					range : 90,
 					direction : 'right',
-					origin : { x : 50, y : 200 },
+					origin : { x : 50, y : 150 },
 					center : true
 				});
 			}); 
@@ -463,7 +306,7 @@ $(document).ready(function() {
 					easing : 'ease-out',
 					range : 80,
 					direction : 'left',
-					origin : { x : 200, y : 50 },
+					origin : { x : 150, y : 50 },
 					center : true
 				});
 			});
@@ -473,7 +316,7 @@ $(document).ready(function() {
 					easing : 'ease-out',
 					range : 80,
 					direction : 'left',
-					origin : { x : 200, y : 50 },
+					origin : { x : 150, y : 50 },
 					center : true
 				});
 			});

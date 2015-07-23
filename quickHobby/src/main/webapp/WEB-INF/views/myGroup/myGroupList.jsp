@@ -1,43 +1,320 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<c:set var="root" value="${pageContext.request.contextPath }"/>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="root" value="${pageContext.request.contextPath }"/>
-<link rel="stylesheet" type="text/css" href="${root}/css/myGroup/myGroup.css"/>
-<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css" href="${root}/css/myGroup/baraja.css" /> 
+<link rel="stylesheet" type="text/css" href="${root}/css/myGroup/responsive.css" /> 
+
+<style>
+.board{
+	min-height:100%;
+}
+a {
+	color: #cccccc;
+	text-decoration: none;
+}
+a:hover, a:focus, .btn:focus {
+    text-decoration: none;
+	outline: none;
+	color: #6c6b6b
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+ul, ol {
+	padding-left: 0 !important;
+}
+li {
+	list-style: none;
+}
+.center {
+	text-align: center;
+}
+.left {
+	text-align: left;
+}
+.floatleft {
+	float:left;
+}
+.absolute {
+	position:absolute;
+}
+.relative {
+	position:relative;
+}
+.container {
+	position:relative;
+	z-index: 10;
+}
+.section-overlay {
+	background: rgba(0, 0, 0, .7) !important;
+	z-index: 5;
+}
+.section-solid {
+	width: 100%;
+	height: 100%;
+	background: rgba(255, 255, 255, 1) !important;
+	padding-top:4%;
+	padding-bottom:8%;
+}
+
+/* ================ Features Section ================ */
+#section-feature {
+	background-color: #f9f9f9 !important;
+}
+.container-fluid.features {
+	padding-top: 0px;
+	padding-bottom: 30px;
+}
+.baraja-container {
+	width: 240px;
+	height: 330px;
+}
+.baraja-container .single-feature {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+.single-feature .feature-text {
+	line-height: 1.5;
+	padding: 0 10px;
+	margin-bottom: 10px;
+}
+.baraja-container .single-feature:hover {
+	-webkit-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	-moz-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	-o-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+	box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
+}
+.feature-image {
+	height:200px !important;
+	width:238px !important;
+	overflow:hidden !important;
+	padding:2px;
+}
+.feature-image:hover {
+
+}
+.features-control {
+	margin: auto;
+	margin-top: 30px;
+	width: 253px;
+	z-index: 1020;
+}
+.control-icon {
+	position: absolute;
+	top:0;
+	padding: 5px 15px;
+	font-size: 20px;
+	height: 46px;
+}
+.features-control #feature-prev {
+	left: 0px;
+}
+.features-control #feature-expand {
+	left: 60px;
+}
+.features-control #feature-close {
+	left: 120px;
+}
+.features-control #feature-next {
+	left: 180px;
+}
+
+/* --------------- Button Styles --------------- */
+.button-line {
+	background: transparent;
+	display: inline-block;
+	font-weight: 400;
+	border-radius: 4px;
+	border: 1px solid;
+	margin: 10px;
+	overflow: visible;
+}
+.no-text .icon {
+	margin: 0;
+}
+.btn .icon {
+	margin-left: 13px;
+}
+/***********************/
+.ratio{
+    position:relative;
+    width: 100% ;
+    height: 100% ;
+    padding-bottom: 50%  ; 
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;  
+}
+
+</style>
+
+<title>작업중 지우지 마세요!!!!!!!</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
-<body>
-	<br/><br/>
-	<div class="container">
-		<div class="page-header">
-			<h2>My Group</h2>
-		</div>
-	</div>
-	<div class="container">
-		<div id="backgroundDiv" class="row">
-			<c:forEach var="group" items="${groupList}">
-				<div class="col-md-3 postDiv">
-					<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}">
-						<img src="${root}/img/background/polaroid.png" class="img-responsive polaroid"></img>
-						<img src="${root}/img/groupImage/${group.groupFileName}" class="photo"></img>
-						<div class="groupTitle">${group.groupSubject}</div>
-						<div class="groupInfo">
-							<p>DATE: <fmt:formatDate value="${group.groupDate}" type="date"/></p>
-							<p>SUBTITLE: ${group.groupSubtitle}</p>
-							<p>LOCATION: ${group.groupLocation}</p>
+<body>	
+<div class="board">				
+<div class="container">
+<!-- Page Title// -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">${host.memberNickName}
+                <small>'s GroupList</small>
+            </h1>
+        </div>
+    </div>
+   <!-- //Page Title -->
+</div>
+	<section id="section-feature" class="feature-wrap">
+		<div class="container-fluid features center">
+			<div class="row">
+				<div class="col-lg-12 section-solid">
+						<!--Features container Starts -->
+						<ul id="card-ul" class="features-hold baraja-container">
+							<c:forEach var="group" items="${groupList}">
+							<!-- Single group 시작 -->
+							<li class="single-feature" title="Card style">
+								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/groupImage/${group.groupFileName}')" ></p></div>
+								<h4 class="feature-title"> <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
+								<p class="feature-text">${group.groupSubject}</p>
+								<p>${group.groupLocation}</p>
+									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button small vertical">
+										<!-- <span class="icon">
+											<i class="glyphicon glyphicon-share-alt"></i>
+										</span> -->
+									</a>
+							</li> <!-- Single group 끝-->
+						</c:forEach>	
+					</ul>
+					<br/>
+						
+						<!-- button Controls  -->
+						<div class="features-control relative">
+							<button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-prev" title="Previous" >
+								<span class="icon">
+									<i class="glyphicon glyphicon-arrow-left"></i>
+								</span>
+							</button>
+							<button class="control-icon fancy-button button-line no-text btn-col zoom" id="feature-expand" title="Expand" >
+								<span class="icon">
+									<i class="glyphicon glyphicon-resize-full"></i>
+								</span>
+							</button>
+							<button class="control-icon fancy-button button-line no-text btn-col zoom" id="feature-close" title="Collapse" >
+								<span class="icon">
+									<i class="glyphicon glyphicon-resize-small"></i>
+								</span>
+							</button>
+							<button class="control-icon fancy-button button-line no-text btn-col bell" id="feature-next" title="Next" >
+								<span class="icon">
+									<i class="glyphicon glyphicon-arrow-right"></i>
+								</span>
+							</button>
 						</div>
-					</a>
+						<!-- button Controls  -->
+		
+						
+					</div>
 				</div>
-			</c:forEach>
-		</div>
+			</div>
+	</section>
 	</div>
 </body>
+<script src="${root}/css/apply/default.js"></script>
+<script type="text/javascript" src="${root}/css/myGroup/modernizr.js"></script>
+<script type="text/javascript" src="${root}/css/myGroup/jquery.baraja.js"></script>
+<script type="text/javascript" src="${root}/css/myGroup/jquery.appear.js"></script>
+<script type="text/javascript" src="${root}/css/myGroup/jquery.vegas.min.js"></script>
+<script type="text/javascript">
+//my group list				
+$(document).ready(function() {
+	'use strict';
+	var $el 			= $( '#card-ul' ),
+		sectionFeature  = $('#section-feature'),
+		baraja 			= $el.baraja();
+	
+		if ( $(window).width() > 480) {
+			sectionFeature.appear(function(){
+				baraja.fan({
+					speed : 1500,
+					easing : 'ease-out',
+					range : 90,
+					direction : 'right',
+					origin : { x : 50, y : 150 },
+					center : true
+				});
+			});
+			$('#feature-expand').click(function() {
+				baraja.fan({
+					speed : 500,
+					easing : 'ease-out',
+					range : 90,
+					direction : 'right',
+					origin : { x : 50, y : 150 },
+					center : true
+				});
+			}); 
+		} else {
+			sectionFeature.appear(function(){
+				baraja.fan({
+					speed : 1500,
+					easing : 'ease-out',
+					range : 80,
+					direction : 'left',
+					origin : { x : 150, y : 50 },
+					center : true
+				});
+			});
+			$('#feature-expand').click(function() {
+				baraja.fan({
+					speed : 500,
+					easing : 'ease-out',
+					range : 80,
+					direction : 'left',
+					origin : { x : 150, y : 50 },
+					center : true
+				});
+			});
+		}
+		
+	// Feature navigation
+	$('#feature-prev').on( 'click', function( event ) {
+		baraja.previous();
+	});
+
+	$('#feature-next').on( 'click', function( event ) {
+		baraja.next();
+	});
+	
+	// close Features
+	$('#feature-close').on( 'click', function( event ) {
+		baraja.close();
+	});	
+});
+
+//Background slider
+
+$(window).ready(function() {
+	'use strict';
+	$.vegas('slideshow', {
+	  backgrounds:[
+		{ src:'${root}/img/bg-1.jpg', fade:1000 },
+		{ src:'${root}/img/bg-2.jpg', fade:1000 },
+		{ src:'${root}/img/bg-3.jpg', fade:1000 }
+	  ]
+	})();
+});
+
+</script>
 <jsp:include page="../template/footer.jsp"></jsp:include>
-<script type="text/javascript" src="${root}/css/myGroup/myGroup.js"></script>
+
 </html>
