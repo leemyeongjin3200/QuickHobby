@@ -43,9 +43,9 @@
         		</div>
             </div>
             <div class="text-center">
-              <button type="button" id="sendMsg" class="btn btn-success btn-sm" style="background-color:#BDBDBD; border-color:#BDBDBD; margin-top:10px">
+              <button type="button" id="sendMsg" class="btn btn-success btn-sm" style="margin-top:10px">
                Send</button>
-              <button type="button" id="closeMsg" class="btn btn-success btn-sm" style="background-color:#BDBDBD; border-color:#BDBDBD; margin-top:10px">
+              <button type="button" id="closeMsg" class="btn btn-success btn-sm" style="margin-top:10px">
                Close</button>
              </div>
           </form>

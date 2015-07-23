@@ -11,18 +11,18 @@
 <c:set var="root" value="${pageContext.request.contextPath }"/>
 <c:set var="root1" value="${pageContext.request.requestURI }"/>
 <c:set var="current" value="4"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${root}/css/memberBoard/memberBoard.css"/>
+<link rel="stylesheet" type="text/css" href="${root}/css/myGroup/responsive.css" /> 
 <style type="text/css">
 .board{
 	min-height:100%;
 }
+
 </style>
 <title>My Page</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
-<!--main-->
 <div class="container board">
   <div class="row">
            <div class="col-lg-12">
