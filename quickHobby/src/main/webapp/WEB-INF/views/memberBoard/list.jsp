@@ -17,25 +17,37 @@
 .board{
 	min-height:100%;
 }
+.backColor{
+	background-color:#EEEEEE !important;
+}
+#backgroundColor{
+	background: rgba(200, 200, 200, 0.8) !important;
+	width:100%;
+	height:100%;
+	padding-left:3%;
+	padding-right:3%;
+}
 
 </style>
 <title>My Page</title>
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
-<div class="container board">
+<div class="board">
+<div class="container">
+<div class="col-lg-12" id="backgroundColor">
   <div class="row">
            <div class="col-lg-12">
                <h1 class="page-header">${host.memberNickName}
-                   <small>'s Page</small>
+                   <small>'s Timeline</small>
                </h1>
            </div>
        </div>
 	<div class="row">
       <!--left-->
       <div class="col-md-3" id="leftCol">
-        <div class="" id="sidebar" style="background-color:#white;">
- 			<div class="single_gMember" >
+        <div class="" id="sidebar">
+ 			<div class="single_gMember backColor" >
                     <div class="gMember_img">
                     	<c:if test="${host.memberFileName == null}">
 	                    	<img src="${root}/img/memberImage/default.PNG" alt="img"/>
@@ -65,7 +77,7 @@
 		<c:forEach var="board" items="${memberBoardList}">
       		<!--  myBoard 01 시작-->
       	    <div class="myBoard ${board.rnum}" style="display:none">
-                <div class="myBoard-item">
+                <div class="myBoard-item backColor">
                         <h4><strong>${board.boardSubject}</strong></h4>
                         <div class="clearfix myBoard-underline">
                             <p class="pull-left">
@@ -120,17 +132,19 @@
 			</div><!-- .myBoard  01끝 -->
 		</c:forEach>
 		
-		
      </div>
      <!--/right-->
      </c:if>	
   	</div><!--/row-->
+  	<br/><br/>
 </div>
 <!--/container-->
-
+</div>
+</div>
 <script type="text/javascript" src="${root}/css/memberBoard/memberBoard.js"></script>
+<script type="text/javascript" src="${root}/css/myGroup/jquery.vegas.min.js"></script>
 </body>
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
 		var size=${memberBoardList.size()};
 		var count=4;
@@ -151,6 +165,18 @@
 				}
 			}
 		});
+	});
+	
+	//Background slider
+	$(window).ready(function() {
+		'use strict';
+		$.vegas('slideshow', {
+		  backgrounds:[
+			{ src:'${root}/img/bg_001.jpg', fade:1000 },
+			{ src:'${root}/img/bg_002.jpg', fade:1000 },
+			{ src:'${root}/img/bg_003.jpg', fade:1000 }
+		  ]
+		})();
 	});
 </script>
 <script type="text/javascript" src="${root}/css/message/message.js"></script>

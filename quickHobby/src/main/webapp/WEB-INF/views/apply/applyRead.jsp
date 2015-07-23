@@ -158,6 +158,7 @@
         	<p onclick="return checkJoin('${root}', '${applyDto.apply_num}')"><button class="btn btn-primary btn-block"><i class="glyphicon glyphicon-ok"></i> Join</button></p>
 		</div>
 	</div><br/>	
+	</div>
 	<input type="hidden" id="apply_num" value="${applyDto.apply_num}"/>
 <jsp:include page="../template/footer.jsp"></jsp:include>
 <jsp:include page="report.jsp"></jsp:include>

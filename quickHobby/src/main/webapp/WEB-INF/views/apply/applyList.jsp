@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-
 #icon_eye{
     background: url('${root}/img/icon/eyeIcon.png') center center no-repeat;
 	background-size: 38px auto;
@@ -40,6 +39,7 @@
   clip: rect(0, 0, 0, 0) !important;
   pointer-events: none !important;
 }
+
 </style>
 <title>Apply</title>
 <!-- smooth animate css file -->
@@ -62,7 +62,7 @@
 		</script>
 	</c:if>
 	<div class="container-fluid filterMenu" style="display: block;">
-		<div class="collapse out" id="demo" style="margin-bottom:-10px;">
+		<div class="collapse out" id="filtering" style="margin-bottom:-10px;">
 			<div class="row filterStart">
 				<div class="col-md-2 panel">
 				 <header class="panel-heading">FILTER</header>
@@ -159,7 +159,7 @@
 
 		
 <div class="container-fluid">
-	<div class="open" data-toggle="collapse" data-target="#demo">
+	<div class="openBtn" data-toggle="collapse" data-target="#filtering">
 			<span class="glyphicon glyphicon-search"></span>
 	</div>
 </div>

@@ -13,6 +13,9 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/board/bootstrap-responsive.min.css"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/board/readBoard.css"/>
 <style>
+.boardd{
+	min-height:100% !important;
+}
 
 </style>
 
@@ -25,6 +28,7 @@
 		$("#myModal").modal();
 	</script>
 </c:if>
+<div class="boardd">
 <div class="container">
 <!-- Page Header -->
      <div class="row">
@@ -141,13 +145,13 @@
 	</div>
   </div><!-- 버튼 줄.row 끝 -->
 </div><!-- .container 끝 -->
-
+</div>
 <%-- <script src="${root}/css/apply/default.js"></script> --%>
 <script type="text/javascript">
 
 </script>
 </body>
-<jsp:include page="../template/footer.jsp"></jsp:include>
+
 <script type="text/javascript" src="${root}/css/board/board.js"></script>
 <script type="text/javascript" src="${root}/css/boardReply/boardReply.js"></script>
 <script type="text/javascript">
@@ -176,4 +180,5 @@
 	}
 </script>
 <jsp:include page="updateModal.jsp"></jsp:include>
+<jsp:include page="../template/footer.jsp"></jsp:include>
 </html>

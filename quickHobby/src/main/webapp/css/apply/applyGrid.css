@@ -1,7 +1,5 @@
 /*body 상단부 여백 */
-body {
-    padding-top: 20px;
-}
+
 
 /* a태그 효과없음 */
 a:link{text-decoration:none !important;}
@@ -29,7 +27,7 @@ a:active{text-decoration:none !important;}
   margin-left: auto;
 }
 
-.open {
+.openBtn {
 	position: fixed;
 	border-radius: 5px 5px 5px 5px;
 	width:45px;
@@ -40,6 +38,7 @@ a:active{text-decoration:none !important;}
 	cursor: pointer;
 	color: rgb(221, 221, 221);
 	background: #353535;
+
 }
 
 .locationFilter{

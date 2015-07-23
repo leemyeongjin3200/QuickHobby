@@ -33,6 +33,9 @@
     -o-filter:      grayscale(50%);
     cursor: pointer;
 }
+.heading h3{
+	font-weight:700;
+}
 </style>
 <title>HYERAN</title>
 </head>
@@ -103,8 +106,8 @@
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12">
 					<!-- list talbe head -->
-					<div class="heading">
-						<h2 class="">${group.groupSubject}</h2>
+					<div class="heading text-center">
+						<h3 class="">${group.groupSubject}</h3>
 						<p>${group.groupSubtitle}</p>
 					</div><!-- .heading 끝 -->
 				</div>
@@ -212,9 +215,9 @@
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
 				<!-- GroupMember heading -->
-				<div class="heading">
-					<h3 class="text-denter">Group Member</h3>
-					<p>모임을 신청한 사람들입니다.</p>
+				<div class="heading text-center">
+					<h4 class="">-Group Member-</h4>
+					<p>- 모임을 신청한 사람들입니다. -</p>
 				</div> <!-- .heading 끝 -->
 				
 				<!-- GroupMember List 슬라이드 영역 -->

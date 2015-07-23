@@ -20,7 +20,7 @@
 </head>
 <jsp:include page="../template/header.jsp"></jsp:include>
 <body>
-<br/><br/>
+<br/>
 	<div class="container board">
 		<div class="page-header">
 			<h2>모임 신청하기</h2>
@@ -99,7 +99,7 @@
 					<label for="" class="title"><span class="glyphicon glyphicon-pencil"></span> Content</label>
 					<div class="row">
 						<div class="col-md-9">
-							<textarea class="form-control" rows="15" cols="58" name="apply_content" placeholder="Content"></textarea>
+							<textarea class="form-control" rows="14" cols="58" name="apply_content" placeholder="Content"></textarea>
 						</div>
 					</div>
 				</div>
@@ -144,9 +144,9 @@
 					<input type="button" class="btn btn-default" value="List" onclick="location.href='${root}/apply/applyList.do'"/>
 				</div>
 			</div>
-			
 		</form>
 	</div>
+	<br/><br/>
 </body>
 <script type="text/javascript" src="${root}/css/apply/jquery-ui.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>

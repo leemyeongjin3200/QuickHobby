@@ -6,6 +6,8 @@
 <c:set var="root" value="${pageContext.request.contextPath }" />
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="${root}/css/board/bootstrap-responsive.min.css"/>
+<link rel="stylesheet" type="text/css" href="${root}/css/board/readBoard.css"/>
 <title>Insert title here</title>
 </head>
 <body>
@@ -124,7 +126,6 @@
 		textArea = textArea.replace(/\r\n/g, '"<"br">"');
 		textArea = textArea.replace(/\n/g, '"<"br">"');
 		textArea = textArea.replace(/\r/g, '"<"br">"');
-
 		$(".textArea").text(textArea);
 	</script>
 	<jsp:include page="updateModal.jsp"></jsp:include>
