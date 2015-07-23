@@ -74,7 +74,7 @@ public class BoardReplyController {
 	* @author : 차건강
 	* @description : boardReply 리스트 불러오기
 	 */
-	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.GET)
+	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.POST)
 	public @ResponseBody String getBoardReplyList(int boardNum) throws Exception {
 		logger.info("getBoardReplyList---------------------------------");
 		

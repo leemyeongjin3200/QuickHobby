@@ -15,7 +15,7 @@
 
 <style>
 .board{
-	min-height:100%;
+	min-height:120%;
 }
 a {
 	color: #cccccc;
@@ -167,7 +167,7 @@ li {
 <!-- Page Title// -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">${host.memberNickName}
+            <h1 class="page-header">${member.memberNickName}
                 <small>'s GroupList</small>
             </h1>
         </div>
@@ -182,16 +182,16 @@ li {
 						<ul id="card-ul" class="features-hold baraja-container">
 							<c:forEach var="group" items="${groupList}">
 							<!-- Single group 시작 -->
-							<li class="single-feature" title="Card style">
-								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/groupImage/${group.groupFileName}')" ></p></div>
-								<h4 class="feature-title"> <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
-								<p class="feature-text">${group.groupSubject}</p>
-								<p>${group.groupLocation}</p>
-									<a href="${root}/groupBoard/groupPage.do?groupNum=${group.groupNum}" class="fancy-button small vertical">
+							<li class="single-feature" title="Card style" onclick="moveGroupPage('${root}', '${group.groupNum}')">
+								<a href="#" class="fancy-button small vertical">
 										<!-- <span class="icon">
 											<i class="glyphicon glyphicon-share-alt"></i>
 										</span> -->
 									</a>
+								<div class="feature-image" ><p class="ratio" style="background-image:url('${root}/img/groupImage/${group.groupFileName}')" ></p></div>
+								<h4 class="feature-title"> <fmt:formatDate value="${group.groupDate}" type="date"/></h4>
+								<p class="feature-text">${group.groupSubject}</p>
+								<p>${group.groupLocation}</p>
 							</li> <!-- Single group 끝-->
 						</c:forEach>	
 					</ul>
@@ -235,7 +235,12 @@ li {
 <script type="text/javascript" src="${root}/css/myGroup/jquery.appear.js"></script>
 <script type="text/javascript" src="${root}/css/myGroup/jquery.vegas.min.js"></script>
 <script type="text/javascript">
-//my group list				
+//my group list	
+function moveGroupPage(root, groupNum){
+	var url=root + "/groupBoard/groupPage.do?groupNum=" + groupNum;
+	$(location).attr("href", url);
+}
+
 $(document).ready(function() {
 	'use strict';
 	var $el 			= $( '#card-ul' ),
@@ -298,7 +303,7 @@ $(document).ready(function() {
 	// close Features
 	$('#feature-close').on( 'click', function( event ) {
 		baraja.close();
-	});	
+	});
 });
 
 //Background slider

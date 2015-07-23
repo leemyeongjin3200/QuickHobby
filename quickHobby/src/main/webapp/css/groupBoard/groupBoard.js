@@ -261,7 +261,7 @@ function replyCheck(groupBoardNum){
 		success:function(data){
 			console.log(data);
 			console.log(JSON.parse(decodeURIComponent(data)));
-			var replyList = JSON.parse(decodeURIComponent(data));
+			var replyList = JSON.parse(decodeURIComponent(data.replace(/\+/gi, "%20")));
 			var length=replyList.length;
 			// console.log("length:"+length);
 			var result='';
@@ -316,7 +316,7 @@ function makeReplyDiv2(reply) {
 	var replyTime=year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
 	console.log(replyTime);
 	
-	var text = '<li class="left clearfix"><div class="reply-body"> <strong><i class="glyphicon glyphicon-user"></i>'+ reply.memberNickName + '</strong>';
+	var text = '<li class="left clearfix"><div class="reply-body"> <strong><i class="glyphicon glyphicon-user"></i> '+ reply.memberNickName + '</strong>';
 	text += '<small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>' + replyTime +" " + '</small>';
 	text += '<p>' + reply.groupReplyContent+" " + '</p></div></li>';
 	text += '<input type="hidden" name="boardReplyBoardNum" value="'+reply.groupReplyBoardNum+'"/>'

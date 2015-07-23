@@ -85,12 +85,13 @@
                       <p>${board.boardContent}
                       </p>
 			          
-					  <c:forEach var="reply" items="${board.boardReplyList}">
+					 
 				          <!-- 리플 패널 시작 -->
 				          <div class="myBoardReply-panel panel panel-default" >
 	                        <div class="panel-body">
 	                            <ul class="myBoardReply-box">
 	                            	<!-- 리플1 시작-->
+	                            	 <c:forEach var="reply" items="${board.boardReplyList}">
 	                                <li class="clearfix myBoardReplyItem">
 	                                    <div class="col-sm-1 myBoardReply-img">
 	                                    	<c:if test="${reply.memberFileName == null}">
@@ -110,12 +111,11 @@
 	                                        </p>
 	                                    </div>
 	                                </li><!-- 리플1 끝-->
-	                                
+	                                </c:forEach>
 	                            </ul>
 	                        </div><!-- .panel-body 끝 -->
 	
 	                    </div><!-- .myBoardReply-panel 끝 -->
-                    </c:forEach>
        		 	</div><!-- .myBoard-item 끝 -->
 			</div><!-- .myBoard  01끝 -->
 		</c:forEach>

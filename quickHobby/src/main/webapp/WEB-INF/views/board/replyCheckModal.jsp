@@ -26,7 +26,7 @@
           	 <c:forEach var="reply" items="${boardReplyList}">
                <li class="left clearfix">
                    <div class="reply-body">                                        
-<%--                        <strong><i class="glyphicon glyphicon-user"></i>${reply.memberNickName}</strong> --%>
+<%--                        <strong><i class="glyphicon glyphicon-user"></i>  ${reply.memberNickName}</strong> --%>
 <%--                        <small class="pull-right text-muted"><i class="glyphicon glyphicon-calendar"></i>${reply.boardReplyModifyDate}</small>                                       --%>
 <!--                        <p> -->
 <%--                            ${reply.boardReplyContent} --%>
