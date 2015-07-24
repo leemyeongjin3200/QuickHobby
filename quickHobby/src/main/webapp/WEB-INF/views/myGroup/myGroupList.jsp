@@ -61,9 +61,10 @@ li {
 .section-solid {
 	width: 100%;
 	height: 100%;
-	background: rgba(200, 200, 200, 0.8) !important;
-	padding-top:4%;
+	background: rgba(220, 220, 220, 0.8) !important;
+	padding-top:3%;
 	padding-bottom:8%;
+	margin-bottom:3%;
 }
 
 /* ================ Features Section ================ */
@@ -91,18 +92,28 @@ li {
 	-o-box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
 	box-shadow: 0px 0px 10px rgba(110, 110, 110, 0.5);
 }
+
+.feature-image:hover {
+	background: rgba(33,33,33,.8);
+}
 .feature-image {
 	height:200px !important;
 	width:238px !important;
 	overflow:hidden !important;
 	padding:2px;
 }
-.feature-image:hover {
-
+.apply-box .apply-box-caption .apply-box-caption-content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
 }
+
+
 .features-control {
 	margin: auto;
-	margin-top: 30px;
+	margin-top: 35px;
 	width: 253px;
 	z-index: 1020;
 }
@@ -113,6 +124,8 @@ li {
 	font-size: 20px;
 	height: 46px;
 }
+
+
 .features-control #feature-prev {
 	left: 0px;
 }
@@ -155,8 +168,8 @@ li {
 .feature-text{
 	font-weight:800;
 }
-.section-solid > h4{
-	font-weight:700;
+.section-solid > h5{
+	font-weight:800;
 }
 </style>
 
@@ -169,9 +182,9 @@ li {
 <!-- Page Title// -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">${member.memberNickName}
-                <small>'s GroupList</small>
-            </h1>
+            <h2 class="page-header">${member.memberNickName}
+                <small style="color:#D5D5D5">'s GroupList</small>
+            </h2>
         </div>
     </div>
    <!-- //Page Title -->
@@ -180,7 +193,6 @@ li {
 		<div class="container-fluid features center">
 			<div class="row">
 				<div class="col-lg-12 section-solid">
-					<h4>- 현재 가입되어 있는 그룹목록입니다. -</h4><br/>
 						<!--Features container Starts -->
 						<ul id="card-ul" class="features-hold baraja-container">
 							<c:forEach var="group" items="${groupList}">
@@ -198,7 +210,7 @@ li {
 							</li> <!-- Single group 끝-->
 						</c:forEach>	
 					</ul>
-					<br/>
+			
 						
 						<!-- button Controls  -->
 						<div class="features-control relative">
@@ -227,6 +239,7 @@ li {
 		
 						
 					</div>
+					<br/><br/>
 				</div>
 			</div>
 	</section>
@@ -254,9 +267,9 @@ $(document).ready(function() {
 				baraja.fan({
 					speed : 1500,
 					easing : 'ease-out',
-					range : 90,
+					range : 75,
 					direction : 'right',
-					origin : { x : 50, y : 150 },
+					origin : { x : 50, y : 170 },
 					center : true
 				});
 			});
@@ -264,9 +277,9 @@ $(document).ready(function() {
 				baraja.fan({
 					speed : 500,
 					easing : 'ease-out',
-					range : 90,
+					range : 75,
 					direction : 'right',
-					origin : { x : 50, y : 150 },
+					origin : { x : 50, y : 170 },
 					center : true
 				});
 			}); 
@@ -275,9 +288,9 @@ $(document).ready(function() {
 				baraja.fan({
 					speed : 1500,
 					easing : 'ease-out',
-					range : 80,
+					range : 85,
 					direction : 'left',
-					origin : { x : 150, y : 50 },
+					origin : { x : 170, y : 50 },
 					center : true
 				});
 			});
@@ -285,9 +298,9 @@ $(document).ready(function() {
 				baraja.fan({
 					speed : 500,
 					easing : 'ease-out',
-					range : 80,
+					range : 85,
 					direction : 'left',
-					origin : { x : 150, y : 50 },
+					origin : { x : 170, y : 50 },
 					center : true
 				});
 			});

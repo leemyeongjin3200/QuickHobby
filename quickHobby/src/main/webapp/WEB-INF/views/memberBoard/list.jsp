@@ -21,7 +21,7 @@
 	background-color:#EEEEEE !important;
 }
 #backgroundColor{
-	background: rgba(200, 200, 200, 0.8) !important;
+	background: rgba(220, 220, 220, 0.8) !important;
 	width:100%;
 	height:100%;
 	padding-left:3%;
@@ -38,9 +38,9 @@
 <div class="col-lg-12" id="backgroundColor">
   <div class="row">
            <div class="col-lg-12">
-               <h1 class="page-header">${host.memberNickName}
+               <h2 class="page-header">${host.memberNickName}
                    <small>'s Timeline</small>
-               </h1>
+               </h2>
            </div>
        </div>
 	<div class="row">

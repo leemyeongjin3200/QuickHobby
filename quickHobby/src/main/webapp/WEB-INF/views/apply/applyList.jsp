@@ -144,7 +144,7 @@
 				</div><!-- .row 끝 -->
 				
 				<div class="row" >
-					<div class="col-md-12 panel" style="margin-top:-22px;">
+					<div class="col-md-12 panel" style="margin-top:-23px;">
 						<header class="panel-heading">DISTANCE</header>
 						<div class="locationFilter panel-body">
 							<div class="slider filterGroup" data-filter-group="location"></div>
@@ -169,9 +169,9 @@
 <!-- Page Title// -->
        <div class="row">
            <div class="col-lg-12">
-               <h1 class="page-header">신청게시판
+               <h2 class="page-header">신청게시판
                    <small>Apply</small>
-               </h1>
+               </h2>
            </div>
        </div>
    <!-- //Page Title -->
