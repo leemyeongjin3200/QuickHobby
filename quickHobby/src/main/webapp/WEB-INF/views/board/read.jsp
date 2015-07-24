@@ -17,6 +17,7 @@
 	min-height:100% !important;
 }
 
+
 </style>
 
 <title>Tip & View Read</title>
@@ -53,11 +54,11 @@
                       </div>
                       <p>
                       	<c:if test="${board.boardFileName==null}">
-                      		<img src="${root}/img/boardImage/default.jpg" width="100%" alt="" />
+                      		<img src="${root}/img/boardImage/default.jpg" width="100%"  height="490px" alt="" />
                       	</c:if>
                       	
                       	<c:if test="${board.boardFileName!=null}">
-                      		<img src="${root}/img/boardImage/${board.boardFileName}" width="100%" alt="" />
+                      		<img src="${root}/img/boardImage/${board.boardFileName}" width="100%" height="490px" alt="" />
                       	</c:if>
                       </p>
                       <p>${board.boardContent}</p>
@@ -144,6 +145,7 @@
 	    </form>
 	</div>
   </div><!-- 버튼 줄.row 끝 -->
+  <br/><br/>
 </div><!-- .container 끝 -->
 </div>
 <%-- <script src="${root}/css/apply/default.js"></script> --%>

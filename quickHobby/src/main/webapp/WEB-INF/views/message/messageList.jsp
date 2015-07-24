@@ -23,9 +23,9 @@
 	<!-- Page Title// -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">
+				<h2 class="page-header">
 					쪽지함 <small>Inbox</small>
-				</h1>
+				</h2>
 			</div>
 		</div>
 	<!-- //Page Title -->

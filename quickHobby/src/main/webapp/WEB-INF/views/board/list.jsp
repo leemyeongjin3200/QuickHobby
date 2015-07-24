@@ -12,8 +12,13 @@
 <link rel="stylesheet" type="text/css" href="${root}/css/board/readBoard.css"/>
 <link rel="stylesheet" type="text/css" href="${root}/css/board/bootstrap-responsive.min.css"/>
 <style type="text/css">
-.board{
+.boardd{
 	min-height:100%;
+}
+.gAlbum-img > img{
+	display:block;
+	width:100%;
+	height:250px;
 }
 </style>
 <title>Tip/Review</title>
@@ -26,13 +31,14 @@
 	</script>
 </c:if>
 <!-- 일반게시판 Content 시작 -->
-<div class="container board">
+<div class="boardd">
+<div class="container">
 	<!-- Page Header -->
      <div class="row">
          <div class="col-lg-12">
-             <h1 class="page-header">일반게시판
+             <h2 class="page-header">일반게시판
                  <small>Tip & Review</small>
-             </h1>
+             </h2>
          </div>
      </div><!-- .row 끝 -->
 	<!-- Tab 선택하기 전체/tip/review -->
@@ -230,6 +236,7 @@
    	</div><!-- #menu1 끝 -->
   </div><!-- .tab-content 끝 -->
  </div><!-- .container 끝 -->
+ </div>
 </body>
 <jsp:include page="writeModal.jsp"></jsp:include>
 <jsp:include page="replyCheckModal.jsp"></jsp:include>

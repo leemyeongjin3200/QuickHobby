@@ -48,9 +48,9 @@
 		<!-- Page Header -->
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">
+				<h2 class="page-header">
 					그룹 게시판 <small>Group Board</small>
-				</h1>
+				</h2>
 			</div>
 		</div><!-- .row 끝 -->
 	</div><!-- .container 끝 -->
@@ -202,7 +202,7 @@
 						</div>
 					</div><!-- .col-lg-1 btns 끝 -->
 				</div> <!-- .row text-center 끝 -->
-			<hr>
+			<hr><hr>
 		</div>
 	</div><!-- container 끝 -->
 	</section> <!--=========== group board List Table 끝================-->
