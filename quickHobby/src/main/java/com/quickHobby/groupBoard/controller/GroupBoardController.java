@@ -1,7 +1,5 @@
 package com.quickHobby.groupBoard.controller;
 
-import java.util.logging.Logger;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -22,27 +20,9 @@ import com.quickHobby.groupBoard.service.GroupBoardService;
 * @description : Group Board Controller
  */
 @Controller
-public class GroupBoardController {
-private final Logger logger=Logger.getLogger(this.getClass().getName());
-	
+public class GroupBoardController {	
 	@Autowired
 	private GroupBoardService groupBoardService;
-	
-	/**
-	* @name : groupBoardWriteForm
-	* @date : 2015. 6. 25.
-	* @author : 차건강
-	* @description : Group Board 글쓰기 페이지 이동 method
-	 */
-	@RequestMapping(value="/groupBoard/writeForm.do",  method = RequestMethod.GET)
-	public ModelAndView groupBoardWriteForm(HttpServletRequest request, HttpServletResponse response){
-		logger.info("groupBoardWriteForm---------------------------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		groupBoardService.groupBoardWriteForm(mav);
-		return mav;
-	}
 	
 	/**
 	* @name : groupBoardWrite
@@ -52,9 +32,8 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	 */
 	@RequestMapping(value="/groupBoard/write.do", method=RequestMethod.POST)
 	public ModelAndView groupBoardWrite(MultipartHttpServletRequest request, GroupBoardDto groupBoardDto){
-		logger.info("groupBoardWrite-------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		mav.addObject("groupBoardDto", groupBoardDto);
 		groupBoardService.groupBoardWrite(mav);
@@ -70,9 +49,8 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	 */
 	@RequestMapping(value="/groupBoard/read.do", method=RequestMethod.GET)
 	public ModelAndView groupBoardRead(HttpServletRequest request, HttpServletResponse response){
-		logger.info("groupBoardRead-----------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request", request);
 		groupBoardService.groupBoardRead(mav);
 		
@@ -87,9 +65,8 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	 */
 	@RequestMapping(value="/groupBoard/delete.do", method=RequestMethod.GET)
 	public ModelAndView groupBoardDelete(HttpServletRequest request, HttpServletResponse response){		
-		logger.info("groupBoardDelete------------------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		groupBoardService.groupBoardDelete(mav);
 		
@@ -104,9 +81,8 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	 */
 	@RequestMapping(value="/groupBoard/updateForm.do", method=RequestMethod.GET)
 	public ModelAndView groupBoardDUpdateForm(HttpServletRequest request, HttpServletResponse response){
-		logger.info("boardUpdateForm------------------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		groupBoardService.groupBoardUpdateForm(mav);
 		
@@ -121,9 +97,8 @@ private final Logger logger=Logger.getLogger(this.getClass().getName());
 	 */
 	@RequestMapping(value="/groupBoard/update.do", method=RequestMethod.POST)
 	public ModelAndView groupBoardUpdate(GroupBoardDto groupBoardDto, MultipartHttpServletRequest request){
-		logger.info("groupBoardUpdate------------------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		mav.addObject("GroupBoardDto", groupBoardDto);
 		groupBoardService.groupBoardUpdate(mav); 

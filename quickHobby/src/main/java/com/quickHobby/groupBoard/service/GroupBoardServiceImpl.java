@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,8 +32,6 @@ import com.quickHobby.weather.WeatherDTO;
  */
 @Component
 public class GroupBoardServiceImpl implements GroupBoardService {
-	private final Logger logger=Logger.getLogger(this.getClass().getName());
-	
 	@Autowired
 	private GroupBoardDao groupBoardDao;
 	
@@ -46,30 +43,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 	
 	@Autowired
 	private GroupReplyDao groupReplyDao;
-	/**
-	* @name : groupBoardWriteForm
-	* @date : 2015. 6. 25.
-	* @author : 차건강
-	* @description : Group Board 글쓰기 페이지로
-	 */
-	@Override
-	public void groupBoardWriteForm(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		
-		int groupNum=0;
-		
-		if(request.getParameter("groupNum")!=null){
-			groupNum=Integer.parseInt(request.getParameter("groupNum"));
-		}
-		
-		logger.info("groupNum:"+groupNum);
-		
-		mav.addObject("groupNum", groupNum);
-		
-		mav.setViewName("groupBoard/writeForm");
-	}
-
+	
 	/**
 	* @name : groupBoardWrite
 	* @date : 2015. 6. 25.
@@ -110,8 +84,6 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 			check=groupBoardDao.groupBoardWrite(groupBoardDto);
 		}
 		
-		logger.info("check:"+check);
-		
 		mav.addObject("check", check);
 		mav.addObject("groupNum", groupNum);
 		mav.setViewName("groupBoard/writeOk");
@@ -132,7 +104,6 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		int groupBoardNum=Integer.parseInt(request.getParameter("groupBoardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
-//		groupBoardReply와 연결중
 		GroupBoardDto groupBoardDto=groupBoardDao.groupBoardRead(groupBoardNum);
 		groupBoardDto.setGroupReplyList(groupReplyDao.getGroupReplyList(groupBoardNum));
 		List<GroupReplyDto> groupReplyList=groupBoardDto.getGroupReplyList();
@@ -260,8 +231,7 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		HttpServletRequest request=(HttpServletRequest)map.get("request");
 		
 		int groupNum=Integer.parseInt(request.getParameter("groupNum"));
-		logger.info("groupNum:" + groupNum);
-		
+
 		GroupDto group=groupDao.getGroupDto(groupNum) ;
 		String groupFilePath=group.getGroupFilePath();
 		String groupFileName=null;

@@ -52,18 +52,6 @@
 		]]>
 	</update>
 	
-	<update id="applyUpdateFile" parameterType="com.quickHobby.apply.dto.ApplyDto">
-		<![CDATA[
-			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=#{apply_filename}, APPLY_FILEPATH=#{apply_filepath}, APPLY_FILESIZE=#{apply_filesize}, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate}, APPLY_CATEGORY=#{apply_category}, APPLY_INOUT=#{apply_inout}, APPLY_COST=#{apply_cost} WHERE APPLY_NUM=#{apply_num}
-		]]>
-	</update>
-	
-	<update id="applyUpdate" parameterType="com.quickHobby.apply.dto.ApplyDto">
-		<![CDATA[
-			UPDATE APPLY SET APPLY_HOST=#{apply_host}, APPLY_SECTION=#{apply_section}, APPLY_FILENAME=NULL, APPLY_FILEPATH=NULL, APPLY_FILESIZE=NULL, APPLY_CONTENT=#{apply_content}, APPLY_LOCATION=#{apply_location}, APPLY_SUBJECT=#{apply_subject}, APPLY_SUBTITLE=#{apply_subtitle}, APPLY_MODIFYDATE=#{apply_modifydate}, APPLY_CLOSEDATE=#{apply_closedate}, APPLY_CATEGORY=#{apply_category}, APPLY_INOUT=#{apply_inout}, APPLY_COST=#{apply_cost} WHERE APPLY_NUM=#{apply_num}
-		]]>
-	</update>
-	
 	<select id="getJoins" resultType="int" parameterType="int">
 		<![CDATA[
 			SELECT COUNT(*) FROM JOIN WHERE JOIN_GROUPNUM=(SELECT GROUP_NUM FROM GGROUP WHERE GROUP_APPLYNUM=#{applyNum})

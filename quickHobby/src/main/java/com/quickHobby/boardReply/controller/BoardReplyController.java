@@ -3,7 +3,6 @@ package com.quickHobby.boardReply.controller;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,8 +25,6 @@ import com.quickHobby.member.dto.MemberDto;
  */
 @Controller
 public class BoardReplyController {
-	private final Logger logger=Logger.getLogger(this.getClass().getName());
-	
 	@Autowired
 	private BoardReplyService boardReplyService;
 	
@@ -45,7 +42,6 @@ public class BoardReplyController {
 		
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
 		int boardReplyWriter=member.getMemberNum();
-		logger.info("boardReplyWriter:"+boardReplyWriter);
 
 		boardReplyDto.setBoardReplyWriter(boardReplyWriter);
 		boardReplyDto.setBoardReplyBoardNum(boardReplyBoardNum);
@@ -57,7 +53,6 @@ public class BoardReplyController {
 			try {
 				String replyList = getBoardReplyList(boardReplyBoardNum);
 				
-				logger.info("replyList:"+replyList);
 				URLEncoder.encode(replyList);
 				return replyList;
 				
@@ -76,8 +71,6 @@ public class BoardReplyController {
 	 */
 	@RequestMapping(value ="/boardReply/getBoardReplyList.do", method = RequestMethod.POST)
 	public @ResponseBody String getBoardReplyList(int boardNum) throws Exception {
-		logger.info("getBoardReplyList---------------------------------");
-		
 		List<BoardReplyDto> replyList = new ArrayList<BoardReplyDto>();
 		replyList = boardReplyService.getBoardReplyList(boardNum);
 		for(int i=0; i<replyList.size(); i++){
@@ -92,7 +85,7 @@ public class BoardReplyController {
 			
 			replyList.get(i).setMemberFileName(fileName);
 		}
-		logger.info("replySize:"+replyList.size());
+		
 		ObjectMapper obj = new ObjectMapper();
 		return URLEncoder.encode(obj.writeValueAsString(replyList), "UTF-8");		
 	}
@@ -105,8 +98,6 @@ public class BoardReplyController {
 	 */
 	@RequestMapping(value = "boardReply/boardReplyModify.do", method = RequestMethod.POST)
 	public @ResponseBody String boardReplyModify(BoardReplyDto boardReplyDto, HttpServletRequest request) {
-		logger.info("boardReplyModify---------------------------------");
-		
 		int boardReplyNum = Integer.parseInt(request.getParameter("boardReplyNum"));
 		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));
 		String boardReplyContent = request.getParameter("boardReplyContent");
@@ -138,8 +129,6 @@ public class BoardReplyController {
 	 */
 	@RequestMapping(value = "boardReply/boardReplyDelete.do", method = RequestMethod.POST)
 	public @ResponseBody String boardReplyDelete(BoardReplyDto boardReplyDto, HttpServletRequest request) {
-		logger.info("boardReplyDelete---------------------------------");
-		
 		int boardReplyNum = Integer.parseInt(request.getParameter("boardReplyNum"));
 		int boardReplyBoardNum = Integer.parseInt(request.getParameter("boardNum"));
 		MemberDto member=(MemberDto)request.getSession().getAttribute("member");

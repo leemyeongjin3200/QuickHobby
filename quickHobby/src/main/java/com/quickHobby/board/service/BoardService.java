@@ -3,18 +3,9 @@ package com.quickHobby.board.service;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface BoardService {
-
-	void boardList(ModelAndView mav);
-
-	void boardWriteForm(ModelAndView mav);
-
-	void boardWrite(ModelAndView mav);
-
-	void boardRead(ModelAndView mav);
-
-	void boardDelete(ModelAndView mav);
-
-	void boardUpdateForm(ModelAndView mav);
-
-	void boardUpdate(ModelAndView mav);
+	public void boardList(ModelAndView mav);
+	public void boardWrite(ModelAndView mav);
+	public void boardRead(ModelAndView mav);
+	public void boardDelete(ModelAndView mav);
+	public void boardUpdate(ModelAndView mav);
 }

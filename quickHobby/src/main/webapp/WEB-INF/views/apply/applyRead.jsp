@@ -99,10 +99,6 @@
                 	<span class="badge">#${applyDto.apply_category}</span>
 					<span class="badge">#${applyDto.apply_inout}</span>
 					<span class="badge">#${applyDto.apply_section}</span>&nbsp;&nbsp;
-					<c:if test="${member.memberNum == applyDto.apply_host}">
-						<a href="${root}/apply/applyUpdate.do?apply_num=${applyDto.apply_num}">수정</a>
-						<a onclick="return deleteConfirm('${root}', '${applyDto.apply_num}')" style="cursor:pointer;">삭제</a>
-					</c:if>
                     <h2>${applyDto.apply_subject}</h2>
                 	&nbsp;&nbsp;&nbsp;&nbsp;<b>${applyDto.apply_subtitle}</b>
                     <hr>

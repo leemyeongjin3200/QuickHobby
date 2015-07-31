@@ -1,7 +1,5 @@
 package com.quickHobby.apply.controller;
 
-import java.util.logging.Logger;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +20,6 @@ import com.quickHobby.apply.service.ApplyService;
  */
 @Controller
 public class ApplyController {
-	private Logger logger=Logger.getLogger(this.getClass().getName());
-	
 	@Autowired
 	private ApplyService applyService;
 	
@@ -35,8 +31,6 @@ public class ApplyController {
 	 */
 	@RequestMapping(value="/apply/applyWrite.do", method=RequestMethod.GET)
 	public ModelAndView applyWrite(HttpServletRequest request){
-		logger.info("applyWrite======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		applyService.applyWrite(mav);
@@ -52,8 +46,6 @@ public class ApplyController {
 	 */
 	@RequestMapping(value="/apply/applyWriteOk.do", method=RequestMethod.POST)
 	public ModelAndView applyWriteOk(MultipartHttpServletRequest request, ApplyDto applyDto){
-		logger.info("applyWriteOk======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		mav.addObject("applyDto", applyDto);
@@ -71,8 +63,6 @@ public class ApplyController {
 	 */
 	@RequestMapping(value="/apply/applyList.do", method=RequestMethod.GET)
 	public ModelAndView applyList(HttpServletRequest request){
-		logger.info("applyList======");
-		
 		ModelAndView mav=new ModelAndView();
 		
 		applyService.applyList(mav);
@@ -88,8 +78,6 @@ public class ApplyController {
 	 */
 	@RequestMapping(value="/apply/applyRead.do", method=RequestMethod.GET)
 	public ModelAndView applyRead(HttpServletRequest request){
-		logger.info("applyRead======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
@@ -106,8 +94,6 @@ public class ApplyController {
 	 */
 	@RequestMapping(value="/apply/applyDelete.do", method=RequestMethod.GET)
 	public ModelAndView applyDelete(HttpServletRequest request){
-		logger.info("applyDelete======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
@@ -117,46 +103,13 @@ public class ApplyController {
 	}
 	
 	/*
-	 * @name        : applyUpdate
-	 * @date        : 2015. 6. 23.
+	 * @name        : applyOk
+	 * @date        : 2015. 6. 26.
 	 * @author      : 서인구
-	 * @description : 신청 게시물 수정 요청시
+	 * @description : 회원이 apply게시물에서 해당 그룹 가입 신청 시
 	 */
-	@RequestMapping(value="/apply/applyUpdate.do", method=RequestMethod.GET)
-	public ModelAndView applyUpdate(HttpServletRequest request){
-		logger.info("applyUpdate======");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		
-		applyService.applyUpdate(mav);
-		
-		return mav;
-	}
-	
-	/*
-	 * @name        : applyUpdateOk
-	 * @date        : 2015. 6. 23.
-	 * @author      : 서인구
-	 * @description : 신청 게시물 수정 후 완료 버튼 클릭시
-	 */
-	@RequestMapping(value="/apply/applyUpdateOk.do", method=RequestMethod.POST)
-	public ModelAndView applyUpdateOk(MultipartHttpServletRequest request, ApplyDto applyDto){
-		logger.info("applyUpdateOk======");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		mav.addObject("applyDto", applyDto);
-		
-		applyService.applyUpdateOk(mav);
-		
-		return mav;
-	}
-	
 	@RequestMapping(value="/apply/applyOk.do", method=RequestMethod.GET)
 	public ModelAndView applyOk(HttpServletRequest request){
-		logger.info("applyOk======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
@@ -165,20 +118,28 @@ public class ApplyController {
 		return mav;
 	}
 	
+	/*
+	 * @name        : main
+	 * @date        : 2015. 6. 26.
+	 * @author      : 서인구
+	 * @description : main화면 로딩 시 applyList 불러옴
+	 */
 	@RequestMapping(value="/main.do", method=RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request){
-		logger.info("main======");
-		
 		ModelAndView mav=new ModelAndView();
 		applyService.main(mav);
 		
 		return mav;
 	}
 	
+	/*
+	 * @name        : incrementRecommend
+	 * @date        : 2015. 6. 28.
+	 * @author      : 서인구
+	 * @description : apply게시물에 회원이 좋아요를 눌렀을 때
+	 */
 	@RequestMapping(value="/apply/incrementRecommend.do", method=RequestMethod.POST)
 	public ModelAndView incrementRecommend(HttpServletRequest request){
-		logger.info("incerementRecommend======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
@@ -187,10 +148,14 @@ public class ApplyController {
 		return null;
 	}
 	
+	/*
+	 * @name        : decrementRecommend
+	 * @date        : 2015. 6. 28.
+	 * @author      : 서인구
+	 * @description : 이미 좋아요를 누른 게시물에 다시 좋아요를 누를 때 좋아료를 취소함.
+	 */
 	@RequestMapping(value="/apply/decrementRecommend.do", method=RequestMethod.POST)
 	public ModelAndView decrementRecommend(HttpServletRequest request){
-		logger.info("decerementRecommend======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		
@@ -199,10 +164,14 @@ public class ApplyController {
 		return null;
 	}
 	
+	/*
+	 * @name        : report
+	 * @date        : 2015. 6. 29.
+	 * @author      : 서인구
+	 * @description : apply게시물의 신고하기 버튼을 눌렀을 때
+	 */
 	@RequestMapping(value="/apply/report.do", method=RequestMethod.POST)
 	public ModelAndView report(HttpServletRequest request){
-		logger.info("report======");
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("request", request);
 		

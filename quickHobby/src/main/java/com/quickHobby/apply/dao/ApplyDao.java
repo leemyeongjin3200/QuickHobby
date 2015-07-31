@@ -14,8 +14,6 @@ public interface ApplyDao {
 	public ApplyDto getApplyDto(int apply_num);
 	public void incrementReadcount(int apply_num);
 	public int delete(int apply_num);
-	public int update(ApplyDto applyDto);
-	public int updateFile(ApplyDto applyDto);
 	public int getJoins(int applyNum);
 	public int getRecommends(int applyNum);
 	public MemberDto getHost(int apply_num);

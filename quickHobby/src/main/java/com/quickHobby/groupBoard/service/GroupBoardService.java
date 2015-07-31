@@ -3,18 +3,10 @@ package com.quickHobby.groupBoard.service;
 import org.springframework.web.servlet.ModelAndView;
 
 public interface GroupBoardService {
-
-	void groupBoardWriteForm(ModelAndView mav);
-
-	void groupBoardWrite(ModelAndView mav);
-
-	void groupBoardRead(ModelAndView mav);
-
-	void groupBoardDelete(ModelAndView mav);
-
-	void groupBoardUpdateForm(ModelAndView mav);
-
-	void groupBoardUpdate(ModelAndView mav);
-	
-	void groupPage(ModelAndView mav);
+	public void groupBoardWrite(ModelAndView mav);
+	public void groupBoardRead(ModelAndView mav);
+	public void groupBoardDelete(ModelAndView mav);
+	public void groupBoardUpdateForm(ModelAndView mav);
+	public void groupBoardUpdate(ModelAndView mav);
+	public void groupPage(ModelAndView mav);
 }

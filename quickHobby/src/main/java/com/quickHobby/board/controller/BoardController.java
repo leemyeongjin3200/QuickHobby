@@ -1,7 +1,5 @@
 package com.quickHobby.board.controller;
 
-import java.util.logging.Logger;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.board.dto.BoardDto;
 import com.quickHobby.board.service.BoardService;
 
-
-
 /**
 * @name : BoardController
 * @date : 2015. 6. 22.
@@ -25,8 +21,6 @@ import com.quickHobby.board.service.BoardService;
  */
 @Controller
 public class BoardController {
-	private final Logger logger=Logger.getLogger(this.getClass().getName());
-	
 	@Autowired
 	private BoardService boardService;
 	
@@ -38,28 +32,12 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/board/list.do", method=RequestMethod.GET)
 	public ModelAndView boardList(HttpServletRequest request, BoardDto boardDto){
-		logger.info("boardList---------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request", request);
 		mav.addObject("boardDto", boardDto);
 		boardService.boardList(mav);
-		return mav;
-	}
-	
-	/**
-	* @name : boardWriteForm
-	* @date : 2015. 6. 23.
-	* @author : 차건강
-	* @description : Tip & Review Board 글쓰기 페이지 이동 method
-	 */
-	@RequestMapping(value="/board/writeForm.do",  method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView boardWriteForm(HttpServletRequest request){
-		logger.info("boardWriteForm---------------------------");
 		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request", request);
-		boardService.boardWriteForm(mav);
 		return mav;
 	}
 	
@@ -71,11 +49,11 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/board/write.do", method=RequestMethod.POST)
 	public ModelAndView boardWrite(MultipartHttpServletRequest request, BoardDto BoardDto){
-		logger.info("boardWrite-------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		mav.addObject("BoardDto",BoardDto);
+		
 		boardService.boardWrite(mav);
 		
 		return mav;
@@ -89,9 +67,8 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/board/read.do", method=RequestMethod.GET)
 	public ModelAndView boardRead(HttpServletRequest request, HttpServletResponse response, BoardDto boardDto){
-		logger.info("boardRead-----------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request", request);
 		mav.addObject("BoardDto", boardDto);
 		boardService.boardRead(mav);
@@ -107,28 +84,10 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/board/delete.do", method=RequestMethod.POST)
 	public ModelAndView boardDelete(HttpServletRequest request, HttpServletResponse response){		
-		logger.info("boardDelete------------------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		boardService.boardDelete(mav);
-		
-		return mav;
-	}
-	
-	/**
-	* @name : boardDUpdateForm
-	* @date : 2015. 6. 23.
-	* @author : 차건강
-	* @description : Tip & Review Board updateForm 불러오기
-	 */
-	@RequestMapping(value="/board/updateForm.do", method=RequestMethod.POST)
-	public ModelAndView boardDUpdateForm(HttpServletRequest request, HttpServletResponse response){
-		logger.info("boardUpdateForm------------------------------------------");
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("request",request);
-		boardService.boardUpdateForm(mav);
 		
 		return mav;
 	}
@@ -141,9 +100,8 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/board/update.do", method=RequestMethod.POST)
 	public ModelAndView boardUpdate(BoardDto boardDto, MultipartHttpServletRequest request){
-		logger.info("boardUpdate------------------------------------------");
-		
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("request",request);
 		mav.addObject("BoardDto", boardDto);
 		boardService.boardUpdate(mav); 

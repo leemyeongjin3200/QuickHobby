@@ -27,14 +27,6 @@
 			select count(*) from board where BOARD_VISIBLE=1
 	</select>
 	
-<!-- 	<select id="getTipBoardCount" resultType="int"> -->
-<!-- 			select count(*) from board where BOARD_VISIBLE=1 and BOARD_SECTION='t' -->
-<!-- 	</select> -->
-	
-<!-- 	<select id="getReviewBoardCount" resultType="int"> -->
-<!-- 			select count(*) from board where BOARD_VISIBLE=1 and BOARD_SECTION='r' -->
-<!-- 	</select> -->
-	
 	<select id="boardList" parameterType="java.util.Map" resultMap="boardDto">
 			<![CDATA[select * from
   			(select rownum rnum, a.* from  
@@ -43,22 +35,6 @@
  			order by BOARD_CREATEDATE desc)a)  
   			where rnum>=#{startRow} and rnum <= #{endRow}]]>  
 	</select>
-	
-<!-- 	<select id="getTipBoardList" parameterType="java.util.Map" resultMap="boardDto"> -->
-<!-- 		<![CDATA[select * from -->
-<!--   			(select rownum rnum, a.* from   -->
-<!--  			(select * from board where BOARD_VISIBLE=1 and BOARD_SECTION='t'   -->
-<!--  			order by BOARD_CREATEDATE desc)a)   -->
-<!--   			where rnum>=#{startRow} and rnum <= #{endRow}]]> -->
-<!--   	</select>   -->
-  	
-<!--   	<select id="getReviewBoardList" parameterType="java.util.Map" resultMap="boardDto"> -->
-<!-- 		<![CDATA[select * from -->
-<!--   			(select rownum rnum, a.* from   -->
-<!--  			(select * from board where BOARD_VISIBLE=1 and BOARD_SECTION='r'   -->
-<!--  			order by BOARD_CREATEDATE desc)a)   -->
-<!--   			where rnum>=#{startRow} and rnum <= #{endRow}]]> -->
-<!--   	</select>   -->
 	
 	<insert id="boardInsert" parameterType="com.quickHobby.board.dto.BoardDto">
 		<![CDATA[insert into board(BOARD_NUM, BOARD_WRITER, BOARD_SUBJECT, 

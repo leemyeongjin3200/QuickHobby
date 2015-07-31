@@ -37,9 +37,12 @@ function getNewMessage(root, memberNum){
 				success:function(data){
 					$("#messageNum").text($(data).find("input[name='newMessageNum']").val());
 					$("#messageNum").prepend("&nbsp;&nbsp");
+					if($(data).find("input[name='newMessageNum']").val() > 0){
+						$("#newMessage").css("background-color", "gold");
+					}
 				}
 			});
-		}, 60000);
+		}, 30000);
 	}
 }
 

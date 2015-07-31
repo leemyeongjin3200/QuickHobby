@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -33,8 +32,6 @@ import com.quickHobby.weather.WeatherDTO;
  */
 @Component
 public class ApplyServiceImpl implements ApplyService {
-	private Logger logger = Logger.getLogger(this.getClass().getName());
-
 	@Autowired
 	private ApplyDao applyDao;
 
@@ -43,15 +40,11 @@ public class ApplyServiceImpl implements ApplyService {
 
 	/*
 	 * @name : applyWrite
-	 * 
 	 * @date : 2015. 6. 22.
-	 * 
 	 * @author : 서인구
-	 * 
 	 * @description : 신청 게시물 작성 페이지로 작성자의 이름을 가지고 이동
 	 */
 	public void applyWrite(ModelAndView mav) {
-		logger.info("applyWrite service======");
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		MemberDto member = (MemberDto) request.getSession().getAttribute(
@@ -60,13 +53,11 @@ public class ApplyServiceImpl implements ApplyService {
 		int memberGroups = applyDao.memberGroups(groupHost);
 
 		if (memberGroups < 8) {
-			logger.info("groupHost:" + groupHost);
 			mav.addObject("groupHost", groupHost);
 			mav.addObject("error", 0);
 			mav.setViewName("apply/applyWrite");
 		} else {
 			List<ApplyDto> applyDtoList = applyDao.getListByCreateDate();
-			logger.info("list size : " + applyDtoList.size());
 
 			mav.addObject("applyDtoList", applyDtoList);
 			mav.setViewName("apply/applyList");
@@ -78,16 +69,11 @@ public class ApplyServiceImpl implements ApplyService {
 
 	/*
 	 * @name : applyWriteOk
-	 * 
 	 * @date : 2015. 6. 22.
-	 * 
-	 * @author : 서인구
-	 * 
+	 * @author : 서인구 
 	 * @description : 신청 게시물 작성 결과를 가지고 이동
 	 */
 	public void applyWriteOk(ModelAndView mav) {
-		logger.info("applyWriteOk service======");
-
 		Map<String, Object> map = mav.getModelMap();
 		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map
 				.get("request");
@@ -111,7 +97,6 @@ public class ApplyServiceImpl implements ApplyService {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			closeDate = (Date) sdf.parse(request.getParameter("apply_date"));
-			// logger.info(closeDate.toString());
 			applyDto.setApply_closedate(closeDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -123,15 +108,9 @@ public class ApplyServiceImpl implements ApplyService {
 				+ fileName;
 		long fileSize = upFile.getSize();
 
-		logger.info("file : " + fileName);
-		logger.info("timeName : " + timeName);
-		logger.info("size : " + fileSize);
-
 		if (fileSize != 0) {
 			try {
 				String dir = "C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\groupImage";
-
-				logger.info("dir : " + dir);
 
 				File file = new File(dir, timeName);
 				upFile.transferTo(file);
@@ -140,7 +119,7 @@ public class ApplyServiceImpl implements ApplyService {
 				applyDto.setApply_filename(timeName);
 				applyDto.setApply_filesize(String.valueOf(fileSize));
 			} catch (Exception e) {
-				logger.info("File IO Error!");
+				e.printStackTrace();
 			}
 		}
 
@@ -170,26 +149,18 @@ public class ApplyServiceImpl implements ApplyService {
 			}
 		}
 
-		logger.info("check : " + check);
-
 		mav.addObject("check", check);
 		mav.setViewName("apply/applyWriteOk");
 	}
 
 	/*
 	 * @name : applyList
-	 * 
 	 * @date : 2015. 6. 22.
-	 * 
 	 * @author : 서인구
-	 * 
 	 * @description : 신청 게시물들의 리스트를 시간순서로 정렬하여 이동
 	 */
 	public void applyList(ModelAndView mav) {
-		logger.info("applyList======");
-
 		List<ApplyDto> applyDtoList = applyDao.getListByCreateDate();
-		logger.info("list size : " + applyDtoList.size());
 
 		mav.addObject("applyDtoList", applyDtoList);
 		mav.setViewName("apply/applyList");
@@ -197,22 +168,15 @@ public class ApplyServiceImpl implements ApplyService {
 
 	/*
 	 * @name : applyRead
-	 * 
 	 * @date : 2015. 6. 22.
-	 * 
 	 * @author : 서인구
-	 * 
 	 * @description : 헤당 번호의 게시물 DTO와 날씨 정보를 가지고 이동
 	 */
 	public void applyRead(ModelAndView mav) {
-		logger.info("applyRead======");
-
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int apply_num = Integer.parseInt(request.getParameter("apply_num"));
 		
-		// logger.info("apply_num : " + apply_num);
-
 		MemberDto member = (MemberDto) request.getSession().getAttribute("member");
 		int memberNum = member.getMemberNum();
 
@@ -225,7 +189,6 @@ public class ApplyServiceImpl implements ApplyService {
 
 		applyDao.incrementReadcount(apply_num);
 		ApplyDto applyDto = applyDao.getApplyDto(apply_num);
-		// logger.info("apply_num : " + apply_num);
 
 		Weather w = new Weather(applyDto.getApply_location(),
 				applyDto.getApply_closedate());
@@ -260,11 +223,8 @@ public class ApplyServiceImpl implements ApplyService {
 
 	/*
 	 * @name : applyDelete
-	 * 
 	 * @date : 2015. 6. 23.
-	 * 
 	 * @author : 서인구
-	 * 
 	 * @description : 해당 번호의 신청 게시물의 삭제 결과를 가지고 이동
 	 */
 	public void applyDelete(ModelAndView mav) {
@@ -276,111 +236,19 @@ public class ApplyServiceImpl implements ApplyService {
 		groupDao.deleteGroup(groupNum);
 		groupDao.deleteJoin(groupNum);
 		int check = applyDao.delete(apply_num);
-		logger.info("check : " + check);
-
+		
 		mav.addObject("check", check);
 		mav.addObject("apply_num", apply_num);
 		mav.setViewName("apply/applyDelete");
 	}
 
 	/*
-	 * @name : applyUpdate
-	 * 
-	 * @date : 2015. 6. 23.
-	 * 
+	 * @name : applyOk
+	 * @date : 2015. 6. 26.
 	 * @author : 서인구
-	 * 
-	 * @description : 해당 번호의 신청게시물 DTO를 가지고 이동
+	 * @description : 해당 그룹번호와 회원의 번호를 join테이블에 저장, 신청완료 후 applyList로 이동
 	 */
-	public void applyUpdate(ModelAndView mav) {
-		Map<String, Object> map = mav.getModelMap();
-		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		int apply_num = Integer.parseInt(request.getParameter("apply_num"));
-
-		ApplyDto applyDto = applyDao.getApplyDto(apply_num);
-
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-		mav.addObject("applyDto", applyDto);
-		mav.addObject("date", sdf.format(applyDto.getApply_closedate()));
-		mav.setViewName("apply/applyUpdate");
-	}
-
-	/*
-	 * @name : applyUpdateOk
-	 * 
-	 * @date : 2015. 6. 23.
-	 * 
-	 * @author : 서인구
-	 * 
-	 * @description : 해당 번호의 신청 게시물 수정 결과를 가지고 이동
-	 */
-	public void applyUpdateOk(ModelAndView mav) {
-		logger.info("applyUpdateOk service======");
-
-		Map<String, Object> map = mav.getModelMap();
-		MultipartHttpServletRequest request = (MultipartHttpServletRequest) map
-				.get("request");
-		ApplyDto applyDto = (ApplyDto) map.get("applyDto");
-		int cost = Integer.parseInt(request.getParameter("groupCost"));
-
-		applyDto.setApply_modifydate(new Date());
-		applyDto.setApply_cost(cost);
-
-		Date closeDate = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			closeDate = (Date) sdf.parse(request.getParameter("apply_date"));
-			// logger.info(closeDate.toString());
-			applyDto.setApply_closedate(closeDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-
-		MultipartFile upFile = request.getFile("apply_file");
-		String fileName = upFile.getOriginalFilename();
-		String timeName = Long.toString(System.currentTimeMillis()) + "_"
-				+ fileName;
-		long fileSize = upFile.getSize();
-
-		logger.info("file : " + fileName);
-		logger.info("timeName : " + timeName);
-		logger.info("size : " + fileSize);
-
-		if (fileSize != 0) {
-			try {
-				String dir = "C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\groupImage";
-
-				logger.info("dir : " + dir);
-
-				File file = new File(dir, timeName);
-				upFile.transferTo(file);
-
-				applyDto.setApply_filepath(file.getAbsolutePath());
-				applyDto.setApply_filename(timeName);
-				applyDto.setApply_filesize(String.valueOf(fileSize));
-			} catch (Exception e) {
-				logger.info("File IO Error!");
-			}
-		}
-
-		int check = 0;
-		if (applyDto.getApply_filename() != null) {
-			check = applyDao.updateFile(applyDto);
-		} else {
-			check = applyDao.update(applyDto);
-		}
-
-		groupDao.updateGroup(applyDto);
-
-		logger.info("check : " + check);
-
-		mav.addObject("check", check);
-		mav.setViewName("apply/applyUpdateOk");
-	}
-
 	public void applyOk(ModelAndView mav) {
-		logger.info("applyOk service======");
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		int apply_num = Integer.parseInt(request.getParameter("apply_num"));
@@ -395,33 +263,41 @@ public class ApplyServiceImpl implements ApplyService {
 
 		mav.addObject("check", check);
 		List<ApplyDto> applyDtoList = applyDao.getListByCreateDate();
-		logger.info("list size : " + applyDtoList.size());
 
 		mav.addObject("applyDtoList", applyDtoList);
 		mav.setViewName("apply/applyList");
 	}
 
+	/*
+	 * @name : main
+	 * @date : 2015. 6. 26. 
+	 * @author : 서인구
+	 * @description : 메인화면 로딩시 apply테이블에서 applyList가져옴
+	 */
 	public void main(ModelAndView mav) {
-		logger.info("main======");
-
 		List<ApplyDto> applyDtoList = applyDao.getListByCreateDate();
-		logger.info("list size : " + applyDtoList.size());
 
 		mav.addObject("applyDtoList", applyDtoList);
 		mav.setViewName("forward:main_hyeran.jsp");
 	}
 
+	/*
+	 * @name : incrementRecommend
+	 * 
+	 * @date : 2015. 6. 28.
+	 * 
+	 * @author : 서인구
+	 * 
+	 * @description : 좋아요를 누르면 recommend테이블에 회원번호와 게시물번호를 추가하고 apply테이블의 해당 게시물 좋아요수 1증가
+	 */
 	public void incrementRecommend(ModelAndView mav) {
-		logger.info("incrementRecommend service======");
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		MemberDto member = (MemberDto) request.getSession().getAttribute(
 				"member");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		// System.out.println(board_num);
 		String recommend_type = request.getParameter("recommend_type");
-		// System.out.println(recommend_type);
 
 		HashMap<String, Object> hMap = new HashMap<String, Object>();
 		hMap.put("board_num", board_num);
@@ -430,7 +306,6 @@ public class ApplyServiceImpl implements ApplyService {
 
 		int firstCheck = applyDao.addRecommend(hMap);
 		int secondCheck = 0;
-		System.out.println("firstCheck : " + firstCheck);
 
 		if (firstCheck > 0 && recommend_type.equals("A")) {
 			secondCheck = applyDao.incrementRecommend(board_num);
@@ -438,15 +313,22 @@ public class ApplyServiceImpl implements ApplyService {
 		System.out.println("secondCheck : " + secondCheck);
 	}
 
+	/*
+	 * @name : decrementRecommend
+	 * 
+	 * @date : 2015. 6. 28.
+	 * 
+	 * @author : 서인구
+	 * 
+	 * @description : 이미 자신이 좋아요를 누른 게시물에 다시 좋아요버튼을 누르면 recommend테이블에서 해당회원번호와 게시물번호 삭제하고 apply테이블에서 해당 게시물 좋아요 수 1감소
+	 */
 	public void decrementRecommend(ModelAndView mav) {
-		logger.info("decrementRecommend service======");
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		MemberDto member = (MemberDto) request.getSession().getAttribute(
 				"member");
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
-		System.out.println(board_num);
 		String recommend_type = request.getParameter("recommend_type");
 		// System.out.println(recommend_type);
 
@@ -456,17 +338,19 @@ public class ApplyServiceImpl implements ApplyService {
 		hMap.put("recommend_type", recommend_type);
 
 		int firstCheck = applyDao.removeRecommend(hMap);
-		int secondCheck = 0;
-		// System.out.println("firstCheck : " + firstCheck);
 
 		if (firstCheck > 0 && recommend_type.equals("A")) {
-			secondCheck = applyDao.decrementRecommend(board_num);
+			applyDao.decrementRecommend(board_num);
 		}
-		// System.out.println("secondCheck : " + secondCheck);
 	}
 
+	/*
+	 * @name : report
+	 * @date : 2015. 6. 29.
+	 * @author : 서인구
+	 * @description : 게시물의 신고내용 작성후 신고버튼 누르면 report테이블에 해당 내용, 글번호, 회원번호 추가
+	 */
 	public void report(ModelAndView mav) {
-		logger.info("report service======");
 		Map<String, Object> map = mav.getModelMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
@@ -479,12 +363,6 @@ public class ApplyServiceImpl implements ApplyService {
 				.getParameter("report_boardnum"));
 		String report_boardtype = request.getParameter("report_boardtype");
 
-		// System.out.println(report_sender);
-		// System.out.println(report_receiver);
-		// System.out.println(report_content);
-		// System.out.println(report_boardnum);
-		// System.out.println(report_boardtype);
-
 		ReportDto reportDto = new ReportDto();
 		reportDto.setReport_sender(report_sender);
 		reportDto.setReport_receiver(report_receiver);
@@ -492,8 +370,8 @@ public class ApplyServiceImpl implements ApplyService {
 		reportDto.setReport_boardnum(report_boardnum);
 		reportDto.setReport_boardtype(report_boardtype);
 
-		int check = applyDao.insertReport(reportDto);
-		// System.out.println("check : " + check);
+		applyDao.insertReport(reportDto);
+		
 		mav.setViewName("apply/read");
 	}
 }

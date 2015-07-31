@@ -5,7 +5,7 @@ import java.util.Date;
 /*
  * @name        : ApplyDto
  * @date        : 2015. 6. 22.
- * @author      : ���α�
+ * @author      : 서인구
  * @description : Apply Table DTO
  */
 public class ApplyDto {

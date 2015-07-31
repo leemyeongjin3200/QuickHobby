@@ -64,7 +64,7 @@
                 
                 <!-- 자신에게는 message를 보낼 수 없게 하기 -->
                 <c:if test="${member.memberNum != host.memberNum}">
-                	<a style='cursor:pointer;' onclick="replyMessage('${host.memberNum}', '${host.memberNickName}')" class="btn btn-primary btn-block">send a Message</a>   
+                	<a style='cursor:pointer;' onclick="replyMessage('${host.memberNum}', '${host.memberNickName}')" class="btn btn-primary btn-block">Send a Message</a>   
                 </c:if>
              </div>
         </div>

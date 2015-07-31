@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,8 +28,6 @@ import com.quickHobby.boardReply.dto.BoardReplyDto;
 
 @Component
 public class BoardServiceImpl implements BoardService {
-	private final Logger logger=Logger.getLogger(this.getClass().getName());
-	
 	@Autowired
 	private BoardDao boardDao;
 	
@@ -67,7 +64,6 @@ public class BoardServiceImpl implements BoardService {
 		}
 		
 		int boardListSize=boardList.size();
-		logger.info("boardListSize:"+boardListSize);
 		
 		// reply count 추가
 		for(int i=0;i<boardListSize;i++){
@@ -75,8 +71,6 @@ public class BoardServiceImpl implements BoardService {
 			int boardReplyCount=boardReplyDao.getBoardReplyCount(boardNum);
 			
 			boardList.get(i).setBoardReplyCount(boardReplyCount);
-			logger.info("boardDtogetBoardReplyCount:"+boardReplyCount);
-			logger.info("memberNickName:"+boardList.get(i).getMemberNickName());
 		}
 		
 		mav.addObject("boardList", boardList);
@@ -85,25 +79,6 @@ public class BoardServiceImpl implements BoardService {
 		mav.addObject("currentPage", currentPage);
 		mav.addObject("board", boardDto);
 		mav.setViewName("board/list");
-	}
-
-	/**
-	* @name : boardWriteForm
-	* @date : 2015. 6. 23.
-	* @author : 차건강
-	* @description : Tip & Review Board 글쓰기 페이지로
-	 */
-	@Override
-	public void boardWriteForm(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		
-		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
-		
-		logger.info("boardNum:"+boardNum);
-		
-		mav.addObject("boardNum", boardNum);
-		mav.setViewName("board/writeForm");
 	}
 
 	/**
@@ -120,7 +95,6 @@ public class BoardServiceImpl implements BoardService {
 		
 		int boardWriter=Integer.parseInt(req.getParameter("boardWriter"));
 		String boardSection=req.getParameter("boardSection");
-		logger.info("boardSection:"+boardSection);
 		
 		boardDto.setBoardWriter(boardWriter);
 		boardDto.setBoardReadCount(0);
@@ -132,19 +106,12 @@ public class BoardServiceImpl implements BoardService {
 		String fileName=upFile.getOriginalFilename();
 		String timeName=Long.toString(System.currentTimeMillis()) + "_" + fileName;
 		long fileSize=upFile.getSize();
-		
-		logger.info("file : " + fileName);
-		logger.info("timeName : " + timeName);
-		logger.info("size : " + fileSize);
-		
-		
+
 		int check=0;
 		if(fileSize!=0){
 			try{
 
 				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\boardImage";
-
-				logger.info("dir : " + dir);
 				
 				File file=new File(dir, timeName);
 				upFile.transferTo(file);		
@@ -154,14 +121,11 @@ public class BoardServiceImpl implements BoardService {
 				boardDto.setBoardFileSize(String.valueOf(fileSize));
 				
 				check=boardDao.boardWriteFile(boardDto);
-				logger.info("check:"+check);
 			}catch(Exception e){
 				e.printStackTrace();
-				logger.info("File IO Error!");
 			}
 		}else{
 			check=boardDao.boardWrite(boardDto);
-			logger.info("check:"+check);
 		}
 		
 		mav.addObject("check", check);
@@ -182,9 +146,6 @@ public class BoardServiceImpl implements BoardService {
 		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
 		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
 		
-		logger.info("boardNum:"+boardNum);
-		logger.info("pageNumber:"+pageNumber);
-		
 //		boardReply와 연결
 		BoardDto boardDto=boardDao.boardRead(boardNum);
 		boardDto.setBoardReplyList(boardReplyDao.getBoardReplyList(boardNum));
@@ -203,8 +164,6 @@ public class BoardServiceImpl implements BoardService {
 			boardReplyList.get(i).setMemberFileName(fileName);
 		}
 		boardDto.setBoardReplyCount(boardReplyDao.getBoardReplyCount(boardNum));
-		
-		logger.info("memberNickName:"+boardDto.getMemberNickName());
 		
 		mav.addObject("board", boardDto);
 		mav.addObject("pageNumber", pageNumber);
@@ -231,28 +190,6 @@ public class BoardServiceImpl implements BoardService {
 		mav.addObject("pageNumber", pageNumber);
 		mav.addObject("boardNum", boardNum);
 		mav.setViewName("board/deleteOk");
-	}
-
-	/**
-	* @name : boardUpdateForm
-	* @date : 2015. 6. 23.
-	* @author : 차건강
-	* @description : Tip & Review Board updateForm 불러오기
-	 */
-	@Override
-	public void boardUpdateForm(ModelAndView mav) {
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		
-		int boardNum=Integer.parseInt(request.getParameter("boardNum"));
-		int pageNumber=Integer.parseInt(request.getParameter("pageNumber"));
-		
-		BoardDto boardDto=boardDao.boardRead(boardNum);
-		
-		mav.addObject("boardNum", boardNum);
-		mav.addObject("board", boardDto);
-		mav.addObject("pageNumber", pageNumber);
-		mav.setViewName("board/updateForm");
 	}
 
 	/**
@@ -286,7 +223,6 @@ public class BoardServiceImpl implements BoardService {
 				String dir="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\boardImage";
 				File file=new File(dir, timeName);
 				boardFile.transferTo(file);
-				logger.info("dir:"+dir);
 				
 				boardDto.setBoardFileName(timeName);
 				boardDto.setBoardFilePath(file.getAbsolutePath());
@@ -299,10 +235,8 @@ public class BoardServiceImpl implements BoardService {
 		int check=0;
 		if(fileSize!=0){
 			check=boardDao.boardUpdateFile(boardDto);
-			logger.info("check1:"+check);
 		}else{
 			check=boardDao.boardUpdate(boardDto);
-			logger.info("check2:"+check);
 		}
 
 		mav.addObject("boardNum", boardNum);

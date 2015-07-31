@@ -5,22 +5,13 @@ import java.util.List;
 import com.quickHobby.board.dto.BoardDto;
 
 public interface BoardDao {
-
-	int getBoardCount();
-
-	List<BoardDto> getBoardList(int startRow, int endRow);
-	
-	int boardWrite(BoardDto boardDto);
-
-	BoardDto boardRead(int boardNum);
-
-	int boardDelete(int boardNum);
-
-	int boardUpdate(BoardDto boardDto);
-
-	int boardWriteFile(BoardDto boardDto);
-
-	String getFile(int boardNum);
-
-	int boardUpdateFile(BoardDto boardDto);
+	public int getBoardCount();
+	public List<BoardDto> getBoardList(int startRow, int endRow);
+	public int boardWrite(BoardDto boardDto);
+	public BoardDto boardRead(int boardNum);
+	public int boardDelete(int boardNum);
+	public int boardUpdate(BoardDto boardDto);
+	public int boardWriteFile(BoardDto boardDto);
+	public String getFile(int boardNum);
+	public int boardUpdateFile(BoardDto boardDto);
 }

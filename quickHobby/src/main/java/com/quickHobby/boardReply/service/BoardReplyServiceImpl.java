@@ -53,7 +53,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	}
 
 	/**
-	* @name : boardReplyModify
+	* @name : boardReplyDelete
 	* @date : 2015. 7. 13.
 	* @author : 차건강
 	* @description : Tip & Review BoardReply 삭제할 내용 Dao에 전달
