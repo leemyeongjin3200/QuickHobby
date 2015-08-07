@@ -97,11 +97,11 @@ public class MessageController {
 		return mav;
 	}
 	
-	/*
-	 * @name        : messageReply
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : ���� ���ý� MessageService�� messageReply()�� ����.
+	/**
+	* @name : messageReply
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message 답장
 	 */
 	@RequestMapping(value="/message/messageReply.do", method=RequestMethod.GET)
 	public ModelAndView messageReply(HttpServletRequest request){
@@ -115,11 +115,11 @@ public class MessageController {
 		return mav;
 	}
 	
-	/*
-	 * @name        : messageReplyOk
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : ���� �ۼ� �Ϸ� �� MessageService�� messageReplyOk()�� ����.
+	/**
+	* @name : messageReplyOk
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message 작성 기본 기능 / ajax 이용하여 view와 연결
 	 */
 	@RequestMapping(value="/message/messageReplyOk.do", method=RequestMethod.POST)
 	public ModelAndView messageReplyOk(HttpServletRequest request, MessageDto messageDto){

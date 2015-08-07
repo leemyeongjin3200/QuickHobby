@@ -192,10 +192,12 @@ public class MemberServiceImpl implements MemberService{
 		MemberDto member=(MemberDto)req.getSession().getAttribute("member");
 		
 		String filePath=memberDao.getFile(member.getMemberNum());
+		String[] temp=null;
 		String fileName=null;
 		
 		if(filePath!=null){
-			fileName=filePath.split("\\\\")[11];
+			temp=filePath.split("\\\\");
+			fileName=filePath.split("\\\\")[temp.length-1];
 		}else{
 			fileName="default.PNG";
 			filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
@@ -253,6 +255,12 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("member/updateOk");
 	}
 
+	/**
+	* @name : checkNickname
+	* @date : 2015. 6. 26.
+	* @author : 이명진
+	* @description : 회원가입 시 닉네임 중복 체크를 위한 메소드
+	 */
 	public void checkNickname(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		
@@ -269,6 +277,12 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("member/register");
 	}
 	
+	/**
+	* @name : sendCodeFindPass
+	* @date : 2015. 6. 26.
+	* @author : 이명진
+	* @description : 비밀번호찾기를 위해 메일 인증 코드를 발송하는 메소드
+	 */
 	public void sendCodeFindPass(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		
@@ -295,6 +309,12 @@ public class MemberServiceImpl implements MemberService{
 		mav.setViewName("member/sendCodeFindPass");
 	}
 
+	/**
+	* @name : findPassword
+	* @date : 2015. 6. 25.
+	* @author : 이명진
+	* @description : 비밀번호찾기에서 인증번호가 일치하면 비밀번호의 앞 4자리만 표시함
+	 */
 	public void findPassword(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
 		

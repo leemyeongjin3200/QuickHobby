@@ -1,13 +1,10 @@
 package com.quickHobby.memberBoard.service;
 
-import java.io.PrintWriter;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,14 +17,11 @@ import com.quickHobby.member.dao.MemberDao;
 import com.quickHobby.member.dto.MemberDto;
 import com.quickHobby.memberBoard.dao.MemberBoardDao;
 
-
 /**
-*@name : JesusServiceImpl
- *@date:2015. 7. 2.
-*@author:염상아
-*@description: request로 board_writer의 값과 groupboard_writer의 값을 받아서 이 두 값들을 getSumlist함수를 통해 dao에 넘겨준다.  
-                   dao에 넘겨준 값들은 mapper에 들어가 sql문을 실행 시키게 된다. 그리고 mapper에서 얻어낸 sql 결과 값들을 list로 받아서 dto에 저장한 다음 그 저장된 값들을 List로 뽑아 온 다음에 jsp에 값들을 넘겨줘서 board table에 있는 board_Writer에 해당 하는 값들과 groupboard table에 있는 groupboard_writer에 해당하는 값들을 뿌려준다.
-
+* @name : MemberBoardServiceImpl
+* @date : 2015. 7. 6.
+* @author : 서인구
+* @description : 개인게시판을 제어하기 위한 클래스
  */
 @Component
 public class MemberBoardServiceImpl implements MemberBoardService{
@@ -39,6 +33,12 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 	@Autowired
 	private BoardReplyDao boardReplyDao;
 	
+	/**
+	* @name : boardWrite
+	* @date : 2015. 7. 6.
+	* @author : 서인구
+	* @description : 개인게시판을 불러오기위해 해당회원번호를 dao로 넘기는 클래스
+	 */
 	@Override
 	public void boardWrite(ModelAndView mav) {
 		Map<String, Object> map=mav.getModelMap();
@@ -48,9 +48,11 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		int memberNum=Integer.parseInt(request.getParameter("memberNum"));
 		MemberDto host=memberDao.getMember(memberNum);
 		String hostFilePath=host.getMemberFilePath();
+		String[] temp=null;
 		String hostFileName=null;
 		if(hostFilePath!=null){
-			hostFileName=hostFilePath.split("\\\\")[11];
+			temp=hostFilePath.split("\\\\");
+			hostFileName=hostFilePath.split("\\\\")[temp.length-1];
 			host.setMemberFileName(hostFileName);
 		}
 		
@@ -64,9 +66,11 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 			if(boardReplyList!=null){
 				for(int j=0; j<boardReplyList.size(); j++){
 					String filePath=boardReplyList.get(j).getMemberFilePath();
+					String[] tempName=null;
 					String fileName=null;
 					if(filePath!=null){
-						fileName=filePath.split("\\\\")[11];
+						tempName=filePath.split("\\\\");
+						fileName=filePath.split("\\\\")[tempName.length-1];
 					}
 					boardReplyList.get(j).setMemberFileName(fileName);
 				}
@@ -81,26 +85,5 @@ public class MemberBoardServiceImpl implements MemberBoardService{
 		mav.addObject("memberBoardList",memberBoardList);
 
 		mav.setViewName("memberBoard/list");		
-
-
-	}
-	
-	public void load(ModelAndView mav) throws Throwable{
-		Map<String, Object> map=mav.getModelMap();
-		HttpServletRequest request=(HttpServletRequest)map.get("request");
-		HttpServletResponse response=(HttpServletResponse)map.get("response");
-
-		MemberDto member=(MemberDto)request.getSession().getAttribute("member");
-		HashMap<String, String> hMap=new HashMap<String, String>();
-		hMap.put("memberNum", String.valueOf(member.getMemberNum()));
-		hMap.put("current", (String)request.getParameter("current"));
-		
-		List<BoardDto> memberBoardList=memberBoardDao.getNextList(hMap);
-		System.out.println("size : " + memberBoardList.size());
-		
-		if(memberBoardList.size() > 0) {
-			PrintWriter out=response.getWriter();
-			out.print(memberBoardList);
-		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.quickHobby.reoprt.dao;
+package com.quickHobby.report.dao;
 
 import java.util.List;
 

@@ -12,6 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.quickHobby.report.service.ReportService;
 
+/**
+* @name : ReportController
+* @date : 2015. 7. 15.
+* @author : 서인구	
+* @description : 신고기능을 제어하기 위한 컨트롤러
+ */
 @Controller
 public class ReportController {
 	
@@ -20,6 +26,12 @@ public class ReportController {
 	@Autowired
 	private ReportService reportService;
 	
+	/**
+	* @name : reportList
+	* @date : 2015. 7. 15.
+	* @author : 서인구
+	* @description : 신고 목록을 불러오기위한 메소드 
+	 */
 	@RequestMapping(value="/report/reportList.do", method=RequestMethod.GET)
 	public ModelAndView reportList(HttpServletRequest request){
 		logger.info("reportList======");

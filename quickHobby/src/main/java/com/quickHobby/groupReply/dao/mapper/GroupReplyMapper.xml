@@ -40,11 +40,6 @@
 		#{groupReplyBoardNum}, #{groupReplyContent}, SYSDATE, SYSDATE)
 	</insert>
 	
-	<update id="groupReplyModify" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
-		<![CDATA[update groupreply set GROUPREPLY_CONTENT=#{groupReplyContent}, GROUPREPLY_MODIFYDATE=sysdate
-		where GROUPREPLY_NUM=#{groupReplyBoardNum}]]>
-	</update>
-	
 	<delete id="groupReplyDelete" parameterType="com.quickHobby.groupReply.dto.GroupReplyDto">
 		<![CDATA[delete from groupreply where GROUPREPLY_NUM=#{groupReplyNum}]]>
 	</delete>

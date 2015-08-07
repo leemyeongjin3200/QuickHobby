@@ -14,11 +14,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.quickHobby.message.dao.MessageDao;
 import com.quickHobby.message.dto.MessageDto;
 
-/*
- * @name        : MessageServiceImpl
- * @date        : 2015. 6. 25.
- * @author      : ���α�
- * @description : ��û ���� ���������� �ʿ�� �ϴ� �����͸� DAO�� ���� �������ų� �ʿ��� ���񽺸� ����.
+/**
+* @name : messageWrite
+* @date : 2015. 6. 25. / 2015. 7. 7.
+* @author : 서인구 / 차건강
+* @description : message관련된 기능을제어하는 클래스
  */
 
 @Component
@@ -56,15 +56,6 @@ public class MessageServiceImpl implements MessageService {
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		
-//		String pageNumber=request.getParameter("pageNumber");
-//		logger.info("pageNumber:"+pageNumber);
-//		if(pageNumber==null)pageNumber="1";
-//		
-//		int boardSize=10;
-//		int currentPage=Integer.parseInt(pageNumber);
-//		int startRow=(currentPage-1)*boardSize+1;
-//		int endRow=currentPage*boardSize;
-		
 		int count=messageDao.getMessageCount();
 		logger.info("count:"+count);
 		
@@ -84,8 +75,6 @@ public class MessageServiceImpl implements MessageService {
 		
 		mav.addObject("messageList", messageList);
 		mav.addObject("count", count);
-//		mav.addObject("boardSize", boardSize);
-//		mav.addObject("currentPage", currentPage);
 		mav.setViewName("message/messageList");
 	}
 	
@@ -137,11 +126,11 @@ public class MessageServiceImpl implements MessageService {
 		mav.setViewName("message/messageList");
 	}
 	
-	/*
-	 * @name        : messageReply
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : ������ �̵�.
+	/**
+	* @name : messageDelete
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message답장
 	 */
 	public void messageReply(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
@@ -153,15 +142,14 @@ public class MessageServiceImpl implements MessageService {
 		mav.setViewName("message/messageReply");
 	}
 	
-	/*
-	 * @name        : messageReplyOk
-	 * @date        : 2015. 6. 25.
-	 * @author      : ���α�
-	 * @description : ���� ������ Message Table�� ����.
+	/**
+	* @name : messageDelete
+	* @date : 2015. 6. 25. / 2015. 7. 7.
+	* @author : 서인구 / 차건강
+	* @description : message 답장
 	 */
 	public void messageReplyOk(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
-		//HttpServletRequest request=(HttpServletRequest) map.get("request");
 		MessageDto messageDto=(MessageDto) map.get("messageDto");
 		
 		messageDto.setMessage_date(new Date());

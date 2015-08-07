@@ -45,17 +45,6 @@ public class GroupReplyServiceImpl implements GroupReplyService {
 	* @name : GroupReplyServiceImpl
 	* @date : 2015. 7. 18.
 	* @author : 차건강
-	* @description : GroupReply 수정한 내용 Dao에 전달
-	 */
-	@Override
-	public int groupReplyModify(GroupReplyDto groupReplyDto) {
-		return groupReplyDao.groupReplyModify(groupReplyDto);
-	}
-
-	/**
-	* @name : GroupReplyServiceImpl
-	* @date : 2015. 7. 18.
-	* @author : 차건강
 	* @description : GroupReply 삭제할 내용 Dao에 전달
 	 */
 	@Override

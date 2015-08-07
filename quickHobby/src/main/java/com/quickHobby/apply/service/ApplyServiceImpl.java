@@ -199,9 +199,11 @@ public class ApplyServiceImpl implements ApplyService {
 		MemberDto host = applyDao.getHost(apply_num);
 		String filePath = host.getMemberFilePath();
 
+		String[] temp=null;
 		String fileName = null;
 		if (filePath != null) {
-			fileName = filePath.split("\\\\")[11];
+			temp=filePath.split("\\\\");
+			fileName = filePath.split("\\\\")[temp.length-1];
 		}
 		host.setMemberFileName(fileName);
 

@@ -5,12 +5,7 @@ import java.util.List;
 import com.quickHobby.groupReply.dto.GroupReplyDto;
 
 public interface GroupReplyService {
-
-	List<GroupReplyDto> getGroupReplyList(int groupBoardNum);
-
-	int groupReplyWrite(GroupReplyDto groupReplyDto);
-
-	int groupReplyModify(GroupReplyDto groupReplyDto);
-
-	int groupReplyDelete(GroupReplyDto groupReplyDto);
+	public List<GroupReplyDto> getGroupReplyList(int groupBoardNum);
+	public int groupReplyWrite(GroupReplyDto groupReplyDto);
+	public int groupReplyDelete(GroupReplyDto groupReplyDto);
 }

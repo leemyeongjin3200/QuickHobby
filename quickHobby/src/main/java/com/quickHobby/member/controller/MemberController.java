@@ -1,8 +1,5 @@
 package com.quickHobby.member.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -160,11 +157,23 @@ public class MemberController {
 		return "redirect:/main_hyeran.jsp";
 	}
 	
+	/**
+	* @name : findPassword
+	* @date : 2015. 6. 26.
+	* @author : 이명진
+	* @description : 비밀번호 찾기 화면으로 이동
+	 */
 	@RequestMapping(value="/member/findPassword.do", method=RequestMethod.GET)
 	public String findPassword(HttpServletRequest req){
 		return "member/findPassword";
 	}
 	
+	/**
+	* @name : sendCodeFindPass
+	* @date : 2015. 6. 26.
+	* @author : 이명진
+	* @description : 비밀번호찾기 화면에서 회원에게 인증메일을 보내기 위한 컨트롤러
+	 */
 	@RequestMapping(value="/member/sendCodeFindPass.do", method=RequestMethod.GET)
 	public ModelAndView sendCodeFindPass(HttpServletRequest req){
 		ModelAndView mav=new ModelAndView();
@@ -175,6 +184,12 @@ public class MemberController {
 		return mav;
 	}
 	
+	/**
+	* @name : findPassword
+	* @date : 2015. 6. 26.
+	* @author : 이명진
+	* @description : 인증번호 일치 후 회원의 비밀번호를 4자리만 화면에 표시하는 컨트롤러
+	 */
 	@RequestMapping(value="/member/findPassword.do", method=RequestMethod.POST)
 	public ModelAndView findPassword(HttpServletRequest req, HttpServletResponse res){
 		ModelAndView mav=new ModelAndView();

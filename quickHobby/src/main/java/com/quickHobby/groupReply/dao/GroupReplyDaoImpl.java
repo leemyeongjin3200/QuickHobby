@@ -35,11 +35,6 @@ public class GroupReplyDaoImpl implements GroupReplyDao {
 	}
 
 	@Override
-	public int groupReplyModify(GroupReplyDto groupReplyDto) {
-		return sqlSession.update("groupReply.dao.mapper.groupReplyModify", groupReplyDto);
-	}
-
-	@Override
 	public int groupReplyDelete(GroupReplyDto groupReplyDto) {
 		return sqlSession.delete("groupReply.dao.mapper.groupReplyDelete", groupReplyDto);
 	}

@@ -3,19 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dao.boardMapper">
-	<resultMap type="com.quickHobby.member.dto.MemberDto" id="memberDto">
-		<result property="memberNum" column="member_num" />
-		<result property="memberId" column="member_id" />
-		<result property="memberPassword" column="member_password" />
-		<result property="memberNickName" column="member_nickname" />
-		<result property="memberLevel" column="member_level" />
-		<result property="memberSNS" column="member_sns" />
-		<result property="memberReport" column="member_report" />
-		<result property="memberFileName" column="member_filename" />
-		<result property="memberFilePath" column="member_filepath" />
-		<result property="memberFileSize" column="member_filesize" />
-	</resultMap>
-	
 	<resultMap type="com.quickHobby.board.dto.BoardDto" id="boardDto">
 		<result property="boardNum" column="BOARD_NUM"/>
 		<result property="boardWriter" column="BOARD_WRITER"/>
@@ -33,68 +20,9 @@
 		<result property="boardSection" column="BOARD_SECTION"/>
 	</resultMap>
 
-	<select id="boardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-		select * from board where board_writer=#{board_writer}
-	</select>
-	
-	<select id="groupboardSelect" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-		<![CDATA[
-			select * from groupboard where groupboard_writer=#{groupboard_writer}
-		]]>
-	</select>
-	
-	<select id="boardCount" resultType="int">
-		select count(*) from board
-	</select>
-
-	<select id="groupCount" resultType="int">
-		<![CDATA[
-		select count(*) from groupboard
-		]]>
-	</select>
-	
-	<select id="boardList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-		<![CDATA[
-			select * from board where board_writer=#{board_writer}
-		]]>
-	</select>
-
-	<select id="groupList" parameterType="int" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-		<![CDATA[
-			select * from groupboard where groupboard_writer=#{groupboard_writer}
-		]]>
-	</select>
-
-	<select id="sumList" parameterType="java.util.Map" resultType="com.quickHobby.memberBoard.dto.MemberBoardDto">
-		<![CDATA[
-			select b.board_filename,b.board_filepath,b.board_filesize,b.board_content,b.board_createdate from board b,member m where b.board_writer=#{board_writer} and m.member_num=#{board_writer}
-			union all
-  			select g.groupboard_filename,g.groupboard_filepath, g.groupboard_filesize,g.groupboard_content,g.groupboard_createdate from member m, groupboard g where m.member_num=#{groupboard_writer} and g.groupboard_writer=#{groupboard_writer}
-			order by 2 desc
-		]]>
-	</select>
-
-	<select id="getn" parameterType="String" resultType="int">
-		<![CDATA[
-			select member_num from member where member_nickname=#{memberNickName}
-		]]>
-	</select>
-
-	<select id="getnn" parameterType="String" resultMap="memberDto">
-		<![CDATA[
-			select member_num from member where member_nickname=#{memberNickName}
-		]]>
-	</select>
-
 	<select id="skyList" parameterType="int" resultMap="boardDto">
 		<![CDATA[
 			SELECT ROWNUM AS RNUM, A.* FROM (SELECT * FROM BOARD WHERE BOARD_WRITER=#{memberNum} ORDER BY BOARD_CREATEDATE DESC) A 
-		]]>
-	</select>
-	
-	<select id="getNextList" parameterType="java.util.HashMap" resultMap="boardDto">
-		<![CDATA[
-			SELECT * FROM (SELECT ROWNUM AS RNUM, A.* FROM (SELECT * FROM BOARD WHERE BOARD_WRITER=#{memberNum} ORDER BY BOARD_CREATEDATE DESC) A) B WHERE RNUM > #{current} AND RNUM <=#{current+2}
 		]]>
 	</select>
 </mapper>

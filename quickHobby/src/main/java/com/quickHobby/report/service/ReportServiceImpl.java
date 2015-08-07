@@ -10,9 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.quickHobby.reoprt.dao.ReportDao;
+import com.quickHobby.report.dao.ReportDao;
 import com.quickHobby.report.dto.ReportDto;
 
+/**
+* @name : ReportServiceImpl
+* @date : 2015. 7. 15.
+* @author : 서인구
+* @description : 신고기능 제어를 위한 메소드 
+ */
 @Component
 public class ReportServiceImpl implements ReportService {
 	private Logger logger=Logger.getLogger(this.getClass().getName());
@@ -20,6 +26,12 @@ public class ReportServiceImpl implements ReportService {
 	@Autowired
 	private ReportDao reportDao;
 	
+	/**
+	* @name : reportList
+	* @date : 2015. 7. 15.
+	* @author : 서인구
+	* @description : 신고목록을 불러오기위한 메소드
+	 */
 	public void reportList(ModelAndView mav){
 		Map<String, Object> map=mav.getModelMap();
 		HttpServletRequest request=(HttpServletRequest) map.get("request");

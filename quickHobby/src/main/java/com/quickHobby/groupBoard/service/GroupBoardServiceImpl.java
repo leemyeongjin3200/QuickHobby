@@ -110,9 +110,11 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		for(int i=0; i<groupReplyList.size(); i++){
 			String filePath=groupReplyList.get(i).getMemberFilePath();
+			String[] temp=null;
 			String fileName=null;
 			if(filePath!=null){
-				fileName=filePath.split("\\\\")[11];
+				temp=filePath.split("\\\\");
+				fileName=filePath.split("\\\\")[temp.length-1];
 			}else{
 				fileName="default.PNG";
 				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
@@ -261,9 +263,11 @@ public class GroupBoardServiceImpl implements GroupBoardService {
 		
 		for(int i=0; i<member.size(); i++){
 			String filePath=member.get(i).getMemberFilePath();
+			String[] temp=null;
 			String fileName=null;
 			if(filePath!=null){
-				fileName=filePath.split("\\\\")[11];
+				temp=filePath.split("\\\\");
+				fileName=filePath.split("\\\\")[temp.length-1];
 			}else{
 				fileName="default.PNG";
 				filePath="C:\\Users\\KOSTA\\git\\QuickHobby\\quickHobby\\src\\main\\webapp\\img\\memberImage\\default.PNG";
